@@ -79,6 +79,15 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	padding: 7px 0;
 }
 
+/* Styling the announcement to match includes in the Victory skin */
+#announce .hd h2 {
+    border-bottom: 1px solid #E5E5E5;
+    color: #666666;
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
 .pun h5, .pun h6 {
 	font-size: 1em;
 	font-weight: bold;
@@ -1703,4 +1712,426 @@ html, body, .pun {
 
 .pun .inew .icon {
 	border-color: #91b3d9 #87a8d1 #6c85bb #7292c3;
+}
+
+/****************************************************************/
+
+/* COMMON ELEMENTS
+
+/****************************************************************/
+
+/* Some Base Rules */
+/*
+* { 	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+img { max-width: 100%; }
+
+.wrapper { width: 100%;	max-width: 2000px; margin: 0 auto; }
+
+.primary, aside, footer { float: left; padding: 1.5em 4%; -webkit-transition: all 0.4s ease-out; -moz-transition: all 0.4s ease-out; -o-transition: all 0.4s ease-out; -ms-transition: all 0.4s ease-out; transition: all 0.4s ease-out; }*/
+
+/* Basic Structure 
+-------------------------------------------------------
+.content is the main forum area
+aside is the sidebar (shown on large monitors only)
+primary is the banner/logo */
+
+/*
+header {
+	width: 100%;
+	float:left;
+}
+
+.primary {
+	width: 100%;
+	margin: 0px auto 0;
+	border:1px solid #fff;
+	border-left:0px;
+	border-right:0px;
+}
+*/
+/* Hide the board title, select drop down and board description */
+/*.primary h1, nav.primary select, #brddesc { display:none; }
+
+.content {
+	*//* Change left to right below to move the content to the right (sidebar to the left) */ /*
+	float: left;
+	width: 75%;
+	padding: 20px;
+	background: transparent none;
+	-webkit-transition: all 0.4s ease-out;
+	-moz-transition: all 0.4s ease-out;
+	-o-transition: all 0.4s ease-out;
+	-ms-transition: all 0.4s ease-out;
+	transition: all 0.4s ease-out;
+}
+
+aside {
+	width: 25%;
+	float:left;  *//* <-- NOTE: To move the sidebar change the float value of .content above! Dont change this value. *//*
+	background: #f6f6f6;
+	padding: 20px;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}*/
+
+
+/****************************************************************/
+
+/* RESPONSIVE ELEMENTS
+
+/****************************************************************/
+
+/* VERY WIDESCREEN Monitors
+-------------------------------------------*/
+
+@media only screen and (max-width: 2400px) { 
+
+	.primary {
+		background: #fff url(Air/img/logo.gif) no-repeat top center;
+		height: 140px;
+	}
+
+	.blockform input, .blockform select, .blockform textarea {
+		max-width: 100%
+	}
+	
+} 
+
+
+/* WIDESCREEN Monitors
+-------------------------------------------*/
+@media only screen and (max-width: 1220px) {
+
+	/* You can add your own CSS here if you want. */
+	/* Any CSS you add here will apply to all screen resolutions below 1220px */
+
+}
+
+
+/* Monitors
+-------------------------------------------*/
+
+@media only screen and (max-width: 980px) {
+
+	/* You can add your own CSS here if you want. */
+	/* Any CSS you add here will apply to all screen resolutions below 980px */
+	
+}
+
+/* Tablet Landscape
+-------------------------------------------*/
+
+/*  As the screen is smaller we dont have room for the sidebar anymore. Lets hide it. */
+
+@media only screen and (max-width: 768px) {
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }
+
+	#announce, ul.conr, ul.conl, div#brdwelcome.inbox { display:none!important; } 	/* Hide the sidebar */
+	.content { width:100%; }	/* Make forum fill 100% of the screen */
+
+	/* Some additional styling for the profile and admin menus too */
+	.pun .blockmenu {width: 100%!important;}
+	.pun .blockmenu .block2 {display:block;clear:left}
+	.pun .blockmenu li {float:left;display:block;width:auto;}
+	.pun .blockmenu li a:link, .pun .blockmenu li a:visited {padding-bottom:10px;float:left;display:block;border-right: 1px dotted #ccc;}
+	.pun .block2col .block, .pun .block2col .blockform {margin-left:0em!important;}
+	
+	.pun {
+		margin: 0 0.5em 0.5em 0.5em;
+	}
+	
+	#brdmain {
+		border: 0;
+		margin-bottom: 0;
+		padding: 0;
+	}
+
+
+	
+	/* 2. The FluxBB navigation menus (e.g. Index, Userlist, Search) edits */
+/*	.pun #brdmenu{
+		background: #fff;
+		display:none;
+	}
+	
+	.pun #brdmenu:before{
+		content:"Menu";
+	}
+	
+	#brddesc {
+	display:initial;
+	background: url(http://www.randonner-leger.org/wiki/lib/tpl/RL/images/bandeau3.jpg) repeat-x!important;
+	height:100px!important;
+	width:100px!important;
+	}
+
+	.pun #brdmenu.open{
+		display:initial;
+	}	
+
+	
+	.pun #brdmenu{
+		display:block;
+		float:left;
+	}
+*/	
+/*
+#brdmenu {
+	position: absolute!important;
+  top: 4px;
+  left: 45px;
+  background: #9AACBC;
+  transition: height 0.1s;
+  height: 25px;
+  width: 25px;
+  overflow: auto;
+  padding:1px 3px;
+}
+
+#brdmenu div {
+  background: white;
+	position: absolute;
+	top:4px;
+  height: 15px;
+  width: 15px;
+  margin: 2px 5px;
+}
+
+#brdmenu ul {
+display:none;
+}
+
+#brdmain.opened {
+	display:none;
+}
+
+#brdmenu.opened  {
+	display:initial!important;
+   left: 0.5em;
+ height: 100%!important;
+  width:98%!important;
+  margin-top: 0!important;
+  margin-bottom: 0px!important;
+  overflow: auto!important;
+}
+*/
+
+	#centermenu {
+		display:initial!important;
+		position: fixed!important;
+		z-index:101;
+		border: 1px solid #0066b9;
+		top: 4px;
+		left: 45px;
+		color: white;
+		background: #9AACBC;
+		transition: height 0s;
+		height: 27px;
+		width: 30px;
+		overflow: hidden;
+	}
+
+	#openbrdmenu {
+		display: initial!important;
+		width: 25px;
+		height: 25px;
+		padding: 1px 2px;
+	}
+
+	#openbrdmenu div {
+		background: #f6f6f6;
+		position: absolute;
+		top:2px;
+		height: 17px;
+		width: 20px;
+		margin: 3px 5px;
+	}
+
+	#brdmenu {
+	  height: 0;
+	  transition: margin 0s, height 0s;
+	  overflow: auto;
+	}
+
+	#openbrdmenu.opened {
+		display:block;
+		position:relative;
+		left:38px;
+	}
+	
+	#centermenu.opened {
+		left:0.4em;
+		height: 98%;
+		width:97%;
+		margin-right:1px;
+	}
+	
+	#brdmenu.opened {
+		height: 95%;
+		margin-top: 0;
+		margin-bottom: -40px;
+		background: #9AACBC;
+		border:none;
+	}
+
+	#brdmenu.opened ul {
+		background: #9AACBC;
+	}
+
+	#brdmenu.opened li{
+		display:block!important;
+		width:100%;
+		text-align:center;
+	}
+	
+	.punwrap.opened {
+		background: #9AACBC!important;
+		border:none;
+	}	
+	
+	#brdmain.opened{
+		display:none;
+	}
+	
+}
+
+
+/* Tablet Portrait + Mobile
+-------------------------------------------*/
+@media only screen and (max-width: 540px) {
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }
+
+	
+	/* Reduce padding around the forum content */
+	.content {padding: 0px 5px}
+
+	/* 1. Hide the banner to save space and just show the h1 title tag */
+	nav.primary {
+		background: none #fff;
+		height: auto;
+		border: 0px;
+		margin:10px auto 0px;
+		padding: 0px;
+	}
+	/* Show h1 tag */
+	nav.primary h1 { 
+		display:block; 
+		font-size: 18px; 
+		font-weight: bold; 
+		color:#000; 
+		margin:0px auto 10px;
+		padding: 0px
+	}
+
+	/* Show the select dropdown */
+	nav.primary select {
+		display:block;
+		width: 100%;
+		padding: 5px;
+		border: 1px solid #ccc;
+		margin-bottom:5px;
+	}
+	
+	#brdmenu ul li {
+		border-bottom: 1px solid #fff;
+	}
+		
+	/* Active topics, unanswered topics links etc. Looks a little tidier this way */
+	#brdwelcome p.conl, #brdwelcome .conl li { margin-bottom:5px; }
+	#brdwelcome .conr { float:left; }
+	
+	/* 3. When viewing Index, View Forum, Search Results (topics) we hide the columns showing number of replies/views */
+	.pun .tc2,	/* Views column */
+	.pun .tc3 	/* Replies column */
+	{
+		display:none
+	}
+
+	.pun .tcl { width:auto; }	/* When hiding the views/replies columns we need to resize the last post column */
+
+	/* 4. When viewing topics we create additional space by increasing the size of the postright column (users posts content) to 100% */
+		
+	.pun .blockpost .postleft {width: 100%; float:left; display:block;margin-left:0px}
+	.pun .blockpost .postleft dd, .pun .blockpost .postleft .postavatar {display:none}
+
+	.pun .blockpost .postright {margin-left:0;width: 100%; float:left; display:block; padding: 0 10px 0}
+	.pun .blockpost .postfootright {padding: 7px 10px}
+	.pun .blockpost .postbody, .pun .blockpost .postfoot {margin-right:0px;float:left;}
+
+	.pun .blockpost h2 { padding-left:140px;}
+	.pun .blockpost h2 .conr {float:left; padding-right:4px}
+		
+	.pun .blockpost .postbody, .pun .blockpost .postfoot {border-color: #FCFDFE}
+	
+	/* Lets hide all signatures too whilst were here */
+	.pun .postmsg .postsignature {display:none}
+
+	/* ...And limit quoting to 1 quote deep */
+	.pun .postmsg  .quotebox .quotebox .quotebox .quotebox .quotebox, 
+	.pun .postmsg  .quotebox .quotebox .quotebox .quotebox, 
+	.pun .postmsg  .quotebox .quotebox .quotebox, 
+	.pun .postmsg .quotebox .quotebox {display:none}
+	
+	/* All form inputs */
+	.blockform .buttons input, .blockform .rbox input {width: auto;}
+	.blockform input, .blockform select, .blockform textarea {width: 100%}
+
+	/* View Profile */
+	#viewprofile dt, #adstats dt {width: 8em;}
+	#viewprofile dd, #adstats dd { padding-left: 8em;}
+	
+	.pun {
+		margin: 0;
+	}
+
+	.pun #quickpost .txtarea {
+		padding-left: 0px;
+	}
+	
+	#punindex {
+		width:100%;
+		float:left;
+	}
+	
+	ul.crumbs {
+		display:block!important;
+	}
+	
+	p.subscribelink.clearb  {
+		display:block!important;
+		position:absolute!important;
+		left:0;
+		top:4em;
+		text-align:left;
+	}
+	
+	.pun .postlinksb .crumbs {
+		margin-right: 1em;
+	}
+	
+	.pun #brdfooter #qjump select{
+		width:80%!important;
+	}
+
+	div.inbox.crumbsplus {
+		overflow:visible!important;
+	}
+	
+	#postform h2, #postform legend {
+		width:75%!important;
+	}
+
+	#postform div.infldset{
+		width:90%!important;
+	}
+	
 }

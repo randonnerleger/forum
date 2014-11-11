@@ -11,7 +11,7 @@ $lang_register = array(
 'Registration flood'		=>	'Un nouvel utilisateur ayant la même adresse IP que vous a été inscrit dans la dernière heure. Pour éviter les inscriptions multiples, il n\'est pas possible de s\'inscrire à partir de la même IP dans un intervalle inférieur à 1 heure. Désolé pour la gêne occasionnée.',
 'Agree'				=>	'J\'accepte',
 'Cancel'			=>	'Je refuse',
-'Register'			=>	'S\'inscrire',
+'Register'			=>	'S\'inscrire au forum',
  
 // Form validation stuff (some of these are also used in post.php)
 'Registration errors'		=>	'Erreurs d\'inscription',

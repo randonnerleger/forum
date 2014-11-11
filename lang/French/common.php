@@ -52,7 +52,7 @@
  'Send email'                        =>	'Envoyer un e-mail',
  'Moderated by'                      =>	'Modéré par',
  'Registered'                        =>	'Date d\'inscription',
- 'Subject'                           =>	'Sujet',
+ 'Subject'                           =>	'Veuillez indiquer un titre clair reflétant le contenu du message',
  'Message'                           =>	'Message',
  'Topic'                             =>	'Discussion',
  'Forum'                             =>	'Forum',

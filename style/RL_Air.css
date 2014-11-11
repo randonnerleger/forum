@@ -1594,6 +1594,8 @@ html, body, .pun {
 }
 /********************* Fin Modif */
 
+.modlist {display : none ;} /* Modif RL_Air : supprimer liste modo sous les sections */
+
 /* Main Forms + Profile
 ----------------------------------------------------------------*/
 

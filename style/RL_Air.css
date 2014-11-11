@@ -825,14 +825,14 @@ MAIN POSTS
 }
 
 .pun .postmsg {
-	width:95%; /* Modif RL_Air : 귩t고mots tronqu고sur petits ꤲans */
+	width:95%; /* Modif RL_Air : mots tronques sur petits ecrans */
 	overflow: hidden;
 	word-wrap: break-word;
 }
 
 .pun .blockpost .postfootright {
 	position: relative;
-	padding: 7px 155px 7px 18px; /* Modif RL_Air : dꤡler vers droite liens "Signaler", etc */
+	padding: 7px 155px 7px 18px; /* Modif RL_Air : decaler vers droite liens "Signaler", etc */
 	text-align: right;
 }
 
@@ -1425,13 +1425,13 @@ COLOUR SCHEME
 ----------------------------------------------------------------*/
 
 html, body, .pun {
-	background: #f6f9fc;
+	background: #9aacbc; /* Modif RL_Air : couleur fond de page */
 	color: #333;
 }
 
 .pun .punwrap {
-	background: #fff;
-	border-color: #cad7e1;
+	background: #f7f7f7; /* Modif RL_Air : couleur fond de message */
+	border-color: #0066b9; /* Modif RL_Air : couleur bordure principale */
 	color: #566579;
 }
 
@@ -1479,7 +1479,7 @@ html, body, .pun {
 ----------------------------------------------------------------*/
 
 .pun .blocktable .box {
-	background: #fcfdfe;
+	background: #f2f4f4; /* Modif RL_Air : fond titres discussions */
 	border-color: #b9c5ce #d9e1e7;
 }
 
@@ -1501,7 +1501,7 @@ html, body, .pun {
 }
 
 .pun .blocktable th {
-	background: #ebf1f5;
+	background: #d2dbe0; /* Modif RL_Air : fond titre sections */
 	border-color: #cad7e1;
 	color: #357082;
 }
@@ -1525,7 +1525,7 @@ html, body, .pun {
 }
 
 .pun .blockpost .postbody, .pun .blockpost .postfoot {
-	background: #fcfdfe;
+	background: #e4eaea; /* Modif RL_Air : fond de messages */
 	border-color: #dfe6ee;
 }
 

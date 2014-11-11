@@ -7,6 +7,9 @@
 
 <body>
 
+<pun_include "bandeau.php">
+<pun_include "menugauche.php">
+
 <div id="pun<pun_page>" class="pun">
 <div class="top-box"><div><!-- Top Corners --></div></div>
 <div class="punwrap">

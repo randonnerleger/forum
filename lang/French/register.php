@@ -33,5 +33,6 @@ $lang_register = array(
 'Pass info'			=>	'Le mot de passe doit comporter au minimum 4 caractères (sensible à la casse).',
 'Email info'			=>	'Vous devez saisir une adresse électronique valide. Vous pouvez choisir de ne pas divulguer votre adresse aux autres utilisateurs (voir ci-dessous).',
 'Confirm email'			=>	'Confirmez votre adresse électronique',
+'Antispam info'            =>    'Afin d\'empêcher les inscriptions automatiques des robots spammeurs, <strong>votre inscription ne sera acceptée que si le <u>premier</u> e-mail ci-dessous est précédé d\'un code à 3 lettres</strong> que vous trouverez en lisant (jusqu\'au bout ;-) !) la <a href="/wiki/doku.php?id=guide:charte_forum">Charte du forum</a>.',
  
 );

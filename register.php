@@ -99,6 +99,17 @@ if (isset($_POST['form_sent']))
 	// Validate email
 	require PUN_ROOT.'include/email.php';
 
+//********************* Modif : antibot
+    $test = 'mul'; /*variable contenant les lettres au debut de l'adresse*/
+    $long_test = strlen($test); /*longueur de $test, tu peux donc faire varier $test sans souci, meme le rendre aleatoire*/
+    $long_email = strlen($email1); /*longueur de $email*/
+
+    if (substr($email1, 0, $long_test) === $test) /*verification si les 3 1eres lettres du $email sont identiques a $test*/
+        $email1 = substr($email1, $long_test, $long_email); /*si oui, suppression de $test au debut de $email*/
+    else
+        message($lang_common['Invalid email']);
+//********************* Fin Modif 
+		
 	if (!is_valid_email($email1))
 		$errors[] = $lang_common['Invalid email'];
 	else if ($pun_config['o_regs_verify'] == '1' && $email1 != $email2)
@@ -327,7 +338,11 @@ if (!empty($errors))
 					<legend><?php echo ($pun_config['o_regs_verify'] == '1') ? $lang_prof_reg['Email legend 2'] : $lang_prof_reg['Email legend'] ?></legend>
 					<div class="infldset">
 <?php if ($pun_config['o_regs_verify'] == '1'): ?>						<p><?php echo $lang_register['Email info'] ?></p>
-<?php endif; ?>						<label class="required"><strong><?php echo $lang_common['Email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
+<?php endif; ?>						
+<!--********************* Modif : Antibot -->
+                        <p><?php echo $lang_register['Antispam info'] ?></p>
+<!--********************* Fin Modifs -->
+<label class="required"><strong><?php echo $lang_common['Email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
 						<input type="text" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo pun_htmlspecialchars($_POST['req_email1']); ?>" size="50" maxlength="80" /><br /></label>
 <?php if ($pun_config['o_regs_verify'] == '1'): ?>						<label class="required"><strong><?php echo $lang_register['Confirm email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
 						<input type="text" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo pun_htmlspecialchars($_POST['req_email2']); ?>" size="50" maxlength="80" /><br /></label>

@@ -1485,6 +1485,12 @@ html, body, .pun {
 	color: #fff;
 }
 
+/* Modif RL_Air : couleurs lien signalement */
+li.reportlink a:link {color: red}
+
+li.reportlink a:visited{color: green}
+/* Fin modif */
+
 /* Main Tables
 ----------------------------------------------------------------*/
 

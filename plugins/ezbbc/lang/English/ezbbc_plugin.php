@@ -1,6 +1,14 @@
 <?php
 // Language definitions used in EZBBC Toolbar Plugin
 $lang_ezbbc = array(
+
+//********************* Modif : Tableaux
+	'Ask rltable param'            =>      'Table parameter (like <em>lr</em> for left right)',
+	'Ask rltable'                  =>      'Table content',
+	'EZBBC RLTable'                =>      'RL Table',
+	'RLtable'                      =>      'RL Table » [rltable=…]…[/rltable]',
+//********************* Fin Modif
+
     //For the admin plugin page
     'Plugin in action' => 'Plugin in action!',
     'Plugin disabled' => 'The plugin has been disabled.',

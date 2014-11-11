@@ -249,6 +249,10 @@ function doToolbar() {
 	toolbar += '<a href="#" id="image" title="<?php echo $lang_ezbbc['Image title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>image.php?textarea_name=<?php echo $textarea_name ?>\', \'Image\', \'height=<?php echo ($ezbbc_config['img_upload'] == 'no_img_upload' || $pun_user['is_guest']) ? '300' : (($ezbbc_config['img_list'] == 'img_list') ? '560' : '410') ?>, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Image'] ?><\/span><\/a>';
 	<?php endif; ?>
 
+//********************* Modif : Tableaux
+    toolbar += '<a href="#" id="rltable" title="<?php echo $lang_ezbbc['RLtable'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>rltable.php?textarea_name=<?php echo $textarea_name ?>\', \'Rltable\', \'height=450, width=750, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span<?php echo $lang_ezbbc['RLtable'] ?>\/span><\/a>';
+//********************* Fin Modif	
+
 	// Quote and code
 	<?php if ($ezbbc_config['quote'] == 'quote'): ?>
 	toolbar += '<a href="#" id="quote" title="<?php echo $lang_ezbbc['Quote title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>quote.php?textarea_name=<?php echo $textarea_name ?>\', \'Quote\', \'height=450, width=750, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Quote'] ?><\/span><\/a>';

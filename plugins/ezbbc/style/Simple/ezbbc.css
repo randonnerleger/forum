@@ -82,6 +82,11 @@
 #ezbbctoolbar a#quote {
 	background: url(images/toolbar.png) no-repeat -200px 0;
 }
+/********************* Modif : Tableaux */
+#ezbbctoolbar a#rltable {
+    background: url(images/rltable.png) no-repeat 0 0;
+}
+/********************* Fin Modif */
 #ezbbctoolbar a#code {
 	background: url(images/toolbar.png) no-repeat -260px 0;
 }

@@ -1,6 +1,14 @@
 <?php
 // Language definitions used in EZBBC Toolbar Plugin
 $lang_ezbbc = array(
+
+//********************* Modif : Tableaux
+	'Ask rltable param'            =>      'Alignement des colonnes : (l)eft, (r)ight, (c)enter. Exemple : <em>llr</em> pour gauche, gauche et droite',
+	'Ask rltable'                  =>      'Contenu du tableau. Les cellules sont séparées par <b>|</b>. Si la ligne commence par <b>^</b>, c’est un en-tête de tableau.',
+	'EZBBC RLTable'                =>      'Tableau RL',
+	'RLtable'                      =>      'Tableau RL » [rltable=…]…[/rltable]',
+//********************* Fin Modif
+
     //For the admin plugin page
     'Plugin in action' => 'Plugin en action&#160;!',
     'Plugin disabled' => 'Le plugin a été désactivé.',

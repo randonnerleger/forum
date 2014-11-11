@@ -142,7 +142,10 @@ function strip_empty_bbcode($text)
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|video|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+//********************* Modif : Tableaux
+//********************* Ancienne ligne : 	while (!is_null($new_text = preg_replace('%\[(b|video|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(b|video|u|s|ins|del|em|i|h|colou?r|quote|rltable|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+//********************* Modif : 
 	{
 		if ($new_text != $text)
 			$text = $new_text;
@@ -186,7 +189,10 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'video', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
+//********************* Modif : Tableaux
+//********************* Ancienne ligne : $tags = array('quote', 'video', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
+	$tags = array('quote', 'video', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'rltable');
+//********************* Fin Modif
 	// List of tags that we need to check are open (You could not put b,i,u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
@@ -198,7 +204,10 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Tags not allowed
 	$tags_forbidden = array();
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
-	$tags_block = array('quote', 'code', 'list', 'h', '*');
+//********************* Modif : Tableaux
+//********************* Ancienne ligne : $tags_block = array('quote', 'code', 'list', 'h', '*');
+	$tags_block = array('quote', 'code', 'list', 'h', '*', 'rltable');
+//********************* Fin Modif
 	// Inline tags, we do not allow new lines in these
 	$tags_inline = array('b', 'video', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'h', 'topic', 'post', 'forum', 'user');
 	// Tags we trim interior space
@@ -216,6 +225,9 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		'forum' => array('img'),
 		'user'  => array('img'),
 		'img' 	=> array(),
+//********************* Modif : Tableaux
+        'rltable' => array('b','i','u','s', 'url'),
+//********************* Fin Modif
 		'video' => array('url'),
 		'h'		=> array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'topic', 'post', 'forum', 'user'),
 	);
@@ -733,6 +745,36 @@ function handle_list_tag($content, $type = '*')
 	return '</p>'.$content.'<p>';
 }
 
+//********************* Modif : Tableaux
+//********************* Fonction de traitement pour les tableaux
+function handle_rltable($colspec, $content){
+  $align = array("l" => "left", "c" => "center", "r" => "right");
+  $columns=str_split($colspec);
+  $width=count($columns);
+  $lines=explode("\n", $content);
+  $output="<table class='rl-table'>";
+  foreach ($lines as $l_i => $line) {
+    $header=false;
+    $l = trim($line);
+    if (substr($l, 0, 1) == "^") { // on teste si c'est un header
+      $header=true;
+      $l = trim(substr($l, 1));
+      $output .= "<tr class='header'>"; } 
+    else { $output .= "<tr>"; }
+    $cells = explode("|", $l);
+    if ($l == "")
+      $output .= "<td class='blank-cell' colspan='" . $width . "'>&nbsp;</td>";
+    else if (count($cells) !== $width) // ligne spéciale, on fait une cellule unique
+      $output .= "<td class='mono-cell' colspan='" . $width . "'>" . $l . "</td>";
+    else  // ligne normale, on transforme en cellules
+      foreach ($cells as $c_i => $cell)
+    $output .= "<td style='text-align:" . $align[$columns[$c_i]] . ";'>" . trim($cell) . '</td>';
+    $output .= "</tr>";
+  }
+  $output .= "</table>";
+  return $output;
+}
+//********************* Fin Modif
 
 //
 // Convert BBCodes to their HTML equivalent
@@ -791,6 +833,11 @@ function do_bbcode($text, $is_signature = false)
 		}
 	}
 
+//********************* Modif : Tableaux
+    $pattern_callback[] = '%\[rltable=([lcr]+)\]\n(.*?)\n\[/rltable\]%ms';
+    $replace_callback[] = 'handle_rltable($matches[1], $matches[2])';    
+//********************* Fin Modif : 
+	
 	$pattern_callback[] = '%\[url\]([^\[]*?)\[/url\]%';
 	$pattern_callback[] = '%\[url=([^\[]+?)\](.*?)\[/url\]%';
 	$pattern[] = '%\[email\]([^\[]*?)\[/email\]%';

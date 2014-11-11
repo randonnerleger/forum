@@ -80,7 +80,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			message($lang_common['No permission'], false, '403 Forbidden');
 	}
 	else if ($action == 'show_recent')
-		$interval = isset($_GET['value']) ? intval($_GET['value']) : 86400;
+		$interval = isset($_GET['value']) ? intval($_GET['value']) : 604800;
 	else if ($action == 'show_replies')
 	{
 		if ($pun_user['is_guest'])

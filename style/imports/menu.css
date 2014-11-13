@@ -1,8 +1,5 @@
-html>body #menugauche {
-  position: fixed;
-}
-
 #menugauche {
+  position: fixed;
   top: 0px;
   left: -5px;
   float: left;
@@ -74,7 +71,7 @@ html>body #menugauche {
 @media only screen and (max-width: 768px) {
 
 	#menugauche {
-/*		position: fixed!important;*/
+		position: absolute;
 		z-index:101;
 		top: 0;
 		right: 0;
@@ -117,7 +114,7 @@ html>body #menugauche {
 	.menu.open {
 	  height: 95%;
 	  margin-top: 0;
-	  margin-bottom: -40px;
+	  margin-bottom: 0;
 	}
 
 	.pun.open{

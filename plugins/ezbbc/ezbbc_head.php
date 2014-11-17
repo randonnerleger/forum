@@ -1,7 +1,7 @@
 <?php
 // Integration of EZBBC Toolbar script only in the pages containing the req_message textarea and in the profile page
 $section = isset($_GET['section']) ? $_GET['section'] : null;
-if ((isset($required_fields['req_message']) && basename($_SERVER['PHP_SELF']) != 'misc.php') || ($section == 'personality' && $pun_config['o_signatures'] == '1')):
+if ((isset($required_fields['req_message']) && basename($_SERVER['PHP_SELF']) != 'misc.php') || ($section == 'personality' && $pun_config['o_signatures'] == '1') || basename($_SERVER['PHP_SELF']) == 'viewtopic.php'):
 
 // Retrieving all values from config file
 require PUN_ROOT.'plugins/ezbbc/config.php';
@@ -407,12 +407,11 @@ window.addEventListener ? window.addEventListener('load',addBars,false) : window
 <!-- EZBBC Toolbar integration end -->
 <?php endif; ?>
 <?php endif; ?>
-<?php if (basename($_SERVER['PHP_SELF']) == 'viewtopic.php' && $ezbbc_config['syntax_highlight'] == 'syntax_highlight'): ?>
+<?php if ((basename($_SERVER['PHP_SELF']) == 'viewtopic.php' || basename($_SERVER['PHP_SELF']) == 'post.php' || basename($_SERVER['PHP_SELF']) == 'edit.php') && $ezbbc_config['syntax_highlight'] == 'syntax_highlight'): ?>
 <!-- PRISMJS syntaxic coloration -->
 <style type="text/css">
 <?php echo file_get_contents(PUN_ROOT.'plugins/ezbbc/prism/prism.css'); ?>
 </style>
-<link rel="stylesheet" type="text/css" href="prism.css" />
 <script type="text/javascript" defer="defer">
 /* <![CDATA[ */
 <?php echo file_get_contents(PUN_ROOT.'plugins/ezbbc/prism/prism.js'); ?>

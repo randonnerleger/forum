@@ -7,7 +7,7 @@
 #bandeau {
 	border-left: 1px solid #0066b9;
 	border-right: 1px solid #0066b9;
-	background: url(/wiki/lib/tpl/RL/images/bandeau3.jpg) repeat-x;
+	background: url(../Air/img/bandeau3.jpg) repeat-x;
     height: 60px;
 	margin: 0px 0px 0 152px;
 }

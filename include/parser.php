@@ -193,7 +193,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 //********************* Ancienne ligne : $tags = array('quote', 'video', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
 	$tags = array('quote', 'video', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'rltable');
 //********************* Fin Modif
-	// List of tags that we need to check are open (You could not put b,i,u in here then illegal nesting like [b][i][/b][/i] would be allowed)
+    // List of tags that we need to check are open (You could not put b,i,u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
 	$tags_closed = $tags;
@@ -225,10 +225,10 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		'forum' => array('img'),
 		'user'  => array('img'),
 		'img' 	=> array(),
+		'video' => array('url'),
 //********************* Modif : Tableaux
         'rltable' => array('b','i','u','s', 'url'),
 //********************* Fin Modif
-		'video' => array('url'),
 		'h'		=> array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'topic', 'post', 'forum', 'user'),
 	);
 	// Tags we can automatically fix bad nesting
@@ -659,7 +659,7 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 	$url = pun_trim($url);
 
 	// Deal with [url][img]http://example.com/test.png[/img][/url]
-	if (preg_match('%<img src=\\\\"(.*?)\\\\"%', $url, $matches))
+	if (preg_match('%<img src=\"(.*?)\"%', $url, $matches))
 		return handle_url_tag($matches[1], $url, $bbcode);
 
 	$full_url = str_replace(array(' ', '\'', '`', '"'), array('%20', '', '', ''), $url);
@@ -837,7 +837,7 @@ function do_bbcode($text, $is_signature = false)
     $pattern_callback[] = '%\[rltable=([lcr]+)\]\n(.*?)\n\[/rltable\]%ms';
     $replace_callback[] = 'handle_rltable($matches[1], $matches[2])';    
 //********************* Fin Modif : 
-	
+
 	$pattern_callback[] = '%\[url\]([^\[]*?)\[/url\]%';
 	$pattern_callback[] = '%\[url=([^\[]+?)\](.*?)\[/url\]%';
 	$pattern[] = '%\[email\]([^\[]*?)\[/email\]%';

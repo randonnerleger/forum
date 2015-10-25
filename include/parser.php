@@ -209,11 +209,11 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	$tags_block = array('quote', 'code', 'list', 'h', '*', 'rltable');
 //********************* Fin Modif
 	// Inline tags, we do not allow new lines in these
-	$tags_inline = array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'h', 'topic', 'post', 'forum', 'user');
+	$tags_inline = array('b', 'video', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'h', 'topic', 'post', 'forum', 'user');
 	// Tags we trim interior space
-	$tags_trim = array('img');
+	$tags_trim = array('img', 'video');
 	// Tags we remove quotes from the argument
-	$tags_quotes = array('url', 'email', 'img', 'topic', 'post', 'forum', 'user');
+	$tags_quotes = array('url', 'video', 'email', 'img', 'topic', 'post', 'forum', 'user');
 	// Tags we limit bbcode in
 	$tags_limit_bbcode = array(
 		'*' 	=> array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'list', 'img', 'code', 'topic', 'post', 'forum', 'user'),
@@ -225,6 +225,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		'forum' => array('img'),
 		'user'  => array('img'),
 		'img' 	=> array(),
+		'video' => array('url'),
 //********************* Modif : Tableaux
         'rltable' => array('b','i','u','s', 'url'),
 //********************* Fin Modif
@@ -803,6 +804,7 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[em\](.*?)\[/em\]%ms';
 	$pattern[] = '%\[colou?r=([a-zA-Z]{3,20}|\#[0-9a-fA-F]{6}|\#[0-9a-fA-F]{3})](.*?)\[/colou?r\]%ms';
 	$pattern[] = '%\[h\](.*?)\[/h\]%ms';
+	require PUN_ROOT.'plugins/ezbbc/ezbbc_video_pattern.php';
 
 	$replace[] = '<strong>$1</strong>';
 	$replace[] = '<em>$1</em>';
@@ -813,6 +815,7 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<em>$1</em>';
 	$replace[] = '<span style="color: $1">$2</span>';
 	$replace[] = '</p><h5>$1</h5><p>';
+	require PUN_ROOT.'plugins/ezbbc/ezbbc_video_replace.php';
 
 	if (($is_signature && $pun_config['p_sig_img_tag'] == '1') || (!$is_signature && $pun_config['p_message_img_tag'] == '1'))
 	{
@@ -952,7 +955,7 @@ function parse_message($text, $hide_smilies)
 			if (isset($inside[$i]))
 			{
 				$num_lines = (substr_count($inside[$i], "\n"));
-				$text .= '</p><div class="codebox"><pre'.(($num_lines > 28) ? ' class="vscroll"' : '').'><code>'.pun_trim($inside[$i], "\n\r").'</code></pre></div><p>';
+				require PUN_ROOT.'plugins/ezbbc/ezbbc_code_highlight.php';
 			}
 		}
 	}

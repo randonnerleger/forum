@@ -59,13 +59,15 @@ $errors = array();
 // Did someone just hit "Submit" or "Preview"?
 if (isset($_POST['form_sent']))
 {
+	flux_hook('post_before_validation');
+
 	// Flood protection
 	if (!isset($_POST['preview']) && $pun_user['last_post'] != '' && (time() - $pun_user['last_post']) < $pun_user['g_post_flood'])
 		$errors[] = sprintf($lang_post['Flood start'], $pun_user['g_post_flood'], $pun_user['g_post_flood'] - (time() - $pun_user['last_post']));
 
 	// Make sure they got here from the site
 	confirm_referrer(array('post.php', 'viewtopic.php'));
-	
+
 	// If it's a new topic
 	if ($fid)
 	{
@@ -163,6 +165,8 @@ if (isset($_POST['form_sent']))
 	$message = strip_bad_multibyte_chars($message);
 
 	$now = time();
+
+	flux_hook('post_after_validation');
 
 	// Did everything go according to plan?
 	if (empty($errors) && !isset($_POST['preview']))
@@ -544,6 +548,8 @@ else
 	$focus_element[] = 'req_username';
 }
 
+flux_hook('post_before_header');
+
 define('PUN_ACTIVE_PAGE', 'index');
 require PUN_ROOT.'header.php';
 
@@ -650,7 +656,7 @@ $subject = $tag->getSubject(false);
 <!--********************* Fin Modif -->
 						<label class="required"><strong><?php echo $lang_common['Subject'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input class="longinput" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
 <?php endif; ?>						<label class="required"><strong><?php echo $lang_common['Message'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-                        						<textarea name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea><br /></label>
+						<textarea name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea><br /></label>
 						<ul class="bblinks">
 							<li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
 							<li><span><a href="help.php#url" onclick="window.open(this.href); return false;"><?php echo $lang_common['url tag'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_user['g_post_links'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
@@ -710,6 +716,7 @@ if (!empty($checkboxes))
 
 ?>
 			</div>
+<?php flux_hook('post_before_submit') ?>
 			<p class="buttons"><input type="submit" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input type="submit" name="preview" value="<?php echo $lang_post['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>

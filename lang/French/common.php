@@ -39,7 +39,8 @@
  'Click redirect'                    =>	'Cliquez ici si vous ne voulez pas attendre (ou si votre navigateur ne vous redirige pas automatiquement).',
  'on'                                =>	'activé',		// as in "BBCode is on"
  'off'                               =>	'désactivé',
-'Invalid email'						 => 'Soit l\'adresse électronique que vous avez saisie est invalide, soit vous n\'avez pas respecté les consignes d\'inscription.',
+// Modif RL
+'Invalid email'			     => 'Soit l\'adresse électronique que vous avez saisie est invalide, soit vous n\'avez pas respecté les consignes d\'inscription.',
  'Required'                          =>	'(obligatoire)',
  'required field'                    =>	'est un champ obligatoire pour ce formulaire.',	// for javascript form validation
  'Last post'                         =>	'Dernier message',
@@ -52,6 +53,7 @@
  'Send email'                        =>	'Envoyer un e-mail',
  'Moderated by'                      =>	'Modéré par',
  'Registered'                        =>	'Date d\'inscription',
+// Modif RL
  'Subject'                           =>	'Veuillez indiquer un titre clair reflétant le contenu du message',
  'Message'                           =>	'Message',
  'Topic'                             =>	'Discussion',

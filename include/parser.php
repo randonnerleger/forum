@@ -39,7 +39,25 @@ if (!defined('PUN'))
 $re_list = '%\[list(?:=([1a*]))?+\]((?:[^\[]*+(?:(?!\[list(?:=[1a*])?+\]|\[/list\])\[[^\[]*+)*+|(?R))*)\[/list\]%i';
 
 // Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
-require PUN_ROOT.'plugins/ezbbc/ezbbc_smilies1.php';
+$smilies = array(
+	':)' => 'smile.png',
+	'=)' => 'smile.png',
+	':|' => 'neutral.png',
+	'=|' => 'neutral.png',
+	':(' => 'sad.png',
+	'=(' => 'sad.png',
+	':D' => 'big_smile.png',
+	'=D' => 'big_smile.png',
+	':o' => 'yikes.png',
+	':O' => 'yikes.png',
+	';)' => 'wink.png',
+	':/' => 'hmm.png',
+	':P' => 'tongue.png',
+	':p' => 'tongue.png',
+	':lol:' => 'lol.png',
+	':mad:' => 'mad.png',
+	':rolleyes:' => 'roll.png',
+	':cool:' => 'cool.png');
 
 //
 // Make sure all BBCodes are lower case and do a little cleanup
@@ -189,10 +207,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-//********************* Modif : Tableaux
-//********************* Ancienne ligne : $tags = array('quote', 'video', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
-	$tags = array('quote', 'video', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'rltable');
-//********************* Fin Modif
+	$tags = array('quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
 	// List of tags that we need to check are open (You could not put b,i,u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
@@ -204,16 +219,13 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Tags not allowed
 	$tags_forbidden = array();
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
-//********************* Modif : Tableaux
-//********************* Ancienne ligne : $tags_block = array('quote', 'code', 'list', 'h', '*');
-	$tags_block = array('quote', 'code', 'list', 'h', '*', 'rltable');
-//********************* Fin Modif
+	$tags_block = array('quote', 'code', 'list', 'h', '*');
 	// Inline tags, we do not allow new lines in these
-	$tags_inline = array('b', 'video', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'h', 'topic', 'post', 'forum', 'user');
+	$tags_inline = array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'h', 'topic', 'post', 'forum', 'user');
 	// Tags we trim interior space
-	$tags_trim = array('img', 'video');
+	$tags_trim = array('img');
 	// Tags we remove quotes from the argument
-	$tags_quotes = array('url', 'video', 'email', 'img', 'topic', 'post', 'forum', 'user');
+	$tags_quotes = array('url', 'email', 'img', 'topic', 'post', 'forum', 'user');
 	// Tags we limit bbcode in
 	$tags_limit_bbcode = array(
 		'*' 	=> array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'list', 'img', 'code', 'topic', 'post', 'forum', 'user'),
@@ -225,10 +237,6 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		'forum' => array('img'),
 		'user'  => array('img'),
 		'img' 	=> array(),
-//********************* Modif : Tableaux
-        'rltable' => array('b','i','u','s', 'url'),
-//********************* Fin Modif
-		'video' => array('url'),
 		'h'		=> array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'topic', 'post', 'forum', 'user'),
 	);
 	// Tags we can automatically fix bad nesting
@@ -659,7 +667,7 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 	$url = pun_trim($url);
 
 	// Deal with [url][img]http://example.com/test.png[/img][/url]
-	if (preg_match('%<img src=\\\\"(.*?)\\\\"%', $url, $matches))
+	if (preg_match('%<img src=\"(.*?)\"%', $url, $matches))
 		return handle_url_tag($matches[1], $url, $bbcode);
 
 	$full_url = str_replace(array(' ', '\'', '`', '"'), array('%20', '', '', ''), $url);
@@ -745,36 +753,6 @@ function handle_list_tag($content, $type = '*')
 	return '</p>'.$content.'<p>';
 }
 
-//********************* Modif : Tableaux
-//********************* Fonction de traitement pour les tableaux
-function handle_rltable($colspec, $content){
-  $align = array("l" => "left", "c" => "center", "r" => "right");
-  $columns=str_split($colspec);
-  $width=count($columns);
-  $lines=explode("\n", $content);
-  $output="<table class='rl-table'>";
-  foreach ($lines as $l_i => $line) {
-    $header=false;
-    $l = trim($line);
-    if (substr($l, 0, 1) == "^") { // on teste si c'est un header
-      $header=true;
-      $l = trim(substr($l, 1));
-      $output .= "<tr class='header'>"; } 
-    else { $output .= "<tr>"; }
-    $cells = explode("|", $l);
-    if ($l == "")
-      $output .= "<td class='blank-cell' colspan='" . $width . "'>&nbsp;</td>";
-    else if (count($cells) !== $width) // ligne spéciale, on fait une cellule unique
-      $output .= "<td class='mono-cell' colspan='" . $width . "'>" . $l . "</td>";
-    else  // ligne normale, on transforme en cellules
-      foreach ($cells as $c_i => $cell)
-    $output .= "<td style='text-align:" . $align[$columns[$c_i]] . ";'>" . trim($cell) . '</td>';
-    $output .= "</tr>";
-  }
-  $output .= "</table>";
-  return $output;
-}
-//********************* Fin Modif
 
 //
 // Convert BBCodes to their HTML equivalent
@@ -804,7 +782,6 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[em\](.*?)\[/em\]%ms';
 	$pattern[] = '%\[colou?r=([a-zA-Z]{3,20}|\#[0-9a-fA-F]{6}|\#[0-9a-fA-F]{3})](.*?)\[/colou?r\]%ms';
 	$pattern[] = '%\[h\](.*?)\[/h\]%ms';
-	require PUN_ROOT.'plugins/ezbbc/ezbbc_video_pattern.php';
 
 	$replace[] = '<strong>$1</strong>';
 	$replace[] = '<em>$1</em>';
@@ -815,7 +792,6 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<em>$1</em>';
 	$replace[] = '<span style="color: $1">$2</span>';
 	$replace[] = '</p><h5>$1</h5><p>';
-	require PUN_ROOT.'plugins/ezbbc/ezbbc_video_replace.php';
 
 	if (($is_signature && $pun_config['p_sig_img_tag'] == '1') || (!$is_signature && $pun_config['p_message_img_tag'] == '1'))
 	{
@@ -833,11 +809,6 @@ function do_bbcode($text, $is_signature = false)
 		}
 	}
 
-//********************* Modif : Tableaux
-    $pattern_callback[] = '%\[rltable=([lcr]+)\]\n(.*?)\n\[/rltable\]%ms';
-    $replace_callback[] = 'handle_rltable($matches[1], $matches[2])';    
-//********************* Fin Modif : 
-	
 	$pattern_callback[] = '%\[url\]([^\[]*?)\[/url\]%';
 	$pattern_callback[] = '%\[url=([^\[]+?)\](.*?)\[/url\]%';
 	$pattern[] = '%\[email\]([^\[]*?)\[/email\]%';
@@ -909,7 +880,7 @@ function do_smilies($text)
 	foreach ($smilies as $smiley_text => $smiley_img)
 	{
 		if (strpos($text, $smiley_text) !== false)
-			require PUN_ROOT.'plugins/ezbbc/ezbbc_smilies2.php';
+			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.pun_htmlspecialchars(get_base_url(true).'/img/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
 	}
 
 	return substr($text, 1, -1);
@@ -955,7 +926,7 @@ function parse_message($text, $hide_smilies)
 			if (isset($inside[$i]))
 			{
 				$num_lines = (substr_count($inside[$i], "\n"));
-				require PUN_ROOT.'plugins/ezbbc/ezbbc_code_highlight.php';
+				$text .= '</p><div class="codebox"><pre'.(($num_lines > 28) ? ' class="vscroll"' : '').'><code>'.pun_trim($inside[$i], "\n\r").'</code></pre></div><p>';
 			}
 		}
 	}

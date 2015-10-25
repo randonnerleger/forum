@@ -183,7 +183,8 @@ function highlight(field) {
 
 	$imagefilename = $_FILES['imagefile']['name'];
 	$imagefilename_rl = strip_ext($imagefilename);
-	$imagefilename_ext = strtolower(end(explode('.',$imagefilename))); // get the file extension
+	$filenom = explode('.',$imagefilename);
+	$imagefilename_ext = strtolower(end($filenom)); // get the file extension
 	$stamp = date("d-m-y");
   
 	// Transliterate all characters with accents,umlauts,ligatures and runes known to ISO-8859-1

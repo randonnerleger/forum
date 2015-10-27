@@ -1,1 +1,1 @@
-<?php include (dirname(__FILE__).'/../../../wiki_new/lib/tpl/RL/sidebar2.html');?>
+<?php include (dirname(__FILE__).'/../../../wiki/lib/tpl/RL/sidebar2_forum.html');?>

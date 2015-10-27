@@ -1,5 +1,5 @@
 #menugauche {
-  position: fixed;
+  position: fixed !important;
   top: 0px;
   left: -5px;
   float: left;

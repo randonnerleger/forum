@@ -1440,6 +1440,11 @@ else
 							<p><?php printf($lang_profile['Last post info'], $last_post) ?></p>
 							<p><?php printf($lang_profile['Last visit info'], format_time($user['last_visit'])) ?></p>
 							<?php echo $posts_field ?>
+<!-- Modif RL : modif Statistiques -->
+<?php if ($pun_user['is_admmod']): ?>
+							<p>Statistiques : <a href='statistiques.php?id=<?php echo $id ?>'>Evolution du nombre de messages</a></p>						
+<?php endif; ?>	
+<!-- Fin Modif RL : fin modif statistiques -->
 <?php if ($pun_user['is_admmod']): ?>							<label><?php echo $lang_profile['Admin note'] ?><br />
 							<input id="admin_note" type="text" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" size="30" maxlength="30" /><br /></label>
 <?php endif; ?>						</div>

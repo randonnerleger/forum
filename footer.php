@@ -48,6 +48,9 @@ if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'v
 		else
 			echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;close='.$id.'">'.$lang_common['Close topic'].'</a></span></dd>'."\n";
 
+// Modif RL : modif Statistiques
+	echo "\t\t\t".'<dd><span><a href="statistiques.php?tid='.$id.'">Evolution graphique</a></span></dd>'."\n";
+// Fin modif RL
 		if ($cur_topic['sticky'] == '1')
 			echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;unstick='.$id.'">'.$lang_common['Unstick topic'].'</a></span></dd>'."\n";
 		else

@@ -41,6 +41,9 @@ function generate_admin_menu($page = '')
 					<li<?php if ($page == 'users') echo ' class="isactive"'; ?>><a href="admin_users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
 <?php if ($is_admin || $pun_user['g_mod_ban_users'] == '1'): ?>					<li<?php if ($page == 'bans') echo ' class="isactive"'; ?>><a href="admin_bans.php"><?php echo $lang_admin_common['Bans'] ?></a></li>
 <?php endif; if ($is_admin || $pun_config['o_report_method'] == '0' || $pun_config['o_report_method'] == '2'): ?>					<li<?php if ($page == 'reports') echo ' class="isactive"'; ?>><a href="admin_reports.php"><?php echo $lang_admin_common['Reports'] ?></a></li>
+<!-- Modif RL : modif Statistiques -->
+<li<?php if ($page == 'statistiques') echo ' class="isactive"'; ?>><a href="statistiques.php">Statistiques</a></li>
+<!-- Fin Modif RL : fin modif statistiques -->
 <?php endif; ?>				</ul>
 			</div>
 		</div>

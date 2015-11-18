@@ -222,6 +222,7 @@ if (isset($_POST['form_sent']))
 					require_once PUN_ROOT.'include/email.php';
 
 					$notification_emails = array();
+					$languages = forum_list_langs();
 
 					if ($pun_config['o_censoring'] == '1')
 						$cleaned_message = bbcode2email($censored_message, -1);
@@ -231,6 +232,9 @@ if (isset($_POST['form_sent']))
 					// Loop through subscribed users and send emails
 					while ($cur_subscriber = $db->fetch_assoc($result))
 					{
+						if (!in_array($cur_subscriber['language'], $languages))
+							$cur_subscriber['language'] = $pun_config['o_default_lang'];
+
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']]))
 						{
@@ -330,6 +334,7 @@ if (isset($_POST['form_sent']))
 					require_once PUN_ROOT.'include/email.php';
 
 					$notification_emails = array();
+					$languages = forum_list_langs();
 
 					if ($pun_config['o_censoring'] == '1')
 						$cleaned_message = bbcode2email($censored_message, -1);
@@ -339,6 +344,9 @@ if (isset($_POST['form_sent']))
 					// Loop through subscribed users and send emails
 					while ($cur_subscriber = $db->fetch_assoc($result))
 					{
+						if (!in_array($cur_subscriber['language'], $languages))
+							$cur_subscriber['language'] = $pun_config['o_default_lang'];
+
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']]))
 						{

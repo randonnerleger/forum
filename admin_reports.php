@@ -53,6 +53,7 @@ generate_admin_menu('reports');
 
 ?>
 	<div class="blockform">
+		<h3><span><a href="http://www.randonner-leger.org/forum/admin_editing.php">Editions récentes</a></span></h3>
 		<h2><span><?php echo $lang_admin_reports['New reports head'] ?></span></h2>
 		<div class="box">
 			<form method="post" action="admin_reports.php?action=zap">

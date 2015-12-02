@@ -416,7 +416,6 @@ window.addEventListener ? window.addEventListener('load',addBars,false) : window
 <style type="text/css">
 <?php echo file_get_contents(PUN_ROOT.'plugins/ezbbc/prism/prism.css'); ?>
 </style>
-<link rel="stylesheet" type="text/css" href="prism.css" />
 <script type="text/javascript" defer="defer">
 /* <![CDATA[ */
 <?php echo file_get_contents(PUN_ROOT.'plugins/ezbbc/prism/prism.js'); ?>

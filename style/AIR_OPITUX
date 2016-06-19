@@ -1,0 +1,66 @@
+Descriptif du Thème RK_Air de Opitux
+Fichiers ajoutés, modifié...
+
+====== Racine =======
+
+## configRL.php
+
+Création d'un fichier du configRL.php à la racine pour y indiquer les différentes variables (emplacement de la racine, dossier forum, dossier wiki).
+J'utilise également ce fichier pour déterminer ou nous sommes sur le site pour mettre en gras l'endoit un l'on est et ouvrir le menu gauche en conséquence en responsive.
+
+## dossier /tpl/
+
+Création d'un dossier /tpl/ pour centraliser les éléments du templates et les faire remonter correctement sur le wiki et le forum, en local, sur un site de dev...
+qui contient les dossiers suivants :
+	  * favicon			Contient les favicons générés par http://realfavicongenerator.net/
+					les favicons sont ensuites appelés dans le fichier "/forum/include/user/header_favicon.php"
+	  * fonts			Stockage de fontawesome pour les icônes
+	  * img			Les images du thèmes
+	  * js			Les scripts du thème
+
+/!\ Pas de dossier css, les css étants gérés sans le template de fluxBB
+
+====== Forum FluxBB =======
+
+## Création d'un thème
+
+Dans "/forum/style/"
+	  * un fichier RL_Air.css (j'y intègre le css Air et une version responsive. Je fais mes personnalisations avant et après. Les thèmes d'origine restent inchangés.
+e
+
+Dans "/forum/include/template", modification de 
+	  * admin.tpl					Pour contexttualiser l'image de header
+	  * main.tpl					Pour appeler les fichiers ci-dessous
+	  * redirect.tpl					Pour personnaliser la page de redirection avec le logo
+	  * maintenance.tpl				Pour personnaliser la page de maintenance avec le logo
+	  * template_bak.tar.gz				Sauvegarde des fichiers d'origine dans du dossier template
+
+Dans "/forum/include/user", création des fichiers
+	  * config.php					Appelle configRL.php de la racine
+	  * header.php					Fichier du template RL global créé par Opitux
+	  * header_favicon.php				Centralisation des appels des favicons RL pour le thème global
+	  * header_img_admin.php			Appel de l'image header lorsqu'on est dans une page admin du forum
+	  * header_img_aleatoire.php			Appel des images header dans le thème global. L'image change chaque semaine.
+	  * footer.php					Fichier du template RL global
+	  * header_favicon.php				qui appelle les favicons pour les différentes plate-forme
+	  * menuG.php					Fichier du template RL global. Gère le menu gauche du template RL global
+	  * logo.php					qui centralise l'appel du logo des pages maintenance.tpl et redirect.tpl
+
+Dans "forum_V3/cache/"
+	  * Création d'un fichier "cache_config.dist.php" pour pouvoir jonglet entre ma bdd en ligne et la locale
+
+====== Wiki Dokuwiki ======
+
+Dans "/wiki/conf/" modification du fichier
+	  * local.protected.php pour centraliser les modifs faites dans configRL.php et ne pas avoir à indiquer ces infos plusieurs fois.
+	    Y est appelé le fichier /forum/include/common.php pour la gestion centralisée des connexions
+	    Y sont gérés certaines infos importantes pour le menu gauche dans "/forum/include/user/menuG.php"
+	    Y est géré le redirect vers la page de maintenance du forum lorsque ce dernier est en maintenance.
+
+Dans "/wiki/lib/tpl/", création d'un dossier RL pour création du thème RL (copie du thème dokuwiki par défaut).
+
+Dans "/wiki/lib/tpl/RL/",  3 modifications apportées par rapport au style par défaut :
+	  * la mise en commentaire de la ligne 42 du fichier style.ini (; css/mobile.less           = all) pour supprimer les modifications du thème pour un écran de moins de 480px et uniformise le comportement forum et wiki en responsive
+	  * le fichier "main.php" pour y appeler les fichiers de "/forum/include/user"
+	  * le fichier "tpl_header.php" pour avoir l'info de connexion au même endroit que dans le forum
+

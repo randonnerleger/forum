@@ -224,10 +224,7 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != 
 	}
 }
 
-//********************* Modif : Style responsive
-// ancienne ligne : $tpl_temp =  '<div id="brdmenu" class="inbox">'."\n\t\t\t".'<ul>'."\n\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t".'</ul>'."\n\t\t".'</div>';
-$tpl_temp = '<div id="centermenu" class="inbox"><div id="openbrdmenu" class="inbox"><div></div></div><div id="brdmenu" class="inbox">'."\n\t\t\t".'<ul>'."\n\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t".'</ul>'."\n\t\t".'</div></div>';
-//********************* Fin Modif
+$tpl_temp = '<div id="brdmenu" class="inbox">'."\n\t\t\t".'<ul>'."\n\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t".'</ul>'."\n\t\t".'</div>';
 $tpl_main = str_replace('<pun_navlinks>', $tpl_temp, $tpl_main);
 // END SUBST - <pun_navlinks>
 

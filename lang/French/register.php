@@ -34,6 +34,6 @@ $lang_register = array(
 'Email info'			=>	'Vous devez saisir une adresse électronique valide. Vous pouvez choisir de ne pas divulguer votre adresse aux autres utilisateurs (voir ci-dessous).',
 'Confirm email'			=>	'Confirmez votre adresse électronique',
 //********************* Modif : Antibot
-'Antispam info'            =>    'Afin d\'empêcher les inscriptions automatiques des robots spammeurs, <strong>votre inscription ne sera acceptée que si le <u>premier</u> e-mail ci-dessous est précédé d\'un code à 3 lettres</strong> que vous trouverez en lisant (jusqu\'au bout ;-) !) la <a href="/wiki/doku.php?id=guide:charte_forum">Charte du forum</a>.',
+'Antispam info'            =>    'Afin de nous assurer que ce n\'est pas un robot spammeur qui tente de s\'inscrire : <ul><li>1. trouvez le mot clé de 4 lettres qui répond à cette question : "Qu\'est-ce qui est riche dans ce site ?" (la réponse se trouve dans les règles que vous venez d\'accepter)</li><li>2. <strong>pour que votre inscription soit acceptée faites précéder le <u>premier</u> e-mail ci-dessous du mot clé que vous venez de trouver.</strong></li></ul>',
 //********************* Fin Modif
 );

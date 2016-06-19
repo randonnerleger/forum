@@ -2,18 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<pun_language>" lang="<pun_language>" dir="<pun_content_direction>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- BEGIN HEADER RL -->
+<pun_include "config.php">
+<pun_include "header_img_aleatoire.php">
+<!-- END RL -->
+<pun_head>
+<!-- BEGIN HEADER RL -->
+<pun_include "header_favicon.php">
+<!-- END RL -->
 <pun_head>
 </head>
 
 <body>
 
 <div id="punmaint" class="pun">
+<!-- BEGIN HEADER RL -->
+<pun_include "logo.php">
+<!-- END RL -->
 <div class="top-box"></div>
 <div class="punwrap">
 
 <div id="brdmain">
 <pun_maint_main>
 </div>
+
+<pun_footer>
 
 </div>
 <div class="end-box"></div>

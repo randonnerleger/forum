@@ -2,10 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<pun_language>" lang="<pun_language>" dir="<pun_content_direction>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- BEGIN HEADER RL -->
+<pun_include "config.php">
+<pun_include "header_img_aleatoire.php">
+<!-- END RL -->
 <pun_head>
+<!-- BEGIN HEADER RL -->
+<pun_include "header_favicon.php">
+<!-- END RL -->
 </head>
-
 <body>
+
+<!-- BEGIN HEADER RL -->
+<pun_include "header.php">
+<pun_include "header_img_admin.php">
+<pun_include "menuG.php">
+<!-- END RL -->
 
 <div id="punadmin" class="pun">
 <div class="top-box"></div>
@@ -33,6 +45,10 @@
 </div>
 <div class="end-box"></div>
 </div>
+
+<!-- BEGIN FOOTER RL -->
+<pun_include "footer.php">
+<!-- END FOOTER RL -->
 
 </body>
 </html>

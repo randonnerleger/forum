@@ -102,7 +102,7 @@ if (isset($_POST['form_sent']))
 	require PUN_ROOT.'include/email.php';
 
 //********************* Modif : antibot
-    $test = 'mul'; /*variable contenant les lettres au debut de l'adresse*/
+    $test = 'wiki'; /*variable contenant les lettres au debut de l'adresse*/
     $long_test = strlen($test); /*longueur de $test, tu peux donc faire varier $test sans souci, meme le rendre aleatoire*/
     $long_email = strlen($email1); /*longueur de $email*/
 

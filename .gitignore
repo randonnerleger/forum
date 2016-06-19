@@ -1,0 +1,12 @@
+/cache/*
+!/cache/index.html
+!/cache/.htaccess
+!/cache/ezbbc/_dummy
+/modules/
+/img/avatars/*.png
+/img/avatars/*.jpg
+/img/avatars/*.gif
+/config.php
+*.bak
+*.old
+*~

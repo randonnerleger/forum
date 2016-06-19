@@ -86,6 +86,13 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		if ($pun_user['is_guest'])
 			message($lang_common['Bad request'], false, '404 Not Found');
 	}
+# BEGIN MODIF OPITUX POUR "NOUVEAUX MESSAGES HORS VENTES"
+	else if ($action == 'show_new_hors_ventes')
+	{
+		if ($pun_user['is_guest'])
+			message($lang_common['Bad request'], false, '404 Not Found');
+	}
+# END MODIF OPITUX POUR "NOUVEAUX MESSAGES HORS VENTES"
 	else if ($action != 'show_new' && $action != 'show_unanswered')
 		message($lang_common['Bad request'], false, '404 Not Found');
 
@@ -311,7 +318,12 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			if (!$num_hits)
 				message($lang_search['No hits']);
 		}
-		else if ($action == 'show_new' || $action == 'show_recent' || $action == 'show_replies' || $action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions' || $action == 'show_unanswered')
+
+# BEGIN MODIF OPITUX POUR "NOUVEAUX MESSAGES HORS VENTES"
+#		else if ($action == 'show_new' || $action == 'show_recent' || $action == 'show_replies' || $action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions' || $action == 'show_unanswered')
+		else if ($action == 'show_new' || $action == 'show_new_hors_ventes'  || $action == 'show_recent' || $action == 'show_replies' || $action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions' || $action == 'show_unanswered')
+# END MODIF OPITUX POUR "NOUVEAUX MESSAGES HORS VENTES"
+
 		{
 			$search_type = array('action', $action);
 			$show_as = 'topics';
@@ -331,6 +343,22 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 				if (!$num_hits)
 					message($lang_search['No new posts']);
 			}
+
+# BEGIN MODIF OPITUX POUR "NOUVEAUX MESSAGES HORS VENTES"
+			// If it's a search for new posts since last visit (hors vente)
+			else if ($action == 'show_new_hors_ventes')
+			{
+				if ($pun_user['is_guest'])
+					message($lang_common['No permission'], false, '403 Forbidden');
+
+				$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$pun_user['g_id'].') WHERE t.forum_id != 11 AND (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.$pun_user['last_visit'].' AND t.moved_to IS NULL'.(isset($_GET['fid']) ? ' AND t.forum_id='.intval($_GET['fid']) : '').' ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+				$num_hits = $db->num_rows($result);
+
+				if (!$num_hits)
+					message($lang_search['No new posts']);
+			}
+# END MODIF OPITUX POUR "NOUVEAUX MESSAGES HORS VENTES"
+
 			// If it's a search for recent posts (in a certain time interval)
 			else if ($action == 'show_recent')
 			{
@@ -453,6 +481,11 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 	// If we're on the new posts search, display a "mark all as read" link
 	if (!$pun_user['is_guest'] && $search_type[0] == 'action' && $search_type[1] == 'show_new')
 		$forum_actions[] = '<a href="misc.php?action=markread&amp;csrf_token='.pun_csrf_token().'">'.$lang_common['Mark all as read'].'</a>';
+
+# BEGIN MODIF OPITUX POUR "NOUVEAUX MESSAGES HORS VENTES"
+	if (!$pun_user['is_guest'] && $search_type[0] == 'action' && $search_type[1] == 'show_new_hors_ventes')
+		$forum_actions[] = '<a href="misc.php?action=markread&amp;csrf_token='.pun_csrf_token().'">'.$lang_common['Mark all as read'].'</a>';
+# BEGIN END OPITUX POUR "NOUVEAUX MESSAGES HORS VENTES"
 
 	// Fetch results to display
 	if (!empty($search_ids))

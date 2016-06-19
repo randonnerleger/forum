@@ -60,6 +60,7 @@ $Allow_Uploads[] = "Groupe pour Dolgan";
 $Allow_Uploads[] = "Groupe pour CSC";
 $Allow_Uploads[] = "Groupe pour Rhafiki";
 $Allow_Uploads[] = "Groupe pour Ralf7500113";
+$Allow_Uploads[] = "Groupe pour Shanx";
 
 /*
 The permission setting allows you to have full control over who can upload images.
@@ -124,5 +125,6 @@ $Allow_Delete[] = "Groupe pour Dolgan";
 $Allow_Delete[] = "Groupe pour CSC";
 $Allow_Delete[] = "Groupe pour Rhafiki";
 $Allow_Delete[] = "Groupe pour Ralf7500113";
+$Allow_Uploads[] = "Groupe pour Shanx";
 
 ?>

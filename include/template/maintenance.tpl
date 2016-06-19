@@ -26,7 +26,9 @@
 <pun_maint_main>
 </div>
 
-<pun_footer>
+<!-- BEGIN FOOTER RL -->
+<pun_include "footer.php">
+<!-- END FOOTER RL -->
 
 </div>
 <div class="end-box"></div>

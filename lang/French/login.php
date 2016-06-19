@@ -4,6 +4,8 @@
 $lang_login = array(
  
 // Miscellaneous
+'Login errors'		=>	'Erreur d\'identification',
+'Login errors info'	=>	'L\'erreur suivante doit être corrigée avant que vous puissiez vous identifier :',
 'Wrong user/pass'		=>	'Nom d\'utilisateur et/ou mot de passe incorrect.',
 'Forgotten pass'		=>	'Mot de passe oublié&#160;?',
 'Login redirect'		=>	'Vous êtes à présent identifié(e). Redirection&#160;…',

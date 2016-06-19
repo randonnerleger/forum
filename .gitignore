@@ -1,6 +1,7 @@
-/cache/cache_*.php
-/cache/*.cache
-/cache/db_update.lock
+/cache/*
+!/cache/index.html
+!/cache/.htaccess
+!/cache/ezbbc/_dummy
 /modules/
 /img/avatars/*.png
 /img/avatars/*.jpg

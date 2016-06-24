@@ -146,7 +146,7 @@ li {
 	max-width:780px;
 	opacity:1;
 }
-#centermenu {
+#brdmenu {
 	display:block;
 }
 .outer {
@@ -3913,7 +3913,7 @@ div.hiddenGlobal {
 /**
  * Min 1200px / max __1024px__ / max 768px / max 480px
 */
-	#centermenu, 
+	#brdmenu, 
 	#dokuwiki__sitetools {
 /*		background:#768EA2;*/
 		text-align: left;
@@ -3926,16 +3926,16 @@ div.hiddenGlobal {
 		max-width:300px;
 		z-index:1010;
 	}
-	#centermenu ul, 
+	#brdmenu ul, 
 	#dokuwiki__sitetools ul {
 		margin:0;
 		width:100%;
 	}
-	#centermenu ul li, 
+	#brdmenu ul li, 
 	#dokuwiki__sitetools ul li {
 		width:100%;
 	}
-	#centermenu ul li a, 
+	#brdmenu ul li a, 
 	#dokuwiki__sitetools ul li a {
 		font-size:1.5em;
 	}
@@ -3946,16 +3946,16 @@ div.hiddenGlobal {
 		margin: 0px;
 		padding: 0px;
 	}
-	#centermenu, 
+	#brdmenu, 
 	#dokuwiki__sitetools {
 		top:-25px;
 	}
-	#centermenu ul, 
+	#brdmenu ul, 
 	#dokuwiki__sitetools ul {
 		margin:0;
 		width:100%;
 	}
-	#centermenu ul li, 
+	#brdmenu ul li, 
 	#dokuwiki__sitetools ul li {
 		width:100%;
 	}
@@ -3976,7 +3976,7 @@ div.hiddenGlobal {
 	#dokuwiki__sitetools a:active {
 		background: #666;
 	}
-	#centermenu ul li a, 
+	#brdmenu ul li a, 
 	#dokuwiki__sitetools ul li a {
 		font-size:17px;
 	}
@@ -3994,7 +3994,7 @@ div.hiddenGlobal {
 /**
  * Min 1200px / max 1024px / __max 768px__ / max 480px
 */
-	#centermenu, 
+	#brdmenu, 
 	#dokuwiki__sitetools {
 		top:-22px;
 	}
@@ -4003,7 +4003,7 @@ div.hiddenGlobal {
 /**
  * Min 1200px / max 1024px / max 768px / max __480px__
 */
-	#centermenu, 
+	#brdmenu, 
 	#dokuwiki__sitetools {
 		top:-20px;
 	}
@@ -4031,7 +4031,7 @@ div.hiddenGlobal {
 		max-height:100% !important;
 
 	}
-	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #centermenu {
+	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #brdmenu {
 		height:90% !important;
 		overflow-y:auto;
 		display:block;
@@ -4171,7 +4171,7 @@ div.hiddenGlobal {
 /* BEGIN Opéra */
 
 /*
-	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #centermenu,
+	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #brdmenu,
 	.menu-forum-checkbox:checked ~ #wrapper-inner  .outer #dokuwiki__sitetools,
 	.menu-search-checkbox:checked ~ #wrapper-inner #header #menu-search {
 		height:100% !important;

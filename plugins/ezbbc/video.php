@@ -71,7 +71,7 @@ require PUN_ROOT.'plugins/ezbbc/lang/'.$ezbbc_language_folder.'/ezbbc_plugin.php
        				    return false;
        				}
                 } else if (width == '' || height == '') { //one value or both values of size not set
-       				 if (testurl.indexOf('http://www.youtube.com/watch') == 0 || testurl.indexOf('http://youtu.be/') == 0 || testurl.indexOf('http://dai.ly/') == 0 || testurl.indexOf('http://www.dailymotion.com/video') == 0 || testurl.indexOf('https://vimeo.com/') == 0 || testurl.indexOf('http://vimeo.com/') == 0) {
+       				 if (testurl.indexOf('https://www.youtube.com/watch') == 0 || testurl.indexOf('http://youtu.be/') == 0 || testurl.indexOf('http://dai.ly/') == 0 || testurl.indexOf('http://www.dailymotion.com/video') == 0 || testurl.indexOf('https://vimeo.com/') == 0 || testurl.indexOf('http://vimeo.com/') == 0) {
        				    startTag = '[video=480,360][url]';
        				    currentSelection = url;
        				    endTag = '[/url][/video]';

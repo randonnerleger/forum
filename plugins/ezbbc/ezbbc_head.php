@@ -250,7 +250,7 @@ function doToolbar() {
 	<?php endif; ?>
 
 //********************* Modif : Tableaux
-    toolbar += '<a href="#" id="rltable" title="<?php echo $lang_ezbbc['RLtable'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>rltable.php?textarea_name=<?php echo $textarea_name ?>\', \'Rltable\', \'height=450, width=750, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span<?php echo $lang_ezbbc['RLtable'] ?>\/span><\/a>';
+    toolbar += '<a href="#" id="rltable" title="<?php echo $lang_ezbbc['RLtable'] ?>" onclick="window.open(\'plugins/rltable/\', \'Rltable\', \'height=450, width=750, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['RLtable'] ?><\/span><\/a>';
 //********************* Fin Modif	
 
 	// Quote and code

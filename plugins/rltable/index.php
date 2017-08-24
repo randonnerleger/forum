@@ -4,6 +4,8 @@
 	<title>Tableau RL</title>
 	<link rel="stylesheet" type="text/css" href="../../style/RL_Clair.css" />
 	<link rel="stylesheet" type="text/css" href="table_editor.css" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
@@ -12,15 +14,23 @@
 <div class="punwrap">
 <div id="brdmain">
 
-	<h3><label for="table_select">Tableau à modifier</label></h3>
+	<h3><label for="table_select">Éditeur de tableau</label></h3>
 	<p>
 		<select id="table_select">
-			<option value="null">Sélectionner un tableau existant ou créer un nouveau tableau</option>
-			<option value="new">Nouveau tableau, ajouté à la fin du post</option>
+			<option value="null">Que souhaitez-vous faire ?</option>
+			<option value="new"> Créer un nouveau tableau (ajouté à la fin du post)</option>
 		</select>
 	</p>
 
 	<table class="rl-table edit"></table>
+
+	<div id="importModal" class="hidden">
+		<p>Collez le tableau ci-dessous. Les tabulations seront transformées en colonnes automatiquement.</p>
+		<p><textarea id="importText" cols="50" rows="7"></textarea></p>
+		<p class="buttons">
+			<input type="button" value="Importer" id="importModalBtn" />
+		</p>
+	</div>
 
 	<p class="buttons">
 		<input type="button" value="Valider" id="saveBtn" />

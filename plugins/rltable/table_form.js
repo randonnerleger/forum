@@ -30,7 +30,7 @@
 			return false;
 		}
 
-		if (current_table && window.confirm("Valider les changements du tableau modifié avant de changer de tableau ?"))
+		if (current_table != "null" && window.confirm("Valider les changements du tableau modifié avant de changer de tableau ?"))
 		{
 			saveCurrentTable();
 		}
@@ -43,6 +43,10 @@
 		if (selected_idx == "new")
 		{
 			createNewTable();
+		}
+		else if (selected_idx == "import")
+		{
+			showImportModal();
 		}
 		else
 		{
@@ -57,6 +61,33 @@
 	};
 
 	document.querySelector('input#cancelBtn').onclick = function () { self.close(); };
+
+	document.getElementById('importModalBtn').onclick = function() {
+		var txt = document.getElementById('importText').value;
+		txt = txt.replace(/\t/g, ' | ');
+		var nb_columns = 1;
+
+		if (txt.match(/\|/))
+		{
+			var lines = txt.split("\n");
+
+			// Find the maximum number of columns on a line
+			for (var i = 0; i < lines.length; i++)
+			{
+				if (lines[i].match(/\|/))
+				{
+					nb_columns = Math.max(nb_columns, lines[i].match(/\|/g).length);
+				}
+			}
+		}
+
+		txt = "[rltable=" + "l".repeat(nb_columns) + "]\n" + txt + "\n[/rltable]";
+
+		current_table = "new";
+		current_table_editor = new tableEditor(txt, editor_element);
+
+		document.getElementById('importModal').classList.add('hidden');
+	};
 
 	function initForm()
 	{
@@ -121,12 +152,17 @@
 			}
 		}
 
+		var option = document.createElement('option');
+		option.value = 'import';
+		option.innerHTML = "Créer un nouveau tableau (copié/collé à partir d'un tableur)";
+		selector.appendChild(option);
+
 		for (var i = 0; i < tables.length; i++)
 		{
 			var option = document.createElement('option');
 			option.value = i;
 			option.selected = (i == current_table);
-			option.innerHTML = "Tableau #" + (i + 1);
+			option.innerHTML = "Éditer tableau n°" + (i + 1);
 			selector.appendChild(option);
 		}
 
@@ -139,6 +175,11 @@
 		// If there is no existing table, we probably want to create a new one
 		createNewTable();
 		selector.selectedIndex = 1;
+	}
+
+	function showImportModal()
+	{
+		document.getElementById('importModal').classList.remove('hidden');
 	}
 
 	function findTables()

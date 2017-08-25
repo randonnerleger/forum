@@ -210,15 +210,23 @@
 	};
 
 	tableEditor.prototype.removeColumn = function (e) {
+		if (this.rows == 1)
+		{
+			return !alert("Ne peut pas supprimer la dernière colonne !");
+		}
+
 		var cell = e.target.parentNode.parentNode;
 		var index = cell.cellIndex;
 
-		if (prev = cell.parentNode.childNodes[index-1].querySelector('input'))
+		if (index > 0 && (prev = cell.parentNode.childNodes[index-1].querySelector('input')))
 		{
 			prev.focus();
 		}
 
 		var rows = this.editor.querySelectorAll('tr');
+
+		// Update cols list
+		this.cols.splice(index, 1);
 
 		for (var i = 0; i < rows.length; i++)
 		{
@@ -250,6 +258,9 @@
 		var index = cell.cellIndex;
 
 		var rows = this.editor.querySelectorAll('tr');
+
+		// Update cols list
+		this.cols.splice(index, 0, cell.style.textAlign.substr(0, 1));
 
 		for (var i = 0; i < rows.length; i++)
 		{

@@ -11,7 +11,7 @@
 	};
 
 (function () {
-	var demo_new_table = "[rltable=llr]^Portage  |    |  1400\nSac à dos  |  Lowe Alpine 40L  |  1400\n\n^Couchage  |    |  3001\nTente (2 pers.)  |  Hubba Hubba NX  |  1700\nMatelas  |  Sea to Summit Ultralight Regular  |  392";
+	var demo_new_table = "[rltable=llr]^Portage||1400\nSac à dos|Lowe Alpine 40L|1400\n\n^Couchage||3001\nTente (2 pers.)|Hubba Hubba NX|1700\nMatelas|Sea to Summit Ultralight Regular|392[/rltable]";
 
 	var textarea = window.opener.document.querySelector('textarea');
 	var selector = document.querySelector('select');
@@ -76,7 +76,7 @@
 			{
 				if (lines[i].match(/\|/))
 				{
-					nb_columns = Math.max(nb_columns, lines[i].match(/\|/g).length);
+					nb_columns = Math.max(nb_columns, lines[i].match(/\|/g).length + 1);
 				}
 			}
 		}
@@ -95,7 +95,7 @@
 
 		if (tables.length == 0)
 		{
-			current_table = "new";
+			current_table = "null";
 		}
 		// Try to use the table where the cursor is
 		else if ((textarea.selectionStart || textarea.selectionStart === 0) && textarea.selectionStart == textarea.selectionEnd)
@@ -172,9 +172,7 @@
 			return true;
 		}
 
-		// If there is no existing table, we probably want to create a new one
-		createNewTable();
-		selector.selectedIndex = 1;
+		selector.selectedIndex = 0;
 	}
 
 	function showImportModal()

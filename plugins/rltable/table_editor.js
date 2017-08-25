@@ -37,28 +37,27 @@
 		}
 	};
 
-	tableEditor.prototype.getCell = function (content = '', blank, align = 'left')
+	tableEditor.prototype.getCell = function (content = '', merged, align = 'left')
 	{
 		var cell = document.createElement('td');
 
 		var input = document.createElement('input');
 		input.type = 'text';
 		input.value = content;
+		input.onkeyup = this.listenKeys.bind(this);
+		input.onfocus = this.showToolbar.bind(this);
 
-		if (blank)
+		if (merged)
 		{
-			input.onkeyup = this.splitRow.bind(this);
 			cell.colSpan = this.cols.length;
-			cell.classList.toggle('blank-cell');
+			cell.classList.add(content != '' ? 'mono-cell' : 'blank-cell');
 		}
 		else
 		{
-			input.onkeyup = this.reduceRow.bind(this);
-			input.onfocus = this.showToolbar.bind(this);
+			cell.style.textAlign = align.substr(0, 1) == 'l' ? 'left' : 'right';
 		}
 
 		cell.appendChild(input);
-		cell.style.textAlign = align;
 		return cell;
 	};
 
@@ -70,7 +69,7 @@
 
 			if (this.rows[i].length <= 1)
 			{
-				row.appendChild(this.getCell('', true));
+				row.appendChild(this.getCell(this.rows[i][0], true));
 			}
 			else
 			{
@@ -128,89 +127,79 @@
 		return out.join("\n");
 	};
 
-	tableEditor.prototype.reduceRow = function (e)
-	{
-		var row = e.target.parentNode.parentNode;
-		var cells = row.querySelectorAll('td > input');
-
-		var str = '';
-
-		for (var i = 0; i < cells.length; i++)
-		{
-			str += cells[i].value;
-		}
-
-		if (str.replace(/^\s+|\s+$/g, '') == '')
-		{
-			this.closeToolbar();
-			while (row.firstChild) {
-				row.removeChild(row.firstChild);
-			}
-
-			row.appendChild(this.getCell('', true));
-			row.firstChild.firstChild.focus();
-		}
-
-		this.listenKeys(e);
-
-		return true;
-	};
-
-	tableEditor.prototype.splitRow = function (e)
-	{
-		if (e.target.value != '')
-		{
-			var cell = e.target.parentNode;
-			cell.colSpan = null;
-			cell.classList.toggle('header');
-
-			var row = cell.parentNode;
-
-			row.appendChild(this.getCell(e.target.value));
-			row.removeChild(cell);
-
-			for (var i = 1; i < this.cols.length; i++)
-			{
-				row.appendChild(this.getCell('', false, this.cols[i] == 'l' ? 'left' : 'right'));
-			}
-
-			row.firstChild.firstChild.focus();
-		}
-
-		this.listenKeys(e);
-		return true;
-	};
-
 	tableEditor.prototype.listenKeys = function (e)
 	{
+		var input = e.target;
+		var cell = input.parentNode;
+		var row = cell.parentNode;
+		var column_index = cell.cellIndex;
+
 		if (e.key == 'Enter')
 		{
-			var new_row = document.createElement('tr');
-			new_row.appendChild(this.getCell('', true));
-			this.editor.insertBefore(new_row, e.target.parentNode.parentNode.nextSibling);
-			new_row.firstChild.firstChild.focus();
+			// Add a new row on hitting enter
+			return this.addRow(cell);
 		}
-		else if (e.key == 'Backspace' && e.target.parentNode.classList.contains('blank-cell'))
+		else if (e.key == "Down" || e.key == "ArrowDown" || e.key == "Up" || e.key == "ArrowUp")
 		{
-			if (prev = e.target.parentNode.parentNode.previousSibling.querySelector('input'))
+			// Switch to next/previous row if possible
+			var next_row = (e.key == "Down" || e.key == "ArrowDown") ? row.nextSibling : row.previousSibling;
+
+			if (!next_row)
 			{
-				prev.focus();
+				return false;
 			}
 
-			this.closeToolbar();
-			this.editor.removeChild(e.target.parentNode.parentNode);
+			var new_index = (next_row.cells.length > column_index) ? column_index : 0;
+			next_row.cells[new_index].firstChild.focus();
+			return false;
 		}
-		else if (e.key == 'Backspace' && e.target.value == '')
+		else if (e.key == 'Backspace' && input.value == '')
 		{
-			if (prev = e.target.parentNode.parentNode.previousSibling.querySelector('input'))
+			if (cell.classList.contains('mono-cell'))
 			{
-				prev.focus()
+				// Switch to blank cell
+				cell.classList.add('blank-cell');
+				cell.classList.remove('mono-cell');
+				return false;
+			}
+
+			// Delete current row if all cells are empty
+			if (cell.colSpan == 1)
+			{
+				var inputs = row.querySelectorAll('input[type=text]');
+
+				for (var i = 0; i < inputs.length; i++)
+				{
+					if (inputs[i].value != '')
+					{
+						// If one column is not empty, don't delete the row
+						return false;
+					}
+				}
+			}
+
+			// Delete row
+			this.removeRow(cell);
+
+			return false;
+		}
+		else if (cell.colSpan > 1)
+		{
+			if (input.value != '')
+			{
+				cell.classList.remove('blank-cell');
+				cell.classList.add('mono-cell');
+			}
+			else
+			{
+				cell.classList.add('blank-cell');
+				cell.classList.remove('mono-cell');
 			}
 		}
 	};
 
 	tableEditor.prototype.removeColumn = function (e) {
-		if (this.rows == 1)
+		if (this.cols.length == 1)
 		{
 			return !alert("Ne peut pas supprimer la dernière colonne !");
 		}
@@ -232,7 +221,7 @@
 		{
 			if (rows[i].childNodes.length == 1)
 			{
-				rows[i].firstChild.colSpan = Math.min(1, rows[i].firstChild.colSpan - 1);
+				rows[i].firstChild.colSpan = this.cols.length;
 			}
 			else
 			{
@@ -241,14 +230,20 @@
 		}
 	};
 
-	tableEditor.prototype.removeRow = function (e) {
-		var index = e.target.parentNode.parentNode.cellIndex;
-		var row = e.target.parentNode.parentNode.parentNode;
+	tableEditor.prototype.removeRow = function (cell) {
+		var index = cell.cellIndex;
+		var row = cell.parentNode;
 
-		if (prev = row.previousSibling.childNodes[index].querySelector('input'))
+		var next_row = row.previousSibling || row.nextSibling;
+
+		if (!next_row)
 		{
-			prev.focus();
+			// You can't delete the last row of the table!
+			return false;
 		}
+
+		var new_index = (next_row.cells.length > index) ? index : 0;
+		next_row.cells[new_index].firstChild.focus();
 
 		row.parentNode.removeChild(row);
 	};
@@ -275,13 +270,55 @@
 		}
 	};
 
-	tableEditor.prototype.addRow = function (e) {
-		var row = e.target.parentNode.parentNode.parentNode;
+	tableEditor.prototype.addRow = function (cell) {
+		var row = cell.parentNode;
 
 		var new_row = document.createElement('tr');
-		new_row.appendChild(this.getCell('', true));
+
+		for (var i = 1; i <= this.cols.length; i++)
+		{
+			new_row.appendChild(this.getCell('', false, this.cols[i]));
+		}
 
 		row.parentNode.insertBefore(new_row, row.nextSibling)
+		new_row.cells[cell.cellIndex].firstChild.focus();
+	};
+
+	tableEditor.prototype.mergeRow = function (e) {
+		var cell = e.target.parentNode.parentNode;
+		var row = cell.parentNode;
+		var cells = row.querySelectorAll('td > input');
+
+		var str = '';
+
+		for (var i = 0; i < cells.length; i++)
+		{
+			str += ' ' + cells[i].value;
+			row.removeChild(cells[i].parentNode);
+		}
+
+		str = str.replace(/^\s+|\s+$/g, '');
+
+		var new_cell = this.getCell(str, true);
+		row.appendChild(new_cell);
+		new_cell.firstChild.focus();
+	};
+
+	tableEditor.prototype.splitRow = function (e) {
+		var cell = e.target.parentNode.parentNode;
+		var row = cell.parentNode;
+		cell.colSpan = 1;
+		cell.classList.remove('mono-cell', 'blank-cell');
+
+		row.appendChild(this.getCell(cell.firstChild.value, false, this.cols[0]));
+		row.removeChild(cell);
+
+		for (var i = 1; i < this.cols.length; i++)
+		{
+			row.appendChild(this.getCell('', false, this.cols[i]));
+		}
+
+		row.firstChild.firstChild.focus();
 	};
 
 	tableEditor.prototype.switchHeader = function (e) {
@@ -316,7 +353,7 @@
 	tableEditor.prototype.showToolbar = function (e)
 	{
 		this.closeToolbar();
-		this.currentToolbar = this.getToolbar();
+		this.currentToolbar = this.getToolbar(e.target.parentNode);
 		e.target.parentNode.appendChild(this.currentToolbar);
 	};
 
@@ -329,18 +366,33 @@
 		}
 	};
 
-	tableEditor.prototype.getToolbar = function ()
+	tableEditor.prototype.getToolbar = function (cell)
 	{
 		var toolbar = document.createElement('div');
 		toolbar.className = 'toolbar';
+		var merged_row = cell.colSpan > 1;
 
-		toolbar.appendChild(this.getButton('drop-column', 'Supprimer colonne', this.removeColumn));
-		toolbar.appendChild(this.getButton('insert-column', 'Ajouter colonne après celle-ci', this.addColumn));
-		toolbar.appendChild(this.getButton('drop-row', 'Supprimer ligne', this.removeRow));
-		toolbar.appendChild(this.getButton('insert-row', 'Ajouter ligne après celle-ci', this.addRow));
-		toolbar.appendChild(this.getButton('header', 'Ligne en gras', this.switchHeader));
-		toolbar.appendChild(this.getButton('align-left', 'Aligner colonne à gauche', this.switchLeft));
-		toolbar.appendChild(this.getButton('align-right', 'Aligner colonne à droite', this.switchRight));
+		if (merged_row)
+		{
+			toolbar.appendChild(this.getButton('split-row', 'Séparer cellule', this.splitRow));
+		}
+		else
+		{
+			toolbar.appendChild(this.getButton('merge-row', 'Fusionner cellules de la ligne', this.mergeRow));
+		}
+
+		toolbar.appendChild(this.getButton('drop-row', 'Supprimer ligne', function (e) { return this.removeRow(e.target.parentNode.parentNode); }));
+		toolbar.appendChild(this.getButton('insert-row', 'Ajouter ligne après celle-ci', function (e) { return this.addRow(e.target.parentNode.parentNode); }));
+
+		if (!merged_row)
+		{
+			toolbar.appendChild(this.getButton('drop-column', 'Supprimer colonne', this.removeColumn));
+			toolbar.appendChild(this.getButton('insert-column', 'Ajouter colonne après celle-ci', this.addColumn));
+			toolbar.appendChild(this.getButton('header', 'Ligne en gras', this.switchHeader));
+			toolbar.appendChild(this.getButton('align-left', 'Aligner colonne à gauche', this.switchLeft));
+			toolbar.appendChild(this.getButton('align-right', 'Aligner colonne à droite', this.switchRight));
+		}
+
 		return toolbar;
 	};
 

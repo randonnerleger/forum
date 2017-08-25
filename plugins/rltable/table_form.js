@@ -17,7 +17,7 @@
 	var selector = document.querySelector('select');
 	var editor_element = document.querySelector('table');
 
-	var current_table = null;
+	var current_table = "none";
 	var current_table_editor = null;
 
 	initForm();
@@ -25,12 +25,12 @@
 	document.querySelector('select').onchange = function (e) {
 		var selected_idx = e.target.value;
 
-		if (selected_idx == "null")
+		if (selected_idx == "none")
 		{
 			return false;
 		}
 
-		if (current_table != "null" && window.confirm("Valider les changements du tableau modifié avant de changer de tableau ?"))
+		if (current_table != "none" && window.confirm("Valider les changements du tableau modifié avant de changer de tableau ?"))
 		{
 			saveCurrentTable();
 		}
@@ -91,11 +91,16 @@
 
 	function initForm()
 	{
+		var option = document.createElement('option');
+		option.value = 'import';
+		option.innerHTML = "Créer un nouveau tableau (copié/collé à partir d'un tableur)";
+		selector.appendChild(option);
+
 		var tables = findTables();
 
 		if (tables.length == 0)
 		{
-			current_table = "null";
+			return;
 		}
 		// Try to use the table where the cursor is
 		else if ((textarea.selectionStart || textarea.selectionStart === 0) && textarea.selectionStart == textarea.selectionEnd)
@@ -152,11 +157,6 @@
 			}
 		}
 
-		var option = document.createElement('option');
-		option.value = 'import';
-		option.innerHTML = "Créer un nouveau tableau (copié/collé à partir d'un tableur)";
-		selector.appendChild(option);
-
 		for (var i = 0; i < tables.length; i++)
 		{
 			var option = document.createElement('option');
@@ -165,14 +165,6 @@
 			option.innerHTML = "Éditer tableau n°" + (i + 1);
 			selector.appendChild(option);
 		}
-
-		// If it fails and there's existing tables, let the user choose using the selector
-		if (tables.length > 0)
-		{
-			return true;
-		}
-
-		selector.selectedIndex = 0;
 	}
 
 	function showImportModal()

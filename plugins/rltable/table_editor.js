@@ -259,7 +259,7 @@
 
 		for (var i = 0; i < rows.length; i++)
 		{
-			if (rows[i].childNodes.length == 1)
+			if (rows[i].firstChild.classList.contains('blank-cell') || rows[i].firstChild.classList.contains('mono-cell'))
 			{
 				rows[i].firstChild.colSpan = rows[i].firstChild.colSpan + 1;
 			}
@@ -370,7 +370,7 @@
 	{
 		var toolbar = document.createElement('div');
 		toolbar.className = 'toolbar';
-		var merged_row = cell.colSpan > 1;
+		var merged_row = cell.classList.contains('mono-cell') || cell.classList.contains('blank-cell');
 
 		if (merged_row)
 		{

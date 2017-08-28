@@ -29,6 +29,7 @@
 		<p><textarea id="importText" cols="50" rows="7"></textarea></p>
 		<p class="buttons">
 			<input type="button" value="Importer" id="importModalBtn" />
+			<input type="button" value="Annuler" id="cancelModalBtn" />
 		</p>
 	</div>
 

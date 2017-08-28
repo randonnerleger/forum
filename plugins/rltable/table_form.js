@@ -11,7 +11,7 @@
 	};
 
 (function () {
-	var demo_new_table = "[rltable=llr]^Portage||1400\nSac à dos|Lowe Alpine 40L|1400\n\n^Couchage||3001\nTente (2 pers.)|Hubba Hubba NX|1700\nMatelas|Sea to Summit Ultralight Regular|392[/rltable]";
+	var demo_new_table = "[rltable=llr]Sac à dos|Lowe Alpine 40L|1400\n||\n||[/rltable]";
 
 	var textarea = window.opener.document.querySelector('textarea');
 	var selector = document.querySelector('select');
@@ -62,6 +62,11 @@
 
 	document.querySelector('input#cancelBtn').onclick = function () { self.close(); };
 
+	document.getElementById('cancelModalBtn').onclick = function () {
+		document.getElementById('importText').value = '';
+		document.getElementById('importModal').classList.add('hidden');
+	};
+
 	document.getElementById('importModalBtn').onclick = function() {
 		var txt = document.getElementById('importText').value;
 		txt = txt.replace(/\t/g, ' | ');
@@ -85,6 +90,8 @@
 
 		current_table = "new";
 		current_table_editor = new tableEditor(txt, editor_element);
+
+		document.getElementById('importText').value = '';
 
 		document.getElementById('importModal').classList.add('hidden');
 	};

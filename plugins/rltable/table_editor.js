@@ -14,6 +14,8 @@
 	{
 		var align = src.match(/\[rltable\s*=\s*([lrc]+)\]/);
 
+		src = src.replace(/\s*\[\/rltable\]\s*/, '');
+
 		if (!align)
 		{
 			return;
@@ -275,7 +277,7 @@
 
 		var new_row = document.createElement('tr');
 
-		for (var i = 1; i <= this.cols.length; i++)
+		for (var i = 0; i < this.cols.length; i++)
 		{
 			new_row.appendChild(this.getCell('', false, this.cols[i]));
 		}
@@ -348,6 +350,7 @@
 		}
 
 		this.cols[index] = align.substr(0, 1);
+		return false;
 	};
 
 	tableEditor.prototype.showToolbar = function (e)
@@ -381,13 +384,13 @@
 			toolbar.appendChild(this.getButton('merge-row', 'Fusionner cellules de la ligne', this.mergeRow));
 		}
 
-		toolbar.appendChild(this.getButton('drop-row', 'Supprimer ligne', function (e) { return this.removeRow(e.target.parentNode.parentNode); }));
 		toolbar.appendChild(this.getButton('insert-row', 'Ajouter ligne après celle-ci', function (e) { return this.addRow(e.target.parentNode.parentNode); }));
+		toolbar.appendChild(this.getButton('drop-row', 'Supprimer ligne', function (e) { return this.removeRow(e.target.parentNode.parentNode); }));
 
 		if (!merged_row)
 		{
-			toolbar.appendChild(this.getButton('drop-column', 'Supprimer colonne', this.removeColumn));
 			toolbar.appendChild(this.getButton('insert-column', 'Ajouter colonne après celle-ci', this.addColumn));
+			toolbar.appendChild(this.getButton('drop-column', 'Supprimer colonne', this.removeColumn));
 			toolbar.appendChild(this.getButton('header', 'Ligne en gras', this.switchHeader));
 			toolbar.appendChild(this.getButton('align-left', 'Aligner colonne à gauche', this.switchLeft));
 			toolbar.appendChild(this.getButton('align-right', 'Aligner colonne à droite', this.switchRight));

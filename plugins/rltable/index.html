@@ -12,17 +12,19 @@
 
 <div class="pun">
 <div class="punwrap">
-<div id="brdmain">
 
-	<h3><label for="table_select">Éditeur de tableau</label></h3>
-	<p>
+	<div class="rl-table-form">
 		<select id="table_select">
 			<option value="null">Que souhaitez-vous faire ?</option>
 			<option value="new"> Créer un nouveau tableau (ajouté à la fin du post)</option>
 		</select>
-	</p>
+		<input type="button" value="Valider" id="saveBtn" />
+		<input type="button" value="Annuler" id="cancelBtn" />
+	</div>
 
-	<table class="rl-table edit"></table>
+	<div class="rl-table-container">
+		<table class="rl-table edit"></table>
+	</div>
 
 	<div id="importModal" class="hidden">
 		<p>Collez le tableau ci-dessous. Les tabulations seront transformées en colonnes automatiquement.</p>
@@ -33,14 +35,9 @@
 		</p>
 	</div>
 
-	<p class="buttons">
-		<input type="button" value="Valider" id="saveBtn" />
-		<input type="button" value="Annuler" id="cancelBtn" />
-	</p>
-
 	<script type="text/javascript" src="table_editor.js"></script>
 	<script type="text/javascript" src="table_form.js"></script>
-</div>
+
 </div>
 </div>
 

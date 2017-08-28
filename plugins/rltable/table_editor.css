@@ -1,5 +1,30 @@
-body, html {
+html,body {
 	overflow: visible !important;
+	height: 100%;
+	background: #F7F7F7;
+}
+
+.pun .punwrap {
+	padding: 0;
+	height: 100%;
+}
+
+.pun .rl-table-form {
+	height: 3em;
+	text-align: center;
+}
+
+.rl-table-form select {
+	margin-right: 2em;
+}
+
+.rl-table-container {
+	position: absolute;
+	top: 3em;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: auto;
 }
 
 table {
@@ -11,7 +36,7 @@ table {
 
 table.rl-table {
 	width: auto;
-	margin-left: 15px;
+	margin: 0 auto;
 }
 
 table.rl-table tr:hover {
@@ -63,6 +88,7 @@ table.rl-table tr.header td, table.rl-table td.mono-cell {
 
 .rl-table.edit .toolbar {
 	position: absolute;
+	min-width: 100px;
 	margin: 0;
 	padding: 0;
 	margin-top: 2px;

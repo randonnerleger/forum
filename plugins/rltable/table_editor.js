@@ -5,6 +5,7 @@
 		this.rows = [];
 		this.editor = editor_element;
 		this.currentToolbar = null;
+		this.alignments = {'l': 'left', 'r': 'right', 'c': 'center'};
 
 		this.parse(raw_table);
 		this.render();
@@ -39,7 +40,7 @@
 		}
 	};
 
-	tableEditor.prototype.getCell = function (content = '', merged, align = 'left')
+	tableEditor.prototype.getCell = function (content = '', merged, align = 'l')
 	{
 		var cell = document.createElement('td');
 
@@ -56,7 +57,7 @@
 		}
 		else
 		{
-			cell.style.textAlign = align.substr(0, 1) == 'l' ? 'left' : 'right';
+			cell.style.textAlign = this.alignments[align.substr(0, 1)];
 		}
 
 		cell.appendChild(input);
@@ -336,6 +337,10 @@
 		return this.switchAlign('right', e);
 	};
 
+	tableEditor.prototype.switchCenter = function (e) {
+		return this.switchAlign('center', e);
+	};
+
 	tableEditor.prototype.switchAlign = function (align, e) {
 		var index = e.target.parentNode.parentNode.cellIndex;
 
@@ -393,6 +398,7 @@
 			toolbar.appendChild(this.getButton('drop-column', 'Supprimer colonne', this.removeColumn));
 			toolbar.appendChild(this.getButton('header', 'Ligne en gras', this.switchHeader));
 			toolbar.appendChild(this.getButton('align-left', 'Aligner colonne à gauche', this.switchLeft));
+			toolbar.appendChild(this.getButton('align-center', 'Aligner colonne au centre', this.switchCenter));
 			toolbar.appendChild(this.getButton('align-right', 'Aligner colonne à droite', this.switchRight));
 		}
 

@@ -101,6 +101,10 @@ table.rl-table tr.header td, table.rl-table td.mono-cell {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAATUlEQVR42mNgGB7g////jkBcBcSricQgtY4ohngGx/wnBdPWS9qmdv8JYXxhgOk/YoC6ofV/UjBtw0BBy+Q/IUz9MBBT0P5PCmYYPgAAvEaq9dQQly8AAAAASUVORK5CYII=");
 }
 
+.rl-table.edit .toolbar input.align-center {
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAATklEQVR42mNgGB7g////jkBcBcSricQgtY4ohngGx/wnBdPWS9qmdv+xYWLDANN/xKhRN7T+TwqmbRgoaJn8x4ZpGwZiCtr/ScEMwwcAAH9Ww8uQQ90+AAAAAElFTkSuQmCC");
+}
+
 .rl-table.edit .toolbar input.insert-row {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAeFBMVEX///8AAACUorDp7vLa4+oXfAAgjADT7HEllwBveoUQbgAAhwDf5+3d5euyub4jkwBkb3tmcn15hpMTdAAchAB8iZav0EZhbHeu/1zx9feLmaa3/2/19/mHlaPX7npsd4KFk6GAjZuy0U261mF9ipaCkJ5mcXy11FaF+fj1AAAAAnRSTlMAM8lDrC4AAABxSURBVHjaZcvVDgJBAEPRMi7rgrv+/x/SbGAzDCfpfSsA5xx+1McaCWPMjTt8YbD2Ze0gpTxJOkNrfeWUUndFDzx9v+y9335cMJYhBFHSlBFdUVWVKGhKh5hBXFMSxB0l+b+0GxJzWjR7EnMarDJYZN7PuA5U5kvL/AAAAABJRU5ErkJggg==");
 }

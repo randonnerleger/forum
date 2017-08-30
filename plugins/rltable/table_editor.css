@@ -69,8 +69,8 @@ table.rl-table tr.header td, table.rl-table td.mono-cell {
 }
 
 .rl-table.edit input {
-	width: 94%;
-	padding: 2px 3% 1px 3%;
+	width: calc(100% - 6px);
+	padding: 2px 3px 1px 3px;
 	background-color: transparent;
 	font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
 	border: none;

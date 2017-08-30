@@ -20,11 +20,12 @@ html,body {
 
 .rl-table-container {
 	position: absolute;
-	top: 3em;
+	top: 4em;
 	right: 0;
 	bottom: 0;
 	left: 0;
 	overflow: auto;
+	padding: 0 1% !important;
 }
 
 table {
@@ -74,6 +75,7 @@ table.rl-table tr.header td, table.rl-table td.mono-cell {
 	font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
 	border: none;
 	text-align: inherit;
+	max-width: 100%;
 }
 
 .rl-table.edit .header input, .rl-table.edit .mono-cell input {
@@ -171,4 +173,27 @@ table.rl-table tr.header td, table.rl-table td.mono-cell {
 
 #importModal textarea {
 	width: 100%;
+}
+
+@media (max-width: 768px) {
+	.pun {
+		max-width:96%;
+		margin:0 auto;
+		margin-top:2%;
+	}
+	.pun .rl-table-form {
+		height: auto;
+	}
+	.pun select {
+		width: 100%;
+		max-width: 100%;
+		margin-right: 0;
+	}
+	.rl-table-container {
+		position: relative;
+		margin-top: 4px !important;
+		padding:0 !important;
+		padding-bottom: 2em !important;
+		top: 0;
+	}
 }

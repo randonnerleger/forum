@@ -152,7 +152,7 @@ else
 	// Find forumurl
 	$domain = $_SERVER['HTTP_HOST']; // find out the domain:
 	$path = $_SERVER['SCRIPT_NAME']; // find out the path to the current file:
-	$urltemp = "http://" . $domain . $path ; // put it all together:
+	$urltemp = "https://" . $domain . $path ; // put it all together:
 	$parts = Explode('/', $path);
 	$currentFile = end($parts);
 	$forumurl = substr($urltemp, 0, strpos($urltemp, "$currentFile"));

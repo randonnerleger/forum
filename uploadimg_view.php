@@ -94,7 +94,7 @@ $absolute_path_thumbs = dirname(__FILE__) . "/" . substr_replace($tdir,"",-1);
   // Find forumurl
   $domain = $_SERVER['HTTP_HOST']; // find out the domain:
   $path = $_SERVER['SCRIPT_NAME']; // find out the path to the current file:
-  $urltemp = "http://" . $domain . $path ; // put it all together:
+  $urltemp = "https://" . $domain . $path ; // put it all together:
   $parts = Explode('/', $path);
   $currentFile = end($parts);
   $forumurl = substr($urltemp, 0, strpos($urltemp, "$currentFile"));
@@ -309,7 +309,7 @@ class File_Properties
 	// set file type
 	function setFicon_type()
 	{
-		list($this->file_type, $this->file_icon) = split("\?", GetExt($this->file_ext), 2);
+		list($this->file_type, $this->file_icon) = explode("\?", GetExt($this->file_ext), 2);
 	}
 
 	// setup all get/return methods for class vars

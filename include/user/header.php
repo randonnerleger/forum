@@ -102,7 +102,7 @@ if(isset($_REQUEST['domainroot']) ) {
 							var form_valid = (txtRecherche_mod == 'fermeture+rl');
 								if(!form_valid){
 									if (domainroot=="interne") {
-										document.location.href="http://www.randonner-leger.org/wiki/doku.php?do=search&id="+txtRecherche_mod;
+										document.location.href="https://www.randonner-leger.org/wiki/doku.php?do=search&id="+txtRecherche_mod;
 										return false;
 									} else {
 										document.location.href="https://duckduckgo.com/?kae=d&kl=fr-fr&kad=fr_FR&k1=-1&kaj=m&kam=osm&ks=n&kw=w&kj=9EABB9&k7=F7F7F7&kt=a&k8=566579&kx=2365B0&k9=334153&kaa=566579&kai=1&ko=1&q=site%3Awww.randonner-leger.org%2F"+domainroot+"+"+txtRecherche_mod;
@@ -110,7 +110,7 @@ if(isset($_REQUEST['domainroot']) ) {
 									}
 								}
 								alert('Aïe !! \nVotre requête vous entraîne dans les tréfonds du forum ;)');
-								document.location.href="http://www.randonner-leger.org/forum/uploads/2_bd_annivrl_7ans.gif";
+								document.location.href="https://www.randonner-leger.org/forum/uploads/2_bd_annivrl_7ans.gif";
 								return false;
 						}
 						</script>

@@ -3,8 +3,6 @@
 $lang_ezbbc = array(
 
 //********************* Modif : Tableaux
-	'Ask rltable param'            =>      'Table parameter (like <em>lr</em> for left right)',
-	'Ask rltable'                  =>      'Table content',
 	'EZBBC RLTable'                =>      'RL Table',
 	'RLtable'                      =>      'RL Table » [rltable=…]…[/rltable]',
 //********************* Fin Modif

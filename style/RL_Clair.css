@@ -2963,13 +2963,6 @@ body {
 }
 /* END Réponse rapide */
 
-/* BEGIN plugin ezbbcrltable */
-#ezbbcrltable textarea {
-	max-width:80%;
-	max-height:240px;
-}
-/* END plugin ezbbcrltable */
-
 /* BEGIN Masquer les modos */
 p.modlist {
 	display:none;

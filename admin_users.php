@@ -700,7 +700,7 @@ else if (isset($_GET['find_user']))
 	$registered_before = isset($_GET['registered_before']) ? pun_trim($_GET['registered_before']) : '';
 	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_posts', 'last_post', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
 	$direction = isset($_GET['direction']) && $_GET['direction'] == 'DESC' ? 'DESC' : 'ASC';
-	$user_group = isset($_GET['user_group']) ? intval($_GET['user_group']) : -1;
+	$user_group = isset($_GET['group']) ? intval($_GET['group']) : -1;
 
 	$query_str[] = 'order_by='.$order_by;
 	$query_str[] = 'direction='.$direction;
@@ -1045,7 +1045,7 @@ else
 								<tr>
 									<th scope="row"><?php echo $lang_admin_users['User group label'] ?></th>
 									<td>
-										<select name="user_group" tabindex="23">
+										<select name="group" tabindex="23">
 											<option value="-1" selected="selected"><?php echo $lang_admin_users['All groups'] ?></option>
 											<option value="0"><?php echo $lang_admin_users['Unverified users'] ?></option>
 <?php

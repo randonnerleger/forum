@@ -339,7 +339,7 @@ input[type="search"] {
 	display:block;
 	font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
 	font-size:0.9em;
-	color: #334455;
+	color: #0b4f9a;
 	text-decoration: none;
 	padding: 2px 0 0 10px;
 	border-bottom:1px solid #B9C6D7;
@@ -354,9 +354,6 @@ input[type="search"] {
 	border:1px solid #9EABB9;
 	border-radius:2px;
   box-sizing: border-box;
-}
-#nav li a.active {
-	font-weight:bold;
 }
 #nav li.highlight {
 	background: #E3E3E3;

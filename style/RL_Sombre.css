@@ -231,6 +231,10 @@ COLOUR FLUXBB
 #posterror {
 	background: #383838;
 }
+#adalerts p {
+	background: #513e27;
+	color:#d4d4c8;
+}
 .pun .infldset, 
 #adintro .inbox, 
 #adstats .inbox {

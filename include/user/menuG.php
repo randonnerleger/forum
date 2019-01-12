@@ -13,9 +13,11 @@
 						<input id="menug-identification" type="checkbox" name="toggle" />
 						<label for="menug-identification"></label>
 						<div class="content-togglebox">
-							<form id="login_menuG" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" method="post">
+							<form id="login_menuG" method="post" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" onsubmit="return process_form(this)">
 								<input type="hidden" name="form_sent" value="1" />
-								<input type="hidden" name="redirect_url" value="<?php echo 'http://' .$_SERVER['HTTP_HOST'] . htmlentities($_SERVER['REQUEST_URI']); ?>" />
+								<input type="hidden" name="redirect_url" value="<?php echo 'https://' .$_SERVER['HTTP_HOST'] . pun_htmlspecialchars($redirect_url); ?>" />
+								<input type="hidden" name="csrf_token" value="<?php echo pun_csrf_token() ?>" />
+
 								<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" />
 								<input placeholder="Mot de passe" class="fastlogin" id="password" type="password" name="req_password" size="10" />
 									<div class="save-pass">

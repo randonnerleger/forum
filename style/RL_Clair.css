@@ -2937,6 +2937,9 @@ body {
 .pun .postmsg table.rl-table {
 	width: auto;
 	margin-left: 15px;
+	display: block;
+	overflow:auto;
+	overflow-y: hidden;
 }
 
 .pun .postmsg table.rl-table tr:hover {

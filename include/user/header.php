@@ -50,68 +50,126 @@ if(get_browsername() == 'Opera') {
 
 <?php
 
-# Redirection Search lorsque moteur de recherche utilisé sans javascript activé
+# Redirection Search
 # Opitux
-
-function str_to_noaccent($str)
-{
-	$url = $str;
-	$url = preg_replace('#Ç#', 'C', $url);
-	$url = preg_replace('#ç#', 'c', $url);
-	$url = preg_replace('#è|é|ê|ë#', 'e', $url);
-	$url = preg_replace('#È|É|Ê|Ë#', 'E', $url);
-	$url = preg_replace('#à|á|â|ã|ä|å#', 'a', $url);
-	$url = preg_replace('#@|À|Á|Â|Ã|Ä|Å#', 'A', $url);
-	$url = preg_replace('#ì|í|î|ï#', 'i', $url);
-	$url = preg_replace('#Ì|Í|Î|Ï#', 'I', $url);
-	$url = preg_replace('#ð|ò|ó|ô|õ|ö#', 'o', $url);
-	$url = preg_replace('#Ò|Ó|Ô|Õ|Ö#', 'O', $url);
-	$url = preg_replace('#ù|ú|û|ü#', 'u', $url);
-	$url = preg_replace('#Ù|Ú|Û|Ü#', 'U', $url);
-	$url = preg_replace('#ý|ÿ#', 'y', $url);
-	$url = preg_replace('#Ý#', 'Y', $url);
-	return ($url);
+class UserInput {
+	protected $post, $get, $cookie;
+	/**
+	* __construct
+	*
+	* Create a new instance of UserInput
+	*/
+	public function __construct() {
+		$this->post = $_POST;
+		$this->get = $_GET;
+		$this->cookie = $_COOKIE;
+	}
+	/**
+	* get
+	* Get a value from $_GET and sanitize it
+	*
+	* @param string $key	Key to get from array
+	* @param string $type   What type is the variable (string, email, int, float, encoded, url, email)
+	* @param array  $option Options for filter_var
+	* @return mixed will return false on failure
+	*/
+	public function get($key, $type = 'string', $options = array()) {
+		if (!isset($this->get[$key])) {
+			return false;
+		}
+		return filter_var($this->get[$key], $this->get_filter($type), $options);
+	}
+	/**
+	* post
+	* Get a value from $_POST and sanitize it
+	*
+	* @param string $key	Key to get from array
+	* @param string $type   What type is the variable (string, email, int, float, encoded, url, email)
+	* @param array  $option Options for filter_var
+	* @return mixed will return false on failure
+	*/
+	public function post($key, $type='string', $options = array()) {
+		if (isset($this->post[$key])) {
+			return false;
+		}
+		return filter_var($this->post[$key], $this->get_filter($type), $options);
+	}
+	/**
+	* cookie
+	* Get a value from $_COOKIE and sanitize it
+	*
+	* @param string $key	Key to get from array
+	* @param string $type   What type is the variable (string, email, int, float, encoded, url, email)
+	* @param array  $option Options for filter_var
+	* @return mixed will return false on failure
+	*/
+	public function cookie($key, $type='string', $options = array()) {
+		if (isset($this->cookie[$key])) {
+			return false;
+		}
+		return filter_var($this->cookie[$key], $this->get_filter($type), $options);
+	}
+	private function get_filter($type) {
+		switch (strtolower($type)) {
+			case 'string':
+				$filter = FILTER_SANITIZE_STRING;
+				break;
+			case 'int':
+				$filter = FILTER_SANITIZE_NUMBER_INT;
+				break;
+			case 'float' || 'decimal':
+				$filter = FILTER_SANITIZE_NUMBER_FLOAT;
+				break;
+			case 'encoded':
+				$filter = FILTER_SANITIZE_ENCODED;
+				break;
+			case 'url':
+				$filter = FILTER_SANITIZE_URL;
+				break;
+			case 'email':
+				$filter = FILTER_SANITIZE_EMAIL;
+				break;
+			default:
+				$filter = FILTER_SANITIZE_STRING;
+		}
+		return $filter;
+	}
 }
 
-foreach ($_REQUEST as $key => $val) 
-{
-#	restrictif
-	$val = str_to_noaccent ($val);
-	$val = preg_replace("/[^_A-Za-z0-9-\.&=]/i",' ', $val);
+$RLinput = new UserInput();
+$RLsearch = $RLinput->get('q', 'string');
+$RLpath = $RLinput->get('domainroot', 'string');
+$RLwiki = $RLinput->get('do', 'string');
 
-#	moins restrictif
-#	$val = trim(stripslashes(htmlentities($val)));
-	$val = trim($val);
-	$_REQUEST[$key] = $val;
-}
+echo $RLpath;
 
-if(isset($_REQUEST['domainroot']) ) {
-	if ( $_REQUEST['domainroot'] == "interne") {
-#		header('Location: /wiki/doku.php?do=search&id='.str_replace("&quot;", "\"", $_REQUEST['q']).'');
-		header('Location: /wiki/doku.php?do=search&id='.$_REQUEST['q'].'');
-	} else {
-		header('Location: https://duckduckgo.com/html/?q=site%3Awww.randonner-leger.org%2F'.$_GET['domainroot'].'+'.$_GET['q'].'');
+if( isset($RLsearch) && null != $RLsearch ) {
+	switch ($RLpath) {
+		case 'interne':
+
+			header('Location: /wiki/doku.php?do=search&id='.$RLsearch.'');
+			break;
+
+		default:
+
+			if ($RLwiki != 'search' ) :
+				header('Location: https://www.qwant.com/?q=site%3Awww.randonner-leger.org%2F'.$RLpath.'+'.$RLsearch.'');
+			endif;
+
+		break;
 	}
 }
 ?>
 
 						<script type="text/javascript">
 						function CheckSearchRL(){
-							var domainroot=document.SearchRL.domainroot[document.SearchRL.domainroot.selectedIndex].value;
-							var txtRecherche_mod = document.getElementById('q').value.replace(/ /g, '+');
-							var form_valid = (txtRecherche_mod == 'fermeture+rl');
-								if(!form_valid){
-									if (domainroot=="interne") {
-										document.location.href="https://www.randonner-leger.org/wiki/doku.php?do=search&id="+txtRecherche_mod;
-										return false;
-									} else {
-										document.location.href="https://duckduckgo.com/?kae=d&kl=fr-fr&kad=fr_FR&k1=-1&kaj=m&kam=osm&ks=n&kw=w&kj=9EABB9&k7=F7F7F7&kt=a&k8=566579&kx=2365B0&k9=334153&kaa=566579&kai=1&ko=1&q=site%3Awww.randonner-leger.org%2F"+domainroot+"+"+txtRecherche_mod;
-										return false;
-									}
+							var RLsearch = document.getElementById('q').value.replace(/ /g, '+');
+							var RLvintage = (RLsearch == 'fermeture+rl');
+								if(RLvintage){
+									alert('Aïe !! \nVotre requête vous entraîne dans les tréfonds du forum ;)');
+									document.location.href="https://www.randonner-leger.org/forum/uploads/2_bd_annivrl_7ans.gif";
+									return false;
 								}
-								alert('Aïe !! \nVotre requête vous entraîne dans les tréfonds du forum ;)');
-								document.location.href="https://www.randonner-leger.org/forum/uploads/2_bd_annivrl_7ans.gif";
-								return false;
 						}
 						</script>
 

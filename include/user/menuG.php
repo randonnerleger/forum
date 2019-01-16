@@ -15,7 +15,7 @@
 						<div class="content-togglebox">
 							<form id="login_menuG" method="post" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" onsubmit="return process_form(this)">
 								<input type="hidden" name="form_sent" value="1" />
-								<input type="hidden" name="redirect_url" value="<?php echo 'https://' .$_SERVER['HTTP_HOST'] . pun_htmlspecialchars($redirect_url); ?>" />
+								<input type="hidden" name="redirect_url" value="<?php echo 'https://' .$_SERVER['HTTP_HOST'] . htmlentities($_SERVER['REQUEST_URI']); ?>" />
 								<input type="hidden" name="csrf_token" value="<?php echo pun_csrf_token() ?>" />
 
 								<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" />

@@ -58,15 +58,14 @@
 						</div>
 						</li>
 
-						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl" class="<?php echo $GLOBALS['menuG_association']; ?>" title="L'association Randonner léger">L'Association</a>
+						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:association_randonner_leger" class="<?php echo $GLOBALS['menuG_association']; ?>" title="L'association Randonner léger">L'Association</a>
 						<input id="menug-wiki-asso" type="checkbox" <?php if ($GLOBALS['menuG_association']=="active") { echo "checked='checked'"; } ?> name="toggle" />
 						<label for="menug-wiki-asso"></label>
 						<div class="content-togglebox">
 							<ul class="sub-menu">
-								<li class="highlight"><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:adherer" title="Adhérer à l'association">Adhérer à l'association</a></li>
-								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:historique" title="Historique et fonctionnement">Historique et fonctionnement</a></li>
-								<li class="highlight"><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:projets:s-investir" title="S'investir dans l'association">S'investir</a></li>
-								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:historique:cdb" title="Camps de base">Camps de base</a></li>
+								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:adherer" title="Adhérer à l'association">Adhérer à l'association</a></li>
+								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:comites_regionaux" title="Comités régionaux">Comités régionaux</a></li>
+								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:camps" title="Camps">Camps</a></li>
 							</ul>
 						</div>
 						</li>

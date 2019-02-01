@@ -2,20 +2,20 @@
 
 html,
 body {
-	background: #2a2a2a;
+	background: #393939;
 	color: #d4d4d4;
 }
-#header, 
+#header,
 #footer {
 	background-color:#4E4F51;
 	border-color:#565656;
 }
-.search-form .search-field, 
+.search-form .search-field,
 .search-form .search-select {
 	background: #565656 none repeat scroll 0% 0%;
-	color:#fff;
+	color:#c8c8c8;
 }
-.search-form .reset-btn, 
+.search-form .reset-btn,
 .search-form .search-field:focus {
 	background: #565656;
 }
@@ -28,13 +28,16 @@ body {
     color: #d4d4d4;
 }
 #nav {
-	background:#383838;
+	background:#212121;
 }
 #nav li a {
 	color:#999;
 }
 #nav ul.sub-menu li a {
 	color:#60A0DC;
+}
+#nav li.highlight {
+	background: #565656;
 }
 #nav li a:hover,
 #nav li a:active,
@@ -44,20 +47,14 @@ body {
 #nav ul.sub-menu li a:focus {
 	color: #AEAEAE;
 }
-#brdmenu a:hover, 
-#brdmenu a:active, 
-#brdmenu a:focus, 
-#dokuwiki__sitetools a:hover, 
-#dokuwiki__sitetools a:active, 
-#dokuwiki__sitetools a:focus {
-	background: #cecece;
-	color: #111;
-}
-#content, 
+#content,
 .pun .punwrap {
-	background:#383838;
+	background:#212121;
 }
+.slide, #content {
+    box-shadow: 0px 0px 0em #000;
 
+}
 /*****************************************************************
 COLOUR FLUXBB
 *****************************************************************/
@@ -66,18 +63,13 @@ COLOUR FLUXBB
 ----------------------------------------------------------------*/
 
 .pun .punwrap {
-	color: #6E839F;
+	color: #BFCEE3;
 }
-/*.pun .box, */
-/*#adminconsole fieldset th {*/
-/*	background-color: #383838*/
-/*	}*/
-
-#viewprofile dd, 
+#viewprofile dd,
 .pun .forminfo,
-#brdfooter #modcontrols, 
-#adminconsole fieldset td, 
-.pun .blockmenu .box, 
+#brdfooter #modcontrols,
+#adminconsole fieldset td,
+.pun .blockmenu .box,
 #adstats dd {
 	background-color: #424242;
 	}
@@ -86,16 +78,11 @@ COLOUR FLUXBB
 	background: #383838;
 }
 
-#brdmenu {
-	background-color: #565656;
-	color: #d4d4d4
-	}
-
 .pun legend {
 	color: #60a0dc;
 	}
 
-.pun .blockmenu li.isactive a, 
+.pun .blockmenu li.isactive a,
 #posterror li strong {
 	color: #d4d4d4
 	}
@@ -105,37 +92,37 @@ COLOUR FLUXBB
 	color: #d4d4d4
 	}
 
-.pun textarea, 
-.pun input, 
+.pun textarea,
+.pun input,
 .pun select {
-	background-color: #2a2a2a;
+	background-color: #393939;
 	color: #d4d4d4;
 	border:1px solid #565656;
 	}
 
-.pun .multiselect, 
+.pun .multiselect,
 .pun .checklist {
 	color: #D4D4D4;
 	}
 
 .pun .checklist {
 	border-color: #666;
-	background:#2A2A2A;
+	background:#393939;
 	}
 
 /* Posts
 ----------------------------------------------------------------*/
 
 .pun .blockpost {
-	background: #565656;
+	background: #292929;
 	border-color: #D9E1E7;
 }
 
-.pun .blockpost .box, 
-.pun .postright, 
-.pun .postfootright, 
-.pun .deletemsg, 
-.pun .blockpost .postbody, 
+.pun .blockpost .box,
+.pun .postright,
+.pun .postfootright,
+.pun .deletemsg,
+.pun .blockpost .postbody,
 .pun .blockpost .postfoot {
 	background-color: #383838;
 	}
@@ -147,40 +134,30 @@ COLOUR FLUXBB
 .pun .blocktable table {
 	background: #4A4949;
 }
-.pun table th.tcl, 
-.pun table th.tc2, 
-.pun table th.tc3, 
+.pun table th.tcl,
+.pun table th.tc2,
+.pun table th.tc3,
 .pun table th.tcr {
 	background: #383838;
 }
 .pun table th.tcl, .pun table th.tc2, .pun table th.tc3, .pun table th.tcr {
-    background: #303030;
+    background: #292929;
 }
 .pun table .rowodd {
-    background: #3F3E3E;
+    background: #313131;
 }
 .pun table .roweven {
-    background: #4A4949;
+    background: #393939;
 }
 .pun #vf h2 {
-/*	background: #383838;*/
 	color: #BCBCBC;
 }
 .pun .postright,
 .pun .postfootright {
 	border-left-color: #424242;
 	}
-
-/*.pun .postleft,*/
-/*.pun .postfootleft,*/
-/*.pun .blockpost label,*/
-/*.pun .codebox,*/
-/*.pun .quotebox {*/
-/*	background-color: #424242;*/
-/*	}*/
-
 .pun .blockpost h2 {
-	background-color: #565656;
+	background-color: #292929;
 	}
 .pun #quickpost h2,
 #punpost .blockform h2,
@@ -190,25 +167,30 @@ COLOUR FLUXBB
 	background: #383838;
 }
 .pun .blockpost .postleft {
-	background: #565656;
+	background: #292929;
 }
 .pun .blockpost h2 span.conr {
 	color: #a19e96;
 	}
-.pun .blockpost .postbody, 
+.pun .blockpost .postbody,
 .pun .blockpost .postfoot {
 	border-color: #424242;
 }
 .pun .postmsg {
 	color: #D3D4D4;
 }
-.pun .postmsg ins, 
+.pun .postmsg ins,
 #punhelp samp ins {
 	background-color: #ff0;
 	}
 
+#punmisc #rules .box,
+#punhelp .box {
+	background: #424242;
+}
+
 .pun .quotebox {
-	background: #2A2A2A;
+	background: #393939;
 	color: #C8CDD4;
 }
 
@@ -218,29 +200,35 @@ COLOUR FLUXBB
 	}
 
 #ezbbcsmiliesbar .smiley {
-	border: 1px solid #2A2A2A;
+	border: 1px solid #393939;
+}
+.pun label, .pun legend, #adminconsole fieldset t {
+    color: #58a0dc;
 }
 
 /* Admin
 ----------------------------------------------------------------*/
-.pun .blockform .box, 
-#adstats, 
-#adintro, 
-#adalerts, 
-#postpreview, 
+.pun .blockform .box,
+#adstats,
+#adintro,
+.pun #adalerts,
+#postpreview,
 #posterror {
 	background: #383838;
 }
-#adalerts p {
+.pun #adalerts {
+	background:#513e27;
+}
+.pun #adalerts p {
 	background: #513e27;
 	color:#d4d4c8;
 }
-.pun .infldset, 
-#adintro .inbox, 
+.pun .infldset,
+#adintro .inbox,
 #adstats .inbox {
 	background: #424242;
 }
-.pun .blockmenu .isactive a:link, 
+.pun .blockmenu .isactive a:link,
 .pun .blockmenu .isactive a:visited,
 .pun .blockmenu a:active {
 	color: #CED2D5;
@@ -257,7 +245,7 @@ COLOUR FLUXBB
 	border-color:#565656;
 	}
 
-.pun td, 
+.pun td,
 #brdfooter #modcontrols {
 	border-color: #565656;
 	}
@@ -270,7 +258,7 @@ COLOUR FLUXBB
 	border-color: #606060;
 	}
 
-#adminconsole td, 
+#adminconsole td,
 #adminconsole th {
 	border-color: #383838;
 	}
@@ -279,73 +267,97 @@ COLOUR FLUXBB
 	background: #424242;
 	border-color: #393939;
 }
-.pun .quotebox, 
-.pun .codebox, 
+.pun .quotebox,
+.pun .codebox,
 .pun .forminfo,
-.pun .blockpost label, 
+.pun .blockpost label,
 .pun .deletemsg {
 	border-color: #606060;
 	}
 
+.pun .blocktable td,
+.pun .blocktable th,
+.pun .blocktable .box,
+.pun .blockpost h2,
+.pun .blockpost .postbody,
+.pun .blockpost,
+.pun .blockform .box,
+#adstats,
+#adintro,
+#adalerts,
+#postpreview,
+#posterror,
+.pun .infldset, #adintro .inbox, #adstats .inbox,
+.pun .txtarea textarea, .pun input.longinput,
+#punmisc #rules .box, #punhelp .box,
+#brdmenu a,
+#brdmenu a:link,
+#brdmenu a:visited,
+.dokuwiki div.page,
+#dokuwiki__sitetools a,
+#dokuwiki__sitetools a:link,
+#dokuwiki__sitetools a:visited {
+    border-color: #222222;
+}
 /* Links
 ----------------------------------------------------------------*/
 
-.pun a:link, 
+.pun a:link,
 .pun a:visited {
 	color: #C8C8C8;
 	}
 
-.pun a:hover, 
-.pun a:active, 
+.pun a:hover,
+.pun a:active,
 .pun a:focus {
 	color: #AEAEAE;
 	}
 
-.pun .postmsg .postimg a:link img, 
+.pun .postmsg .postimg a:link img,
 .pun .postmsg .postimg a:visited img {
 	border-color: #60a0dc;
 	}
 
-.pun .postmsg .postimg a:hover img, 
-.pun .postmsg .postimg a:active img, 
+.pun .postmsg .postimg a:hover img,
+.pun .postmsg .postimg a:active img,
 .pun .postmsg .postimg a:focus img {
 	border-color: #AEAEAE;
 	}
 
-.pun h2 a:link, 
+.pun h2 a:link,
 .pun h2 a:visited,
-#brdmenu a:link, 
+#brdmenu a:link,
 #brdmenu a:visited {
 	color: #d4d4d4;
 	}
 
-.pun h2 a:hover, 
+.pun h2 a:hover,
 .pun h2 a:active,
-#brdmenu a:hover, 
+#brdmenu a:hover,
 #brdmenu a:active {
-	background:#565656;
+	background:#404040;
 	}
 
-.pun .postreport a:link, 
+.pun .postreport a:link,
 .pun .postreport a:visited,
-.pun .iclosed td.tcl a:link, 
+.pun .iclosed td.tcl a:link,
 .pun .iclosed td.tcl a:visited {
 	color: #888;
 	}
 
-.pun .postreport a:hover, 
+.pun .postreport a:hover,
 .pun .postreport a:active,
-.pun .iclosed td.tcl a:hover, 
+.pun .iclosed td.tcl a:hover,
 .pun .iclosed td.tcl a:active {
 	color: #aaa;
 	}
 
-.pun .maintenancelink a:link, 
+.pun .maintenancelink a:link,
 .pun .maintenancelink a:visited {
 	color: #ff4000;
 	}
 
-.pun .maintenancelink a:hover, 
+.pun .maintenancelink a:hover,
 .pun .maintenancelink a:active {
 	color: #ff5010;
 	}
@@ -371,45 +383,45 @@ COLOUR DOKUWIKI
 .dokuwiki {
 	color: #6E839F;
 }
-#dokuwiki__header, 
+#dokuwiki__header,
 #dokuwiki__site > .site {
-	background: #2A2A2A;
+	background: #212121;
 }
-#dokuwiki__site .page, 
+#dokuwiki__site .page,
 #dw__toc {
 	background: #383838;
 	color:#D3D4D4;
 }
-#dokuwiki__site ul li, 
-.dokuwiki .aside ul li, 
-.dokuwiki .page ul li, 
-.dokuwiki .aside ul li, 
-.dokuwiki .page li .li, 
-.dokuwiki .aside li .li, 
+#dokuwiki__site ul li,
+.dokuwiki .aside ul li,
+.dokuwiki .page ul li,
+.dokuwiki .aside ul li,
+.dokuwiki .page li .li,
+.dokuwiki .aside li .li,
 #dw__toc {
 	color:#D3D4D4;
 }
 #dokuwiki__site th {
-	background:#2A2A2A;
+	background:#393939;
 }
 #dokuwiki__site tr:hover th {
 	background:#222;
 }
 #dokuwiki__pagetools ul li {
-	background: #2A2A2A;
+	background: #212121;
 }
 .dokuwiki table.inline tr:hover td {
-	background-color: #2A2A2A;
+	background-color: #393939;
 }
 #dokuwiki__pagetools ul li a:hover {
 	background-color: #4E4F51;
 }
-.dokuwiki .wrap_box, 
-.dokuwiki div.wrap_box, 
+.dokuwiki .wrap_box,
+.dokuwiki div.wrap_box,
 .dokuwiki div.wrap_box120h,
-.dokuwiki div.wrap_box200h, 
-.dokuwiki div.wrap_box280h, 
-.dokuwiki div.wrap_box320h, 
+.dokuwiki div.wrap_box200h,
+.dokuwiki div.wrap_box280h,
+.dokuwiki div.wrap_box320h,
 .dokuwiki div.wrap_box350h {
 	background:#101010;
 }
@@ -437,9 +449,9 @@ COLOUR DOKUWIKI
 .plugin_wrap {
 	color:#888;
 }
-#dokuwiki__site pre, 
-#dokuwiki__site code, 
-#dokuwiki__site samp, 
+#dokuwiki__site pre,
+#dokuwiki__site code,
+#dokuwiki__site samp,
 #dokuwiki__site kbd {
 	background:#000;
 	color:#888;
@@ -448,6 +460,9 @@ COLOUR DOKUWIKI
 /**
  * Min 1200px / max __1024px__ / max 768px / max 480px
 */
+	#nav {
+		background:#333333;
+	}
 	#nav li a,
 	#nav ul.sub-menu li a,
 
@@ -475,3 +490,41 @@ COLOUR DOKUWIKI
 /* Konami */
 	#tetris #upcoming { background-color: #383838; }
 	#tetris #menu p, #tetris #menu p a { color: #60A0DC; }
+
+/*Pagination*/
+.pagelink:before {
+	color:#d4d4d4;
+}
+.pagestext a,
+.pagestext .spacer,
+.pagepost a,
+.pagepost strong,
+.pagepost .spacer {
+	background: #111;
+	color:#d4d4d4 !important;
+}
+.pagepost strong{
+	background: #020202;
+}
+.pagestext .spacer,
+.pagepost .spacer {
+	background:transparent;
+}
+
+/*UPLOAD SOMBRE*/
+figure {
+    border: 1px solid #222222;
+    background: #292929;
+}
+.picture footer.context {
+    background: rgb(44, 44, 44);
+    background: rgba(255, 255, 255, 0.05);
+}
+ul.rotate li,
+ul.rotate li a,
+#resizeParent a, p.admin a, #albumParent a {
+	color:#d4d4d4 !important;
+}
+#resizeParent, p.admin, #albumParent, ul.rotate li {
+    background:#111;
+}

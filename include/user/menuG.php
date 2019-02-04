@@ -6,28 +6,31 @@
 
 		<?php
 		# Si visiteur NON identifié, j'affiche le formulaire d'identification dans le menu gauche
-		if ($pun_user['group_id']==3 || $conf['group_id']==3 )
-		{
+		if ($pun_user['group_id']==3 || $conf['group_id']==3 ) {
+			$forum_discussions_suivies = '';
+			$forum_nouveaux_messages ='';
+			$forum_sans_reponses ='';
+			$forum_profil ='';
 		?>
 						<li class="display"><strong>Identification</strong>
-						<input id="menug-identification" type="checkbox" name="toggle" />
-						<label for="menug-identification"></label>
-						<div class="content-togglebox">
-							<form id="login_menuG" method="post" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" onsubmit="return process_form(this)">
-								<input type="hidden" name="form_sent" value="1" />
-								<input type="hidden" name="redirect_url" value="<?php echo 'https://' .$_SERVER['HTTP_HOST'] . htmlentities($_SERVER['REQUEST_URI']); ?>" />
-								<input type="hidden" name="csrf_token" value="<?php echo pun_csrf_token() ?>" />
+							<input id="menug-identification" type="checkbox" name="toggle" />
+							<label for="menug-identification"></label>
+							<div class="content-togglebox">
+								<form id="login_menuG" method="post" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" onsubmit="return process_form(this)">
+									<input type="hidden" name="form_sent" value="1" />
+									<input type="hidden" name="redirect_url" value="<?php echo $site_url . htmlentities($_SERVER['REQUEST_URI']); ?>" />
+									<input type="hidden" name="csrf_token" value="<?php echo pun_csrf_token() ?>" />
 
-								<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" />
-								<input placeholder="Mot de passe" class="fastlogin" id="password" type="password" name="req_password" size="10" />
-									<div class="save-pass">
-									<input name="save_pass" id="save_pass" value="1" type="checkbox" /> 
-									<label for="save_pass">Rester connecté</label>
-									</div>
-								<input type="submit" name="login" value="Connexion" />
-								<p><a href="<?php echo path_to_forum; ?>register.php" title="Inscription">Inscription</a></p>
-							</form>
-						</div>
+									<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" />
+									<input placeholder="Mot de passe" class="fastlogin" id="password" type="password" name="req_password" size="10" />
+										<div class="save-pass">
+										<input name="save_pass" id="save_pass" value="1" type="checkbox" />
+										<label for="save_pass">Rester connecté</label>
+										</div>
+									<input type="submit" name="login" value="Connexion" />
+									<p><a href="<?php echo path_to_forum; ?>register.php" title="Inscription">Inscription</a></p>
+								</form>
+							</div>
 						</li>
 		<?php
 		} else {
@@ -44,7 +47,7 @@
 #		$forum_deconnexion = "<li><a href=\"" . path_to_forum. "login.php?action=out&amp;id=".$pun_user['id']."&amp;csrf_token=".pun_hash($pun_user['id'].pun_hash(get_remote_address()))."\" title=\"Déconnexion\">Déconnexion</a></li>";
 
 		echo $forum_deconnexion ;
-		}
+	}
 		?>
 
 						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=presentation:sommaire" class="<?php echo $GLOBALS['menuG_presentation']; ?>" title="Découverte de la randonnée légère">Découverte</a>
@@ -119,5 +122,3 @@
 
 			--><div id="content">
 			<div id="mobile-nav-overlay" onClick="CloseOtherMenu('left','forum','search');"></div>
-
-

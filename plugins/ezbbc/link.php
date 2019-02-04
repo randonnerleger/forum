@@ -6,7 +6,7 @@ require PUN_ROOT.'include/common.php';
 $textarea_name = isset($_GET['textarea_name']) && $_GET['textarea_name'] == 'req_message' ? 'req_message' : 'signature';
 // Language file load
 require PUN_ROOT.'lang/'.$pun_user['language'].'/common.php';
-$ezbbc_language_folder = (file_exists(PUN_ROOT.'plugins/ezbbc/lang/'.$pun_user['language'].'/ezbbc_plugin.php')) ? $pun_user['language'] : 'English';    
+$ezbbc_language_folder = (file_exists(PUN_ROOT.'plugins/ezbbc/lang/'.$pun_user['language'].'/ezbbc_plugin.php')) ? $pun_user['language'] : 'English';
 require PUN_ROOT.'plugins/ezbbc/lang/'.$ezbbc_language_folder.'/ezbbc_plugin.php';
 
 // Retrieving style folder
@@ -23,8 +23,8 @@ $doc_list = array();
 $loc_user_folder = $location.'/'.$pun_user['id'];
 
 if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
-        
-        // If action required 
+
+        // If action required
         if (isset($_GET['action'])):
                 $action = $_GET['action'];
                 $filename = pun_htmlspecialchars($_GET['fname']);
@@ -49,22 +49,22 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
                 endif;
         endif;
         // End action required
-        
+
         //Function to get the max_file_size in the php.ini file
         function return_bytes($FormattedSize)
         {
            $FormattedSize = trim($FormattedSize);
            $Size = floatval($FormattedSize);
            $MultipSize = strtoupper(substr($FormattedSize, -1));
-        
+
            if($MultipSize == "G") $Size *= pow(1024, 3);
            else if($MultipSize == "M") $Size *= pow(1024, 2);
            else if($MultipSize == "K") $Size *= 1024;
-        
+
            return $Size;
         }
         $max_file_size_php = return_bytes(ini_get('upload_max_filesize'));
-        
+
         // Counting the already uploaded documents
         if  (file_exists($loc_user_folder)) {
 			//Retrieving the submitted docs
@@ -76,17 +76,17 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
 			}
 			rsort($doc_list);
 			$doc_count = count($doc_list);
-			
+
         } else {
 			$doc_count = 0;
         }
-        
+
         // Setting limit and max values for each user rank
 		if (!$pun_user['is_admmod']) $doc_limit = $ezbbc_config['doc_limit']; //users
 		if ($pun_user['g_id'] == PUN_ADMIN) $doc_limit = 0; //admin
 		if ($pun_user['g_id'] != PUN_ADMIN && $pun_user['g_moderator'] == '1') $doc_limit = $ezbbc_config['doc_limit_mod']; // mods
 		if ($pun_user['is_admmod']) $ezbbc_config['max_doc_size'] = $max_file_size_php / 1024; //admins and mods
-		
+
         // File submission
         if (isset($_POST['subfile']) && ($doc_count < $doc_limit || $doc_limit == 0)) {
 			$file_name = $_FILES['file']['name'];
@@ -140,9 +140,9 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
         	        $message = '<span style="color: orange"> » '.$lang_ezbbc['User Folder not writable'].'</span>';
         	}
         }
-        
+
         //Listing of the doc files if feature enabled
-        if ($ezbbc_config['doc_list'] == 'doc_list') { 
+        if ($ezbbc_config['doc_list'] == 'doc_list') {
                 $folder_path = $path.'/'.$pun_user['id'];
                 for($i=0;$i<$doc_count;$i++) {
                         preg_match('@^([0-9]+)_(.*)$@', $doc_list[$i], $matches);
@@ -152,7 +152,7 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
                         $doc_path = $folder_path.'/'.$doc_list[$i];
                          $doc_list_display[]= '<li><a href="'.$doc_path.'" onclick="window.open(this.href, \'Preview\', \'height=400, width=500, top=50, left=50, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;" title="'.$lang_ezbbc['Display'].'"><img src="style/admin/listing/doc.png" alt="'.$lang_ezbbc['Display'].'" /></a> <a href="'.$_SERVER['SCRIPT_NAME'].'?textarea_name='.$textarea_name.'&amp;action=remove&amp;fname='.$doc_list[$i].'" onclick="return window.confirm(\''.$lang_ezbbc['Remove file confirm'].'\')" title="'.$lang_ezbbc['Remove'].'"><img src="style/admin/listing/doc-del.png" alt="'.$lang_ezbbc['Remove'].'" /></a> <a href="#" onclick="document.linkform.web_link.value = \''.$doc_path.'\'; document.linkform.link_label.focus(); return false;" title="'.$lang_ezbbc['Add'].'"><img src="style/admin/listing/doc-add.png" alt="'.$lang_ezbbc['Add'].'" /></a> '.$date.' - <strong>'.$name.'</strong></li>';
                 }
-                        
+
         }
 }
 ?>
@@ -161,6 +161,7 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
 <head>
 	<title><?php echo $lang_ezbbc['EZBBC Link chooser'] ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/'.$pun_user['style'].'.css' ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'plugins/ezbbc/style/'.$ezbbc_config['style_folder'].'/ezbbc.css' ?>" />
 	<!-- Adding JS function to send the link value to the opener -->
@@ -191,9 +192,9 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
 			docForm.style.display = "block";
 		}
 	}
-	// Function to retrieve the selection in opener and add it to the right field    
+	// Function to retrieve the selection in opener and add it to the right field
 	function getSelection() {
-        var field  = window.opener.document.getElementsByName('<?php echo $textarea_name ?>')[0]; 
+        var field  = window.opener.document.getElementsByName('<?php echo $textarea_name ?>')[0];
         var scroll = field.scrollTop;
         field.focus();
         /* get the selection */
@@ -216,11 +217,11 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
 	}
 	// Function to insert The linktags and selection in opener Window
 	function insertLinkTag() {
-        var field  = window.opener.document.getElementsByName('<?php echo $textarea_name ?>')[0]; 
+        var field  = window.opener.document.getElementsByName('<?php echo $textarea_name ?>')[0];
         var scroll = field.scrollTop;
         field.focus();
-        
-        
+
+
         /* === Part 1: get the selection === */
         if (window.ActiveXObject) { //For IE
                 var textRange = window.opener.document.selection.createRange();
@@ -230,7 +231,7 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
                 var currentSelection = field.value.substring(field.selectionStart, field.selectionEnd);
                 var endSelection     = field.value.substring(field.selectionEnd);
         }
-		
+
 <?php if (version_compare($pun_config['o_cur_version'], '1.4.6') >= 0): ?>
         /* === Part 2: what Tag type ? === */
 		var startTag = endTag = '';
@@ -262,7 +263,7 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
        				}
        			}
 		}
-			
+
 		if (document.linkform.radiolink[1].checked) { //topic
 			var id = document.linkform.id_link.value;
 			if (label != '') { //A label has been entered
@@ -287,7 +288,7 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
 				}
 			}
 		}
-			
+
 		if (document.linkform.radiolink[2].checked) { //post
 			var id = document.linkform.id_link.value;
 			if (label != '') { //A label has been entered
@@ -312,7 +313,7 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
        			}
 			}
 		}
-			
+
 		if (document.linkform.radiolink[3].checked) { //forum
 			var id = document.linkform.id_link.value;
 			if (label != '') { //A label has been entered
@@ -337,7 +338,7 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
        			}
 			}
 		}
-			
+
 		if (document.linkform.radiolink[4].checked) { //user
 			var id = document.linkform.id_link.value;
 			if (label != '') { //A label has been entered
@@ -392,14 +393,14 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
 <?php endif; ?>
         /* === Part 3: adding what was produced to the opener === */
         if (window.ActiveXObject) { //For IE
-                textRange.text = startTag + currentSelection + endTag;   
+                textRange.text = startTag + currentSelection + endTag;
         } else { //For other browsers
                 field.value = startSelection + startTag + currentSelection + endTag + endSelection;
                 field.focus();
-        } 
+        }
 
         field.scrollTop = scroll;
-		self.close();		
+		self.close();
 	}
 	/* ]]> */
 	</script>
@@ -420,8 +421,8 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
 						<input type="radio" value="web" name="radiolink" style="display: none" onclick="lVisibility()" />
 						<input type="radio" value="topic" name="radiolink" checked="checked" onclick="lVisibility()" /><?php echo $lang_ezbbc['Topic link'] ?>
 					<?php endif; ?>
-					<input type="radio" value="post" name="radiolink" onclick="lVisibility()" /><?php echo $lang_ezbbc['Post link'] ?> 
-					<input type="radio" value="forum" name="radiolink" onclick="lVisibility()" /><?php echo $lang_ezbbc['Forum link'] ?> 
+					<input type="radio" value="post" name="radiolink" onclick="lVisibility()" /><?php echo $lang_ezbbc['Post link'] ?>
+					<input type="radio" value="forum" name="radiolink" onclick="lVisibility()" /><?php echo $lang_ezbbc['Forum link'] ?>
 					<input type="radio" value="user" name="radiolink" onclick="lVisibility()" /><?php echo $lang_ezbbc['User link'] ?>
 				</p>
 				<?php endif; ?>
@@ -456,7 +457,7 @@ if ($ezbbc_config['doc_upload'] == 'doc_upload' && !$pun_user['is_guest']) {
 						<?php echo $action_message ?>
 						</p>
 						<ul style="display: none; max-height: 100px; overflow: auto; border-bottom: grey 1px solid; border-top: grey 1px solid;" id="cdocs">
-						<?php 
+						<?php
 						foreach($doc_list_display as $doc_item) {
 						        echo $doc_item;
 						}

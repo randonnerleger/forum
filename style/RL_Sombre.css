@@ -92,9 +92,12 @@ COLOUR FLUXBB
 	color: #d4d4d4
 	}
 
-.pun textarea,
-.pun input,
-.pun select {
+input,
+input[type="text"],
+input[type="file"],
+select,
+.pun select,
+textarea {
 	background-color: #393939;
 	color: #d4d4d4;
 	border:1px solid #565656;
@@ -512,19 +515,23 @@ COLOUR DOKUWIKI
 }
 
 /*UPLOAD SOMBRE*/
-figure {
+#uploads figure {
     border: 1px solid #222222;
     background: #292929;
 }
-.picture footer.context {
+#uploads .picture footer.context {
     background: rgb(44, 44, 44);
     background: rgba(255, 255, 255, 0.05);
 }
-ul.rotate li,
-ul.rotate li a,
-#resizeParent a, p.admin a, #albumParent a {
+#uploads ul.rotate li,
+#uploads ul.rotate li a,
+#uploads #resizeParent a,
+#uploads p.admin a,
+#uploads #albumParent a {
 	color:#d4d4d4 !important;
 }
-#resizeParent, p.admin, #albumParent, ul.rotate li {
+#uploads #resizeParent,
+#uploads p.admin, #albumParent,
+#uploads ul.rotate li {
     background:#111;
 }

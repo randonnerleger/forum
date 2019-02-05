@@ -54,7 +54,7 @@ if( isset($RLsearch) && null != $RLsearch ) {
 							var RLvintage = (RLsearch == 'fermeture+rl');
 								if(RLvintage){
 									alert('Aïe !! \nVotre requête vous entraîne dans les tréfonds du forum ;)');
-									document.location.href="https://www.randonner-leger.org/forum/uploads/2_bd_annivrl_7ans.gif";
+									document.location.href="<?php echo $site_url . folder_rl ; ?>/forum/uploads/2_bd_annivrl_7ans.gif";
 									return false;
 								}
 						}

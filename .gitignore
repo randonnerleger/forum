@@ -7,7 +7,7 @@
 /uploads/*.jpeg
 /uploads/*.gif
 /uploads/config*
-/uploads/migration_*
+/uploads/migration*
 /uploads/datas.db
 /uploads/i/**/
 /uploads/thumbs/

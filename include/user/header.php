@@ -26,7 +26,7 @@
 # Redirection Search
 # Opitux
 $RLinput = new UserInput();
-$RLsearch = $RLinput->get('q', 'string');
+$RLsearch = str_replace('&#34;', '"', $RLinput->get('q', 'string'));
 $RLpath = $RLinput->get('domainroot', 'string');
 $RLwiki = $RLinput->get('do', 'string');
 

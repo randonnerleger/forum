@@ -1,6 +1,20 @@
 <?php
 // Fotoo Hosting single-file release version 2.1.1
-?><?php if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
+?><?php
+
+// French translations
+if (file_exists(dirname(__FILE__) . '/user_config.php'))
+{
+    require dirname(__FILE__) . '/user_config.php';
+}
+
+if (!function_exists('__')) {
+	function __($str) {
+	    return $str;
+	}
+}
+
+if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
 (function () {
     if (!Array.prototype.indexOf)
     {
@@ -76,7 +90,7 @@
             {
                 var img = resized_img.firstChild
 
-                progress.innerHTML = "Uploading... <img class=\"loading\" src=\"" + loading_gif + "\" alt=\"\" />";
+                progress.innerHTML = "<?php echo __('Uploading'); ?>... <img class=\"loading\" src=\"" + loading_gif + "\" alt=\"\" />";
 
                 var params = "album_append=1&name=" + encodeURIComponent(name.value) + "&album=" + encodeURIComponent(album_id);
                 params += "&filename=" + encodeURIComponent(file.name);
@@ -90,7 +104,7 @@
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200)
                     {
-                        progress.innerHTML = "Uploaded <b>&#10003;</b>";
+                        progress.innerHTML = "<?php echo __('Uploaded'); ?> <b>&#10003;</b>";
                         img.parentNode.removeChild(img);
 
                         if (index + 1 < document.getElementById('f_files').files.length)
@@ -120,7 +134,7 @@
             var album_li = document.createElement('li');
             var album_a = document.createElement('a');
             album_a.href = '?album';
-            album_a.innerHTML = 'Upload an album';
+            album_a.innerHTML = '<?php echo __('Upload an album'); ?>';
             album_li.appendChild(album_a);
             var link = document.querySelector('header nav ul li:nth-child(2)');
             link.parentNode.insertBefore(album_li, link);
@@ -290,7 +304,7 @@
             var thumb = document.createElement('div');
 
             var progress = document.createElement('figcaption');
-            progress.innerHTML = 'Please select a picture...';
+            progress.innerHTML = '<?php echo __('Please select a picture') ?>...';
 
             figure.appendChild(progress);
             figure.appendChild(thumb);
@@ -392,7 +406,7 @@
                         div_img, // thumb resized
                         progress,
                         function () {
-                            progress.innerHTML = "Uploading... <img class=\"loading\" src=\"" + loading_gif + "\" alt=\"\" />";
+                            progress.innerHTML = "<?php echo __('Uploading'); ?>... <img class=\"loading\" src=\"" + loading_gif + "\" alt=\"\" />";
 
                             var img = div_img.firstChild;
 
@@ -416,7 +430,7 @@
                 else
                 {
                     var progress = document.createElement('p');
-                    progress.innerHTML = "Uploading... <img class=\"loading\" src=\"" + loading_gif + "\" alt=\"\" />";
+                    progress.innerHTML = "<?php echo __('Uploading'); ?>... <img class=\"loading\" src=\"" + loading_gif + "\" alt=\"\" />";
                     parent.firstChild.appendChild(progress);
                     return true;
                 }
@@ -475,7 +489,7 @@
         {
             if ($progress)
             {
-                $progress.innerHTML = "Resizing... <img class=\"loading\" src=\"" + loading_gif + "\" alt=\"\" />";
+                $progress.innerHTML = "<?php echo __('Resizing'); ?>... <img class=\"loading\" src=\"" + loading_gif + "\" alt=\"\" />";
             }
 
             can_submit = false;
@@ -665,7 +679,7 @@ body {
 	background: #c4c0aa url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAAB%2BBAMAAADclIJQAAAAAXNSR0IArs4c6QAAAA9QTFRFoKh%2Br7KQs7aTu7qexsCrr1fZwwAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfcCR0WLiQp5Kn4AAADu0lEQVRYw%2B1XUXbjIAwUxgeADQdwGh%2FADjqAbXT%2FM%2B0HCATBebvddtt9Gz6atvFgIc1IDAAAKAMAbgMAACADeY071Mu%2B3bz3HjdY%2BF8qyI%2B4cILuGjYoO%2BIDzgU4WQuUr9zU4AZaznAGMB%2FHLQAA6siB4w7nyy31bwPjNIUnMNBHH3d5DgOgbpyO1uewkuuECzFImRJ1u5sH3JjqDbPIJ0rYjYjoXnaJkeREpMwGANDybDPdrb1RzgMDqKo7YJXkHPJAXJUh1Aek8loUZ%2BOTZhZwMONS4cYFQHJtb1mn04M6fRPyn4UzoIQ8cEslqoSQX0IlVUVd8UUGAIB4K6rz4zbBbalGcMEAuIMpnT6pbEsnwkXySBNWAipJdCFzCGslKSRa8wtSQmdTtt3rUgmkSERiWin2QKlW49YhdD693tqHFJI8eaO8vf5FBqV8P8wqLt7gYfdumOUxxrntRJrq5q8lzBxEOl%2FFKZkATUSla5TS5HDc0UuApnC1ud0IabIgQFEFnGPjiMVUeLQ91U2FucG0HQvpmoq6ZjTUBAPQRHdbdUhNlFqbpklh6NSfGUjBe%2B99TACFt1vKlwsow2mqpG5IcU28KWu%2BgvXIZK21VjQn6jypz%2Fq5LtqbpwecOh9W1FZK4vA4nQDz1DBKJB6COcWVhKWQM%2B6ywTlMyCjhKA%2BM5fmoMj2cwnrGqScKlefDIG8ZA8pZFa80uRLppGgAQFcZuRB5FKweN8lAWYeqNWpaAUDQNr6BD5gCnqeWJrg2V4%2FYqPmASWnj0rA5X4wye6L0uYMkBuit5Zpp2RppxAdMrXwINWecmB4p0tROqMIBGUHauo8NNAHAGIKsPOPcJnH1sHK02gutoU1k3NTg6S1zJqI9jWoeOfzEfIjp0wr3h7%2FCsFcjp3RK2nsjvBV7ggtFxbbzMMIb7aVwRcvIjbs%2FrGKv7l26dXphN0xo7igydaoRpzKPt1nGPU5CDlN5EjJisTBO0VkCkLwnVjJfwcrB3N6dqQqD4Z8AKmtz2M%2FabNxw5vOH8lMKiZVd%2FMPO46sIV4yPcZGFM8KvLJE9zJ%2BBVqSpO3MuROH%2BZq219seWxGpgSLQRRGpGI6gb8dpK5bhEAvbycV%2Fu4%2BZv5%2BP0p%2Fm46eXj%2FsTHDf%2BMj1MvH%2FfrPs68w8fZd%2Fm49cTHzV%2Ft46jycdcP9nGde5aqfZz6PR93tAR4%2BbiXj0slZh93fJaPm7%2BNj1v%2BCx%2B3fZaP08cTrX9DH4fv8nEDkvc5Vx%2Fp49a%2F7%2BPsu32c%2F1Mf9xMJCg1tRkA9NQAAAABJRU5ErkJggg%3D%3D');
 	color: #000;
 	padding: 1em;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 a { color: darkblue; }
@@ -970,13 +984,13 @@ class Fotoo_Hosting
         	return true;
         }
 
-        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']) && filter_var($_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP) 
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']) && filter_var($_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)
         	&& self::isIpBanned($_SERVER['HTTP_X_FORWARDED_FOR'], $this->config->banned_ips))
         {
         	return true;
         }
-        
-        if (!empty($_SERVER['HTTP_CLIENT_IP']) && filter_var($_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP) 
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP']) && filter_var($_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP)
         	&& self::isIpBanned($_SERVER['HTTP_CLIENT_IP'], $this->config->banned_ips))
         {
         	return true;
@@ -1003,7 +1017,7 @@ class Fotoo_Hosting
         {
         	$out .= (!empty($out) ? ', ' : '') . 'X-Forwarded-For: ' . $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
-        
+
         if (!empty($_SERVER['HTTP_CLIENT_IP']) && filter_var($_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP))
         {
         	$out .= (!empty($out) ? ', ' : '') . 'Client-IP: ' . $_SERVER['HTTP_CLIENT_IP'];
@@ -1145,23 +1159,23 @@ class Fotoo_Hosting
 		switch ($error)
 		{
 			case UPLOAD_ERR_INI_SIZE:
-				return 'The uploaded file exceeds the allowed file size (ini).';
+				return __('The uploaded file exceeds the allowed file size (ini).');
 			case UPLOAD_ERR_FORM_SIZE:
-				return 'The uploaded file exceeds the allowed file size (html).';
+				return __('The uploaded file exceeds the allowed file size (html).');
 			case UPLOAD_ERR_PARTIAL:
-				return 'The uploaded file was only partially uploaded.';
+				return __('The uploaded file was only partially uploaded.');
 			case UPLOAD_ERR_NO_FILE:
-				return 'No file was uploaded.';
+				return __('No file was uploaded.');
 			case UPLOAD_ERR_NO_TMP_DIR:
-				return 'Missing a temporary folder.';
+				return __('Missing a temporary folder.');
 			case UPLOAD_ERR_CANT_WRITE:
-				return 'Failed to write file to disk.';
+				return __('Failed to write file to disk.');
 			case UPLOAD_ERR_EXTENSION:
-				return 'A server extension stopped the file upload.';
+				return __('A server extension stopped the file upload.');
 			case UPLOAD_ERR_INVALID_IMAGE:
-				return 'Invalid image format.';
+				return __('Invalid image format.');
 			default:
-				return 'Unknown error.';
+				return __('Unknown error.');
 		}
 	}
 
@@ -1372,7 +1386,9 @@ class Fotoo_Hosting
 
 		$hash = substr($hash, -2) . '/' . $base;
 
-		$req = $this->db->prepare('INSERT INTO pictures 
+#VALUES ((SELECT IFNULL(MAX(id), 0) + 1 FROM Log), 'rev_Id', 'some description')
+
+		$req = $this->db->prepare('INSERT INTO pictures
 			(hash, filename, date, format, width, height, thumb, private, size, album, ip)
 			VALUES (:hash, :filename, :date, :format, :width, :height, :thumb, :private, :size, :album, :ip);');
 
@@ -2464,12 +2480,12 @@ error_reporting(E_ALL);
 
 if (!version_compare(phpversion(), '5.3', '>='))
 {
-    die("You need at least PHP 5.2 to use this application.");
+    die(__('You need at least PHP 5.2 to use this application.'));
 }
 
 if (!class_exists('SQLite3'))
 {
-    die("You need PHP SQLite3 extension to use this application.");
+    die(__('You need PHP SQLite3 extension to use this application.'));
 }
 
 define('UPLOAD_ERR_INVALID_IMAGE', 42);
@@ -2593,7 +2609,7 @@ class Fotoo_Hosting_Config
         $out = "<?php\n\n";
         $out.= '// Do not edit the line below';
         $out.= "\n";
-        $out.= 'if (!isset($config) || !($config instanceof Fotoo_Hosting_Config)) die("Invalid call.");';
+        $out.= 'if (!isset($config) || !($config instanceof Fotoo_Hosting_Config)) die( __("Invalid call.") );';
         $out.= "\n\n";
         $out.= '// To edit one of the following configuration options, comment it out and change it';
         $out.= "\n\n";
@@ -2618,23 +2634,23 @@ class Fotoo_Hosting_Config
     {
         switch ($key)
         {
-            case 'max_width':       return 'Maximum image width or height, bigger images will be resized.';
-            case 'thumb_width':     return 'Maximum thumbnail size, used for creating thumbnails.';
-            case 'max_file_size':   return 'Maximum uploaded file size (in bytes). By default it\'s the maximum size allowed by the PHP configuration. See the FAQ for more informations.';
-            case 'nb_pictures_by_page': return 'Number of images to display on each page in the pictures list.';
-            case 'db_file':         return 'Path to the SQLite DB file.';
-            case 'storage_path':    return 'Path to where the pictures are stored.';
-            case 'base_url':        return 'URL of the webservice index.';
-            case 'storage_url':     return 'URL to where the pictures are stored. Filename is added at the end.';
-            case 'title':           return 'Title of the service.';
-            case 'image_page_url':  return 'URL to the picture information page, hash is added at the end.';
-            case 'album_page_url':  return 'URL to the album page, hash is added at the end.';
-            case 'allow_upload':    return 'Allow upload of files? You can use this to restrict upload access. Can be a boolean or a PHP callback. See the FAQ for more informations.';
-            case 'admin_password':  return 'Password to access admin UI? (edit/delete files, see private pictures)';
-            case 'banned_ips':      return 'List of banned IP addresses (netmasks and wildcards accepted, IPv6 supported)';
-            case 'allowed_formats': return 'Allowed formats, separated by a comma';
+            case 'max_width':       return __('Maximum image width or height, bigger images will be resized.');
+            case 'thumb_width':     return __('Maximum thumbnail size, used for creating thumbnails.');
+            case 'max_file_size':   return __('Maximum uploaded file size (in bytes). By default it\'s the maximum size allowed by the PHP configuration. See the FAQ for more informations.');
+            case 'nb_pictures_by_page': return __('Number of images to display on each page in the pictures list.');
+            case 'db_file':         return __('Path to the SQLite DB file.');
+            case 'storage_path':    return __('Path to where the pictures are stored.');
+            case 'base_url':        return __('URL of the webservice index.');
+            case 'storage_url':     return __('URL to where the pictures are stored. Filename is added at the end.');
+            case 'title':           return __('Title of the service.');
+            case 'image_page_url':  return __('URL to the picture information page, hash is added at the end.');
+            case 'album_page_url':  return __('URL to the album page, hash is added at the end.');
+            case 'allow_upload':    return __('Allow upload of files? You can use this to restrict upload access. Can be a boolean or a PHP callback. See the FAQ for more informations.');
+            case 'admin_password':  return __('Password to access admin UI? (edit/delete files, see private pictures)');
+            case 'banned_ips':      return __('List of banned IP addresses (netmasks and wildcards accepted, IPv6 supported)');
+            case 'allowed_formats': return __('Allowed formats, separated by a comma');
             case 'ip_storage_expiration':
-                                    return 'Expiration (in days) of IP storage, after this delay IP addresses will be removed from database';
+                                    return __('Expiration (in days) of IP storage, after this delay IP addresses will be removed from database');
             default: return '';
         }
     }
@@ -2712,7 +2728,7 @@ if (file_exists($config_file))
 elseif (isset($_GET['create_config']))
 {
     file_put_contents($config_file, $config->exportPHP());
-    die("Default configuration created in config.php file, edit it to change default values.");
+    die( __("Default configuration created in config.php file, edit it to change default values.") );
 }
 
 // Check upload access
@@ -2738,7 +2754,7 @@ if (!empty($_GET['delete']))
     }
     else
     {
-        echo "Can't delete picture";
+        echo __('Can\'t delete picture');
     }
 
     exit;
@@ -2753,7 +2769,7 @@ elseif (!empty($_GET['deleteAlbum']))
     }
     else
     {
-        echo "Can't delete album";
+        echo __('Can\'t delete album');
     }
 
     exit;
@@ -2791,12 +2807,12 @@ if (isset($_POST['album_create']))
         catch (FotooException $e)
         {
             header('HTTP/1.1 400 Bad Request', true, 400);
-            die("Upload not permitted.");
+            die( __("Upload not permitted.") );
         }
     }
 
     header('HTTP/1.1 400 Bad Request', true, 400);
-    die("Bad Request");
+    die( __("Bad Request") );
 }
 
 if (isset($_POST['album_append']))
@@ -2805,17 +2821,17 @@ if (isset($_POST['album_append']))
     {
         if ($fh->appendToAlbum($_POST['album'], $_POST['name'], array('content' => $_POST['content'], 'name' => $_POST['filename'])))
         {
-            echo "OK";
+            echo __('OK');
         }
         else
         {
-            echo "FAIL";
+            echo __('FAIL');
         }
         exit;
     }
 
     header('HTTP/1.1 400 Bad Request', true, 400);
-    die("Bad Request");
+    die( __("Bad Request") );
 }
 
 if (isset($_GET['upload']))
@@ -2870,7 +2886,7 @@ if (isset($_GET['logout']))
 }
 elseif (isset($_GET['login']))
 {
-    $title = 'Login';
+    $title = __('Login');
     $error = '';
 
     if (!empty($_POST['password']))
@@ -2882,7 +2898,7 @@ elseif (isset($_GET['login']))
         }
         else
         {
-            $error = '<p class="error">Wrong password.</p>';
+            $error = '<p class="error">' . __('Wrong password') .  '.</p>';
         }
     }
 
@@ -2893,12 +2909,12 @@ elseif (isset($_GET['login']))
             <form method="post" action="' . $config->base_url . '?login">
             <fieldset>
                 <dl>
-                    <dt><label for="f_password">Password</label></dt>
+                    <dt><label for="f_password">' . __('Password') . '</label></dt>
                     <dd><input type="password" name="password" id="f_password" /></dd>
                 </dl>
             </fieldset>
             <p class="submit">
-                <input type="submit" id="f_submit" value="Login" />
+                <input type="submit" id="f_submit" value="' . __('Login') . '" />
             </p>
             </form>
         </article>
@@ -2906,7 +2922,7 @@ elseif (isset($_GET['login']))
 }
 elseif (isset($_GET['list']))
 {
-    $title = 'Browse pictures';
+    $title = __('Browse pictures');
 
     if (!empty($_GET['list']) && is_numeric($_GET['list']))
         $page = (int) $_GET['list'];
@@ -2920,9 +2936,9 @@ elseif (isset($_GET['list']))
 
     if ($fh->logged())
     {
-        $html .= '<form method="post" action="" onsubmit="return confirm(\'Delete all the checked pictures?\');">
+        $html .= '<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked pictures') . '?\');">
         <p class="admin">
-            <input type="button" value="Check / uncheck all" onclick="var l = this.form.querySelectorAll(\'input[type=checkbox]\'), s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
+            <input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = this.form.querySelectorAll(\'input[type=checkbox]\'), s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
         </p>';
     }
 
@@ -2939,13 +2955,13 @@ elseif (isset($_GET['list']))
 
         $html .= '
         <figure>
-            <a href="'.$url.'">'.($img['private'] ? '<span class="private">Private</span>' : '').'<img src="'.$thumb_url.'" alt="'.$label.'" /></a>
+            <a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.'" alt="'.$label.'" /></a>
             <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>';
 
 
         if ($fh->logged())
         {
-            $html .= '<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> Delete</label>';
+            $html .= '<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> ' . __('Delete') . '</label>';
         }
 
         $html .= '
@@ -2960,7 +2976,7 @@ elseif (isset($_GET['list']))
     {
         $html .= '
         <p class="admin submit">
-            <input type="submit" name="delete_pictures" value="Delete checked pictures" />
+            <input type="submit" name="delete_pictures" value="' . __('Delete checked pictures') . '" />
         </p>
         </form>';
     }
@@ -2985,7 +3001,7 @@ elseif (isset($_GET['list']))
 }
 elseif (isset($_GET['albums']))
 {
-    $title = 'Browse albums';
+    $title = __('Browse albums');
 
     if (!empty($_GET['albums']) && is_numeric($_GET['albums']))
         $page = (int) $_GET['albums'];
@@ -2999,9 +3015,9 @@ elseif (isset($_GET['albums']))
 
     if ($fh->logged())
     {
-        $html .= '<form method="post" action="" onsubmit="return confirm(\'Delete all the checked albums?\');">
+        $html .= '<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked albums') . '?\');">
         <p class="admin">
-            <input type="button" value="Check / uncheck all" onclick="var l = document.forms[0].querySelectorAll(\'input[type=checkbox]\'); var s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
+            <input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = document.forms[0].querySelectorAll(\'input[type=checkbox]\'); var s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
         </p>';
     }
 
@@ -3018,7 +3034,7 @@ elseif (isset($_GET['albums']))
         <figure>
             <h2><a href="'.$url.'">'.escape($album['title']).'</a></h2>
             <h6>('.$nb.' pictures)</h6>
-            <a href="'.$url.'">'.($album['private'] ? '<span class="private">Private</span>' : '');
+            <a href="'.$url.'">'.($album['private'] ? '<span class="private">' . __('Private') . '</span>' : '');
 
         foreach ($album['extract'] as $img)
         {
@@ -3030,7 +3046,7 @@ elseif (isset($_GET['albums']))
 
         if ($fh->logged())
         {
-            $html .= '<label><input type="checkbox" name="albums[]" value="' . escape($album['hash']) . '" /> Delete</label>';
+            $html .= '<label><input type="checkbox" name="albums[]" value="' . escape($album['hash']) . '" /> ' . __('Delete') . '</label>';
         }
 
         $html .= '
@@ -3044,7 +3060,7 @@ elseif (isset($_GET['albums']))
     {
         $html .= '
         <p class="admin submit">
-            <input type="submit" name="delete_albums" value="Delete checked albums" />
+            <input type="submit" name="delete_albums" value="' . __('Delete checked albums') . '" />
         </p>
         </form>';
     }
@@ -3103,35 +3119,36 @@ elseif (!empty($_GET['a']))
         <article class="browse">
             <h2>'.escape($title).'</h2>
             <p class="info">
-                Uploaded on <time datetime="'.date(DATE_W3C, $album['date']).'">'.strftime('%c', $album['date']).'</time>
-                | '.(int)$max.' picture'.((int)$max > 1 ? 's' : '').'
+                ' . __('Uploaded on') . ' <time datetime="'.date(DATE_W3C, $album['date']).'">'.strftime('%c', $album['date']).'</time>
+                | '.(int)$max. ' ' . __('picture') .((int)$max > 1 ? 's' : '').'
             </p>
             <aside class="examples">
-                <dt>Share this album using this URL:</dt>
+                <dt>' . __('Share this album using this URL') . ':</dt>
                 <dd><input type="text" onclick="this.select();" value="'.escape($config->album_page_url . $album['hash']).'" /></dd>
-                <dt>All pictures for a forum (BBCode):</dt>
+                <dt>' . __('All pictures for a forum') . ' (BBCode):</dt>
                 <dd><textarea cols="70" rows="1" onclick="this.select();">'.escape($bbcode).'</textarea></dd>
             </aside>';
+
 
     if ($fh->logged())
     {
         $html .= '
         <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'" onclick="return confirm(\'Really?\');">Delete album</a>
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
         </p>';
     }
     elseif (!empty($_GET['c']))
     {
-        $url = $config->album_page_url . $album['hash'] 
-            . (strpos($config->album_page_url, '?') !== false ? '&c=' : '?c=') 
+        $url = $config->album_page_url . $album['hash']
+            . (strpos($config->album_page_url, '?') !== false ? '&c=' : '?c=')
             . $fh->makeRemoveId($album['hash']);
 
         $html .= '
         <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'Really?\');">Delete album</a>
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
         </p>
         <p class="admin">
-            Keep this URL in your favorites to be able to delete this album later:<br />
+            ' . __('Keep this URL in your favorites to be able to delete this album later') . ':<br />
             <input type="text" onclick="this.select();" value="'.escape($url).'" />
         </p>';
     }
@@ -3145,7 +3162,7 @@ elseif (!empty($_GET['a']))
 
         $html .= '
         <figure>
-            <a href="'.$url.'">'.($img['private'] ? '<span class="private">Private</span>' : '').'<img src="'.$thumb_url.'" alt="'.$label.'" /></a>
+            <a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.'" alt="'.$label.'" /></a>
             <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>
         </figure>';
     }
@@ -3183,7 +3200,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     {
         header('HTTP/1.1 404 Not Found', true, 404);
         echo '
-            <h1>Not Found</h1>
+            <h1>' . __('Not Found') . '</h1>
             <p><a href="'.$config->base_url.'">'.$config->title.'</a></p>
         ';
         exit;
@@ -3221,16 +3238,16 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
         <header>
             '.(trim($img['filename']) ? '<h2>' . escape(strtr($img['filename'], '-_.', '   ')) . '</h2>' : '').'
             <p class="info">
-                Uploaded on <time datetime="'.date(DATE_W3C, $img['date']).'">'.strftime('%c', $img['date']).'</time>
+                ' . __('Uploaded on') . ' <time datetime="'.date(DATE_W3C, $img['date']).'">'.strftime('%c', $img['date']).'</time>
                 | Size: '.$img['width'].' × '.$img['height'].'
             </p>
         </header>
         <figure>
-            <a href="'.$img_url.'">'.($img['private'] ? '<span class="private">Private</span>' : '').'<img src="'.$thumb_url.'" alt="'.escape($title).'" /></a>
+            <a href="'.$img_url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.'" alt="'.escape($title).'" /></a>
         </figure>
         <footer>
             <p>
-                <a href="'.$img_url.'">View full size ('.$img['format'].', '.$size.')</a>
+                <a href="'.$img_url.'">' . __('View full size') . ' ('.$img['format'].', '.$size.')</a>
             </p>
         </footer>';
 
@@ -3262,7 +3279,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
 
         $html .= '
             <figure>
-                <h3>Album:</h3>
+                <h3>' . __('Album') . ':</h3>
                 <h2><a href="' . $config->album_page_url . $album['hash'] . '"> ' . escape($album['title']) .'</a></h2></figure
             </figure>';
 
@@ -3291,7 +3308,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     {
         $html .= '
         <p class="admin">
-            IP address: ' . escape(is_null($img['ip']) ? 'Not available' : ($img['ip'] == 'R' ? 'Automatically removed from database' : $img['ip'])) . '
+            ' . __('IP address') . ': ' . escape(is_null($img['ip']) ? 'Not available' : ($img['ip'] == 'R' ? 'Automatically removed from database' : $img['ip'])) . '
         </p>
         <p class="admin">
             <a href="?delete='.rawurlencode($img['hash']).'" onclick="return confirm(\'Really?\');">Delete picture</a>
@@ -3301,21 +3318,21 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     {
         $html .= '
         <p class="admin">
-            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'Really?\');">Delete picture</a>
+            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
         </p>
         <p class="admin">
-            Keep this URL in your favorites to be able to delete this picture later:<br />
+            ' . __('Keep this URL in your favorites to be able to delete this picture later') . ':<br />
             <input type="text" onclick="this.select();" value="'.$fh->getUrl($img, true).'" />
         </p>';
     }
 
     $html .= '
         <aside class="examples">
-            <dt>Short URL for full size</dt>
+            <dt>' . __('Short URL for full size') . '</dt>
             <dd><input type="text" onclick="this.select();" value="'.escape($short_url).'" /></dd>
             <dt>BBCode</dt>
             <dd><input type="text" onclick="this.select();" value="'.escape($bbcode).'" /></dd>
-            <dt>HTML code</dt>
+            <dt>' . __('HTML code') . '</dt>
             <dd><input type="text" onclick="this.select();" value="'.escape($html_code).'" /></dd>
         </aside>
     </article>
@@ -3323,7 +3340,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
 }
 elseif (!$config->allow_upload)
 {
-    $html = '<p class="error">Uploading is not allowed.</p>';
+    $html = '<p class="error">' . __('Uploading is not allowed') . '.</p>';
 }
 else
 {
@@ -3347,26 +3364,26 @@ else
         <form method="post" action="'.$config->base_url.'?upload" id="f_upload">
         <article class="upload">
             <header>
-                <h2>Upload an album</h2>
+                <h2>' . __('Upload an album') . '</h2>
                 <p class="info">
-                    Maximum file size: '.round($config->max_file_size / 1024 / 1024, 2).'MB
-                    | Image types accepted: JPEG only
+                    ' . __('Maximum file size') . ': '.round($config->max_file_size / 1024 / 1024, 2).'MB
+                    | ' . __('Image types accepted') . ': JPEG ' . __('only') . '
                 </p>
             </header>
             <fieldset>
                 <dl>
-                    <dt><label for="f_title">Title:</label></dt>
+                    <dt><label for="f_title">' . __('Title') . ':</label></dt>
                     <dd><input type="text" name="title" id="f_title" maxlength="100" required="required" /></dd>
-                    <dt><label for="f_private">Private</label></dt>
+                    <dt><label for="f_private">' . __('Private') . '</label></dt>
                     <dd class="private"><label><input type="checkbox" name="private" id="f_private" value="1" />
-                        (If checked, this album won\'t appear in &quot;browse pictures&quot;)</label></dd>
-                    <dt><label for="f_files">Files:</label></dt>
+                        (' . __('If checked, this album won\'t appear in &quot;browse pictures&quot;') . ')</label></dd>
+                    <dt><label for="f_files">' . __('Files') . ':</label></dt>
                     <dd id="f_file_container"><input type="file" name="upload" id="f_files" multiple="multiple" accept="image/jpeg" required="required" /></dd>
                 </dl>
             </fieldset>
-            <div id="albumParent">Please select some files...</div>
+            <div id="albumParent">' . __('Please select some files') . '...</div>
             <p class="submit">
-                <input type="submit" id="f_submit" value="Upload" />
+                <input type="submit" id="f_submit" value="' . __('Upload') . '" />
             </p>
         </article>
         </form>';
@@ -3377,27 +3394,27 @@ else
         <form method="post" enctype="multipart/form-data" action="'.$config->base_url.'?upload" id="f_upload">
         <article class="upload">
             <header>
-                <h2>Upload a file</h2>
+                <h2>' . __('Upload a file') . '</h2>
                 <p class="info">
-                    Maximum file size: '.round($config->max_file_size / 1024 / 1024, 2).'MB
-                    | Image types accepted: '.implode(', ', $config->allowed_formats).'
+                    ' . __('Maximum file size') . ': '.round($config->max_file_size / 1024 / 1024, 2).'MB
+                    | ' . __('Image types accepted') . ': '.implode(', ', $config->allowed_formats).'
                 </p>
             </header>
             <fieldset>
                 <input type="hidden" name="MAX_FILE_SIZE" value="'.($config->max_file_size - 1024).'" />
                 <dl>
-                    <dt><label for="f_file">File:</label></dt>
+                    <dt><label for="f_file">' . __('File') . ':</label></dt>
                     <dd id="f_file_container"><input type="file" name="upload" id="f_file" /></dd>
-                    <dt><label for="f_name">Name:</label></dt>
+                    <dt><label for="f_name">' . __('Name') . ':</label></dt>
                     <dd><input type="text" name="name" id="f_name" maxlength="30" /></dd>
-                    <dt><label for="f_private">Private</label></dt>
+                    <dt><label for="f_private">' . __('Private') . '</label></dt>
                     <dd class="private"><label><input type="checkbox" name="private" id="f_private" value="1" />
-                        (If checked, picture won\'t appear in pictures list)</label></dd>
+                        (' . __('If checked, picture won\'t appear in pictures list') . ')</label></dd>
                 </dl>
             </fieldset>
             <div id="resizeParent"></div>
             <p class="submit">
-                <input type="submit" id="f_submit" value="Upload" />
+                <input type="submit" id="f_submit" value="' . __('Upload') . '" />
             </p>
         </article>
         </form>';
@@ -3425,9 +3442,9 @@ echo '<!DOCTYPE html>
     '.($fh->logged() ? '<h2>(admin mode)</h2>' : '').'
     <nav>
         <ul>
-            <li><a href="'.$config->base_url.'">Upload a file</a></li>
-            <li><a href="'.$config->base_url.'?list">Browse pictures</a></li>
-            <li><a href="'.$config->base_url.'?albums">Browse albums</a></li>
+            <li><a href="'.$config->base_url.'">' . __('Upload a file') . '</a></li>
+            <li><a href="'.$config->base_url.'?list">' . __('Browse pictures') . '</a></li>
+            <li><a href="'.$config->base_url.'?albums">' . __('Browse albums') . '</a></li>
         </ul>
     </nav>
 </header>
@@ -3435,11 +3452,9 @@ echo '<!DOCTYPE html>
     '.$html.'
 </div>
 <footer>
-    Powered by Fotoo Hosting application from <a href="http://kd2.org/">KD2.org</a>
-    | '.($fh->logged() ? '<a href="'.$config->base_url.'?logout">Logout</a>' : '<a href="'.$config->base_url.'?login">Login</a>').'
-</footer>
+    ' . __('Powered by Fotoo Hosting application from') . ' <a href="http://kd2.org/">KD2.org</a>
+    | '.($fh->logged() ? '<a href="'.$config->base_url.'?logout">' . __('Logout') . '</a>' : '<a href="'.$config->base_url.'?login">' . __('Login') . '</a>').'
+</footer>';
+?>
 </body>
 </html>';
-
-
-?>

@@ -3564,7 +3564,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
             ' . __('IP address') . ': ' . escape(is_null($img['ip']) ? 'Not available' : ($img['ip'] == 'R' ? 'Automatically removed from database' : $img['ip'])) . '
         </p>
         <p class="admin">
-            <a href="?delete='.rawurlencode($img['hash']).'" onclick="return confirm(\'Really?\');">Delete picture</a>
+            <a href="?delete='.rawurlencode($img['hash']).'" onclick="return confirm(\'Really?\');">' . __('Delete picture') . '</a>
         </p>';
     }
     elseif (!empty($_GET['c']))

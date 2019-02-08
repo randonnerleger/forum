@@ -1,4 +1,28 @@
 <?php
+
+define('RL_ROOT', dirname(__FILE__).'../../');
+include RL_ROOT.'../configRL.php';
+define('PUN_ROOT', dirname(__FILE__).'/../../'.folder_forum.'/');
+include PUN_ROOT.'include/common.php';
+define('RL_STYLE', $pun_user['style']);						# On appel de Style du profil FLUXBB
+
+define('PUN_TURN_OFF_MAINT', 1);
+define('PUN_QUIET_VISIT', 1);
+
+// Redirection temporaire si forum en maintenance
+if ($pun_config['o_maintenance'] == '1') {
+	header('Location: ' . path_to_forum . 'index.php', true, 302);
+	exit;
+}
+// Fin de la Redirection temporaire
+
+$pun_user_guest = ($pun_user['is_guest'] ? true : false );
+define('pun_user_guest', $pun_user_guest);
+
+$GLOBALS['punusername'] 	= $pun_user['username'];
+$GLOBALS['punuserid'] 		= $pun_user['id'];
+$GLOBALS['punusergroup'] 	= $pun_user['g_id'];
+
 // Fotoo Hosting single-file release version 2.1.1
 ?><?php
 
@@ -950,7 +974,10 @@ class Fotoo_Hosting
 					private INT NOT NULL DEFAULT 0,
 					size INT NOT NULL DEFAULT 0,
 					album TEXT NULL,
-					ip TEXT NULL
+					ip TEXT NULL,
+					punuserid INT NOT NULL,
+					punusername TEXT NULL,
+					import INT NULL
 				);
 
 				CREATE INDEX date ON pictures (private, date);
@@ -960,7 +987,9 @@ class Fotoo_Hosting
 					hash TEXT PRIMARY KEY NOT NULL,
 					title TEXT NOT NULL,
 					date INT NOT NULL,
-					private INT NOT NULL DEFAULT 0
+					private INT NOT NULL DEFAULT 0,
+					punuserid INT NOT NULL,
+					punusername TEXT NULL
 				);
 			');
 		}
@@ -1355,6 +1384,7 @@ class Fotoo_Hosting
 		}
 
 		$size = filesize($dest . $ext);
+		chmod($dest . $ext, 0644);
 
 		// Create thumb when needed
 		if ($width > $this->config->thumb_width || $height > $this->config->thumb_width
@@ -1385,12 +1415,11 @@ class Fotoo_Hosting
 		}
 
 		$hash = substr($hash, -2) . '/' . $base;
-
-#VALUES ((SELECT IFNULL(MAX(id), 0) + 1 FROM Log), 'rev_Id', 'some description')
+		$punuserid = $GLOBALS['punuserid'];
 
 		$req = $this->db->prepare('INSERT INTO pictures
-			(hash, filename, date, format, width, height, thumb, private, size, album, ip)
-			VALUES (:hash, :filename, :date, :format, :width, :height, :thumb, :private, :size, :album, :ip);');
+			(hash, filename, date, format, width, height, thumb, private, size, album, ip, punuserid, punusername, import )
+			VALUES (:hash, :filename, :date, :format, :width, :height, :thumb, :private, :size, :album, :ip, :punuserid, :punusername, :import );');
 
 		$req->bindValue(':hash', $hash);
 		$req->bindValue(':filename', $name);
@@ -1399,10 +1428,13 @@ class Fotoo_Hosting
 		$req->bindValue(':width', (int)$width);
 		$req->bindValue(':height', (int)$height);
 		$req->bindValue(':thumb', (int)$thumb);
-		$req->bindValue(':private', $private ? '1' : '0');
+		$req->bindValue(':private', $private && $GLOBALS['punusergroup'] == 1 ? '1' : '0');
 		$req->bindValue(':size', (int)$size);
 		$req->bindValue(':album', is_null($album) ? NULL : $album);
 		$req->bindValue(':ip', self::getIPAsString());
+		$req->bindValue(':punuserid', (int)$punuserid);
+		$req->bindValue(':punusername', $GLOBALS['punusername']);
+		$req->bindValue(':import', '0');
 
 		$req->execute();
 
@@ -1505,8 +1537,8 @@ class Fotoo_Hosting
 	public function getAlbumPrevNext($album, $current, $order = -1)
 	{
 		$st = $this->db->prepare('SELECT * FROM pictures WHERE album = :album
-			AND date '.($order > 0 ? '>' : '<').' (SELECT date FROM pictures WHERE hash = :img)
-			ORDER BY date '.($order > 0 ? 'ASC': 'DESC').' LIMIT 1;');
+			AND rowid '.($order > 0 ? '>' : '<').' (SELECT rowid FROM pictures WHERE hash = :img)
+			ORDER BY rowid '.($order > 0 ? 'ASC': 'DESC').' LIMIT 1;');
 		$st->bindValue(':album', $album);
 		$st->bindValue(':img', $current);
 		$res = $st->execute();
@@ -1683,10 +1715,13 @@ class Fotoo_Hosting
 		}
 
 		$hash = self::baseConv(hexdec(uniqid()));
-		$this->db->exec('INSERT INTO albums (hash, title, date, private)
+		$punuserid = $GLOBALS['punuserid'];
+		$private = $GLOBALS['punusergroup'] == 1 ? (int)(bool)$private : 0 ;
+		$this->db->exec('INSERT INTO albums (hash, title, date, private, punuserid, punusername )
 			VALUES (\''.$this->db->escapeString($hash).'\',
 			\''.$this->db->escapeString(trim($title)).'\',
-			datetime(\'now\'), \''.(int)(bool)$private.'\');');
+			datetime(\'now\'), \''.$private.'\',
+			\''.$punuserid.'\', \''.$GLOBALS['punusername'].'\');');
 		return $hash;
 	}
 
@@ -3091,7 +3126,7 @@ elseif (!empty($_GET['a']))
     {
         header('HTTP/1.1 404 Not Found', true, 404);
         echo '
-            <h1>Not Found</h1>
+            <h1>' . __('Not Found') . '</h1>
             <p><a href="'.$config->base_url.'">'.$config->title.'</a></p>
         ';
         exit;
@@ -3427,6 +3462,9 @@ $css_url = file_exists(__DIR__ . '/style.css')
     ? $config->base_url . 'style.css'
     : $config->base_url . '?css';
 
+if (file_exists(__DIR__ . '/user_header.php')) {
+    require __DIR__ . '/user_header.php';
+} else {
 echo '<!DOCTYPE html>
 <html>
 <head>
@@ -3436,25 +3474,139 @@ echo '<!DOCTYPE html>
     <link rel="stylesheet" type="text/css" href="'.$css_url.'" />
 </head>
 
-<body>
-<header>
-    <h1><a href="'.$config->base_url.'">'.$config->title.'</a></h1>
-    '.($fh->logged() ? '<h2>(admin mode)</h2>' : '').'
-    <nav>
-        <ul>
-            <li><a href="'.$config->base_url.'">' . __('Upload a file') . '</a></li>
-            <li><a href="'.$config->base_url.'?list">' . __('Browse pictures') . '</a></li>
-            <li><a href="'.$config->base_url.'?albums">' . __('Browse albums') . '</a></li>
-        </ul>
-    </nav>
-</header>
-<div id="page">
-    '.$html.'
-</div>
-<footer>
-    ' . __('Powered by Fotoo Hosting application from') . ' <a href="http://kd2.org/">KD2.org</a>
-    | '.($fh->logged() ? '<a href="'.$config->base_url.'?logout">' . __('Logout') . '</a>' : '<a href="'.$config->base_url.'?login">' . __('Login') . '</a>').'
-</footer>';
-?>
+<body>';
+}
+echo '
+<div id="punindex" class="pun">
+
+  <div class="punwrap">
+
+    <div id="brdheader" class="block">
+
+    	<div class="box">
+
+    		<div id="brdtitle" class="inbox">
+    			<h1><a href="'.$config->base_url.'">'.$config->title.'</a></h1>
+        '.($fh->logged() ? '<h2>(admin mode)</h2>' : '').'
+    		</div>
+
+    		<div id="brdmenu" class="inbox">
+    			<ul>
+                <li><a href="'.$config->base_url.'">' . __('Upload a file') . '</a></li>
+                <li><a href="'.$config->base_url.'?list&mesphotos">' . __('Mes images') . '</a></li>
+                <li><a href="'.$config->base_url.'?albums&mesalbums">' . __('Mes albums') . '</a></li>
+                <li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?list">' . __('Browse pictures') . '</a></li>
+                <li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?albums">' . __('Browse albums') . '</a></li>
+    			</ul>
+    		</div>
+
+    		<div id="brdwelcome" class="inbox">
+    			<ul class="conl">
+    				<li><span>Connecté(e) sous l\'identité&#160; <strong>' . $GLOBALS['punusername'] .'</strong></span></li>
+    			</ul>
+    			<div class="clearer"></div>
+    		</div>
+
+    	</div>
+
+    </div>
+
+    <div id="page">
+        ' . $html . '
+    </div>
+
+<div id="alerte"></div>
+<script>
+function getUrlVars() {
+var vars = {};
+var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+vars[key] = value;
+});
+return vars;
+}
+
+var insert = getUrlVars()["insert"];
+
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+  // Store
+
+    if (insert == 1) {
+
+        document.body.className = "from-ez-toolbar";
+        sessionStorage.setItem("textarea_name", "req_message");
+
+        var field  = window.opener.document.getElementsByName("req_message")[0];
+        field.focus();
+
+        sessionStorage.setItem("startSelection", field.value.substring(0, field.selectionStart));
+        sessionStorage.setItem("currentSelection", field.value.substring(field.selectionStart, field.selectionEnd));
+        sessionStorage.setItem("endSelection", field.value.substring(field.selectionEnd));
+
+}
+  // Retrieve
+
+    if (sessionStorage.getItem("textarea_name")=="req_message"){
+        document.body.className = "from-ez-toolbar";';
+
+
+for ($i = 1; $i <= $config->nb_pictures_by_page ; $i++) {
+echo '
+        if (document.getElementById(\'insert'.$i.'1\') !== null) {document.getElementById(\'insert'.$i.'1\').innerHTML = "<p class=\"buttons\"><input type=\"button\" value=\"Insérer\" onclick=\"insertThumb('.$i.',1)\"></p>";}
+        if (document.getElementById(\'insert'.$i.'2\') !== null) {document.getElementById(\'insert'.$i.'2\').innerHTML = "<p class=\"buttons\"><input type=\"button\" value=\"Insérer\" onclick=\"insertThumb('.$i.',2)\"></p>";}';
+}
+
+echo '
+}
+
+//    <input type=\"button\" value=\"Annuler\" onclick=\"self.close()\">
+
+//    if (document.getElementById("alerte") !== null && insert == 1) {
+//        document.getElementById("alerte").innerHTML = sessionStorage.getItem("textarea_name") + sessionStorage.getItem("startSelection") + sessionStorage.getItem("currentSelection") + sessionStorage.getItem("endSelection");
+//    }
+
+} else {
+  document.getElementById("alerte").innerHTML = "Sorry, your browser does not support Web Storage...";
+}
+
+	function insertThumb(MyForm,MyInput) {
+        var field  = window.opener.document.getElementsByName(sessionStorage.getItem("textarea_name"))[0];
+        var scroll = field.scrollTop;
+        field.focus();
+
+        /* === Part 1: get the selection === */
+                var startSelection   = sessionStorage.getItem("startSelection");
+                var currentSelection = sessionStorage.getItem("currentSelection");
+                var endSelection     = sessionStorage.getItem("endSelection");
+
+        /* === Part 2: creating tagged element === */
+        var quote = document.forms["bbform"+MyForm].elements["codetoinsert"+MyForm+MyInput].value;
+		currentSelection = quote;
+
+        /* === Part 3: adding what was produced to the opener === */
+                field.value = startSelection + currentSelection + endSelection;
+                field.focus();
+
+        field.scrollTop = scroll;
+		self.close();
+	}
+</script>
+
+  <footer>
+      ' . __('Powered by Fotoo Hosting application from') . ' <a href="http://kd2.org/">KD2.org</a>
+      | '.($fh->logged() ? '<a href="'.$config->base_url.'?logout">' . __('Logout') . '</a>' : '<a href="'.$config->base_url.'?login">' . __('Login') . '</a>').'
+  </footer>
+
+  </div><!-- .punwrap -->
+</div><!-- #punindex -->';
+
+if (file_exists(__DIR__ . '/user_footer.php'))
+    require_once __DIR__ . '/user_footer.php';
+else
+{
+    echo '
 </body>
 </html>';
+}
+
+?>

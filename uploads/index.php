@@ -1485,10 +1485,71 @@ class Fotoo_Hosting
 		return $this->get($hash) ? false : true;
 	}
 
+	public function rotate($hash, $id = null)
+	{
+
+		if (!$this->logged() && !$this->checkRemoveId($hash, $id))
+			return false;
+
+		$img = $this->get($hash);
+		$file = $this->_getPath($img);
+
+		if (!file_exists($file))
+			return false;
+
+		return $this->rotation($hash) ? false : true;
+	}
+
+    public function rotation($hash, $angle = 90, $id = null, $savename = false)
+    {
+
+		$res = $this->db->querySingle(
+			'SELECT * FROM pictures WHERE hash = \''.$this->db->escapeString($hash).'\';',
+			true
+		);
+
+        if ($res['format'] != 'JPEG')
+            return false;
+
+		$file = $this->_getPath($res);
+		$th = $this->_getPath($res, 's');
+        $angle= filter_var($_GET['angle'], FILTER_SANITIZE_NUMBER_INT);
+
+        if ( $angle == 90 || $angle == 180 || $angle == 270 ) {
+
+            $original   = imagecreatefromjpeg($file);
+            $rotated    = imagerotate($original, $angle, 0);
+            $savename   = $file;
+
+            $originalth = imagecreatefromjpeg($th);
+            $rotatedth  = imagerotate($originalth, $angle, 0);
+            $savenameth = $th;
+
+            // Save the original file
+            imagejpeg($rotated,$savename);
+            imagedestroy($rotated);
+
+            // Save the thumb
+            imagejpeg($rotatedth,$savenameth);
+            imagedestroy($rotatedth);
+
+
+        } else {
+
+            return false;
+
+        }
+
+        }
+
 	public function getList($page)
 	{
 		$begin = ($page - 1) * $this->config->nb_pictures_by_page;
-		$where = $this->logged() ? '' : 'AND private != 1';
+		if ( isset($_GET['mesphotos']) ) {
+			$where = 'AND punuserid == ' . $GLOBALS['punuserid'] .'';
+		} else {
+			$where = $this->logged() ? '' : 'AND private != 1 AND import != 1';
+		}
 
 		$out = array();
 		$res = $this->db->query('SELECT * FROM pictures WHERE album IS NULL '.$where.' ORDER BY date DESC LIMIT '.$begin.','.$this->config->nb_pictures_by_page.';');
@@ -1513,14 +1574,23 @@ class Fotoo_Hosting
 
 	public function countList()
 	{
-		$where = $this->logged() ? '' : 'AND private != 1';
+		if ( isset($_GET['mesphotos']) ) {
+			$where = 'AND punuserid == ' . $GLOBALS['punuserid'] .'';
+		} else {
+			$where = $this->logged() ? '' : 'AND private != 1';
+		}
 		return $this->db->querySingle('SELECT COUNT(*) FROM pictures WHERE album IS NULL '.$where.';');
 	}
 
 	public function getAlbumList($page)
 	{
 		$begin = ($page - 1) * round($this->config->nb_pictures_by_page / 2);
-		$where = $this->logged() ? '' : 'WHERE private != 1';
+#		$where = $this->logged() ? '' : 'WHERE private != 1';
+		if ( isset($_GET['mesalbums']) ) {
+			$where = 'WHERE punuserid == ' . $GLOBALS['punuserid'] .'';
+		} else {
+			$where = $this->logged() ? '' : 'WHERE private != 1';
+		}
 
 		$out = array();
 		$res = $this->db->query('SELECT * FROM albums '.$where.' ORDER BY date DESC LIMIT '.$begin.','.round($this->config->nb_pictures_by_page / 2).';');
@@ -1564,7 +1634,11 @@ class Fotoo_Hosting
 
 	public function countAlbumList()
 	{
-		$where = $this->logged() ? '' : 'WHERE private != 1';
+		if ( isset($_GET['mesalbums']) ) {
+			$where = 'WHERE punuserid == ' . $GLOBALS['punuserid'] .'';
+		} else {
+			$where = $this->logged() ? '' : 'WHERE private != 1';
+		}
 		return $this->db->querySingle('SELECT COUNT(*) FROM albums '.$where.';');
 	}
 
@@ -1736,6 +1810,11 @@ class Fotoo_Hosting
 
 		return $this->upload($file, $name, $album['private'], $album['hash']);
 	}
+}
+
+function refresh(){
+$refresh ='?'.time();
+return $refresh;
 }
 
 ?><?php
@@ -2785,7 +2864,10 @@ if (!empty($_GET['delete']))
 
     if ($fh->remove($_GET['delete'], $id))
     {
-        header('Location: '.$config->base_url.'?list');
+
+	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
+        $where = isset ( $_GET['mesphotos'] ) ? '&mesphotos' : '' ;
+        header('Location: '.$config->base_url.'?list'.$page.$where);
     }
     else
     {
@@ -2794,13 +2876,55 @@ if (!empty($_GET['delete']))
 
     exit;
 }
+
+if (!empty($_GET['textarea_name']))
+{
+    $id = !empty($_GET['c']) ? trim($_GET['c']) : false;
+
+    if ($fh->remove($_GET['delete'], $id))
+    {
+        $where = isset ( $_GET['mesphotos'] ) ? '&mesphotos' : '' ;
+        header('Location: '.$config->base_url.'?list'.$where);
+    }
+    else
+    {
+        echo __('Can\'t delete picture');
+    }
+
+    exit;
+}
+
+if (!empty($_GET['rotate']))
+{
+    $id = !empty($_GET['c']) ? trim($_GET['c']) : false;
+    $hash = $_GET['rotate'];
+
+    if ($fh->rotate($_GET['rotate'], $id))
+    {
+
+		$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
+        $where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '' ;
+        $where = isset ( $_GET['logged'] ) ? '?list'.$page : '' ;
+        $where = isset ( $_GET['img'] ) ? '?' . $hash : $where ;
+        $where = isset ( $_GET['a'] ) ? '?a=' . filter_var($_GET['a'], FILTER_SANITIZE_STRING) . '' : $where ;
+
+        header('Location: '.$config->base_url.$where);
+    }
+    else
+    {
+        echo __('Can\'t rotate picture');
+    }
+    exit;
+}
 elseif (!empty($_GET['deleteAlbum']))
 {
     $id = !empty($_GET['c']) ? trim($_GET['c']) : false;
 
     if ($fh->removeAlbum($_GET['deleteAlbum'], $id))
     {
-        header('Location: ' . $config->base_url . '?albums');
+	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
+        $where = isset ( $_GET['mesalbums'] ) ? '&mesalbums' : '' ;
+        header('Location: ' . $config->base_url . '?albums'.$page.$where);
     }
     else
     {
@@ -2981,8 +3105,10 @@ elseif (isset($_GET['list']))
         <article class="browse">
             <h2>'.$title.'</h2>';
 
+    $i=0;
     foreach ($list as &$img)
     {
+    $i=$i+1;
         $thumb_url = $fh->getImageThumbUrl($img);
         $url = $fh->getUrl($img);
 
@@ -2990,9 +3116,43 @@ elseif (isset($_GET['list']))
 
         $html .= '
         <figure>
-            <a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.'" alt="'.$label.'" /></a>
-            <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>';
+            <figcaption><h3>'.$label.'</h3></figcaption>
+            <div class="img"><a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').($img['import'] ? '<span class="import">Import</span>' : '').'<img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>';
 
+        $img_url = $fh->getImageUrl($img);
+        $thumb_url = $fh->getImageThumbUrl($img);
+        $bbcode = '[url='.$img_url.'][img]'.$thumb_url.'[/img][/url]';
+        $bbcodefullw = '[url='.$img_url.'][img]'.$img_url.'[/img][/url]';
+
+		if ( isset($_GET['mesphotos']) || $fh->logged() ) {
+			$mesphotos = isset($_GET['mesphotos']) ? '&amp;mesphotos' : '&amp;logged' ;
+            $html .= '
+            <ul class="rotate"><!--
+                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--
+                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=180' . $mesphotos . '&amp;page='.$page.'">' . __('180°') . '</a></li><!--
+                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=270' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--
+            --></ul>';
+		}
+
+		if ( isset($_GET['mesphotos']) ) {
+            $html .= '
+                <aside class="examples">
+                <form name="bbform'.$i.'">
+                    <label>BBCode miniature</label>
+                    <input type="text" id="codetoinsert'.$i.'1" onclick="this.select();" value="'.escape($bbcode).'" />
+                    <div id="insert'.$i.'1"></div>
+                    <label>BBCode Image</label>
+                    <input type="text" id="codetoinsert'.$i.'2" onclick="this.select();" value="'.escape($bbcodefullw).'" />
+                    <div id="insert'.$i.'2"></div>
+                </form>
+                </aside>';
+
+            $html .= '
+            <p class="admin">
+                <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;mesphotos&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
+            </p>';
+
+        }
 
         if ($fh->logged())
         {
@@ -3024,9 +3184,11 @@ elseif (isset($_GET['list']))
             <ul>
         ';
 
+	$mesphotos = isset($_GET['mesphotos']) ? '&mesphotos' : '' ; ;
+
         for ($p = 1; $p <= $max_page; $p++)
         {
-            $html .= '<li'.($page == $p ? ' class="selected"' : '').'><a href="?list='.$p.'">'.$p.'</a></li>';
+            $html .= '<li'.($page == $p ? ' class="selected"' : '').'><a href="?list='.$p.$mesphotos.'">'.$p.'</a></li>';
         }
 
         $html .= '
@@ -3060,24 +3222,54 @@ elseif (isset($_GET['albums']))
         <article class="albums">
             <h2>'.$title.'</h2>';
 
+    $i=0;
     foreach ($list as $album)
     {
+    $i=$i+1;
         $url = $config->album_page_url . $album['hash'];
         $nb = $fh->countAlbumPictures($album['hash']);
 
         $html .= '
         <figure>
-            <h2><a href="'.$url.'">'.escape($album['title']).'</a></h2>
+            <h3>'.escape($album['title']).'</h3><!--Check user id : ' . $album['punuserid'] . '-->
             <h6>('.$nb.' pictures)</h6>
             <a href="'.$url.'">'.($album['private'] ? '<span class="private">' . __('Private') . '</span>' : '');
 
         foreach ($album['extract'] as $img)
         {
             $thumb_url = $fh->getImageThumbUrl($img);
-            $html .= '<img src="'.$thumb_url.'" alt="" />';
+            $html .= '<div class="img"><img src="'.$thumb_url.refresh().'" alt="" /></div>';
         }
 
         $html .= '</a>';
+
+        if ( isset($_GET['mesalbums']) ) {
+
+    $listAlbumIMages = $fh->getAlbumPictures($album['hash'], $page);
+    $bbcode = '[b][url=' . $config->album_page_url . $album['hash'] . ']' . $album['title'] . "[/url][/b]\n";
+
+
+    foreach ($listAlbumIMages as $img)
+    {
+        $label = $img['filename'] ? escape(preg_replace('![_-]!', ' ', $img['filename'])) : 'View image';
+        $bbcode .= '[url='.$fh->getImageUrl($img).'][img]'.$fh->getImageThumbUrl($img)."[/img][/url] ";
+    }
+
+    $html .= '
+            <aside class="examples">
+            <form name="bbform'.$i.'">
+                <label>' . __('All pictures for a forum') . ' (BBCode)</label>
+                <textarea id="codetoinsert'.$i.'1" rows="1" onclick="this.select();">'.escape($bbcode).'</textarea>
+                <div id="insert'.$i.'1"></div>
+            </form>
+            </aside>';
+
+        $html .= '
+        <p class="admin">
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
+        </p>';
+
+        }
 
         if ($fh->logged())
         {
@@ -3108,9 +3300,11 @@ elseif (isset($_GET['albums']))
             <ul>
         ';
 
+	$mesalbums = isset($_GET['mesalbums']) ? '&mesalbums' : '' ; ;
+
         for ($p = 1; $p <= $max_page; $p++)
         {
-            $html .= '<li'.($page == $p ? ' class="selected"' : '').'><a href="'.$config->base_url.'?albums='.$p.'">'.$p.'</a></li>';
+            $html .= '<li'.($page == $p ? ' class="selected"' : '').'><a href="'.$config->base_url.'?albums='.$p.$mesalbums.'">'.$p.'</a></li>';
         }
 
         $html .= '
@@ -3156,14 +3350,20 @@ elseif (!empty($_GET['a']))
             <p class="info">
                 ' . __('Uploaded on') . ' <time datetime="'.date(DATE_W3C, $album['date']).'">'.strftime('%c', $album['date']).'</time>
                 | '.(int)$max. ' ' . __('picture') .((int)$max > 1 ? 's' : '').'
-            </p>
-            <aside class="examples">
-                <dt>' . __('Share this album using this URL') . ':</dt>
-                <dd><input type="text" onclick="this.select();" value="'.escape($config->album_page_url . $album['hash']).'" /></dd>
-                <dt>' . __('All pictures for a forum') . ' (BBCode):</dt>
-                <dd><textarea cols="70" rows="1" onclick="this.select();">'.escape($bbcode).'</textarea></dd>
-            </aside>';
+            </p>';
 
+    if ($album['punuserid'] == $GLOBALS['punuserid'] ) :
+    $html = '
+            <aside class="examples">
+            <form name="bbform1">
+                <!--<dt>' . __('Share this album using this URL') . ':</dt>
+                <dd><input type="text" onclick="this.select();" value="'.escape($config->album_page_url . $album['hash']).'" /></dd>-->
+                <dt>' . __('All pictures for a forum') . ' (BBCode):</dt>
+                <dd><textarea id="codetoinsert11" rows="1" onclick="this.select();">'.escape($bbcode).'</textarea></dd>
+                <div id="insert11"></div>
+            </form>
+            </aside>';
+    endif;
 
     if ($fh->logged())
     {
@@ -3181,11 +3381,11 @@ elseif (!empty($_GET['a']))
         $html .= '
         <p class="admin">
             <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
-        </p>
+        </p><!--
         <p class="admin">
             ' . __('Keep this URL in your favorites to be able to delete this album later') . ':<br />
             <input type="text" onclick="this.select();" value="'.escape($url).'" />
-        </p>';
+        </p>-->';
     }
 
     foreach ($list as &$img)
@@ -3197,8 +3397,19 @@ elseif (!empty($_GET['a']))
 
         $html .= '
         <figure>
-            <a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.'" alt="'.$label.'" /></a>
-            <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>
+            <div class="img"><a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>
+            <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>';
+
+        if ($img['punuserid'] == $GLOBALS['punuserid'] ) :
+            $html .= '
+                <ul class="rotate"><!--
+                    --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90&amp;a='.rawurlencode($album['hash']).'">' . __('90°') . '</a></li><!--
+                    --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=180&amp;a='.rawurlencode($album['hash']).'">' . __('180°') . '</a></li><!--
+                    --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=270&amp;a='.rawurlencode($album['hash']).'">' . __('90°') . '</a></li><!--
+                --></ul>';
+        endif;
+
+        $html .= '
         </figure>';
     }
 
@@ -3225,7 +3436,7 @@ elseif (!empty($_GET['a']))
         </nav>';
     }
 }
-elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUERY_STRING']))
+elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUERY_STRING']) && !isset($_GET['insert']))
 {
     $query = explode('.', $_SERVER['QUERY_STRING']);
     $hash = ($query[0] == 'r') ? $query[1] : $query[0];
@@ -3258,7 +3469,8 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     header('Link: <'.$short_url.'>; rel=shorturl');
 
     $bbcode = '[url='.$img_url.'][img]'.$thumb_url.'[/img][/url]';
-    $html_code = '<a href="'.$img_url.'"><img src="'.$thumb_url.'" alt="'.(trim($img['filename']) ? $img['filename'] : '').'" /></a>';
+    $bbcodefullw = '[url='.$img_url.'][img]'.$img_url.'[/img][/url]';
+    $html_code = '<a href="'.$img_url.'"><img src="'.$thumb_url.refresh().'" alt="'.(trim($img['filename']) ? $img['filename'] : '').'" /></a>';
 
     $size = $img['size'];
     if ($size > (1024 * 1024))
@@ -3274,17 +3486,23 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
             '.(trim($img['filename']) ? '<h2>' . escape(strtr($img['filename'], '-_.', '   ')) . '</h2>' : '').'
             <p class="info">
                 ' . __('Uploaded on') . ' <time datetime="'.date(DATE_W3C, $img['date']).'">'.strftime('%c', $img['date']).'</time>
-                | Size: '.$img['width'].' × '.$img['height'].'
+                | Size: '.$img['width'].' × '.$img['height'].' ('.$img['format'].', '.$size.')
             </p>
         </header>
         <figure>
-            <a href="'.$img_url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.'" alt="'.escape($title).'" /></a>
-        </figure>
-        <footer>
-            <p>
-                <a href="'.$img_url.'">' . __('View full size') . ' ('.$img['format'].', '.$size.')</a>
-            </p>
-        </footer>';
+            <a href="'.$img_url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$img_url.refresh().'" alt="'.escape($title).'" /></a>';
+
+        if ($img['punuserid'] == $GLOBALS['punuserid'] ) :
+        $html .= '
+            <ul class="rotate"><!--
+                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90&amp;img">' . __('90°') . '</a></li><!--
+                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=180&amp;img">' . __('180°') . '</a></li><!--
+                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=270&amp;img">' . __('90°') . '</a></li><!--
+            --></ul>';
+        endif;
+
+        $html .='
+            </figure>';
 
     if (!empty($img['album']))
     {
@@ -3303,13 +3521,13 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
 
             $html .= '
             <figure class="prev">
-                <a href="'.$url.'"><b>&larr;</b><img src="'.$thumb_url.'" alt="'.$label.'" /></a>
+                <div class="img"><a href="'.$url.'"><b>&larr;</b><img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>
                 <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>
             </figure>';
         }
         else
         {
-            $html .= '<figure class="prev"><b>…</b></figure>';
+            $html .= '<figure class="prev"><!--<b>…</b>--></figure>';
         }
 
         $html .= '
@@ -3326,13 +3544,13 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
 
             $html .= '
             <figure class="prev">
-                <a href="'.$url.'"><img src="'.$thumb_url.'" alt="'.$label.'" /><b>&rarr;</b></a>
-                <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>
+                <div class="img"><a href="'.$url.'"><img src="'.$thumb_url.'" alt="'.$label.'" /><b>&rarr;</b></a></div>
+                <figcaption><a href="'.$url.refresh().'">'.$label.'</a></figcaption>
             </figure>';
         }
         else
         {
-            $html .= '<figure class="next"><b>…</b></figure>';
+            $html .= '<figure class="next"><!--<b>…</b>--></figure>';
         }
 
         $html .= '
@@ -3355,23 +3573,27 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
         <p class="admin">
             <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
         </p>
-        <p class="admin">
+        <!--<p class="admin">
             ' . __('Keep this URL in your favorites to be able to delete this picture later') . ':<br />
             <input type="text" onclick="this.select();" value="'.$fh->getUrl($img, true).'" />
-        </p>';
+        </p>-->';
     }
 
-    $html .= '
+        if ($img['punuserid'] == $GLOBALS['punuserid'] ) :
+        $html .= '
         <aside class="examples">
-            <dt>' . __('Short URL for full size') . '</dt>
-            <dd><input type="text" onclick="this.select();" value="'.escape($short_url).'" /></dd>
-            <dt>BBCode</dt>
-            <dd><input type="text" onclick="this.select();" value="'.escape($bbcode).'" /></dd>
-            <dt>' . __('HTML code') . '</dt>
-            <dd><input type="text" onclick="this.select();" value="'.escape($html_code).'" /></dd>
+        <form name="bbform1">
+            <dt>BBCode miniature</dt>
+            <dd><input id="codetoinsert11" type="text" onclick="this.select();" value="'.escape($bbcode).'" /></dd>
+            <div id="insert11"></div>
+            <dt>BBCode Image</dt>
+            <dd><input id="codetoinsert12" type="text" onclick="this.select();" value="'.escape($bbcodefullw).'" /></dd>
+            <div id="insert12"></div>
+        </form>
         </aside>
-    </article>
-    ';
+        </article>';
+    endif;
+
 }
 elseif (!$config->allow_upload)
 {
@@ -3408,10 +3630,19 @@ else
             <fieldset>
                 <dl>
                     <dt><label for="f_title">' . __('Title') . ':</label></dt>
-                    <dd><input type="text" name="title" id="f_title" maxlength="100" required="required" /></dd>
+                    <dd><input type="text" name="title" id="f_title" maxlength="100" required="required" /></dd>';
+
+                    if ( $GLOBALS['punusergroup'] == 1 ) {
+                    $html .= '
                     <dt><label for="f_private">' . __('Private') . '</label></dt>
                     <dd class="private"><label><input type="checkbox" name="private" id="f_private" value="1" />
-                        (' . __('If checked, this album won\'t appear in &quot;browse pictures&quot;') . ')</label></dd>
+                        (' . __('If checked, this album won\'t appear in &quot;browse pictures&quot;') . ')</label></dd>';
+                    } else {
+                    $html .= '
+                            <input type="hidden" name="private" id="f_private" value="1" />';
+                   }
+
+                   $html .= '
                     <dt><label for="f_files">' . __('Files') . ':</label></dt>
                     <dd id="f_file_container"><input type="file" name="upload" id="f_files" multiple="multiple" accept="image/jpeg" required="required" /></dd>
                 </dl>
@@ -3441,10 +3672,19 @@ else
                     <dt><label for="f_file">' . __('File') . ':</label></dt>
                     <dd id="f_file_container"><input type="file" name="upload" id="f_file" /></dd>
                     <dt><label for="f_name">' . __('Name') . ':</label></dt>
-                    <dd><input type="text" name="name" id="f_name" maxlength="30" /></dd>
+                    <dd><input type="text" name="name" id="f_name" maxlength="30" /></dd>';
+
+                    if ( $GLOBALS['punusergroup'] == 1 ) {
+                    $html .= '
                     <dt><label for="f_private">' . __('Private') . '</label></dt>
                     <dd class="private"><label><input type="checkbox" name="private" id="f_private" value="1" />
-                        (' . __('If checked, picture won\'t appear in pictures list') . ')</label></dd>
+                        (' . __('If checked, picture won\'t appear in pictures list') . ')</label></dd>';
+                    } else {
+                    $html .= '
+                    	<input type="hidden" name="private" id="f_private" value="1" />';
+                     }
+
+                    $html .= '
                 </dl>
             </fieldset>
             <div id="resizeParent"></div>

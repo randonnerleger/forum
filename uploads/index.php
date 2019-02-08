@@ -160,7 +160,7 @@ if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
             album_a.href = '?album';
             album_a.innerHTML = '<?php echo __('Upload an album'); ?>';
             album_li.appendChild(album_a);
-            var link = document.querySelector('header nav ul li:nth-child(2)');
+            var link = document.querySelector('#brdmenu ul li:nth-child(2)');
             link.parentNode.insertBefore(album_li, link);
         }
 
@@ -2902,7 +2902,7 @@ if (!empty($_GET['rotate']))
     if ($fh->rotate($_GET['rotate'], $id))
     {
 
-		$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
+        $page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
         $where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '' ;
         $where = isset ( $_GET['logged'] ) ? '?list'.$page : '' ;
         $where = isset ( $_GET['img'] ) ? '?' . $hash : $where ;

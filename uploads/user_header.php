@@ -8,6 +8,7 @@ if ( pun_user_guest ) {
 		<title>Redirection</title>
 		<meta http-equiv="refresh" content="2;URL=' . folder_rl . '/forum/login.php" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="' . folder_rl . '/forum/style/RL_Clair.css?' . current_theme . '" />
 		</head>
 		<body>

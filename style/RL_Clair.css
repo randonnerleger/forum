@@ -2265,6 +2265,8 @@ display:none;
 .pun table th.tcl,
 .pun table th.tc2,
 .pun table th.tc3,
+.pun table th.tc4,
+.pun table th.tc5,
 .pun table th.tcr,
 .pun table th.tcmod {
 	background:#D2DBE0;
@@ -2339,9 +2341,9 @@ display:none;
 	white-space: initial;
 	max-width:60%;
 }
-.pun .blocktable .tc2 {
+/* .pun .blocktable .tc2 {
 	vertical-align:top;
-}
+} */
 .pun .blocktable .tcr {
 	width: 25%;
 }

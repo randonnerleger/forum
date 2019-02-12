@@ -109,19 +109,19 @@ $french_strings = array(
 
 
     'The uploaded file exceeds the allowed file size (ini).'
-        =>  'Le fichier téléchargé dépasse le poids maximum authorisé (ini)',
+        =>  'Le fichier téléchargé dépasse le poids maximum autorisé (ini)',
     'The uploaded file exceeds the allowed file size (html).'
-        =>  'Le fichier téléchargé dépasse le poids maximum authorisé (html)',
+        =>  'Le fichier téléchargé dépasse le poids maximum autorisé (html)',
     'The uploaded file was only partially uploaded.'
         =>  'Le fichier n\'a été que partiellement téléchargé',
     'No file was uploaded.'
-        =>  'Aucun fichier n\a été téléchargé',
+        =>  'Aucun fichier n\'a été téléchargé',
     'Missing a temporary folder.'
         =>  'Un dossier temporaire est manquant',
     'Failed to write file to disk.'
         =>  'Erreur lors de l\'écriture sur le disque',
     'A server extension stopped the file upload.'
-        =>  'Une extension serveur à stoppé le téléchargemebt du fichier',
+        =>  'Une extension serveur a stoppé le téléchargement du fichier',
     'Invalid image format.'
         =>  'Format d\'image invalide',
     'Unknown error.'
@@ -129,11 +129,11 @@ $french_strings = array(
 
 
     'Maximum image width or height, bigger images will be resized.'
-        =>  'Largeur et hauteur maximum? Les images plus grande seront redimensionnées',
+        =>  'Largeur et hauteur maximum ? Les images plus grandes seront redimensionnées',
     'Maximum thumbnail size, used for creating thumbnails.'
         =>  'Taille maximum des vigettes, utilisé pour la génération des vignettes.',
     'Maximum uploaded file size (in bytes). By default it\'s the maximum size allowed by the PHP configuration. See the FAQ for more informations.'
-        =>  'Poids maximum d\'un fichier téléchargé (en bytes). Par défaut, ce sera la taille maximum autorisé par votre configuration PHP. Voir la FAQ pour plus d\'informations',
+        =>  'Poids maximum d\'un fichier téléchargé (en bytes). Par défaut, ce sera la taille maximum autorisée par votre configuration PHP. Voir la FAQ pour plus d\'informations',
     'Number of images to display on each page in the pictures list.'
         =>  'Nombre d\'images à afficher par page dans la liste des images',
     'Path to the SQLite DB file.'
@@ -143,7 +143,7 @@ $french_strings = array(
     'URL of the webservice index.'
         =>  'URL vers le Web service',
     'URL to where the pictures are stored. Filename is added at the end.'
-        =>  'URL d\'archigae des images. Le nom du fichier sera ajouté à la fin',
+        =>  'URL d\'archivage des images. Le nom du fichier sera ajouté à la fin',
     'Title of the service.'
         =>  'Titre du service',
     'URL to the picture information page, hash is added at the end.'
@@ -155,11 +155,11 @@ $french_strings = array(
     'Password to access admin UI? (edit/delete files, see private pictures)'
         =>  'Mot de passe pour accéder à l\'interface administrateur (éditer/supprimer, voir les images privées)',
     'List of banned IP addresses (netmasks and wildcards accepted, IPv6 supported)'
-        =>  'Liste des adresses IP bannies (Masques et wildcards acceptés, IPv6 supporté)',
+        =>  'Liste des adresses IP bannies (masques et wildcards acceptés, IPv6 supporté)',
     'Allowed formats, separated by a comma'
         =>  'Formats autorisés, séparés par une virgule',
     'Expiration (in days) of IP storage, after this delay IP addresses will be removed from database'
-        =>  'Expiration (en jours) de l\'archivage des adresse IP. Passé ce délai, les adresses IP seront supprimées de la base de données.',
+        =>  'Expiration (en jours) de l\'archivage des adresses IP. Passé ce délai, les adresses IP seront supprimées de la base de données.',
 
 
     'You need at least PHP 5.2 to use this application.'
@@ -169,31 +169,14 @@ $french_strings = array(
     'Invalid call.'
         =>  'Appel invalide.',
     'Default configuration created in config.php file, edit it to change default values.'
-        =>  'Les configurations par défaut ont été créée dans le fichier config.php. Editez-le pour modifier ces valeurs par défaut.',
+        =>  'Les configurations par défaut ont été créées dans le fichier config.php. Editez-le pour modifier ces valeurs par défaut.',
     'Upload not permitted.'
-        =>  'Les téléchargement ne sont pas autorisés',
+        =>  'Les téléchargements ne sont pas autorisés',
     'Bad Request'
-        =>  'Bad Request',
-#    ''
-#        =>  '',
-#    ''
-#        =>  '',
-#    ''
-#        =>  '',
-#    ''
-#        =>  '',
-#    ''
-#        =>  '',
-#    ''
-#        =>  '',
-#    ''
-#        =>  '',
-#    ''
-#        =>  '',
-
+        =>  'Requête erronée',
 
     'Powered by Fotoo Hosting application from'
-        =>  'Propulsé par  Fotoo Hosting de',
+        =>  'Propulsé par Fotoo Hosting de',
 );
 
 // Days of the week translations

@@ -19,8 +19,8 @@ if ($pun_config['o_maintenance'] == '1') {
 $pun_user_guest = ($pun_user['is_guest'] ? true : false );
 define('pun_user_guest', $pun_user_guest);
 
-$GLOBALS['punusername'] 	= $pun_user['username'];
-$GLOBALS['punuserid'] 		= $pun_user['id'];
+$GLOBALS['punname'] 	= $pun_user['username'];
+$GLOBALS['punid'] 		= $pun_user['id'];
 $GLOBALS['punusergroup'] 	= $pun_user['g_id'];
 
 // Fotoo Hosting single-file release version 2.1.1
@@ -975,21 +975,28 @@ class Fotoo_Hosting
 					size INT NOT NULL DEFAULT 0,
 					album TEXT NULL,
 					ip TEXT NULL,
-					punuserid INT NOT NULL,
-					punusername TEXT NULL,
+					punid INT NOT NULL,
+					punname TEXT NULL,
 					import INT NULL
 				);
 
 				CREATE INDEX date ON pictures (private, date);
 				CREATE INDEX album ON pictures (album);
 
+				CREATE TABLE stats (
+					punid INT PRIMARY KEY NOT NULL,
+					punname TEXT NULL,
+					punstorage INT NOT NULL,
+					nbimage INT NOT NULL
+				);
+
 				CREATE TABLE albums (
 					hash TEXT PRIMARY KEY NOT NULL,
 					title TEXT NOT NULL,
 					date INT NOT NULL,
 					private INT NOT NULL DEFAULT 0,
-					punuserid INT NOT NULL,
-					punusername TEXT NULL
+					punid INT NOT NULL,
+					punname TEXT NULL
 				);
 			');
 		}
@@ -1415,11 +1422,10 @@ class Fotoo_Hosting
 		}
 
 		$hash = substr($hash, -2) . '/' . $base;
-		$punuserid = $GLOBALS['punuserid'];
 
 		$req = $this->db->prepare('INSERT INTO pictures
-			(hash, filename, date, format, width, height, thumb, private, size, album, ip, punuserid, punusername, import )
-			VALUES (:hash, :filename, :date, :format, :width, :height, :thumb, :private, :size, :album, :ip, :punuserid, :punusername, :import );');
+			(hash, filename, date, format, width, height, thumb, private, size, album, ip, punid, punname, import )
+			VALUES (:hash, :filename, :date, :format, :width, :height, :thumb, :private, :size, :album, :ip, :punid, :punname, :import );');
 
 		$req->bindValue(':hash', $hash);
 		$req->bindValue(':filename', $name);
@@ -1432,8 +1438,8 @@ class Fotoo_Hosting
 		$req->bindValue(':size', (int)$size);
 		$req->bindValue(':album', is_null($album) ? NULL : $album);
 		$req->bindValue(':ip', self::getIPAsString());
-		$req->bindValue(':punuserid', (int)$punuserid);
-		$req->bindValue(':punusername', $GLOBALS['punusername']);
+		$req->bindValue(':punid', (int)$GLOBALS['punid']);
+		$req->bindValue(':punname', $GLOBALS['punname']);
 		$req->bindValue(':import', '0');
 
 		$req->execute();
@@ -1441,6 +1447,24 @@ class Fotoo_Hosting
 		// Automated deletion of IP addresses to comply with local low
 		$expiration = time() - ($this->config->ip_storage_expiration * 24 * 3600);
 		$this->db->query('UPDATE pictures SET ip = "R" WHERE date < ' . (int)$expiration . ';');
+
+		// Stats
+		$punstats = $this->db->querySingle('SELECT * FROM stats WHERE punid == ' . $GLOBALS['punid'] .'', true);
+
+		if (empty($punstats)) {
+			$punstats['punstorage'] = 0;
+			$punstats['nbimage'] = 0;
+		}
+
+		$req = $this->db->prepare('INSERT OR REPLACE INTO stats
+		 	(punid, punname, punstorage, nbimage )
+		 	VALUES (:punid, :punname, :punstorage, :nbimage );');
+
+		$req->bindValue(':punid', $GLOBALS['punid']);
+		$req->bindValue(':punname', $GLOBALS['punname']);
+		$req->bindValue(':punstorage', (int)$punstats['punstorage'] + (int)$size);
+		$req->bindValue(':nbimage', (int)$punstats['nbimage'] + 1 );
+		$req->execute();
 
 		return $hash;
 	}
@@ -1480,6 +1504,9 @@ class Fotoo_Hosting
 		$file = $this->_getPath($img);
 
 		if (file_exists($file))
+		$sizeremoved = $this->db->querySingle('SELECT size FROM pictures WHERE hash = \''.$hash.'\'');
+		$this->db->exec('UPDATE stats SET punstorage = punstorage - "' . $sizeremoved . '", nbimage = nbimage - 1 WHERE punid = \'' . $GLOBALS['punid'] .'\';');
+
 			unlink($file);
 
 		return $this->get($hash) ? false : true;
@@ -1546,7 +1573,7 @@ class Fotoo_Hosting
 	{
 		$begin = ($page - 1) * $this->config->nb_pictures_by_page;
 		if ( isset($_GET['mesphotos']) ) {
-			$where = 'AND punuserid == ' . $GLOBALS['punuserid'] .'';
+			$where = 'AND punid == ' . $GLOBALS['punid'] .'';
 		} else {
 			$where = $this->logged() ? '' : 'AND private != 1 AND import != 1';
 		}
@@ -1562,6 +1589,25 @@ class Fotoo_Hosting
 		return $out;
 	}
 
+	public function getStats()
+	{
+		$out = array();
+		if ( isset($_GET['stats']) && $_GET['stats'] == 'img' ) {
+			$orderby = 'nbimage';
+		} else {
+			$orderby = 'punstorage';
+		}
+		$res = $this->db->query('SELECT * FROM stats ORDER BY ' . $orderby . ' DESC LIMIT 100;');
+
+		while ($row = $res->fetchArray(SQLITE3_ASSOC))
+		{
+			$out[] = $row;
+		}
+
+		return $out;
+	}
+
+
 	public function makeRemoveId($hash)
 	{
 		return sha1($this->config->storage_path . $hash);
@@ -1575,7 +1621,7 @@ class Fotoo_Hosting
 	public function countList()
 	{
 		if ( isset($_GET['mesphotos']) ) {
-			$where = 'AND punuserid == ' . $GLOBALS['punuserid'] .'';
+			$where = 'AND punid == ' . $GLOBALS['punid'] .'';
 		} else {
 			$where = $this->logged() ? '' : 'AND private != 1';
 		}
@@ -1587,7 +1633,7 @@ class Fotoo_Hosting
 		$begin = ($page - 1) * round($this->config->nb_pictures_by_page / 2);
 #		$where = $this->logged() ? '' : 'WHERE private != 1';
 		if ( isset($_GET['mesalbums']) ) {
-			$where = 'WHERE punuserid == ' . $GLOBALS['punuserid'] .'';
+			$where = 'WHERE punid == ' . $GLOBALS['punid'] .'';
 		} else {
 			$where = $this->logged() ? '' : 'WHERE private != 1';
 		}
@@ -1635,7 +1681,7 @@ class Fotoo_Hosting
 	public function countAlbumList()
 	{
 		if ( isset($_GET['mesalbums']) ) {
-			$where = 'WHERE punuserid == ' . $GLOBALS['punuserid'] .'';
+			$where = 'WHERE punid == ' . $GLOBALS['punid'] .'';
 		} else {
 			$where = $this->logged() ? '' : 'WHERE private != 1';
 		}
@@ -1672,6 +1718,9 @@ class Fotoo_Hosting
 		if (!$this->logged() && !$this->checkRemoveId($hash, $id))
 			return false;
 
+		$imageremoved=0;
+		$sizeremoved=0;
+
 		$res = $this->db->query('SELECT * FROM pictures WHERE album = \''.$this->db->escapeString($hash).'\';');
 
 		while ($row = $res->fetchArray(SQLITE3_ASSOC))
@@ -1679,12 +1728,15 @@ class Fotoo_Hosting
 			$file = $this->_getPath($row);
 
 			if (file_exists($file))
+				$imageremoved++;
+				$sizeremoved=$sizeremoved + $row['size'];
 				unlink($file);
 
 			if ($this->get($row['hash']))
 				return false;
 		}
 
+		$this->db->exec('UPDATE stats SET punstorage = punstorage - "' . $sizeremoved . '", nbimage = nbimage - ' . $imageremoved . '  WHERE punid = \'' . $GLOBALS['punid'] .'\';');
 		$this->db->exec('DELETE FROM albums WHERE hash = \''.$this->db->escapeString($hash).'\';');
 		return true;
 	}
@@ -1789,13 +1841,12 @@ class Fotoo_Hosting
 		}
 
 		$hash = self::baseConv(hexdec(uniqid()));
-		$punuserid = $GLOBALS['punuserid'];
 		$private = $GLOBALS['punusergroup'] == 1 ? (int)(bool)$private : 0 ;
-		$this->db->exec('INSERT INTO albums (hash, title, date, private, punuserid, punusername )
+		$this->db->exec('INSERT INTO albums (hash, title, date, private, punid, punname )
 			VALUES (\''.$this->db->escapeString($hash).'\',
 			\''.$this->db->escapeString(trim($title)).'\',
 			datetime(\'now\'), \''.$private.'\',
-			\''.$punuserid.'\', \''.$GLOBALS['punusername'].'\');');
+			\''.$GLOBALS['punid'].'\', \''.$GLOBALS['punname'].'\');');
 		return $hash;
 	}
 
@@ -3108,7 +3159,7 @@ elseif (isset($_GET['list']))
     $i=0;
     foreach ($list as &$img)
     {
-    $i=$i+1;
+    $i++;
         $thumb_url = $fh->getImageThumbUrl($img);
         $url = $fh->getUrl($img);
 
@@ -3231,7 +3282,7 @@ elseif (isset($_GET['albums']))
 
         $html .= '
         <figure>
-            <h3>'.escape($album['title']).'</h3><!--Check user id : ' . $album['punuserid'] . '-->
+            <h3>'.escape($album['title']).'</h3><!--Check user id : ' . $album['punid'] . '-->
             <h6>('.$nb.' pictures)</h6>
             <a href="'.$url.'">'.($album['private'] ? '<span class="private">' . __('Private') . '</span>' : '');
 
@@ -3352,7 +3403,7 @@ elseif (!empty($_GET['a']))
                 | '.(int)$max. ' ' . __('picture') .((int)$max > 1 ? 's' : '').'
             </p>';
 
-    if ($album['punuserid'] == $GLOBALS['punuserid'] ) :
+    if ($album['punid'] == $GLOBALS['punid'] ) :
     $html = '
             <aside class="examples">
             <form name="bbform1">
@@ -3400,7 +3451,7 @@ elseif (!empty($_GET['a']))
             <div class="img"><a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>
             <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>';
 
-        if ($img['punuserid'] == $GLOBALS['punuserid'] ) :
+        if ($img['punid'] == $GLOBALS['punid'] ) :
             $html .= '
                 <ul class="rotate"><!--
                     --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90&amp;a='.rawurlencode($album['hash']).'">' . __('90°') . '</a></li><!--
@@ -3436,7 +3487,55 @@ elseif (!empty($_GET['a']))
         </nav>';
     }
 }
-elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUERY_STRING']) && !isset($_GET['insert']))
+elseif (isset($_GET['stats']))
+{
+	$stats = $fh->getStats();
+	$title = 'Stats';
+
+	if ( isset($_GET['stats']) && $_GET['stats'] == 'img' ) {
+		$orderbyimg = 'orderby';
+		$orderbysize = '';
+	} else {
+		$orderbyimg = '';
+		$orderbysize = 'orderby';
+	}
+
+	$html .='
+	<table>
+		<thead>
+			<tr>
+				<th class="tcl" scope="col">id</th>
+				<th class="tc2" scope="col">Pseudo</th>
+				<th class="tc3 ' . $orderbysize . '" scope="col"><a href="?stats">Poids</a></th>
+				<th class="tc3 ' . $orderbyimg . '" scope="col"><a href="?stats=img">Nb image</a></th>
+				<th class="tc3" scope="col">Poids moyen</th>
+			</tr>
+		</thead>
+	';
+	$count = 0;
+	$rowclass = (++$count % 2) ? "rowodd" : "roweven" ;
+	foreach ($stats as $punid)
+    {
+		$id = $punid['punid'];
+		$name = $punid['punname'];
+		$size = round($punid['punstorage'] / 1024 / 1024, 2) . ' MB';
+		$nbimage = $punid['nbimage'];
+		$poidsmoyen = $punid['nbimage'] < 1 ? 0 : round($punid['punstorage'] / $nbimage / 1024, 2) . ' KB';
+		$html .= '
+		<tr class="' . $rowclass . '">
+			<td class="tcl1">'. $id .'</td>
+			<td class="tcl2">' . $name  . '</td>
+			<td class="tcl3">'  . $size . '</td>
+			<td class="tcl3">'  . $nbimage . '</td>
+			<td class="tcl3">'  . $poidsmoyen . '</td>
+		</tr>
+	';
+	}
+	$html .= '
+	</table>
+	';
+ }
+elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUERY_STRING']) && !isset($_GET['insert']) && !isset($_GET['stats']))
 {
     $query = explode('.', $_SERVER['QUERY_STRING']);
     $hash = ($query[0] == 'r') ? $query[1] : $query[0];
@@ -3492,7 +3591,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
         <figure>
             <a href="'.$img_url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$img_url.refresh().'" alt="'.escape($title).'" /></a>';
 
-        if ($img['punuserid'] == $GLOBALS['punuserid'] ) :
+        if ($img['punid'] == $GLOBALS['punid'] ) :
         $html .= '
             <ul class="rotate"><!--
                 --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90&amp;img">' . __('90°') . '</a></li><!--
@@ -3579,7 +3678,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
         </p>-->';
     }
 
-        if ($img['punuserid'] == $GLOBALS['punuserid'] ) :
+        if ($img['punid'] == $GLOBALS['punid'] ) :
         $html .= '
         <aside class="examples">
         <form name="bbform1">
@@ -3737,12 +3836,13 @@ echo '
                 <li><a href="'.$config->base_url.'?albums&mesalbums">' . __('Mes albums') . '</a></li>
                 <li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?list">' . __('Browse pictures') . '</a></li>
                 <li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?albums">' . __('Browse albums') . '</a></li>
+				'.($fh->logged() ? '<li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?stats">' . __('Stats') . '</a></li>' : '').'
     			</ul>
     		</div>
 
     		<div id="brdwelcome" class="inbox">
     			<ul class="conl">
-    				<li><span>Connecté(e) sous l\'identité&#160; <strong>' . $GLOBALS['punusername'] .'</strong></span></li>
+    				<li><span>Connecté(e) sous l\'identité&#160; <strong>' . $GLOBALS['punname'] .'</strong></span></li>
     			</ul>
     			<div class="clearer"></div>
     		</div>

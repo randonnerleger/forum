@@ -2,7 +2,7 @@
 
 // Language definitions used in search.php
 $lang_search = array(
- 
+
 // The search form
 'User search'			=>	'Rechercher un utilisateur',
 'No search permission'		=>	'Vous ne pouvez pas effectuer de recherche, vous n\'avez pas les permissions requises',
@@ -34,11 +34,12 @@ $lang_search = array(
 'Show as'			=>	'Afficher les&#160;…',
 'Show as topics'		=>	'Discussions',
 'Show as posts'			=>	'Messages',
- 
+
 // Results
 'Search'              =>  'Recherche',
 'Search results'		=>	'Résultats de la recherche',
 'Quick search show_new'		=>	'Nouveaux',
+'Quick search show_new_hors_ventes'		=>	'Nouveaux (hors ventes)',
 'Quick search show_recent'	=>	'Récentes',
 'Quick search show_unanswered'	=>	'Sans réponse',
 'Quick search show_replies'	=>	'Publiés',

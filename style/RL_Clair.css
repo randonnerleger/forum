@@ -3285,10 +3285,6 @@ form#edit p.buttons a {
 	 * 5.2 - Media queries 1024 fluxbb
 	 */
 
-    .pun .blockpost {
-    background:#cad7e1;
-    }
-
 	#punuploadimg_view table td {
 		float:left;
 		max-width:50%;
@@ -3435,6 +3431,7 @@ form#edit p.buttons a {
 /*		padding:5px;*/
 /*	}*/
 	/* BEGIN Réduction colonne des avatars*/
+	.pun .blockpost {background:#cad7e1;}
 	.pun .blockpost .postleft .postavatar {display:block;position:absolute;top:-37px;margin-left: -11px;}
 	.pun .blockpost .postleft .postavatar img {height:37px;width: auto;max-width:37px;margin-right: 0px}
 	.pun .blockpost dt strong {margin-left: 28px;}

@@ -502,6 +502,8 @@ COLOUR DOKUWIKI
 		color: #cecece;
 		text-decoration:none;
 	}
+}
+@media handheld, only screen and (max-width: 768px) {
 	.pun .blockpost {
 		background: #222222;
 	}

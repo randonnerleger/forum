@@ -513,8 +513,14 @@ COLOUR DOKUWIKI
 .pun .postmsg table.rl-table tr:hover {
 	background: grey;
 }
+.pun .postmsg table.rl-table td.mono-cell,
+.pun .postmsg table.rl-table tr.header td {
+	background: #292929;
+    border-bottom: 2px solid #393939;
+}
 .pun .postmsg table.rl-table td {
-	background-color: rgba(86, 86, 86, 0.6);
+	background-color: rgba(48, 48, 48);
+	border: 1px solid #222222;
 }
 /* BEGIN Tableaux */
 

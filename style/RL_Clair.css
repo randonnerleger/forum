@@ -2353,7 +2353,6 @@ display:none;
 /* BEGIN Tableaux */
 .pun .postmsg table.rl-table {
 	width: auto;
-	margin-left: 15px;
 	display: block;
 	overflow:auto;
 	overflow-y: hidden;
@@ -2374,8 +2373,9 @@ display:none;
 }
 .pun .postmsg table.rl-table td.mono-cell,
 .pun .postmsg table.rl-table tr.header td {
-	font-weight: bold;
+	background: #d2dbe0;
 	border-bottom: 2px solid #9aacbc;
+	font-weight: bold;
 }
 /* END Tableaux */
 

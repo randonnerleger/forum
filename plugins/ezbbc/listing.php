@@ -174,7 +174,7 @@ endif;
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Modif RL ligne ajoutee -->
 <link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/'.$pun_user['style'].'.css' ?>" />
 <style type="text/css">
  .recent {background: transparent url(style/admin/listing/recent.png) no-repeat; padding-left: 22px;}

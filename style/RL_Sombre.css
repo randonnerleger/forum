@@ -8,16 +8,16 @@ body {
 #header,
 #footer {
 	background-color:#4E4F51;
-	border-color:#565656;
+	border-color:#242424;
 }
 .search-form .search-field,
 .search-form .search-select {
-	background: #565656 none repeat scroll 0% 0%;
+	background: #222222 none repeat scroll 0% 0%;
 	color:#c8c8c8;
 }
 .search-form .reset-btn,
 .search-form .search-field:focus {
-	background: #565656;
+	background: #222222;
 }
 #announce-block .important {
     background-color: #513E27;
@@ -28,7 +28,7 @@ body {
     color: #d4d4d4;
 }
 #nav {
-	background:#212121;
+	background:#292929;
 }
 #nav li a {
 	color:#999;
@@ -37,7 +37,7 @@ body {
 	color:#60A0DC;
 }
 #nav li.highlight {
-	background: #565656;
+	background: #393939;
 }
 #nav li a:hover,
 #nav li a:active,
@@ -49,7 +49,7 @@ body {
 }
 #content,
 .pun .punwrap {
-	background:#212121;
+	background:#292929;
 }
 .slide, #content {
     box-shadow: 0px 0px 0em #000;
@@ -71,18 +71,20 @@ COLOUR FLUXBB
 #adminconsole fieldset td,
 .pun .blockmenu .box,
 #adstats dd {
-	background-color: #424242;
+	background-color: #303030;
 	}
-
+.pun .punwrap,
+.pun #viewprofile dt, #adstats dt {
+    color: #939393;
+}
 .pun #viewprofile .box {
-	background: #383838;
+	background: #222222;
 }
 
 .pun legend {
 	color: #60a0dc;
 	}
 
-.pun .blockmenu li.isactive a,
 #posterror li strong {
 	color: #d4d4d4
 	}
@@ -92,12 +94,16 @@ COLOUR FLUXBB
 	color: #d4d4d4
 	}
 
-.pun textarea,
-.pun input,
-.pun select {
+input,
+input[type="text"],
+input[type="file"],
+input[type="password"],
+select,
+.pun select,
+textarea {
 	background-color: #393939;
 	color: #d4d4d4;
-	border:1px solid #565656;
+	border:1px solid #393939;
 	}
 
 .pun .multiselect,
@@ -114,21 +120,25 @@ COLOUR FLUXBB
 ----------------------------------------------------------------*/
 
 .pun .blockpost {
-	background: #292929;
+	background: #303030;
 	border-color: #D9E1E7;
 }
-
+.pun .blockpost .postright {
+    border-top: 1px solid #222222;
+}
 .pun .blockpost .box,
 .pun .postright,
 .pun .postfootright,
 .pun .deletemsg,
 .pun .blockpost .postbody,
 .pun .blockpost .postfoot {
-	background-color: #383838;
+	background-color: #393939;
 	}
 
-.pun .blocktable th {
-	background: #383838;
+.pun .blocktable th,
+#punindex .blocktable h2,
+.pun #vf h2 {
+	background: #222222;
 	color:#BCBCBC;
 }
 .pun .blocktable table {
@@ -137,44 +147,44 @@ COLOUR FLUXBB
 .pun table th.tcl,
 .pun table th.tc2,
 .pun table th.tc3,
-.pun table th.tcr {
-	background: #383838;
-}
-.pun table th.tcl, .pun table th.tc2, .pun table th.tc3, .pun table th.tcr {
-    background: #292929;
+.pun table th.tc4,
+.pun table th.tc5,
+.pun table th.tcr,
+.pun table th.tcmod {
+    background: #222222;
 }
 .pun table .rowodd {
-    background: #313131;
+    background: #393939;
 }
 .pun table .roweven {
-    background: #393939;
+    background: #303030;
 }
 .pun #vf h2 {
 	color: #BCBCBC;
 }
 .pun .postright,
 .pun .postfootright {
-	border-left-color: #424242;
+	border-left-color: #303030;
 	}
 .pun .blockpost h2 {
-	background-color: #292929;
+	background-color: #222222;
 	}
 .pun #quickpost h2,
 #punpost .blockform h2,
 #punedit .blockform h2,
 #posterror h2,
 #pundelete .blockform h2 {
-	background: #383838;
+	background: #222222;
 }
 .pun .blockpost .postleft {
-	background: #292929;
+	background: #303030;
 }
 .pun .blockpost h2 span.conr {
 	color: #a19e96;
 	}
 .pun .blockpost .postbody,
 .pun .blockpost .postfoot {
-	border-color: #424242;
+	border-color: #303030;
 }
 .pun .postmsg {
 	color: #D3D4D4;
@@ -186,11 +196,11 @@ COLOUR FLUXBB
 
 #punmisc #rules .box,
 #punhelp .box {
-	background: #424242;
+	background: #303030;
 }
 
 .pun .quotebox {
-	background: #393939;
+	background: #303030;
 	color: #C8CDD4;
 }
 
@@ -214,7 +224,7 @@ COLOUR FLUXBB
 .pun #adalerts,
 #postpreview,
 #posterror {
-	background: #383838;
+	background: #222222;
 }
 .pun #adalerts {
 	background:#513e27;
@@ -226,28 +236,33 @@ COLOUR FLUXBB
 .pun .infldset,
 #adintro .inbox,
 #adstats .inbox {
-	background: #424242;
+	background: #303030;
 }
 .pun .blockmenu .isactive a:link,
 .pun .blockmenu .isactive a:visited,
 .pun .blockmenu a:active {
 	color: #CED2D5;
-	background: #383838;
+}
+.pun .blockmenu .isactive a:link,
+.pun .blockmenu .isactive a:visited,
+.pun .blockmenu a:active,
+.pun .blockmenu a:hover,
+.pun .blockmenu a:focus {
+	background: #222222;
 }
 .pun .blockmenu a:hover {
 	color: #AEAEAE;
-	background: #383838;
 }
 /* Borders
 ----------------------------------------------------------------*/
 
 .pun .box {
-	border-color:#565656;
+	border-color:#393939;
 	}
 
 .pun td,
 #brdfooter #modcontrols {
-	border-color: #565656;
+	border-color: #393939;
 	}
 
 .pun th {
@@ -260,11 +275,11 @@ COLOUR FLUXBB
 
 #adminconsole td,
 #adminconsole th {
-	border-color: #383838;
+	border-color: #222222;
 	}
 #adminconsole fieldset th,
 #adminconsole fieldset td {
-	background: #424242;
+	background: #303030;
 	border-color: #393939;
 }
 .pun .quotebox,
@@ -303,15 +318,19 @@ COLOUR FLUXBB
 ----------------------------------------------------------------*/
 
 .pun a:link,
-.pun a:visited {
-	color: #C8C8C8;
+.pun a:visited,
+.pun h2 a:link,
+.pun h2 a:visited,
+#brdmenu a:link,
+#brdmenu a:visited {
+	color: #AEAEAE;
 	}
 
 .pun a:hover,
 .pun a:active,
 .pun a:focus {
-	color: #AEAEAE;
-	}
+	color: #d4d4d4;
+}
 
 .pun .postmsg .postimg a:link img,
 .pun .postmsg .postimg a:visited img {
@@ -322,13 +341,6 @@ COLOUR FLUXBB
 .pun .postmsg .postimg a:active img,
 .pun .postmsg .postimg a:focus img {
 	border-color: #AEAEAE;
-	}
-
-.pun h2 a:link,
-.pun h2 a:visited,
-#brdmenu a:link,
-#brdmenu a:visited {
-	color: #d4d4d4;
 	}
 
 .pun h2 a:hover,
@@ -370,7 +382,7 @@ COLOUR FLUXBB
 	}
 
 .pun .iredirect .icon {
-	border-color: #383838 #383838 #383838 #383838;
+	border-color: #222222 #222222 #222222 #222222;
 	}
 
 .pun .inew .icon {
@@ -381,15 +393,27 @@ COLOUR FLUXBB
 COLOUR DOKUWIKI
 *****************************************************************/
 .dokuwiki {
-	color: #6E839F;
+	color: #939393;
+}
+#dokuwiki__site a:link,
+#dokuwiki__site a:visited {
+    color: #AEAEAE;
+}
+#dokuwiki__site a:hover,
+#dokuwiki__site a:active,
+#dokuwiki__site a:focus {
+    color: #d4d4d4;
 }
 #dokuwiki__header,
 #dokuwiki__site > .site {
-	background: #212121;
+	background: #292929;
+}
+#dokuwiki__header a {
+	color: #60A0DC;
 }
 #dokuwiki__site .page,
 #dw__toc {
-	background: #383838;
+	background: #313131;
 	color:#D3D4D4;
 }
 #dokuwiki__site ul li,
@@ -407,14 +431,16 @@ COLOUR DOKUWIKI
 #dokuwiki__site tr:hover th {
 	background:#222;
 }
-#dokuwiki__pagetools ul li {
-	background: #212121;
-}
 .dokuwiki table.inline tr:hover td {
 	background-color: #393939;
 }
-#dokuwiki__pagetools ul li a:hover {
-	background-color: #4E4F51;
+#dokuwiki__pagetools div.tools ul:hover {
+	background:#393939;
+}
+#dokuwiki__pagetools div.tools ul li a:active,
+#dokuwiki__pagetools div.tools ul li a:focus,
+#dokuwiki__pagetools div.tools ul li a:hover {
+    background-color: #393939;
 }
 .dokuwiki .wrap_box,
 .dokuwiki div.wrap_box,
@@ -423,7 +449,8 @@ COLOUR DOKUWIKI
 .dokuwiki div.wrap_box280h,
 .dokuwiki div.wrap_box320h,
 .dokuwiki div.wrap_box350h {
-	background:#101010;
+	background: #222;
+	color: #BCBCBC;
 }
 .dokuwiki .wrap_info {
 	background:#2D271F;
@@ -475,20 +502,33 @@ COLOUR DOKUWIKI
 		color: #cecece;
 		text-decoration:none;
 	}
-
+}
+@media handheld, only screen and (max-width: 768px) {
+	.pun .blockpost {
+		background: #222222;
+	}
 }
 
 /* BEGIN Tableaux */
 .pun .postmsg table.rl-table tr:hover {
 	background: grey;
 }
+.pun .postmsg table.rl-table td.mono-cell,
+.pun .postmsg table.rl-table tr.header td {
+	background: #222222;
+    border-bottom: 2px solid #393939;
+}
+.pun .postmsg table.rl-table tr.header td {
+	background: #292929;
+}
 .pun .postmsg table.rl-table td {
-	background-color: rgba(86, 86, 86, 0.6);
+	background-color: rgba(48, 48, 48);
+	border: 1px solid #222222;
 }
 /* BEGIN Tableaux */
 
 /* Konami */
-	#tetris #upcoming { background-color: #383838; }
+	#tetris #upcoming { background-color: #222222; }
 	#tetris #menu p, #tetris #menu p a { color: #60A0DC; }
 
 /*Pagination*/
@@ -512,19 +552,23 @@ COLOUR DOKUWIKI
 }
 
 /*UPLOAD SOMBRE*/
-figure {
+#uploads figure {
     border: 1px solid #222222;
     background: #292929;
 }
-.picture footer.context {
+#uploads .picture footer.context {
     background: rgb(44, 44, 44);
     background: rgba(255, 255, 255, 0.05);
 }
-ul.rotate li,
-ul.rotate li a,
-#resizeParent a, p.admin a, #albumParent a {
+#uploads ul.rotate li,
+#uploads ul.rotate li a,
+#uploads #resizeParent a,
+#uploads p.admin a,
+#uploads #albumParent a {
 	color:#d4d4d4 !important;
 }
-#resizeParent, p.admin, #albumParent, ul.rotate li {
+#uploads #resizeParent,
+#uploads p.admin, #albumParent,
+#uploads ul.rotate li {
     background:#111;
 }

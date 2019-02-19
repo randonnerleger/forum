@@ -82,11 +82,7 @@
 #ezbbctoolbar a#quote {
 	background: url(images/toolbar.png) no-repeat -200px 0;
 }
-/********************* Modif : Tableaux */
-#ezbbctoolbar a#rltable {
-    background: url(images/rltable.png) no-repeat 0 0;
-}
-/********************* Fin Modif */
+
 #ezbbctoolbar a#code {
 	background: url(images/toolbar.png) no-repeat -260px 0;
 }
@@ -107,7 +103,43 @@
 }
 #ezbbctoolbar a#help {
 	background: url(images/toolbar.png) no-repeat -380px 0;
-}        
+}
+
+/********************* Modif : Tableaux + fotoo */
+#ezbbctoolbar a#rlgallery {
+    background: #fff url(images/rlgallery.png) no-repeat center center;
+}
+#ezbbctoolbar a#rltable {
+    background: #fff url(images/rltable.png) no-repeat center center;
+}
+
+@media (max-width: 1024px) {
+	/* Backgrounds for each button */
+	#ezbbctoolbar a#bold {background: url(../Big-buttons/images/toolbar.png) no-repeat 0 0;}
+	#ezbbctoolbar a#underline {background: url(../Big-buttons/images/toolbar.png) no-repeat -28px 0;}
+	#ezbbctoolbar a#italic {background: url(../Big-buttons/images/toolbar.png) no-repeat -56px 0;}
+	#ezbbctoolbar a#strike {background: url(../Big-buttons/images/toolbar.png) no-repeat -84px 0;}
+	#ezbbctoolbar a#delete {background: url(../Big-buttons/images/toolbar.png) no-repeat -112px 0;}
+	#ezbbctoolbar a#insert {background: url(../Big-buttons/images/toolbar.png) no-repeat -140px 0;}
+	#ezbbctoolbar a#emphasis {background: url(../Big-buttons/images/toolbar.png) no-repeat -168px 0;}
+	#ezbbctoolbar a#color {background: url(../Big-buttons/images/toolbar.png) no-repeat -196px 0;}
+	#ezbbctoolbar a#heading {background: url(../Big-buttons/images/toolbar.png) no-repeat -224px 0;}
+	#ezbbctoolbar a#url {background: url(../Big-buttons/images/toolbar.png) no-repeat -308px 0;}
+	#ezbbctoolbar a#email {background: url(../Big-buttons/images/toolbar.png) no-repeat -252px 0;}
+	#ezbbctoolbar a#image {background: url(../Big-buttons/images/toolbar.png) no-repeat -336px 0;}
+	#ezbbctoolbar a#quote {background: url(../Big-buttons/images/toolbar.png) no-repeat -280px 0;}
+	#ezbbctoolbar a#code {background: url(../Big-buttons/images/toolbar.png) no-repeat -364px 0;}
+	#ezbbctoolbar a#ulist {background: url(../Big-buttons/images/toolbar.png) no-repeat -392px 0;}
+	#ezbbctoolbar a#olist {background: url(../Big-buttons/images/toolbar.png) no-repeat -420px 0;}
+	#ezbbctoolbar a#aolist {background: url(../Big-buttons/images/toolbar.png) no-repeat -448px 0;}
+	#ezbbctoolbar a#smiliesb {background: url(../Big-buttons/images/toolbar.png) no-repeat -476px 0;}
+	#ezbbctoolbar a#video {background: url(../Big-buttons/images/toolbar.png) no-repeat -504px 0;}
+	#ezbbctoolbar a#help {background: url(../Big-buttons/images/toolbar.png) no-repeat -532px 0;}
+
+	#ezbbctoolbar a {border:0;margin:2px;width: 28px;height: 28px;}
+	#ezbbcsmiliesbar .smiley {width: 24px;border:0;margin:2px;}
+}
+/********************* Fin Modif */
 
 /* Helpfile style */
 /* ************** */
@@ -168,10 +200,10 @@
 }
 
 #ezbbc_help .button {
-	vertical-align: middle;	
+	vertical-align: middle;
 }
 
 #ezbbc_help code {
         color: #FFF;
-	background: #C4C2C2;   	
+	background: #C4C2C2;
 }

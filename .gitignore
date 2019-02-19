@@ -2,7 +2,15 @@
 !/cache/index.html
 !/cache/.htaccess
 !/cache/ezbbc/_dummy
-/uploads/*
+/uploads/*.png
+/uploads/*.jpg
+/uploads/*.jpeg
+/uploads/*.gif
+/uploads/config*
+/uploads/*.sh
+/uploads/datas.db
+/uploads/i/**/
+/uploads/thumbs/
 !/uploads/_dummy
 !/uploads/thumbs/_dummy
 /docs/*

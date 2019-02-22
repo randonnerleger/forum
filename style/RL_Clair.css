@@ -66,6 +66,7 @@ body,
 html {
 	overflow-x:hidden;
 	position:relative;
+	min-height: 100vh;
 }
 /*body {
 	/*
@@ -1984,8 +1985,8 @@ input[type="search"] {
 #nav li strong {
 	font-weight: normal;
 }
-#nav form#login_menuG input[type="text"],
-#nav form#login_menuG input[type="password"] {
+form#login_menuG input[type="text"],
+form#login_menuG input[type="password"] {
 	padding: 4px;
 	background:#FFF;
 	border:1px solid #9EABB9;
@@ -2026,12 +2027,12 @@ input[type="search"] {
 	text-decoration: none;
 	padding: 2px 0 2px 20px;
 }
-#nav form#login_menuG {
+form#login_menuG {
 	padding:15px 0 5px;
 }
-#nav form#login_menuG,
-#nav form#login_menuG input,
-#nav form#login_menuG input[type="submit"]
+form#login_menuG,
+form#login_menuG input,
+form#login_menuG input[type="submit"]
 {
 	display: block;
 	text-align: center;
@@ -2040,11 +2041,11 @@ input[type="search"] {
 	width:100%;
 	margin-bottom:5px;
 }
-#nav form#login_menuG {
+form#login_menuG {
 	width:85%;
 	margin:0 auto;
 }
-#nav form#login_menuG input {
+form#login_menuG input {
 	text-align:left;
 }
 .togglebox input[type="checkbox"] {
@@ -2053,20 +2054,20 @@ input[type="search"] {
 	position: absolute;
 	opacity: 0;
 }
-#nav form#login_menuG p {
+form#login_menuG p {
 	text-align:right;
 }
-#nav form#login_menuG a {
+form#login_menuG a {
 	text-decoration: underline;
 	border-bottom: none;
 	cursor: pointer;
 }
-#nav form#login_menuG .save-pass {
+form#login_menuG .save-pass {
 	font-size: 0.9em;
 	min-height:20px;
 	margin-bottom:5px;
 }
-#nav form#login_menuG .save-pass label {
+form#login_menuG .save-pass label {
 	width:85%;
 	text-align: left;
 	margin:0;
@@ -2077,13 +2078,13 @@ input[type="search"] {
 	color:#888;
 	font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
 }
-#nav form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:after,
-#nav form#login_menuG .save-pass input[type="checkbox"]:checked + label:after {
+form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:after,
+form#login_menuG .save-pass input[type="checkbox"]:checked + label:after {
 	content: '';
 	display: none;
 }
-#nav form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:before,
-#nav form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
+form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:before,
+form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
 	content: '';
 	position: absolute;
 	left:-25px; top: 1px;
@@ -2098,7 +2099,7 @@ input[type="search"] {
 	box-shadow: 0px 0px 0px #EEE inset;
 	font-size:1.3em;
 }
-#nav form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
+form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
 /*	content: '✔';*/
 	content: '\f00c';
 	font-family:fontawesome;
@@ -2423,6 +2424,16 @@ p.modlist {
  .pun .blockmenu a:hover, .pun .blockmenu a:active, .pun .blockmenu a:focus {
 	background: #516f89;
 	color:#fff;
+}
+/* IDENTIFICATION REDIRECT */
+.redirect form#login {
+	margin-top: 2em;
+}
+.redirect form#login input {
+	vertical-align:unset;
+}
+.redirect form#login p {
+	padding: 9px 0;
 }
 /**
  * END fluxbb
@@ -2819,12 +2830,14 @@ input[type="password"],
 select,
 .pun select,
 textarea {
-	padding: 6px 8px;
+	padding: 6px 8px !important;
 	background:#F5F5F5;
 	border:1px solid #9EABB9;
 	border-radius:3px;
 	margin-top:.2em;
 	margin-bottom:.2em;
+	min-width: 200px;
+	line-height: 18px;
 }
 #adminconsole textarea {
 	display:block;
@@ -2868,12 +2881,13 @@ form#edit .infldset.txtarea::before {
 	padding:20px 0 20px 70px;
 	background: #FFD39F url("/wiki/lib/plugins/wrap/images/note/48/important.png") 10px 50% no-repeat;
 }
+a.secondary-button,
 form#post p.buttons a,
 form#edit p.buttons a {
 	cursor: pointer;
 	background: #c7cfda;
 	border: medium none;
-	border-radius: 2px;
+	border-radius: 3px;
 	color: #4e4f51 !important;
 	padding: 8px 35px;
 	margin-top: 4px;
@@ -3063,15 +3077,15 @@ form#edit p.buttons a {
 		left: 0;
 		z-index:1010;
 	}
-	#nav form#login_menuG {
+	form#login_menuG {
 		width:75%;
 		margin:0 auto;
 		padding:0px;
 		margin-top:10px;
 		margin-bottom:30px;
 	}
-	#nav form#login_menuG input[type="text"],
-	#nav form#login_menuG input[type="password"] {
+	form#login_menuG input[type="text"],
+	form#login_menuG input[type="password"] {
 		padding: 6px;
 		background:#444;
 		border:1px solid #888;
@@ -3079,19 +3093,19 @@ form#edit p.buttons a {
 		color:#fff;
 		box-shadow: 0px 0px 0px #EEE inset;
 	}
-	#nav form#login_menuG p a {
+	form#login_menuG p a {
 		text-align: right;
 		width:100%;
 		max-width: 95%;
 		padding-bottom:0px;
 	}
-	#nav form#login_menuG .save-pass label {
+	form#login_menuG .save-pass label {
 		width:79%;
 		margin-top:-1px;
 		padding-top:2px;
 	}
-	#nav form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:before,
-	#nav form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
+	form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:before,
+	form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
 		background:#444;
 		border:1px solid #888;
 		color:#999;
@@ -3573,7 +3587,7 @@ form#edit p.buttons a {
 
 	/* BEGIN Page de redirection */
 	#punredirect {
-		padding: 2% 2% 100%;
+		padding: 2%;
 	}
 	#punredirect img {
 		width:20%;
@@ -3921,6 +3935,7 @@ form#edit p.buttons a {
 		width: 98%;
 		margin: 0 auto;
 	}
+	a.secondary-button,
 	form#post p.buttons a,
 	form#edit p.buttons a {
 		display: block;

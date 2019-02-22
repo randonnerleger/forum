@@ -100,10 +100,11 @@ if (isset($_POST['form_sent']) && $action == 'in')
 		$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
 
 		// Opitux
-		// Redirection à partir du wiki
-		// redirect(pun_htmlspecialchars($redirect_url), $lang_login['Login redirect']);
-		// devient :
-		redirect(pun_htmlspecialchars(str_replace('/forum/wiki','/wiki', $redirect_url)), $lang_login['Login redirect']);
+		// Redirection à partir des pages extérieurs au forum => wiki et page asso
+		$redirect_url = str_replace('/forum/wiki','/wiki', $redirect_url);
+		$redirect_url = str_replace('/forum/association','/association', $redirect_url);
+		// Opitux
+		redirect(pun_htmlspecialchars($redirect_url), $lang_login['Login redirect']);
 	}
 }
 

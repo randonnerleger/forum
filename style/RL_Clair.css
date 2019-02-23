@@ -2425,16 +2425,7 @@ p.modlist {
 	background: #516f89;
 	color:#fff;
 }
-/* IDENTIFICATION REDIRECT */
-.redirect form#login {
-	margin-top: 2em;
-}
-.redirect form#login input {
-	vertical-align:unset;
-}
-.redirect form#login p {
-	padding: 9px 0;
-}
+
 /**
  * END fluxbb
  * ==============================================================================
@@ -2836,7 +2827,6 @@ textarea {
 	border-radius:3px;
 	margin-top:.2em;
 	margin-bottom:.2em;
-	min-width: 200px;
 	line-height: 18px;
 }
 #adminconsole textarea {
@@ -2939,6 +2929,49 @@ form#edit p.buttons a {
 	margin-right: 0;
 }
 /* END UNIFORMISATION DES INPUT ET BOUTONS */
+
+/* IDENTIFICATION REDIRECT */
+.redirect form#login {
+	margin-top: 2em;
+}
+.redirect form#login input {
+	vertical-align:unset;
+}
+.redirect form#login input[type="text"],
+.redirect form#login input[type="password"] {
+	min-width: 200px;
+	max-width: 95%;
+}
+.redirect form#login p {
+	padding: 9px 0;
+}
+.redirect label.conl {
+    display: inline-block;
+    padding-right: 12px;
+}
+.redirect .required strong {
+    background: unset;
+    font-weight: normal;
+    padding-right: 14px;
+    white-space: pre;
+    display: inline-block;
+    line-height: normal;
+}
+.redirect .required strong::after {
+    background: unset;
+    content: '*';
+	font-size: 13px;
+    color: red;
+	display: inline-block;
+	font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
+}
+.redirect .required strong span {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	text-indent: -9999em;
+	width: 0;
+}
 
 /**
  * END uniformisation

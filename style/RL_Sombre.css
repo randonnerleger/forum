@@ -348,7 +348,7 @@ textarea {
 #brdmenu a:hover,
 #brdmenu a:active {
 	background:#404040;
-	}
+}
 
 .pun .postreport a:link,
 .pun .postreport a:visited,
@@ -482,6 +482,23 @@ COLOUR DOKUWIKI
 #dokuwiki__site kbd {
 	background:#000;
 	color:#888;
+}
+/*****************************************************************
+COLOUR UNIFORMISATION
+*****************************************************************/
+.pun h2 a:link,
+.pun h2 a:hover,
+.pun h2 a:active,
+.pun h2 a:visited,
+#brdmenu a:link,
+#brdmenu a:hover,
+#brdmenu a:active,
+#brdmenu a:visited,
+#dokuwiki__sitetools a:link,
+#dokuwiki__sitetools a:hover,
+#dokuwiki__sitetools a:active,
+#dokuwiki__sitetools a:visited {
+	color:#CECECE;
 }
 @media handheld, only screen and (max-width: 1024px) {
 /**

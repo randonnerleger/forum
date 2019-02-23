@@ -2336,8 +2336,10 @@ display:none;
 
 /* BEGIN INTITULE DES FORUMS TROP LONG */
 #punindex #brdmain .blocktable h2 {
-	white-space: initial;
-	max-width:60%;
+	white-space: nowrap;
+	max-width:70%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 /* .pun .blocktable .tc2 {
 	vertical-align:top;

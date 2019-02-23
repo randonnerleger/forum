@@ -2337,7 +2337,7 @@ display:none;
 /* BEGIN INTITULE DES FORUMS TROP LONG */
 #punindex #brdmain .blocktable h2 {
 	white-space: nowrap;
-	max-width:70%;
+	max-width:65%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -4039,7 +4039,10 @@ form#edit p.buttons a {
 	#menu-search {
 		margin-top: 67px;
 	}
-
+	/* INTITULE DES FORUMS TROP LONGS */
+	.pun .blocktable .tcr {
+	    font-size: 10px;
+	}
     /* BEGIN UNIFORMISATION DES INPUT ET BOUTONS */
 	.pun input[type="submit"],
 	.pun input[type="button"],
@@ -4078,7 +4081,7 @@ form#edit p.buttons a {
 	.pun #brdwelcome .conr a,
 	.subscribelink.clearb a {
 		font-size:13px;
-        white-space:nowrap;
+		white-space:nowrap;
 		text-indent:0px;
 		/* display:inline-block; */
 		padding:10px 0;

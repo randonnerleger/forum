@@ -2567,6 +2567,9 @@ div.picker button.toolbutton {
 	border-radius:5px !important;
 }
 /* BEGIN Gestion des bloc nav historique et projet en cours dans les pages assos du wiki */
+.dokuwiki .wrap_box {
+	background: #e4eaea;
+}
 .wrap_asso_bloc_historique p,
 .wrap_asso_bloc_projet p {
 	margin:0px;
@@ -2886,6 +2889,10 @@ form#edit p.buttons a {
 }
 
 /* Pagination des messages */
+#uploads nav ul li {
+	display: inline-block;
+	margin: .5em 0;
+}
 /* .pagestext, */
 .pagepost {
 	font-size:0 !important;
@@ -2902,7 +2909,8 @@ form#edit p.buttons a {
 .pagestext .spacer, */
 .pagepost a,
 .pagepost strong,
-.pagepost .spacer {
+.pagepost .spacer,
+#uploads nav ul li a {
 	font-size: 12px !important;
 	padding:4px 8px 4px 8px !important;
 	height:14px;
@@ -2913,8 +2921,10 @@ form#edit p.buttons a {
 	border-width: 0 !important;
 	margin:0 1px !important;
 }
-.pagepost strong{
+.pagepost strong,
+#uploads .pagination .selected a {
 	background: #9EABB9;
+	font-weight: bold;
 }
 /* .pagestext .spacer, */
 .pagepost .spacer {
@@ -4270,6 +4280,7 @@ form#edit p.buttons a {
         max-width: 85% !important;
     }
 }
+
 #uploads article.picture figure {max-width: 60%;}
 #uploads article.picture figure img {max-width: 100%;}
 
@@ -4286,34 +4297,18 @@ form#edit p.buttons a {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-#uploads #page, body#uploads > footer {
+#uploads #page {
 	width: 100%;
 	margin: 1em auto;
 	border-radius: 3px;
 	text-align: center;
+	background: #ecf0f0;
 }
 #uploads footer {
 	font-size: .9em;
 	color: #666;
 	text-align:center;
 	margin-top:10em;
-}
-#uploads nav {
-	margin: .5em 0;
-}
-#uploads nav ul li {
-	display: inline-block;
-	margin: .2em .5em;
-}
-#uploads nav ul li a {
-	color: #000;
-	border-radius: 3px;
-	background: rgba(255, 255, 255, 0.5);
-	padding: .2em .4em;
-}
-#uploads nav ul li a:hover {
-	background: #fff;
-	color: darkred;
 }
 #uploads input[type=submit] {
 	cursor: pointer;
@@ -4331,11 +4326,7 @@ form#edit p.buttons a {
 #uploads fieldset dl dt {
 	font-weight: bold;
 }
-/* #uploads fieldset dl dd {
-	margin: .5em;
-} */
 #uploads fieldset {
-	/*! width: 50%; */
 	margin: 0 auto;
 }
 #uploads .info {
@@ -4401,7 +4392,7 @@ form#edit p.buttons a {
 	position: relative;
 	border:1px solid #dfe6ee;
 	border-radius:3px;
-	background:#ebf1f5;
+	background:#e4eaea;
 	padding:1em;
 	min-width:200px;
 }
@@ -4439,10 +4430,6 @@ form#edit p.buttons a {
 	background: rgb(0, 71, 150);
 	background: rgba(0, 71, 150, 0.75);
 	margin-top:50px;
-}
-#uploads .pagination .selected {
-	font-weight: bold;
-	font-size: 125%;
 }
 #uploads #resizeParent, p.admin, #albumParent {
 	background: rgb(100, 100, 100);

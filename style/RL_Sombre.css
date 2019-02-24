@@ -449,7 +449,7 @@ COLOUR DOKUWIKI
 .dokuwiki div.wrap_box280h,
 .dokuwiki div.wrap_box320h,
 .dokuwiki div.wrap_box350h {
-	background: #222;
+	background: #292929;
 	color: #BCBCBC;
 }
 .dokuwiki .wrap_info {
@@ -552,23 +552,28 @@ COLOUR UNIFORMISATION
 .pagelink:before {
 	color:#d4d4d4;
 }
-.pagestext a,
-.pagestext .spacer,
+/* .pagestext a,
+.pagestext .spacer, */
 .pagepost a,
 .pagepost strong,
-.pagepost .spacer {
+.pagepost .spacer,
+#uploads nav ul li a {
 	background: #111;
 	color:#d4d4d4 !important;
 }
-.pagepost strong{
+.pagepost strong,
+#uploads .pagination .selected a {
 	background: #020202;
 }
-.pagestext .spacer,
+/* .pagestext .spacer, */
 .pagepost .spacer {
 	background:transparent;
 }
 
 /*UPLOAD SOMBRE*/
+#uploads #page {
+	background: #313131;
+}
 #uploads figure {
     border: 1px solid #222222;
     background: #292929;

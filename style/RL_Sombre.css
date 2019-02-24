@@ -348,7 +348,7 @@ textarea {
 #brdmenu a:hover,
 #brdmenu a:active {
 	background:#404040;
-	}
+}
 
 .pun .postreport a:link,
 .pun .postreport a:visited,
@@ -449,7 +449,7 @@ COLOUR DOKUWIKI
 .dokuwiki div.wrap_box280h,
 .dokuwiki div.wrap_box320h,
 .dokuwiki div.wrap_box350h {
-	background: #222;
+	background: #292929;
 	color: #BCBCBC;
 }
 .dokuwiki .wrap_info {
@@ -482,6 +482,23 @@ COLOUR DOKUWIKI
 #dokuwiki__site kbd {
 	background:#000;
 	color:#888;
+}
+/*****************************************************************
+COLOUR UNIFORMISATION
+*****************************************************************/
+.pun h2 a:link,
+.pun h2 a:hover,
+.pun h2 a:active,
+.pun h2 a:visited,
+#brdmenu a:link,
+#brdmenu a:hover,
+#brdmenu a:active,
+#brdmenu a:visited,
+#dokuwiki__sitetools a:link,
+#dokuwiki__sitetools a:hover,
+#dokuwiki__sitetools a:active,
+#dokuwiki__sitetools a:visited {
+	color:#CECECE;
 }
 @media handheld, only screen and (max-width: 1024px) {
 /**
@@ -535,23 +552,28 @@ COLOUR DOKUWIKI
 .pagelink:before {
 	color:#d4d4d4;
 }
-.pagestext a,
-.pagestext .spacer,
+/* .pagestext a,
+.pagestext .spacer, */
 .pagepost a,
 .pagepost strong,
-.pagepost .spacer {
+.pagepost .spacer,
+#uploads nav ul li a {
 	background: #111;
 	color:#d4d4d4 !important;
 }
-.pagepost strong{
+.pagepost strong,
+#uploads .pagination .selected a {
 	background: #020202;
 }
-.pagestext .spacer,
+/* .pagestext .spacer, */
 .pagepost .spacer {
 	background:transparent;
 }
 
 /*UPLOAD SOMBRE*/
+#uploads #page {
+	background: #313131;
+}
 #uploads figure {
     border: 1px solid #222222;
     background: #292929;

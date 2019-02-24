@@ -1,20 +1,5 @@
 <?php
-
-define('RL_ROOT', dirname(__FILE__).'../../');
-include RL_ROOT.'../configRL.php';
-define('PUN_ROOT', dirname(__FILE__).'/../../'.folder_forum.'/');
-include PUN_ROOT.'include/common.php';
-define('RL_STYLE', $pun_user['style']);						# On appel de Style du profil FLUXBB
-
-define('PUN_TURN_OFF_MAINT', 1);
-define('PUN_QUIET_VISIT', 1);
-
-// Redirection temporaire si forum en maintenance
-if ($pun_config['o_maintenance'] == '1') {
-	header('Location: ' . path_to_forum . 'index.php', true, 302);
-	exit;
-}
-// Fin de la Redirection temporaire
+require '../../wiki/conf/local.protected.php';
 
 $pun_user_guest = ($pun_user['is_guest'] ? true : false );
 define('pun_user_guest', $pun_user_guest);
@@ -1573,13 +1558,13 @@ class Fotoo_Hosting
 	{
 		$begin = ($page - 1) * $this->config->nb_pictures_by_page;
 		if ( isset($_GET['mesphotos']) ) {
-			$where = 'AND punid == ' . $GLOBALS['punid'] .'';
+			$where = 'WHERE punid == ' . $GLOBALS['punid'] .'';
 		} else {
-			$where = $this->logged() ? '' : 'AND private != 1 AND import != 1';
+			$where = $this->logged() ? '' : 'WHERE private != 1 AND import != 1';
 		}
 
 		$out = array();
-		$res = $this->db->query('SELECT * FROM pictures WHERE album IS NULL '.$where.' ORDER BY date DESC LIMIT '.$begin.','.$this->config->nb_pictures_by_page.';');
+		$res = $this->db->query('SELECT * FROM pictures '.$where.' ORDER BY date DESC LIMIT '.$begin.','.$this->config->nb_pictures_by_page.';');
 
 		while ($row = $res->fetchArray(SQLITE3_ASSOC))
 		{
@@ -1621,11 +1606,11 @@ class Fotoo_Hosting
 	public function countList()
 	{
 		if ( isset($_GET['mesphotos']) ) {
-			$where = 'AND punid == ' . $GLOBALS['punid'] .'';
+			$where = 'WHERE punid == ' . $GLOBALS['punid'] .'';
 		} else {
-			$where = $this->logged() ? '' : 'AND private != 1';
+			$where = $this->logged() ? '' : 'WHERE private != 1';
 		}
-		return $this->db->querySingle('SELECT COUNT(*) FROM pictures WHERE album IS NULL '.$where.';');
+		return $this->db->querySingle('SELECT COUNT(*) FROM pictures '.$where.';');
 	}
 
 	public function getAlbumList($page)

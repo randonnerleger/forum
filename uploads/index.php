@@ -138,15 +138,17 @@ if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
         if (!FileReader && !window.URL)
             return false;
 
-        if (FileList && XMLHttpRequest)
+        if (FileList && XMLHttpRequest && document.getElementById('albums') == null )
         {
-            var album_li = document.createElement('li');
+			var album_li = document.createElement('li');
+			album_li.setAttribute("id", "albums");
             var album_a = document.createElement('a');
             album_a.href = '?album';
             album_a.innerHTML = '<?php echo __('Upload an album'); ?>';
             album_li.appendChild(album_a);
             var link = document.querySelector('#brdmenu ul li:nth-child(2)');
             link.parentNode.insertBefore(album_li, link);
+			sessionStorage.setItem("album_enabled", "ok");
         }
 
         document.getElementById('f_submit').style.display = 'none';
@@ -3841,6 +3843,19 @@ echo '
     </div>
 
 <div id="alerte"></div>
+<script>
+if (sessionStorage.getItem("album_enabled")=="ok" && document.getElementById("albums") == null){
+	var album_li = document.createElement("li");
+	album_li.setAttribute("id", "albums");
+	var album_a = document.createElement("a");
+	album_a.href = "?album";
+	album_a.innerHTML = "' .  __('Upload an album') . '";
+	album_li.appendChild(album_a);
+	var link = document.querySelector("#brdmenu ul li:nth-child(2)");
+	link.parentNode.insertBefore(album_li, link);
+}
+</script>
+
 <script>
 function getUrlVars() {
 var vars = {};

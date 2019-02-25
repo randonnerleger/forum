@@ -358,13 +358,13 @@ if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
 
                     if (/^image\//i.test(this.files[0].type) && r.test(this.files[0].name))
                     {
-                        progress.innerHTML = "Image is recognized.";
+                        progress.innerHTML = "<?php echo __('Image is recognized.'); ?>";
                         can_submit = true;
                         document.getElementById('f_submit').style.display = 'inline';
                     }
                     else
                     {
-                        progress.innerHTML = 'The chosen file is not an image: ' + this.files[0].type;
+                        progress.innerHTML = '<?php echo __('The chosen file is not an image'); ?>: ' + this.files[0].type;
                         document.getElementById('f_submit').style.display = 'none';
                         return false;
                     }

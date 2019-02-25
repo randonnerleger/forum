@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- BEGIN HEADER RL -->
-<pun_include "config.php">
-<!-- END RL -->
-<pun_head>
+	<title>Maintenance / Randonner-Leger</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/forum/style/RL_Clair.css" />
 </head>
-
 <body>
-
 <div id="punmaint" class="pun">
-<!-- BEGIN HEADER RL -->
-<pun_include "logo.php">
-<!-- END RL -->
+<img src="/tpl/img/logo.png" />
 <div class="top-box"></div>
 <div class="punwrap">
 

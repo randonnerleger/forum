@@ -4409,7 +4409,6 @@ form#edit p.buttons a {
 }
 #uploads figure a:hover img {
 	box-shadow: 0px 0px 10px #000;
-	background: #fff;
 }
 #uploads figure span {
 	background: rgb(0, 0, 0);

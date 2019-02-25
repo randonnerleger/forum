@@ -8,6 +8,10 @@ setlocale (LC_TIME, 'fr_FR.utf8');
 $french_strings = array(
     'Upload a file'
         =>  'Envoyer une image',
+	'Image is recognized.'
+		=> 'Image valide',
+	'The chosen file is not an image'
+		=> 'Le fichier proposé n\\\'est pas une image',
     'Upload an album'
         =>  'Envoyer un album',
     'Browse pictures'

@@ -138,15 +138,17 @@ if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
         if (!FileReader && !window.URL)
             return false;
 
-        if (FileList && XMLHttpRequest)
+        if (FileList && XMLHttpRequest && document.getElementById('albums') == null )
         {
-            var album_li = document.createElement('li');
+			var album_li = document.createElement('li');
+			album_li.setAttribute("id", "albums");
             var album_a = document.createElement('a');
             album_a.href = '?album';
             album_a.innerHTML = '<?php echo __('Upload an album'); ?>';
             album_li.appendChild(album_a);
             var link = document.querySelector('#brdmenu ul li:nth-child(2)');
             link.parentNode.insertBefore(album_li, link);
+			sessionStorage.setItem("album_enabled", "ok");
         }
 
         document.getElementById('f_submit').style.display = 'none';
@@ -356,13 +358,13 @@ if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
 
                     if (/^image\//i.test(this.files[0].type) && r.test(this.files[0].name))
                     {
-                        progress.innerHTML = "Image is recognized.";
+                        progress.innerHTML = "<?php echo __('Image is recognized.'); ?>";
                         can_submit = true;
                         document.getElementById('f_submit').style.display = 'inline';
                     }
                     else
                     {
-                        progress.innerHTML = 'The chosen file is not an image: ' + this.files[0].type;
+                        progress.innerHTML = '<?php echo __('The chosen file is not an image'); ?>: ' + this.files[0].type;
                         document.getElementById('f_submit').style.display = 'none';
                         return false;
                     }
@@ -3841,6 +3843,19 @@ echo '
     </div>
 
 <div id="alerte"></div>
+<script>
+if (sessionStorage.getItem("album_enabled")=="ok" && document.getElementById("albums") == null){
+	var album_li = document.createElement("li");
+	album_li.setAttribute("id", "albums");
+	var album_a = document.createElement("a");
+	album_a.href = "?album";
+	album_a.innerHTML = "' .  __('Upload an album') . '";
+	album_li.appendChild(album_a);
+	var link = document.querySelector("#brdmenu ul li:nth-child(2)");
+	link.parentNode.insertBefore(album_li, link);
+}
+</script>
+
 <script>
 function getUrlVars() {
 var vars = {};

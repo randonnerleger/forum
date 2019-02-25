@@ -32,6 +32,7 @@ body {
 }
 #nav li a {
 	color:#999;
+	border-bottom: 1px solid #111;
 }
 #nav ul.sub-menu li a {
 	color:#60A0DC;

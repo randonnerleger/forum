@@ -2295,9 +2295,14 @@ display:none;
 	max-height:300px;
 }
 /* BEGIN PAGE RECHERCHE */
-
 #brddesc {
 	display:none;
+}
+
+#brdmenu #navindex,
+#brdmenu #navlogin,
+#brdmenu #navlogout {
+	display: none;
 }
 #brdmenu a:link,
 #brdmenu a:visited {

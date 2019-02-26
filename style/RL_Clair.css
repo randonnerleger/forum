@@ -2246,15 +2246,18 @@ display:none;
 /* BEGIN Page de redirection et maintenance */
 #punredirect,
 #punmaint {
-	padding: 2% 20% 0;
-	margin:0 auto;
+	padding: 0;
+	margin:5% auto;
 	height:100%;
+	width:90%;
+	max-width: 950px;
 }
 #punredirect img,
 #punmaint img {
 	padding:1%;
 	width:20%;
 	max-width:120px;
+	min-width: 80px;
 	margin:0 20%;
 }
 /* END Page de redirection */
@@ -2292,9 +2295,14 @@ display:none;
 	max-height:300px;
 }
 /* BEGIN PAGE RECHERCHE */
-
 #brddesc {
 	display:none;
+}
+
+#brdmenu #navindex,
+#brdmenu #navlogin,
+#brdmenu #navlogout {
+	display: none;
 }
 #brdmenu a:link,
 #brdmenu a:visited {

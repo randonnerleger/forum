@@ -16,9 +16,10 @@
 			$redirect_url = $site_url . htmlentities($_SERVER['REQUEST_URI']);
 			$redirect_url = str_replace('/wiki','/forum/wiki', $redirect_url)
 		?>
-						<li class="display"><strong>Identification</strong>
+						<li class="display identification">
 							<input id="menug-identification" type="checkbox" name="toggle" />
-							<label for="menug-identification"></label>
+							<label for="menug-identification" class="menug-label-identification">Identification</label>
+
 							<div class="content-togglebox">
 								<form id="login_menuG" method="post" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" onsubmit="return process_form(this)">
 									<input type="hidden" name="form_sent" value="1" />
@@ -32,7 +33,11 @@
 										<label for="save_pass">Rester connecté</label>
 										</div>
 									<input type="submit" name="login" value="Connexion" />
-									<p><a href="<?php echo path_to_forum; ?>register.php" title="Inscription">Inscription</a></p>
+									<p>
+										<a href="<?php echo path_to_forum; ?>register.php" title="Inscription">Inscription</a>
+
+										<a href="<?php echo path_to_forum; ?>login.php?action=forget" title="Inscription">Mot de passe oublié</a>
+									</p>
 								</form>
 							</div>
 						</li>

@@ -3522,7 +3522,7 @@ elseif (isset($_GET['stats']))
 	</table>
 	';
  }
-elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUERY_STRING']) && !isset($_GET['insert']) && !isset($_GET['stats']))
+elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUERY_STRING']) && !isset($_GET['insert']) && !isset($_GET['stats']) && !isset($_GET['q']))
 {
     $query = explode('.', $_SERVER['QUERY_STRING']);
     $hash = ($query[0] == 'r') ? $query[1] : $query[0];

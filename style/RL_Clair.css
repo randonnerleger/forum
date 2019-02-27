@@ -1973,7 +1973,8 @@ input[type="search"] {
 	margin-top:0px;
 }
 #nav li a,
-#nav li strong {
+#nav li strong,
+.togglebox li.display.identification label {
 	display:block;
 	font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
 	font-size:0.9em;
@@ -2028,7 +2029,7 @@ form#login_menuG input[type="password"] {
 	padding: 2px 0 2px 20px;
 }
 form#login_menuG {
-	padding:15px 0 5px;
+	padding:5px 0;
 }
 form#login_menuG,
 form#login_menuG input,
@@ -2042,7 +2043,7 @@ form#login_menuG input[type="submit"]
 	margin-bottom:5px;
 }
 form#login_menuG {
-	width:85%;
+	width:90%;
 	margin:0 auto;
 }
 form#login_menuG input {
@@ -2055,7 +2056,15 @@ form#login_menuG input {
 	opacity: 0;
 }
 form#login_menuG p {
-	text-align:right;
+	margin: 10px 0;
+}
+form#login_menuG p a {
+	display: inline-block;
+	padding: 5px 0;
+	width: auto !important;
+}
+form#login_menuG p a:first-child {
+	padding-right: 5px;
 }
 form#login_menuG a {
 	text-decoration: underline;
@@ -2065,18 +2074,16 @@ form#login_menuG a {
 form#login_menuG .save-pass {
 	font-size: 0.9em;
 	min-height:20px;
+	margin-left: 25px;
 	margin-bottom:5px;
 }
 form#login_menuG .save-pass label {
 	width:85%;
 	text-align: left;
-	margin:0;
-	margin-top:1px;
-	padding:0;
-	padding-top:0px;
-	font-size:1em;
+	padding:2px 0 0;
+	font-size:small;
 	color:#888;
-	font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
+	border-width: 0;
 }
 form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:after,
 form#login_menuG .save-pass input[type="checkbox"]:checked + label:after {
@@ -2118,11 +2125,28 @@ display:none;
 	color: #888;
 	right:0;
 	padding:8px 10px 0px 10px;
-	margin-top:-28px;
+	margin-top:-26px;
 	float:right;
 }
 .togglebox label:after {
 	content:'\f196';
+}
+.togglebox li.display.identification label {
+	display:block;
+	font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
+	font-size: .9em;
+	color: #334455;
+	cursor: pointer;
+	margin-top:0;
+	float:none;
+}
+.togglebox .identification label:after {
+	content:'\f196';
+	float: right;
+	font-family: fontawesome;
+	font-size:1em;
+	padding:0px 10px 0px 0px;
+	color: #888;
 }
 .togglebox li.display input[type="checkbox"]:not(:checked) ~ .content-togglebox {
 	height:0px;
@@ -3134,8 +3158,8 @@ form#edit p.buttons a {
 		width:75%;
 		margin:0 auto;
 		padding:0px;
-		margin-top:10px;
-		margin-bottom:30px;
+		margin:10px auto;
+		margin-bottom: 30px;
 	}
 	form#login_menuG input[type="text"],
 	form#login_menuG input[type="password"] {
@@ -3183,7 +3207,8 @@ form#edit p.buttons a {
 		border-bottom: 1px solid #222;
 	}
 	#nav li a,
-	#nav li strong {
+	#nav li strong,
+	.togglebox li.display.identification label {
 		padding: 15px 5px;
 		padding-left: 10px;
 		max-width: 65%;
@@ -3226,17 +3251,29 @@ form#edit p.buttons a {
 	/*END MENUG @MEDIA*/
 
 	/*BEGIN togglebox*/
+	.togglebox li.display.identification label {
+		position: relative;
+		margin-left: 0;
+		width: 100%;
+		max-width: 95%;
+	}
 	.togglebox label,
-	.togglebox li.display label {
+	.togglebox li.display label,
+	.togglebox li.display.identification label:after {
 		display:block;
 		font-family: fontawesome;
-		font-size:1.4em;
+		font-size:22px;
 		cursor: pointer;
 		position:absolute;
 		color: #fff;
 		right:0;
 		padding:15px 20px 15px 15px;
-		margin-top:-52px;
+		margin-top:-49px;
+		margin-left:85%;
+	}
+	.togglebox li.display.identification label:after {
+		padding:15px 20px 15px 15px;
+		margin-top:-33px;
 		margin-left:85%;
 	}
 	.togglebox label:after {

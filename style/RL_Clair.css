@@ -2005,9 +2005,10 @@ form#login_menuG input[type="password"] {
 #nav li a:focus,
 #nav ul.sub-menu li a:hover,
 #nav ul.sub-menu li a:active,
-#nav ul.sub-menu li a:focus {
-	color: #B50000;
-	text-decoration:underline;
+#nav ul.sub-menu li a:focus,
+.togglebox .identification label:hover {
+	color: #B50000 !important;
+	text-decoration:underline !important;
 }
 #nav li a.active {
 	font-weight:bold;

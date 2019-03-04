@@ -1,0 +1,6 @@
+Vous pouvez modifier le message suivant en fonction de votre sortie
+[b]Date : [/b]
+[b]Lieu : [/b]
+[b]Terrain rencontré : [/b]
+[b]Trace GPX : [/b]
+[b]Difficulté estimée : [/b]

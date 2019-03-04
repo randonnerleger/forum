@@ -4601,6 +4601,9 @@ form#edit p.buttons a {
     display:contents;
     top: 0;
     max-width:100%;
+	position: relative;
+	height: unset;
+	right: 0px;
 }
 #uploads.from-ez-toolbar #brdmenu a {
     padding: 6px 16px;

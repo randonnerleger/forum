@@ -391,7 +391,7 @@ while ($cur_post = $db->fetch_assoc($result))
 
 									echo '<br /><div id="announce-block" class="inbox"><div class="info">';
 
-									 if( file_exists( './include/user/prefilled_post_sorties_asso.txt' ) )
+									 if( file_exists( './include/user/post_sorties_asso_reminder.txt' ) )
 									 	require_once( './include/user/post_sorties_asso_reminder.txt' );
 
 									echo '</div></div>';

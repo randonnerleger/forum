@@ -382,7 +382,25 @@ while ($cur_post = $db->fetch_assoc($result))
 				<div class="postright">
 					<h3><?php if ($cur_post['id'] != $cur_topic['first_post_id']) echo $lang_topic['Re'].' '; ?><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></h3>
 					<div class="postmsg">
-						<?php echo $cur_post['message']."\n" ?>
+						<?php echo $cur_post['message']."\n" ;
+						// OPITUX AFFICHER UN MESSAGE DANS UNE PROPOSITION DE SORTIE ASSO SANS MODIFICATION POSSIBLE
+						if ($cur_topic['forum_id'] == 63) :
+							if ( $cur_post['id'] == $cur_topic['first_post_id'] ) :
+								preg_match('(\[(.*?)\])', pun_htmlspecialchars($cur_topic['subject']), $match);
+								if ( $match[0] == "[Proposition]" || $match[0] == "[Validé]" ):
+
+									echo '<br /><div id="announce-block" class="inbox"><div class="info">';
+
+									 if( file_exists( './include/user/post_sorties_asso_reminder.txt' ) )
+									 	require_once( './include/user/post_sorties_asso_reminder.txt' );
+
+									echo '</div></div>';
+
+								endif;
+							endif;
+						endif;
+						// END OPITUX
+						?>
 <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
 					</div>
 <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>

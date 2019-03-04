@@ -2942,7 +2942,7 @@ if (!empty($_GET['rotate']))
 
         $page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
         $where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '' ;
-        $where = isset ( $_GET['logged'] ) ? '?list'.$page : '' ;
+        $where = isset ( $_GET['logged'] ) ? '?list'.$page : $where ;
         $where = isset ( $_GET['img'] ) ? '?' . $hash : $where ;
         $where = isset ( $_GET['a'] ) ? '?a=' . filter_var($_GET['a'], FILTER_SANITIZE_STRING) . '' : $where ;
 

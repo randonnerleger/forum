@@ -3500,9 +3500,9 @@ elseif (isset($_GET['stats']))
 		</thead>
 	';
 	$count = 0;
-	$rowclass = (++$count % 2) ? "rowodd" : "roweven" ;
 	foreach ($stats as $punid)
     {
+		$rowclass = (++$count % 2) ? "rowodd" : "roweven" ;
 		$id = $punid['punid'];
 		$name = $punid['punname'];
 		$size = round($punid['punstorage'] / 1024 / 1024, 2) . ' MB';

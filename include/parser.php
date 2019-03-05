@@ -145,7 +145,7 @@ function strip_empty_bbcode($text)
 //********************* Modif : Tableaux
 //********************* Ancienne ligne : 	while (!is_null($new_text = preg_replace('%\[(b|video|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 	while (!is_null($new_text = preg_replace('%\[(b|video|u|s|ins|del|em|i|h|colou?r|quote|rltable|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
-//********************* Modif : 
+//********************* Modif :
 	{
 		if ($new_text != $text)
 			$text = $new_text;
@@ -759,7 +759,7 @@ function handle_rltable($colspec, $content){
     if (substr($l, 0, 1) == "^") { // on teste si c'est un header
       $header=true;
       $l = trim(substr($l, 1));
-      $output .= "<tr class='header'>"; } 
+      $output .= "<tr class='header'>"; }
     else { $output .= "<tr>"; }
     $cells = explode("|", $l);
     if ($l == "")
@@ -786,6 +786,9 @@ function do_bbcode($text, $is_signature = false)
 	if (strpos($text, '[quote') !== false)
 	{
 		$text = preg_replace('%\[quote\]\s*%', '</p><div class="quotebox"><blockquote><div><p>', $text);
+		// Modifs OPITUX pour lien une citation au message initial
+		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?) id=([0-9]+)\\]%s',create_function('$matches','return "[quote=".$matches[1].$matches[2]."]<span class=\"quoted-origin\"><a href=\"viewtopic.php?pid=".$matches[3]."#p".$matches[3]."\">#".$matches[3]."</a></span>";'),$text);
+		// End OPITUX
 		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?)\\1\]%s', create_function('$matches', 'global $lang_common; return "</p><div class=\"quotebox\"><cite>".str_replace(array(\'[\', \'\\"\'), array(\'&#91;\', \'"\'), $matches[2])." ".$lang_common[\'wrote\']."</cite><blockquote><div><p>";'), $text);
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></div></blockquote></div><p>', $text);
 	}
@@ -835,8 +838,8 @@ function do_bbcode($text, $is_signature = false)
 
 //********************* Modif : Tableaux
     $pattern_callback[] = '%\[rltable=([lcr]+)\]\n(.*?)\n\[/rltable\]%ms';
-    $replace_callback[] = 'handle_rltable($matches[1], $matches[2])';    
-//********************* Fin Modif : 
+    $replace_callback[] = 'handle_rltable($matches[1], $matches[2])';
+//********************* Fin Modif :
 
 	$pattern_callback[] = '%\[url\]([^\[]*?)\[/url\]%';
 	$pattern_callback[] = '%\[url=([^\[]+?)\](.*?)\[/url\]%';

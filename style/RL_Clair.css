@@ -1356,9 +1356,16 @@ html, body {
 	background: #f8f9f0;
 	border-color: #7aadbd;
 	color: #566579;
+	position: relative;
 }
 .pun .quotebox cite {
 	color: #357082;
+}
+.pun .quotebox .quoted-origin {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0.65em 0.75em;
 }
 .pun .codebox, #punhelp .codebox code {
 	background: #333;
@@ -2928,10 +2935,12 @@ form#edit p.buttons a {
 }
 /* .pagestext, */
 .pagepost {
-	font-size:0 !important;
-	color:transparent;
 	display:block;
 	margin:15px 0 5px;
+}
+.pagepost .pagelink {
+	font-size:0 !important;
+	color:transparent;
 }
 .pagelink:before {
 	content:'Pages ';

@@ -531,7 +531,10 @@ if ($tid)
 					$q_poster = '\''.$q_poster.'\'';
 			}
 
-			$quote = '[quote='.$q_poster.']'.$q_message.'[/quote]'."\n";
+			// OPITUX, LIEN MESSAGE D ORIGINE DANS UNE CITATION
+			// $quote = '[quote='.$q_poster.']'.$q_message.'[/quote]'."\n";
+			$quote = '[quote='.$q_poster.' id='.$qid.']'.$q_message.'[/quote]'."\n";
+			// END OPITUX
 		}
 		else
 			$quote = '> '.$q_poster.' '.$lang_common['wrote']."\n\n".'> '.$q_message."\n";

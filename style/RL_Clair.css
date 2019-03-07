@@ -1356,17 +1356,12 @@ html, body {
 	background: #f8f9f0;
 	border-color: #7aadbd;
 	color: #566579;
-	position: relative;
 }
+
 .pun .quotebox cite {
 	color: #357082;
 }
-.pun .quotebox .quoted-origin {
-	position: absolute;
-	right: 0;
-	top: 0;
-	padding: 0.65em 0.75em;
-}
+
 .pun .codebox, #punhelp .codebox code {
 	background: #333;
 	color: #fff;
@@ -2424,6 +2419,29 @@ display:none;
 	background: initial;
 }
 /* END Tableaux */
+
+/* BEGIN QUOTE */
+.pun .quotebox {
+	position: relative;
+}
+.pun .quotebox .quoted-origin {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0.55em 0.75em 0;
+}
+.pun .quotebox .quoted-origin a {
+	font-size: 0px;
+	color: transparent !important;
+	text-decoration: none !important;
+}
+.pun .quotebox .quoted-origin a:after {
+	content: '\f0c1';
+	font-family: fontawesome;
+	color:#357082;
+	font-size: 14px;
+}
+/* END QUOTE */
 
 /* BEGIN Réponse rapide */
 #quickpost {

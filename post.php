@@ -533,7 +533,7 @@ if ($tid)
 
 			// OPITUX, LIEN MESSAGE D ORIGINE DANS UNE CITATION
 			// $quote = '[quote='.$q_poster.']'.$q_message.'[/quote]'."\n";
-			$quote = '[quote='.$q_poster.' id='.$qid.']'.$q_message.'[/quote]'."\n";
+			$quote = '[quote='.$q_poster.' post='.$qid.']'.$q_message.'[/quote]'."\n";
 			// END OPITUX
 		}
 		else

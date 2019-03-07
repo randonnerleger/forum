@@ -787,7 +787,7 @@ function do_bbcode($text, $is_signature = false)
 	{
 		$text = preg_replace('%\[quote\]\s*%', '</p><div class="quotebox"><blockquote><div><p>', $text);
 		// Modifs OPITUX pour lien une citation au message initial
-		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?) id=([0-9]+)\\]%s',create_function('$matches','return "[quote=".$matches[1].$matches[2]."]<span class=\"quoted-origin\"><a href=\"viewtopic.php?pid=".$matches[3]."#p".$matches[3]."\">#".$matches[3]."</a></span>";'),$text);
+		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?) post=([0-9]+)\\]%s',create_function('$matches','return "[quote=".$matches[1].$matches[2]."]<span class=\"quoted-origin\"><a href=\"viewtopic.php?pid=".$matches[3]."#p".$matches[3]."\">#".$matches[3]."</a></span>";'),$text);
 		// End OPITUX
 		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?)\\1\]%s', create_function('$matches', 'global $lang_common; return "</p><div class=\"quotebox\"><cite>".str_replace(array(\'[\', \'\\"\'), array(\'&#91;\', \'"\'), $matches[2])." ".$lang_common[\'wrote\']."</cite><blockquote><div><p>";'), $text);
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></div></blockquote></div><p>', $text);

@@ -3001,16 +3001,17 @@ form#edit p.buttons a:hover,
 #uploads nav ul li a {
 	font-size: 12px !important;
 }
-/* .pagestext a,
-.pagestext .spacer,
-.pun .pagepost a,*/
-.pun .pagepost strong,
-.pun .pagepost .spacer,
+.pun .pagepost .pagelink strong,
+.pun .pagepost .pagelink a,
 #uploads nav ul li a {
 	padding:4px 8px 4px 8px !important;
 	height:14px;
 	line-height: 14px;
 	margin:0 1px !important;
+}
+.pun .pagelink span.spacer {
+	border-width: 0;
+	margin: 0 0px;
 }
 /* Connexion/deconnexion */
 .togglebox input[type="checkbox"] ~ label.menug-label-identification,

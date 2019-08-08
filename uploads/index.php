@@ -1540,11 +1540,11 @@ class Fotoo_Hosting
             $savenameth = $th;
 
             // Save the original file
-            imagejpeg($rotated,$savename);
+            imagejpeg($rotated,$savename,70);
             imagedestroy($rotated);
 
             // Save the thumb
-            imagejpeg($rotatedth,$savenameth);
+            imagejpeg($rotatedth,$savenameth,70);
             imagedestroy($rotatedth);
 
 
@@ -1610,7 +1610,7 @@ class Fotoo_Hosting
 		if ( isset($_GET['mesphotos']) ) {
 			$where = 'WHERE punid == ' . $GLOBALS['punid'] .'';
 		} else {
-			$where = $this->logged() ? '' : 'WHERE private != 1';
+			$where = $this->logged() ? '' : 'WHERE private != 1 AND import != 1';
 		}
 		return $this->db->querySingle('SELECT COUNT(*) FROM pictures '.$where.';');
 	}
@@ -2810,9 +2810,10 @@ class Fotoo_Hosting_Config
     public function __construct()
     {
         // Defaults
+        $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443 ? 'https' : 'http' ;
         $this->db_file = dirname(__FILE__) . '/datas.db';
         $this->storage_path = dirname(__FILE__) . '/i/';
-        $this->base_url = 'http://'. $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+        $this->base_url = $is_https . '://'. $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
 
         if ($this->base_url[strlen($this->base_url) - 1] != '/')
             $this->base_url .= '/';
@@ -3133,10 +3134,15 @@ elseif (isset($_GET['list']))
 
     if ($fh->logged())
     {
-        $html .= '<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked pictures') . '?\');">
-        <p class="admin">
-            <input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = this.form.querySelectorAll(\'input[type=checkbox]\'), s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
-        </p>';
+
+		if ( !isset($_GET['mesphotos']) ) :
+        	$html .= '
+			<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked pictures') . '?\');">
+				<p class="admin">
+            		<input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = this.form.querySelectorAll(\'input[type=checkbox]\'), s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
+        		</p>';
+		endif;
+
     }
 
     $html .= '
@@ -3162,14 +3168,16 @@ elseif (isset($_GET['list']))
         $bbcode = '[url='.$img_url.'][img]'.$thumb_url.'[/img][/url]';
         $bbcodefullw = '[url='.$img_url.'][img]'.$img_url.'[/img][/url]';
 
-		if ( isset($_GET['mesphotos']) || $fh->logged() ) {
+		if ( ( isset($_GET['mesphotos']) || $fh->logged() ) ) {
 			$mesphotos = isset($_GET['mesphotos']) ? '&amp;mesphotos' : '&amp;logged' ;
-            $html .= '
-            <ul class="rotate"><!--
-                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--
-                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=180' . $mesphotos . '&amp;page='.$page.'">' . __('180°') . '</a></li><!--
-                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=270' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--
-            --></ul>';
+            $html .= '<ul class="rotate"><!--';
+			if ( $img['format'] == 'JPEG' ) :
+	            $html .= '
+				    --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--
+	                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=180' . $mesphotos . '&amp;page='.$page.'">' . __('180°') . '</a></li><!--
+	                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=270' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--';
+			endif;
+            $html .= '--></ul>';
 		}
 
 		if ( isset($_GET['mesphotos']) ) {
@@ -3192,7 +3200,7 @@ elseif (isset($_GET['list']))
 
         }
 
-        if ($fh->logged())
+        if ($fh->logged() && !isset($_GET['mesphotos']) )
         {
             $html .= '<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> ' . __('Delete') . '</label>';
         }
@@ -3205,13 +3213,13 @@ elseif (isset($_GET['list']))
         </article>';
 
 
-    if ($fh->logged())
+    if ( $fh->logged() && !isset($_GET['mesphotos']) )
     {
         $html .= '
-        <p class="admin submit">
-            <input type="submit" name="delete_pictures" value="' . __('Delete checked pictures') . '" />
-        </p>
-        </form>';
+	        <p class="admin submit">
+	            <input type="submit" name="delete_pictures" value="' . __('Delete checked pictures') . '" />
+	        </p>
+		</form>';
     }
 
     if ($max > $config->nb_pictures_by_page)
@@ -3248,7 +3256,7 @@ elseif (isset($_GET['albums']))
 
     $html = '';
 
-    if ($fh->logged())
+    if ($fh->logged() && !isset($_GET['mesalbums']))
     {
         $html .= '<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked albums') . '?\');">
         <p class="admin">
@@ -3309,7 +3317,7 @@ elseif (isset($_GET['albums']))
 
         }
 
-        if ($fh->logged())
+        if ($fh->logged() && !isset($_GET['mesalbums']) )
         {
             $html .= '<label><input type="checkbox" name="albums[]" value="' . escape($album['hash']) . '" /> ' . __('Delete') . '</label>';
         }
@@ -3321,7 +3329,7 @@ elseif (isset($_GET['albums']))
     $html .= '
         </article>';
 
-    if ($fh->logged())
+    if ($fh->logged() && !isset($_GET['mesalbums']) )
     {
         $html .= '
         <p class="admin submit">
@@ -3438,7 +3446,7 @@ elseif (!empty($_GET['a']))
             <div class="img"><a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>
             <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>';
 
-        if ($img['punid'] == $GLOBALS['punid'] ) :
+        if ( $img['punid'] == $GLOBALS['punid'] && $img['format'] == 'JPEG' ) :
             $html .= '
                 <ul class="rotate"><!--
                     --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90&amp;a='.rawurlencode($album['hash']).'">' . __('90°') . '</a></li><!--
@@ -3510,7 +3518,7 @@ elseif (isset($_GET['stats']))
 		$poidsmoyen = $punid['nbimage'] < 1 ? 0 : round($punid['punstorage'] / $nbimage / 1024, 2) . ' KB';
 		$html .= '
 		<tr class="' . $rowclass . '">
-			<td class="tcl1">'. $id .'</td>
+			<td class="tcl1"><a href="../profile.php?id='. $id .'">'. $id .'</a></td>
 			<td class="tcl2">' . $name  . '</td>
 			<td class="tcl3">'  . $size . '</td>
 			<td class="tcl3">'  . $nbimage . '</td>
@@ -3578,7 +3586,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
         <figure>
             <a href="'.$img_url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$img_url.refresh().'" alt="'.escape($title).'" /></a>';
 
-        if ($img['punid'] == $GLOBALS['punid'] ) :
+        if ( $img['punid'] == $GLOBALS['punid'] && $img['format'] == 'JPEG' ) :
         $html .= '
             <ul class="rotate"><!--
                 --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90&amp;img">' . __('90°') . '</a></li><!--
@@ -3647,7 +3655,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     {
         $html .= '
         <p class="admin">
-            ' . __('IP address') . ': ' . escape(is_null($img['ip']) ? 'Not available' : ($img['ip'] == 'R' ? 'Automatically removed from database' : $img['ip'])) . '
+            ' . __('IP address') . ': ' . escape(is_null($img['ip']) ?  __('Not available') : ($img['ip'] == 'R' ? __('Automatically removed from database'): $img['ip'])) . '
         </p>
         <p class="admin">
             <a href="?delete='.rawurlencode($img['hash']).'" onclick="return confirm(\'Really?\');">' . __('Delete picture') . '</a>

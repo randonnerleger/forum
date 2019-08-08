@@ -104,6 +104,10 @@ $french_strings = array(
         =>  'Redimensionnement',
     'IP address'
         =>  'Adresse IP',
+    'Not available'
+        =>  'Indisponible',
+    'Automatically removed from database'
+        =>  'Automatiquement supprimé de la base de données',
     'Really'
         =>  'Vraiment',
     'picture'

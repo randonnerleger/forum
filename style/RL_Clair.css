@@ -3077,7 +3077,7 @@ form#edit .infldset.txtarea::before {
 }
 /* END UNIFORMISATION DES INPUT ET BOUTONS */
 
-/* IDENTIFICATION REDIRECT */
+/* BEGIN IDENTIFICATION REDIRECT */
 .redirect form#login {
 	margin-top: 2em;
 }
@@ -3091,8 +3091,6 @@ form#edit .infldset.txtarea::before {
 .redirect form#login input[type="text"],
 .redirect form#login input[type="password"] {
 	min-width: 200px;
-	width: calc(100% - 18px);
-	max-width: 100%;
 }
 .redirect form#login p {
 	padding: 9px 0;
@@ -3124,6 +3122,7 @@ form#edit .infldset.txtarea::before {
 	text-indent: -9999em;
 	width: 0;
 }
+/* END IDENTIFICATION REDIRECT */
 
 /**
  * END uniformisation
@@ -3881,6 +3880,14 @@ form#edit .infldset.txtarea::before {
 	 * 6.4 - Media queries 768 uniformisation
 	 */
 
+	 /* BEGIN IDENTIFICATION REDIRECT */
+ 	.redirect form#login input[type="text"],
+ 	.redirect form#login input[type="password"] {
+ 		width: calc(100% - 18px);
+ 		max-width: 100%;
+ 	}
+ 	/* END IDENTIFICATION REDIRECT */
+	
 	#brdmenu,
 	#dokuwiki__sitetools {
 		top:-20px;
@@ -4304,7 +4311,6 @@ form#edit .infldset.txtarea::before {
 		margin:50px 0 20px;
 		border-width:0;
 	}
-
 	/* END UNIFORMISATION DES INPUT ET BOUTONS */
 
 	/* BEGIN CALCUL DES HAUTEURS */

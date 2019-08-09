@@ -2905,8 +2905,9 @@ if (!empty($_GET['delete']))
     {
 
 	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
-        $where = isset ( $_GET['mesphotos'] ) ? '&mesphotos' : '' ;
-        header('Location: '.$config->base_url.'?list'.$page.$where);
+        $where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '' ;
+        $where = isset ( $_GET['uplo'] ) ? '' : $where ;
+        header('Location: '.$config->base_url.$where);
     }
     else
     {
@@ -2962,8 +2963,9 @@ elseif (!empty($_GET['deleteAlbum']))
     if ($fh->removeAlbum($_GET['deleteAlbum'], $id))
     {
 	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
-        $where = isset ( $_GET['mesalbums'] ) ? '&mesalbums' : '' ;
-        header('Location: ' . $config->base_url . '?albums'.$page.$where);
+        $where = isset ( $_GET['mesalbums'] ) ? '?albums'.$page.'&mesalbums' : '' ;
+        $where = isset ( $_GET['uploadsAlbum'] ) ? '?album' : '' ;
+        header('Location: ' . $config->base_url.$where);
     }
     else
     {
@@ -3120,7 +3122,7 @@ elseif (isset($_GET['login']))
 }
 elseif (isset($_GET['list']))
 {
-    $title = __('Browse pictures');
+    $title = isset($_GET['mesphotos']) ? __('Browse my pictures') : __('Browse pictures') ;
 
     if (!empty($_GET['list']) && is_numeric($_GET['list']))
         $page = (int) $_GET['list'];
@@ -3244,7 +3246,7 @@ elseif (isset($_GET['list']))
 }
 elseif (isset($_GET['albums']))
 {
-    $title = __('Browse albums');
+    $title = isset($_GET['mesalbums']) ? __('Browse my albums') : __('Browse albums') ;
 
     if (!empty($_GET['albums']) && is_numeric($_GET['albums']))
         $page = (int) $_GET['albums'];
@@ -3426,7 +3428,7 @@ elseif (!empty($_GET['a']))
 
         $html .= '
         <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadsAlbum" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
         </p><!--
         <p class="admin">
             ' . __('Keep this URL in your favorites to be able to delete this album later') . ':<br />
@@ -3583,7 +3585,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
                 | Size: '.$img['width'].' × '.$img['height'].' ('.$img['format'].', '.$size.')
             </p>
         </header>
-        <figure>
+        <figure class="picture-visu">
             <a href="'.$img_url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$img_url.refresh().'" alt="'.escape($title).'" /></a>';
 
         if ( $img['punid'] == $GLOBALS['punid'] && $img['format'] == 'JPEG' ) :
@@ -3665,7 +3667,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     {
         $html .= '
         <p class="admin">
-            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
+            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadsPhoto" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
         </p>
         <!--<p class="admin">
             ' . __('Keep this URL in your favorites to be able to delete this picture later') . ':<br />

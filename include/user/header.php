@@ -1,5 +1,9 @@
+<?php
+// Je check si connecté
+$connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connected' ;
+?>
 <div id="top-page"><a onclick="window.top.window.scrollTo(0,0);return false" href="#wrapper-rl"></a></div>
-<div id="wrapper-rl">
+<div id="wrapper-rl" class="<?php echo $connected; ?>">
 	<input type="checkbox" id="menu-left-checkbox" class="menu-left-checkbox" role="button">
 	<input type="checkbox" id="menu-search-checkbox" class="menu-search-checkbox">
 	<input type="checkbox" id="menu-forum-checkbox" class="menu-forum-checkbox">

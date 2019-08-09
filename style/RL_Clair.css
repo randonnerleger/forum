@@ -46,7 +46,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 @font-face {
 	font-family: "FontAwesome";
-	src: url(../../tpl/fonts/font-awesome/fonts/FontAwesome.otf);
+	src: url(../../tpl/fonts/font-awesome/fonts/fontawesome-webfont.woff);
 }
 
 /**
@@ -68,13 +68,6 @@ html {
 	position:relative;
 	min-height: 100vh;
 }
-/*body {
-	/*
-	 * Relates to the pseudo class & sibling bug, see
-	 * http://css-tricks.com/webkit-sibling-bug/ for more details
-	 */
-/*	-webkit-animation: bugfix infinite 1s;*/
-/*}*/
 li {
 	padding: 0px;
 	margin: 0px;
@@ -84,7 +77,6 @@ li {
 }
 iframe {
 	max-width: 100% !important;
-/*	height: auto   !important;*/
 }
 /**
  * END Reset
@@ -238,7 +230,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 .pun {
 	margin: 0 auto;
 /*	Opitux, le 29 octobre 2015*/
-/*	padding: 30px 40px;*/
 	padding: 0px;
 }
 #punredirect, #punmaint {
@@ -910,7 +901,9 @@ MAIN POSTS
 .pun .postmsg .postimg img {
 	max-width: 98%;
 	vertical-align: middle;
-	margin: 7px 0.5em 7px 0;
+	margin: 7px 0.5em;
+	border-radius: 3px;
+	box-shadow: 0px 0px 4px #888;
 }
 .pun .postmsg .postimg a:link img, .pun .postmsg .postimg a:visited img {
 	border-style: solid;
@@ -1030,7 +1023,6 @@ MAIN FORMS
 .pun form .submittop,
 .pun form .submitend {
 	padding: 8px 19px 8px 34px;
-/*	margin-bottom: -12px;*/
 }
 .pun .blockform .buttons input {
 	margin-right: 12px;
@@ -1235,7 +1227,8 @@ PROFILES (+ ADMIN MENU)
 	line-height: normal;
 	background: url(../../tpl/img/bull.png) center left no-repeat;
 }
-#adstats .inbox, #adintro .inbox, #adalerts p {
+#adstats .inbox,
+#adintro .inbox {
 	border-style: solid;
 	border-width: 1px;
 	padding: 18px;
@@ -1310,7 +1303,7 @@ html, body {
 	color: #357082;
 }
 #adminconsole fieldset th, #adminconsole fieldset td {
-	background: #f6f9fc;
+	background: #fcfdfe;
 	border-color: #dfe6ee;
 }
 .pun #users1 h2 {
@@ -1331,7 +1324,7 @@ html, body {
 ----------------------------------------------------------------*/
 
 .pun .blockpost {
-	background: #f6f9fc;
+	background: #fcfdfe;
 	border-color: #b9c5ce #d9e1e7;
 }
 .pun .blockpost h2 {
@@ -1381,7 +1374,7 @@ html, body {
 }
 #punmisc #rules .box, #punhelp .box {
 	border-color: #b9c5ce #d9e1e7;
-	background: #f6f9fc;
+	background: #fcfdfe;
 }
 .pun #quickpost h2, #punpost .blockform h2, #punedit .blockform h2, #posterror h2,
 #pundelete .blockform h2 {
@@ -1406,7 +1399,7 @@ html, body {
 	color: #333;
 }
 .pun .infldset, #adintro .inbox, #adstats .inbox {
-	background: #f6f9fc;
+	background: #fcfdfe;
 	border-color: #dfe6ee;
 }
 .pun label, .pun legend, #adminconsole fieldset th {
@@ -1423,7 +1416,7 @@ html, body {
 }
 .pun .blockmenu .isactive a:link, .pun .blockmenu .isactive a:visited {
 	color: #333;
-	background: #f6f9fc;
+	background: #fcfdfe;
 	}
 .pun #viewprofile .box {
 	border-color: #b9c5ce #d9e1e7;
@@ -1635,7 +1628,6 @@ html, body {
 		position: inherit;
 		right: 0;
 		text-align: right;
-/*		top: 85px;*/
 		z-index:9999999;
 	}
 	#brdwelcome li span,.pun .blocktable td .byuser ,.pun .blocktable td {
@@ -1693,7 +1685,9 @@ body {
 #top-page a:before {
 	content:"\f077";
 	font-family: fontawesome;
-	font-size:2em;
+	font-size:30px;
+	width: 30px;
+	height: 30px;
 	z-index:1100;
 	border:1px solid #516F89;
 	border-radius:50%;
@@ -1713,7 +1707,6 @@ body {
 	margin: 0 auto;
 	z-index: 2000;
 	width:100%;
-	/* max-width: 1600px; */
 	height:90px;
 	border-bottom:7px solid #9EABB9;
 }
@@ -1848,7 +1841,6 @@ input[type="search"] {
 	border:none;
 	border-radius:0 3px 3px 0;
 	position:relative;
-	/*float: right;*/
 	width:40px;
 	height:40px;
 	top:0px;
@@ -1951,7 +1943,7 @@ input[type="search"] {
 #nav.fixed {
 	position: fixed!important;
 	width :15%;
-    max-height:calc(100vh - 85px);
+	max-height:calc(100vh - 85px);
 	top:0px!important;
 	margin-top:10px!important;
 	z-index: 1900;
@@ -1969,7 +1961,6 @@ input[type="search"] {
 #nav li {
 	margin-top:10px;
 	margin-left:0;
-/*	background:#DBDCE4;*/
 }
 #nav li:first-child {
 	margin-top:0px;
@@ -2009,7 +2000,7 @@ form#login_menuG input[type="password"] {
 #nav ul.sub-menu li a:active,
 #nav ul.sub-menu li a:focus,
 .togglebox .identification label:hover {
-	color: #B50000 !important;
+	color: #B50000;
 	text-decoration:underline !important;
 }
 #nav li a.active {
@@ -2022,7 +2013,6 @@ form#login_menuG input[type="password"] {
 	width :100%;
 	margin-top:0px;
 	border-bottom:0px dotted #B9C6D7;
-/*	background:#F0F0F0;*/
 }
 #nav ul.sub-menu li a {
 	display:block;
@@ -2065,6 +2055,7 @@ form#login_menuG p a {
 	display: inline-block;
 	padding: 5px 0;
 	width: auto !important;
+	border-width: 0;
 }
 form#login_menuG p a:first-child {
 	padding-right: 5px;
@@ -2138,7 +2129,6 @@ display:none;
 	display:block;
 	font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
 	font-size: .9em;
-	color: #334455;
 	cursor: pointer;
 	margin-top:0;
 	float:none;
@@ -2174,6 +2164,12 @@ display:none;
 .togglebox input[type="checkbox"]:checked ~ label:after {
 	content:'\f147';
 }
+.togglebox input[type="checkbox"] ~ label.menug-label-identification::after {
+	content: '\f090';
+	color:#fff;
+	padding-left: 10px;
+	float:none;
+}
 /*END togglebox*/
 
 /**
@@ -2182,15 +2178,17 @@ display:none;
  * 4.2 - fluxbb
  */
 
+ .pun form .buttons,
+ .pun form .submittop,
+ .pun form .submitend {
+ 	padding-left: 18px;
+ }
+
 /* BEGIN Announce block */
 #announce {
 	border-style: solid none none;
 	border-width: 0px 0px 0px;
 	padding-top: 0px;
-}
-#announce-block .usercontent {
-	font-size:1.05em;
-	padding: 0;
 }
 #announce-block .usercontent ul {
 	margin:0;
@@ -2220,13 +2218,16 @@ display:none;
 	line-height:0.9em;
 }
 #announce + #brdmain {
-	margin-top:15px;
+	margin-top:5px;
 }
-.pun #adalerts {background: #ffd39f;}
-#announce-block .important,
+.pun #adalerts,
 .pun #adalerts p {
-	background: #FFD39F url("/wiki/lib/plugins/wrap/images/note/48/important.png") 10px 50% no-repeat;
+	background: #ffd39f;
 	border:0px;
+}
+#announce-block .important,
+.pun #adalerts {
+	background: #FFD39F url("/wiki/lib/plugins/wrap/images/note/48/important.png") 10px 50% no-repeat;
 }
 /* END Announce block */
 
@@ -2300,11 +2301,11 @@ display:none;
 	background:#D2DBE0;
 }
 .pun table .rowodd {
-	background:#F2F4F4;
+	background:#ecf0f0;
 }
 .pun .blockpost .postbody,
 .pun .blockpost .postfoot {
-	background: #E4EAEA;
+	background: #ecf0f0;
 	border-color: #DFE6EE;
 }
 .pun #users1 h2 {
@@ -2376,9 +2377,6 @@ display:none;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-/* .pun .blocktable .tc2 {
-	vertical-align:top;
-} */
 .pun .blocktable .tcr {
 	width: 25%;
 }
@@ -2481,10 +2479,37 @@ p.modlist {
 	width: 100px;
 }
  /* BEGIN ADMIN */
- .pun .blockmenu a:hover, .pun .blockmenu a:active, .pun .blockmenu a:focus {
+ .pun .blockmenu a:link,
+ .pun .blockmenu a:visited {
+	padding: 6px;
+}
+ .pun .blockmenu a:hover,
+ .pun .blockmenu a:active,
+ .pun .blockmenu a:focus,
+ .pun .blockmenu .isactive a:link,
+ .pun .blockmenu .isactive a:visited {
 	background: #516f89;
 	color:#fff;
 }
+#adminconsole .inform .infldset table tbody td span {
+	display: block;
+	max-width: 90%;
+}
+#adalerts p {
+	padding:18px 0;
+}
+/* Signalement */
+#adminconsole .inform .infldset input[type="text"] {
+	margin-right: 10px;
+}
+#adminconsole .inform .infldset table tbody th {
+	width: 30%;
+	padding-right:10px;
+}
+#adminconsole .inform .infldset table tbody td {
+	width: 70%;
+}
+/* END Admin */
 
 /**
  * END fluxbb
@@ -2521,8 +2546,7 @@ p.modlist {
 	padding-left: 0px;
 	padding-right: 36px;
 }
-#dw__search
-/*, #dokuwiki__site div.no */ {
+#dw__search {
 	display:none;
 }
 #dokuwiki__site .page.group {
@@ -2530,7 +2554,7 @@ p.modlist {
 	margin:0 -4px 0 18px;
 }
 .dokuwiki div.page, #dw__toc {
-	background: #ECF0F0;
+	background: #ecf0f0;
 }
 .dokuwiki div.breadcrumbs {
 	text-align:left;
@@ -2539,7 +2563,6 @@ p.modlist {
 	margin-bottom: 0px;
 	clear: both;
 	text-transform: capitalize;
-/*	padding: 9px 0px;*/
 }
 .dokuwiki div.breadcrumbs div:only-child {
 	border-top: 0px solid #FFF;
@@ -2559,14 +2582,13 @@ p.modlist {
 .dokuwiki, .pun .punwrap {
 	background: #F7F7F7 none repeat scroll 0% 0%;
 	color: #566579;
-/*	border: 0px solid #CAD7E1;*/
 	border: 0px solid #fff;
 	border-radius: 3px;
 	box-shadow :none;
 	padding: 18px;
 }
 .dokuwiki div.page {
-	border: 1px solid #CAD7E1;
+	border: 1px solid #d9e1e7;
 	border-radius: 0px;
 	margin: 0 0 0 18px;
 	box-shadow: none;
@@ -2626,7 +2648,7 @@ div.picker button.toolbutton {
 }
 /* BEGIN Gestion des bloc nav historique et projet en cours dans les pages assos du wiki */
 .dokuwiki .wrap_box {
-	background: #e4eaea;
+	background: #f2f4f4;
 }
 .wrap_asso_bloc_historique p,
 .wrap_asso_bloc_projet p {
@@ -2666,7 +2688,7 @@ div.hiddenGlobal {
 
 /* BEGIN PLUGINS */
 #plugin__schulzevote .votebar {
-    background-color: #4e4f51;
+	background-color: #4e4f51;
 }
 /* END PLUGINS */
 
@@ -2714,7 +2736,7 @@ div.hiddenGlobal {
 	border-width: 0px;
 }
 .postlinksb .crumbsplus .pagepost {
-    border-bottom-width: 0px !important;
+	border-bottom-width: 0px !important;
 }
 /* Uniformisation du titre de la page */
 #brdwelcome {
@@ -2895,6 +2917,7 @@ textarea {
 #adminconsole textarea {
 	display:block;
 }
+/* Boutons foncés */
 input[type="submit"],
 input[type="button"],
 #nav input[type="submit"],
@@ -2903,7 +2926,8 @@ input[type="button"],
 .dokuwiki button,
 .dokuwiki .editButtons button,
 .dokuwiki .qq-upload-button,
-.dokuwiki .qq-upload-action {
+.dokuwiki .qq-upload-action,
+.togglebox input[type="checkbox"] ~ label.menug-label-identification {
 	cursor:pointer;
 	background: #516F89;
 	border: medium none;
@@ -2911,7 +2935,7 @@ input[type="button"],
 	color: #FFF;
 	padding: 8px 30px;
 	margin-top:4px;
-	text-shadow: 0px 2px rgba(0, 0, 0, 0.4);
+	text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4);
 	transition-property: all;
 	transition-duration: 0.2s;
 	transition-timing-function: ease;
@@ -2923,10 +2947,89 @@ input[type="button"],
 .dokuwiki button:hover,
 .dokuwiki .editButtons button:hover,
 .dokuwiki .qq-upload-button:hover,
-.dokuwiki .qq-upload-action:hover{
+.dokuwiki .qq-upload-action:hover,
+.togglebox input[type="checkbox"] ~ label.menug-label-identification:hover {
 	background:#304D66;
+	color: #fff !important;
+	text-decoration: none !important;
+}
+/* Bouton clairs */
+.pun a.secondary-button,
+form#post p.buttons a,
+form#edit p.buttons a,
+#punmisc .buttons a,
+#msg .inbox a,
+/* .pagestext a,
+.pagestext .spacer, */
+.pun .pagepost a,
+.pun .pagepost strong,
+.pun .pagepost .spacer,
+#uploads nav ul li a,
+#nav li a.disconnect {
+	cursor: pointer;
+	background: #c7cfda;
+	border: medium none;
+	border-radius: 3px;
+	color: #4e4f51;
+	padding: 8px 30px;
+	margin-top: 4px;
+	text-shadow: 0px 2px 1px rgba(255, 255, 255, .4);
+	transition-property: all;
+	transition-duration: 0.2s;
+	transition-timing-function: ease;
+}
+.pun a.secondary-button:hover,
+form#post p.buttons a:hover,
+form#edit p.buttons a:hover,
+#punmisc .buttons a:hover,
+#msg .inbox a:hover,
+/* .pagestext a:hover,
+.pagestext .spacer:hover, */
+.pun .pagepost a:hover,
+/*.pun .pagepost strong:hover,
+.pun .pagepost .spacer:hover,*/
+#uploads nav ul li a:hover,
+#nav li a.disconnect:hover {
+	text-decoration:none !important;
+	background:#b2bfce;
+}
+/* .pagestext a,
+.pagestext .spacer,*/
+.pun .pagepost a,
+.pun .pagepost strong,
+.pun .pagepost .spacer,
+#uploads nav ul li a {
+	font-size: 12px !important;
+}
+.pun .pagepost .pagelink strong,
+.pun .pagepost .pagelink a,
+#uploads nav ul li a {
+	padding:4px 8px 4px 8px !important;
+	height:14px;
+	line-height: 14px;
+	margin:0 1px !important;
+}
+.pun .pagelink span.spacer {
+	border-width: 0;
+	margin: 0 0px;
+}
+/* Connexion/deconnexion */
+.togglebox input[type="checkbox"] ~ label.menug-label-identification,
+#nav li a.disconnect {
+	width: 90%;
+	margin: 0 auto;
+	padding: 8px 0px;
+	text-align: center;
+	font-size: 0.81em;
 }
 /* PAGE REDACTION/EDITION */
+#ezbbcsmiliesbar,
+#ezbbctoolbar {
+	display: inline !important;
+}
+#ezbbctoolbar #smiliesb {
+	display: none;
+}
 form#edit .infldset.txtarea::before {
 	content:"Editons nos messages en prenant soin d'indiquer ce qui a été modifié dans nos textes";
 	display: block;
@@ -2934,18 +3037,6 @@ form#edit .infldset.txtarea::before {
 	padding:20px 0 20px 70px;
 	background: #FFD39F url("/wiki/lib/plugins/wrap/images/note/48/important.png") 10px 50% no-repeat;
 }
-a.secondary-button,
-form#post p.buttons a,
-form#edit p.buttons a {
-	cursor: pointer;
-	background: #c7cfda;
-	border: medium none;
-	border-radius: 3px;
-	color: #4e4f51 !important;
-	padding: 8px 35px;
-	margin-top: 4px;
-}
-
 /* Pagination des messages */
 #uploads nav ul li {
 	display: inline-block;
@@ -2965,35 +3056,19 @@ form#edit p.buttons a {
 	font-size:12px !important;
 	color:#566579;
 }
-/* .pagestext a,
-.pagestext .spacer, */
-.pagepost a,
-.pagepost strong,
-.pagepost .spacer,
-#uploads nav ul li a {
-	font-size: 12px !important;
-	padding:4px 8px 4px 8px !important;
-	height:14px;
-	line-height: 14px;
-	background: #c7cfda;
-	color:#4e4f51 !important;
-	border-radius: 3px;
-	border-width: 0 !important;
-	margin:0 1px !important;
-}
-.pagepost strong,
+.pun .pagepost strong,
 #uploads .pagination .selected a {
 	background: #9EABB9;
 	font-weight: bold;
 }
 /* .pagestext .spacer, */
-.pagepost .spacer {
+.pun .pagepost .spacer {
 	padding:4px 5px !important;
 	background:transparent;
 }
 .pagepost {
 	padding: 10px 0 !important;
-    padding-bottom: 3px !important;
+	padding-bottom: 3px !important;
 }
 .pagelink {padding-top: 5px !important;}
 .postlink a {
@@ -3002,9 +3077,14 @@ form#edit p.buttons a {
 }
 /* END UNIFORMISATION DES INPUT ET BOUTONS */
 
-/* IDENTIFICATION REDIRECT */
+/* BEGIN IDENTIFICATION REDIRECT */
 .redirect form#login {
 	margin-top: 2em;
+}
+.redirect form#login label {
+	width: 30%;
+	min-width: 230px;
+	padding: 0;
 }
 .redirect form#login input {
 	vertical-align:unset;
@@ -3012,28 +3092,27 @@ form#edit p.buttons a {
 .redirect form#login input[type="text"],
 .redirect form#login input[type="password"] {
 	min-width: 200px;
-	max-width: 95%;
 }
 .redirect form#login p {
 	padding: 9px 0;
 }
 .redirect label.conl {
-    display: inline-block;
-    padding-right: 12px;
+	display: inline-block;
+	padding-right: 12px;
 }
 .redirect .required strong {
-    background: unset;
-    font-weight: normal;
-    padding-right: 14px;
-    white-space: pre;
-    display: inline-block;
-    line-height: normal;
+	background: unset;
+	font-weight: normal;
+	padding-right: 14px;
+	white-space: pre;
+	display: inline-block;
+	line-height: normal;
 }
 .redirect .required strong::after {
-    background: unset;
-    content: '*';
+	background: unset;
+	content: '*';
 	font-size: 13px;
-    color: red;
+	color: red;
 	display: inline-block;
 	font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
 }
@@ -3044,6 +3123,7 @@ form#edit p.buttons a {
 	text-indent: -9999em;
 	width: 0;
 }
+/* END IDENTIFICATION REDIRECT */
 
 /**
  * END uniformisation
@@ -3064,7 +3144,7 @@ form#edit p.buttons a {
 		font-size:0px !important;
 		color:transparent;
 		margin-left:-3000px;
-  }
+	}
 	.newtext a {
 		margin-left:3000px;
 		text-indent:0px;
@@ -3079,8 +3159,15 @@ form#edit p.buttons a {
 		border-radius: 3px;
 		color: #4e4f51 !important;
 		text-align:center;
+		text-shadow: 0px 2px 1px rgba(255, 255, 255, .4);
+		transition-property: all;
+		transition-duration: 0.2s;
+		transition-timing-function: ease;
 	}
-
+	.newtext a:hover {
+		text-decoration:none;
+		background:#b2bfce;
+	}
 	/*
 	 * Enable hardware acceleration and stop flickering
 	 * More details: http://indiegamr.com/ios6-html-hardware-acceleration-changes-and-how-to-fix-them/
@@ -3104,11 +3191,6 @@ form#edit p.buttons a {
 		-o-transition: -o-transform 500ms ease;
 		transition: transform 500ms ease;
 	}
-/*	#wrapper-inner.opera #brdmenu, */
-/*	#wrapper-inner.opera #dokuwiki__sitetools,*/
-/*	#wrapper-inner.opera #header #menu-search {*/
-/*		display: none;*/
-/*	}*/
 	#nav {
 		-webkit-transform: translateX(-100%);
 		-moz-transform: translateX(-100%);
@@ -3136,11 +3218,6 @@ form#edit p.buttons a {
 		-o-transform: translateX(-300px) scale(1);
 		transform: translateX(-300px) scale(1);
 	}
-/*	.menu-forum-checkbox:checked ~ #wrapper-inner.opera .outer #brdmenu,*/
-/*	.menu-forum-checkbox:checked ~ #wrapper-inner.opera .outer #dokuwiki__sitetools,*/
-/*	.menu-search-checkbox:checked ~ #wrapper-inner.opera #header #menu-search {*/
-/*		display: block;*/
-/*	}*/
 	/*BEGIN MENUG @MEDIA*/
 
 	.outer {
@@ -3232,17 +3309,18 @@ form#edit p.buttons a {
 		float: none;
 		background:#333;
 		margin-top:0px;
-		border-bottom: 1px solid #222;
+		/* border-bottom: 1px solid #222; */
 	}
 	#nav li a,
 	#nav li strong,
-	.togglebox li.display.identification label {
+	.togglebox li.display.identification label,
+	#nav li a.disconnect {
 		padding: 15px 5px;
 		padding-left: 10px;
 		max-width: 65%;
 		color:#fff;
-		background:#333;
-		border-bottom: 0px solid #222;
+		background:transparent !important;
+		border-width: 0px;
 	}
 	#nav li:first-child a {
 		border-top: none;
@@ -3255,9 +3333,12 @@ form#edit p.buttons a {
 	#nav li a:focus,
 	#nav ul.sub-menu li a:hover,
 	#nav ul.sub-menu li a:active,
-	#nav ul.sub-menu li a:focus {
-		color: #fff;
-		text-decoration:none;
+	#nav ul.sub-menu li a:focus,
+	#nav label:hover,
+	#nav label:active,
+	#nav label:focus {
+		color: #fff !important;
+		text-decoration:none !important;
 	}
 	#nav ul.sub-menu li a {
 		padding-left: 30px;
@@ -3276,6 +3357,14 @@ form#edit p.buttons a {
 	ul.sub-menu li {
 		padding-left: 0px;
 	}
+	.togglebox li.display.identification label,
+	#nav li a.disconnect {
+		color:#fff;
+		text-shadow: none;
+		font-size: .9em;
+		margin:0;
+		text-align: left;
+	}
 	/*END MENUG @MEDIA*/
 
 	/*BEGIN togglebox*/
@@ -3284,6 +3373,8 @@ form#edit p.buttons a {
 		margin-left: 0;
 		width: 100%;
 		max-width: 95%;
+		text-align: left;
+		font-size: .9em;
 	}
 	.togglebox label,
 	.togglebox li.display label,
@@ -3295,8 +3386,8 @@ form#edit p.buttons a {
 		position:absolute;
 		color: #fff;
 		right:0;
-		padding:15px 20px 15px 15px;
-		margin-top:-49px;
+		padding: 12px 20px 11px 15px;
+		margin-top: -46px;
 		margin-left:85%;
 	}
 	.togglebox li.display.identification label:after {
@@ -3362,20 +3453,11 @@ form#edit p.buttons a {
 	.search-form .reset-btn, .search-form .submit-btn {
 		top: -5px;
 	}
-/*	.search-form .submit-btn {*/
-/*		right: 44px;*/
-/*	}*/
 	/* END RECHERCHE HEADER */
 
 	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide #nav {
 		position:absolute;
 	}
-/*	.menu-forum-checkbox ~ #wrapper-inner .outer #brdmenu,*/
-/*	.menu-forum-checkbox ~ #wrapper-inner .outer #dokuwiki__sitetools {*/
-/*		height:100vh;*/
-/*		min-height: 100vh;*/
-/*		padding-bottom: 150px;*/
-/*	}*/
 	#brdmenu ul {
 		max-height:calc(100vh - 97px);
 		padding-bottom: 150px;
@@ -3425,6 +3507,23 @@ form#edit p.buttons a {
 	#punuploadimg_view table td table td{
 		float:none;
 	}
+
+	/* BEGIN Admin */
+	/* Signalement */
+	#adminconsole .inform .infldset input {
+		white-space:initial;
+		padding:5px 10px;
+		width: unset
+	}
+	#adminconsole .inform .infldset table tbody td input[type="text"],
+	#adminconsole .inform .infldset table tbody td input[type="password"],
+	#adminconsole .inform .infldset table tbody td textarea{
+		width: 90%;
+	}
+		#adminconsole .inform .infldset table tbody td select {
+		width: 100%;
+	}
+	/* END Admin */
 
 	/**
 	 * END Media queries 1024 fluxbb
@@ -3492,6 +3591,7 @@ form#edit p.buttons a {
 	#brdmenu ul li,
 	#dokuwiki__sitetools ul li {
 		width:100%;
+		/* border-bottom: 1px solid #222; */
 	}
 	#brdmenu a:link,
 	#brdmenu a:visited,
@@ -3504,7 +3604,7 @@ form#edit p.buttons a {
 	#brdmenu a:active,
 	#dokuwiki__sitetools a:hover,
 	#dokuwiki__sitetools a:active {
-		background: #404040;
+		background: #333;
 	}
 	.pun {
 		margin: 0px auto;
@@ -3516,20 +3616,13 @@ form#edit p.buttons a {
 	}
 	/* END Announce block */
 
-    /* BEGIN CALCUL DES HAUTEURS */
-    #wrapper-inner .outer .slide #nav,
-    #wrapper-inner .outer #brdmenu,
-    #wrapper-inner .outer #dokuwiki__sitetools,
-    #wrapper-inner #header #menu-search {
-        height:calc( 100vh - 97px);
-    }
-
-/*    .menu-left-checkbox:checked ~ #wrapper-inner .outer .slide #nav,*/
-/*    .menu-forum-checkbox:checked ~ #wrapper-inner .outer #brdmenu,*/
-/*    .menu-forum-checkbox:checked ~ #wrapper-inner .outer #dokuwiki__sitetools,*/
-/*    .menu-search-checkbox:checked ~ #wrapper-inner #header #menu-search {*/
-/*        height:120%;*/
-/*    }*/
+	/* BEGIN CALCUL DES HAUTEURS */
+	#wrapper-inner .outer .slide #nav,
+	#wrapper-inner .outer #brdmenu,
+	#wrapper-inner .outer #dokuwiki__sitetools,
+	#wrapper-inner #header #menu-search {
+		height:calc( 100vh - 97px);
+	}
 
 }
 
@@ -3556,12 +3649,6 @@ form#edit p.buttons a {
 	 * 6.2 - Media queries 768 fluxbb
 	 */
 
-/*	#announce-block .usercontent .buttons {*/
-/*		display:block;*/
-/*		white-space:nowrap;*/
-/*		max-width: 100%;*/
-/*		padding:5px;*/
-/*	}*/
 	/* BEGIN Réduction colonne des avatars*/
 	.pun .blockpost {background:#cad7e1;}
 	.pun .blockpost .postleft .postavatar {display:block;position:absolute;top:-37px;margin-left: -11px;}
@@ -3590,21 +3677,7 @@ form#edit p.buttons a {
 	/* END DIVERS MISE EN FORME */
 
 	/* BEGIN LIENS CRUMBS BAS DE PAGE*/
-
-	/* .pun .postlinksb ul.crumbs, .pun .linksb ul.crumbs {
-		margin-right: 0em;
-		margin-top:10px;
-		position:initial;
-		max-width: 100%;
-	} */
-	/* #punmoderate.pun .postlinksb ul.crumbs {
-		margin-top:0px;
-		position:inherit;
-	} */
-	/* .pun .crumbs li,
-	.blockpost h2 span a {
-		white-space: normal;
-	} */
+	.pun .linksb .crumbs,
 	.postlinksb ul.crumbs {
 		display: none;
 	}
@@ -3612,7 +3685,7 @@ form#edit p.buttons a {
 		padding:10px 5px;
 	}
 	.pun .subscribelink {
-	margin-top: 7px;
+		margin-top: 7px;
 	}
 	/* END LIENS CRUMBS BAS DE PAGE*/
 
@@ -3655,7 +3728,6 @@ form#edit p.buttons a {
 		width: 98%;
 		margin:0 auto;
 	}
-
 	/* END PAGE RECHERCHE, INSCRIPTION, INDENTIFICATION, PROFIL, LISTE DES MEMBRES */
 
 	/* BEGIN MENU DEROULANT ATTEINDRE*/
@@ -3808,6 +3880,17 @@ form#edit p.buttons a {
 	 * ==========================================================================
 	 * 6.4 - Media queries 768 uniformisation
 	 */
+
+	 /* BEGIN IDENTIFICATION REDIRECT */
+	 .redirect form#login label {
+	 	width: 100%;
+	 }
+ 	.redirect form#login input[type="text"],
+ 	.redirect form#login input[type="password"] {
+ 		width: calc(100% - 18px);
+ 		max-width: 100%;
+ 	}
+ 	/* END IDENTIFICATION REDIRECT */
 
 	#brdmenu,
 	#dokuwiki__sitetools {
@@ -4014,27 +4097,57 @@ form#edit p.buttons a {
 	/* END Tableaux */
 
 	/* BEGIN PAGE REDACTION/EDITION */
+	#punpost .punwrap,
+	#punpost #brdmain,
+	#punedit .punwrap,
+	#punedit #brdmain {
+		padding:0;
+		margin:0;
+	}
+	#punpost .infldset,
+	#punedit .infldset {
+		padding: 5px;
+	}
+	#punpost .required strong,
+	#punpost .blockform h2,
+	#punpost #brdtitle,
 	#punpost #brdwelcome,
 	#punpost #announce-block,
 	#punpost .linkst,
 	#punpost .bblinks,
+
+	#punedit .required strong,
+	#punedit .blockform h2,
+	#punedit #brdtitle,
 	#punedit #brdwelcome,
 	#punedit #announce-block,
 	#punedit .linkst,
 	#punedit .bblinks {
 		display:none;
 	}
-	#punpost .inform fieldset,
-	#editform .inform fieldset {
-		margin-top:40px;
+	#punpost .infldset.txtarea textarea,
+	#punedit .infldset.txtarea textarea {
+		height:100vh;
 	}
+	#punpost .inform fieldset,
+	#punedit .inform fieldset {
+		margin-top:4px;
+	}
+	/* #punpost .inform + .inform fieldset,
+	#editform .inform + .inform fieldset {
+		margin-top:0px;
+	}
+	#punpost .inform + .inform fieldset .infldset,
+	#editform .inform + .inform fieldset .infldset {
+		border-top-width:0px;
+	} */
 	#punpost .blockform h2,
 	#punedit .blockform h2 {
 		padding-left:15px;
 		width:78%;
 	}
 	#punpost .inform fieldset legend,
-	#editform .inform fieldset legend {
+	#punedit .inform fieldset legend {
 		width:92%;
 		white-space: pre-wrap;
 		display:none;
@@ -4124,9 +4237,9 @@ form#edit p.buttons a {
 	}
 	/* INTITULE DES FORUMS TROP LONGS */
 	.pun .blocktable .tcr {
-	    font-size: 10px;
+		font-size: 10px;
 	}
-    /* BEGIN UNIFORMISATION DES INPUT ET BOUTONS */
+	/* BEGIN UNIFORMISATION DES INPUT ET BOUTONS */
 	.pun input[type="submit"],
 	.pun input[type="button"],
 	#nav input[type="submit"],
@@ -4153,7 +4266,7 @@ form#edit p.buttons a {
 		color:transparent;
 		font-size:0 !important;
 		margin: 0px !important;
-		padding-bottom:10px;
+		padding-bottom:5px;
 	}
 	.pun #brdwelcome .conr:before {
 		content:'Contributions';
@@ -4163,21 +4276,34 @@ form#edit p.buttons a {
 		}
 	.pun #brdwelcome .conr a,
 	.subscribelink.clearb a {
-		font-size:13px;
+		font-size:12px;
 		white-space:nowrap;
 		text-indent:0px;
-		/* display:inline-block; */
 		padding:10px 0;
 		cursor: pointer;
 		background: #516F89;
 		border: medium none;
 		border-radius: 2px;
 		color: #FFF !important;
-		width:24.2%;
+		width:49.5%;
 		margin-right:1%;
 		text-align:center;
 		float: right;
+		text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4);
+		transition-property: all;
+		transition-duration: 0.2s;
+		transition-timing-function: ease;
+		box-shadow: 0px 0px 0px #EEE inset;
 	}
+	.connected .pun #brdwelcome .conr a {
+		width:24.2%;
+	}
+	.pun #brdwelcome .conr a:hover,
+	.subscribelink.clearb a:hover {
+		background: #304D66;
+		text-decoration: none;
+	}
+
 	.pun #brdwelcome .conr a:first-child {
 		margin-right:0;
 	}
@@ -4189,19 +4315,18 @@ form#edit p.buttons a {
 		margin:50px 0 20px;
 		border-width:0;
 	}
+	/* END UNIFORMISATION DES INPUT ET BOUTONS */
 
-    /* END UNIFORMISATION DES INPUT ET BOUTONS */
-
-    /* BEGIN CALCUL DES HAUTEURS */
-    #wrapper-inner .outer .slide #nav,
-    #wrapper-inner .outer #brdmenu,
-    #wrapper-inner .outer #dokuwiki__sitetools,
-    #wrapper-inner #header #menu-search {
-        height:calc( 100vh - 67px);
-    }
-    #content {
-	    min-height:calc(100vh - 137px);
-    }
+	/* BEGIN CALCUL DES HAUTEURS */
+	#wrapper-inner .outer .slide #nav,
+	#wrapper-inner .outer #brdmenu,
+	#wrapper-inner .outer #dokuwiki__sitetools,
+	#wrapper-inner #header #menu-search {
+		height:calc( 100vh - 67px);
+	}
+	#content {
+		min-height:calc(100vh - 137px);
+	}
 
 }
 
@@ -4213,10 +4338,10 @@ form#edit p.buttons a {
 	 */
 
 @media (max-width: 380px) {
-    #brdwelcome .conr a,
-    .subscribelink.clearb a {
-    font-size: 12px;
-    }
+	#brdwelcome .conr a,
+	.subscribelink.clearb a {
+	font-size: 12px;
+	}
 }
 
 	/**
@@ -4231,23 +4356,6 @@ form#edit p.buttons a {
 }
 
 @media (max-width: 1024px) {
-/*	.outer {*/
-/*		height:100%;*/
-/*	}*/
-
-/*	.menu-left-checkbox:checked ~ #wrapper-inner.opera ,*/
-/*	.menu-search-checkbox:checked ~ #wrapper-inner.opera ,*/
-/*	.menu-forum-checkbox:checked ~ #wrapper-inner.opera {*/
-/*		position: inherit;*/
-/*	}*/
-/*	.slide.opera,*/
-/*	#nav.opera {*/
-/*		display: none;*/
-/*	}*/
-/*	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide.opera,*/
-/*	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide #nav.opera {*/
-/*			display: block;*/
-/*	}*/
 	#wrapper-inner.opera {position:relative;}
 	.menu-left-checkbox:checked ~ #wrapper-inner.opera #content #mobile-nav-overlay,
 	.menu-search-checkbox:checked ~ #wrapper-inner.opera .outer #content #mobile-nav-overlay,
@@ -4259,46 +4367,7 @@ form#edit p.buttons a {
 		height:100% !important;
 		min-height: 100% !important;
 	}
-/*	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide.opera #nav {*/
-/*		position:absolute;*/
-/*		overflow-y: visible;*/
-/*	}*/
-/*	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide.opera #nav {*/
-/*		position:absolute;*/
-/*		overflow-y: visible;*/
-/*		height: 200% !important;*/
-/*		max-height: 200% !important;*/
-/*	}*/
-/*	#wrapper-inner.opera .slide-left-toggle, */
-/*	#wrapper-inner.opera .menu-forum-toggle, */
-/*	#wrapper-inner.opera .menu-search-toggle {*/
-/*		background: #4B4B4B;*/
-/*		height: 40px;*/
-/*		font: 24px/30px 'FontAwesome';*/
-/*		text-align: center;*/
-/*		padding: 0px 5px;*/
-/*	}*/
-/*	#wrapper-inner.opera .slide-left-toggle:after {*/
-/*		background: url(../../tpl/img/menu-slide.png) center center no-repeat;*/
-/*	}*/
-/*	#wrapper-inner.opera .menu-forum-toggle:after {*/
-/*		background: url(../../tpl/img/menu-account.png) center center no-repeat;*/
-/*	}*/
-/*	#wrapper-inner.opera .menu-search-toggle:after {*/
-/*		background: url(../../tpl/img/menu-search.png) center center no-repeat;*/
-/*	}*/
 /* END Opéra */
-
-/*
-	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #brdmenu,
-	.menu-forum-checkbox:checked ~ #wrapper-inner  .outer #dokuwiki__sitetools,
-	.menu-search-checkbox:checked ~ #wrapper-inner #header #menu-search {
-		height:100% !important;
-		position:absolute;
-		overflow-y:auto;
-		display:block;
-	}
-*/
 
 }
 
@@ -4332,29 +4401,7 @@ form#edit p.buttons a {
 
 
 /* UPLOAD */
-@media (max-width: 1024px) {
-
-    /* #brdmenu ul {
-        margin-top:100px;
-        background:#4e4f51;
-    }
-    #mobile-nav-overlay,
-    #brdmenu ul
-     {
-        height:120vh !important;
-    }
-    .menu-forum-toggle::after {
-    content: '\f142';
-    } */
-    #uploads input[type="text"],
-	#uploads input[type="file"],
-	#uploads input[type="password"] {
-        width: 85% !important;
-        max-width: 85% !important;
-    }
-}
-
-#uploads article.picture figure {max-width: 60%;}
+/* #uploads article.picture figure {max-width: 60%;} */
 #uploads article.picture figure img {max-width: 100%;}
 
 #uploads blockquote, q {
@@ -4371,17 +4418,19 @@ form#edit p.buttons a {
 	border-spacing: 0;
 }
 #uploads #page {
-	width: 100%;
-	margin: 1em auto;
+	width: calc(100% - 22px);
+	margin: 0 auto;
+	padding:10px;
 	border-radius: 3px;
 	text-align: center;
 	background: #ecf0f0;
+	border: 1px solid #d9e1e7;
 }
 #uploads footer {
 	font-size: .9em;
 	color: #666;
 	text-align:center;
-	margin-top:10em;
+	margin-top:1em;
 }
 #uploads input[type=submit] {
 	cursor: pointer;
@@ -4394,7 +4443,7 @@ form#edit p.buttons a {
 #uploads input[type=password] {
 	width: 50%;
 	margin: 0 auto;
-	margin-bottom: 1.5em;
+	margin-bottom: .5em;
 }
 #uploads fieldset dl dt {
 	font-weight: bold;
@@ -4405,7 +4454,7 @@ form#edit p.buttons a {
 #uploads .info {
 	margin: .8em 0;
 	color: #666;
-	font-size:.8em;
+	font-size:.9em;
 }
 #uploads .picture footer {
 	margin: 1em 0;
@@ -4414,21 +4463,22 @@ form#edit p.buttons a {
 	background: rgb(220, 220, 220);
 	background: rgba(255, 255, 255, 0.25);
 	border-radius: 3px;
-	padding: 1em;
+	padding: 1em 0;
 	margin: 1em auto;
 }
 #uploads .picture footer.context img {
-	max-width: 200px;
-	max-height: 150px;
+	max-width: 100%;
+	max-height: auto;
 }
 #uploads .picture footer.context figure {
 	position: relative;
-	width: 200px;
+	width: 25%;
+	max-width: 200px;
 	height: 180px;
 	margin: 0;
 }
 #uploads .picture footer.context figure b {
-	font-size: 100px;
+	font-size: 7em;
 	line-height: 120px;
 	width: 100%;
 	height: 150px;
@@ -4439,7 +4489,7 @@ form#edit p.buttons a {
 	color: rgb(255, 255, 255);
 	color: rgba(255, 255, 255, 0.5);
 	text-shadow: 0px 0px 10px #000;
-    font-family: Helvetica, "Liberation Sans", FreeSans, sans-serif;
+	font-family: Helvetica, "Liberation Sans", FreeSans, sans-serif;
 }
 #uploads .examples dt {
 	margin: .5em 0;
@@ -4465,15 +4515,23 @@ form#edit p.buttons a {
 	position: relative;
 	border:1px solid #dfe6ee;
 	border-radius:3px;
-	background:#e4eaea;
+	background:#f2f4f4;
 	padding:1em;
-	min-width:200px;
+	width: 35%;
+	max-width: 200px;
+}
+#uploads figure.picture-visu {
+	width: 90%;
+	max-width: 90%;
+}
+#uploads figure img {
+	max-width: 100%;
 }
 #uploads figure figcaption {
 	font-size: small;
 }
 #uploads figure .img {
-    min-height:135px;
+	min-height:135px;
 }
 #uploads figure .img img {
 	max-height: 130px;
@@ -4503,10 +4561,12 @@ form#edit p.buttons a {
 	background: rgba(0, 71, 150, 0.75);
 	margin-top:50px;
 }
-#uploads #resizeParent, p.admin, #albumParent {
+#uploads #resizeParent,
+p.admin,
+#albumParent {
 	background: rgb(100, 100, 100);
 	background: #d2dbe0;
-	padding: 10px 0 !important;
+	padding: 10px 0;
 	width: 90%;
 	max-width: 1000px;
 	margin: .8em auto;
@@ -4514,9 +4574,15 @@ form#edit p.buttons a {
 	color: #566579;
 	font-size: 12px !important;
 }
-#uploads #resizeParent a, p.admin a, #albumParent a {
+#uploads #resizeParent a,
+p.admin a,
+#albumParent a {
 	color:#4e4f51 !important;
 	font-weight: bold
+}
+#uploads figure p.admin {
+	width: 100%;
+	padding: 5px 0;
 }
 #uploads figure label {
 	 font-weight: bold;
@@ -4524,9 +4590,6 @@ form#edit p.buttons a {
 	color:#566579;
 	 display: block;
 }
-/* #uploads #albumParent { */
-	/*! width: 90%; */
-/* } */
 #uploads #resizeParent img.loading, #albumParent img.loading, #albumParent span b {
 	background: #fff;
 	padding: .5em;
@@ -4539,6 +4602,10 @@ form#edit p.buttons a {
 #uploads #resizeParent img, #albumParent img {
 	box-shadow: 0px 0px 10px #000;
 }
+#uploads article {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 #uploads article h2 {
 	margin-bottom: .5em;
 }
@@ -4549,18 +4616,19 @@ form#edit p.buttons a {
 #uploads p.admin a {
 	color: darkred;
 }
+#uploads p.admin input[type="button"],
+#uploads p.admin input[type="submit"] {
+	margin: 10px 0;
+}
+
 #uploads .albums h3,
 .browse h3 {
 	max-width: 195px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-/* #uploads .albums figure { */
-	/*! display: block; */
-/* } */
 #uploads .albums figure img {
-	/* vertical-align: middle; */
 	display: block;
 	margin:.5em auto;
 }
@@ -4571,7 +4639,9 @@ form#edit p.buttons a {
 	bottom: 50%;
 	top: auto;
 }
-
+#uploads ul.rotate {
+	height:25px;
+}
 #uploads ul.rotate li {
 	display: inline-block;
 	font-size: .9em;
@@ -4589,7 +4659,6 @@ form#edit p.buttons a {
 #uploads ul.rotate li:last-child {
 	margin-right:0;
 }
-
 #uploads ul.rotate li:before {
 	font-family: fontawesome;
 	padding:0 5px !important;
@@ -4607,13 +4676,13 @@ form#edit p.buttons a {
 #uploads.from-ez-toolbar .slide,
 #uploads.from-ez-toolbar #header label,
 #uploads.from-ez-toolbar #footer {
-    display:none;
+	display:none;
 }
 #uploads.from-ez-toolbar .outer {
 	margin-top:0;
 }
 #uploads.from-ez-toolbar #content {
-    float:none;
+	float:none;
 	margin:0;
 	width:100%;
 }
@@ -4622,48 +4691,44 @@ form#edit p.buttons a {
 #uploads.from-ez-toolbar p.admin,
 #uploads.from-ez-toolbar p.info,
 #uploads.from-ez-toolbar .hidden-from-ez-toolbar {
-    display:none;
+	display:none;
 }
 #uploads.from-ez-toolbar #brdmenu {
-    display:contents;
-    top: 0;
-    max-width:100%;
+	display:contents;
+	top: 0;
+	max-width:100%;
 	position: relative;
 	height: unset;
 	right: 0px;
 }
 #uploads.from-ez-toolbar #brdmenu a {
-    padding: 6px 16px;
+	padding: 6px 16px;
 }
 #uploads.from-ez-toolbar #brdmenu ul {
-    height:initial !important;
-    margin-top: 0px;
-    padding-bottom: 0px;
-    width:100%;
-}
-#uploads.from-ez-toolbar #brdmenu ul,
-#uploads.from-ez-toolbar #brdmenu a,
-#uploads.from-ez-toolbar #brdmenu a:link {
-    background:#4e4f51;
+	height:initial !important;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	padding-bottom: 0px;
+	width:100%;
 }
 #uploads.from-ez-toolbar ul:after {
-    content: " ";
-    display: block;
-    height: 0;
-    font-size: 0;
-    clear: both;
-    visibility: hidden;
+	content: " ";
+	display: block;
+	height: 0;
+	font-size: 0;
+	clear: both;
+	visibility: hidden;
 }
 #uploads.from-ez-toolbar #brdmenu li {
-    width:unset;
+	width:unset;
 }
 #uploads.from-ez-toolbar .picture {
-    max-width:300px;
-    margin:0 auto;
+	max-width:300px;
+	margin:0 auto;
 }
 #uploads.from-ez-toolbar .pun form .buttons {
-    padding-top:0;
-    padding-bottom:15px;
+	padding-top:0;
+	padding-bottom:15px;
 }
 #uploads .tc3 a:hover {
 	text-decoration: none;
@@ -4678,3 +4743,58 @@ form#edit p.buttons a {
 	content:'\f0d7';
 	color:inherit;
 }
+#uploads .information {
+	width: 90%;
+	max-width: 1000px;
+	margin: 0 auto;
+	font-size: 1em;
+	text-align: left;
+	line-height: 1.6;
+	position: relative;
+	background: #d1d7df;
+	color: #566579;
+}
+#uploads .information .inner {
+	padding: 16px 28px 16px 88px;
+}
+#uploads .information .inner:before {
+	position: absolute;
+	left: .5em;
+	top: 50%;
+	margin-top: -.8em;
+	font-size: 3.25em;
+	color: #516f89;
+	content: "\f05a";
+	font-family: fontawesome;
+}
+#uploads .information li {
+	list-style: disclosure-closed;
+	margin-left: 20px;
+}
+@media (max-width: 1024px) {
+
+	#uploads #page {
+		padding: 15px 1%;
+		width: 96%;
+		margin: 0 auto;
+	}
+	#uploads input[type="text"],
+	#uploads input[type="file"],
+	#uploads input[type="password"] {
+		width: 85% !important;
+		max-width: 85% !important;
+	}
+	#uploads figure {
+		margin: 0.2em;
+		padding:.5em;
+		width: 42%;
+	}
+	#uploads .information .inner {
+		padding: 2%;
+	}
+	#uploads .information .inner:before {
+		content: "";
+	}
+}
+/* @media (prefers-color-scheme: dark) {
+} */

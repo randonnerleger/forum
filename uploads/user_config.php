@@ -13,11 +13,15 @@ $french_strings = array(
 	'The chosen file is not an image'
 		=> 'Le fichier proposé n\\\'est pas une image',
     'Upload an album'
-        =>  'Envoyer un album',
-    'Browse pictures'
-        =>  'Parcourir les images',
-    'Browse albums'
-        =>  'Parcourir les albums',
+		=>  'Envoyer un album',
+	'Browse pictures'
+		=>  'Parcourir toutes les images',
+	'Browse albums'
+		=>  'Parcourir tous les albums',
+	'Browse my pictures'
+		=>  'Mes images',
+	'Browse my albums'
+		=>  'Mes albums',
     'Title'
         =>  'Titre',
     'File'
@@ -104,6 +108,10 @@ $french_strings = array(
         =>  'Redimensionnement',
     'IP address'
         =>  'Adresse IP',
+    'Not available'
+        =>  'Indisponible',
+    'Automatically removed from database'
+        =>  'Automatiquement supprimé de la base de données',
     'Really'
         =>  'Vraiment',
     'picture'

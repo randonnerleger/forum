@@ -1540,11 +1540,11 @@ class Fotoo_Hosting
             $savenameth = $th;
 
             // Save the original file
-            imagejpeg($rotated,$savename);
+            imagejpeg($rotated,$savename,70);
             imagedestroy($rotated);
 
             // Save the thumb
-            imagejpeg($rotatedth,$savenameth);
+            imagejpeg($rotatedth,$savenameth,70);
             imagedestroy($rotatedth);
 
 
@@ -1610,7 +1610,7 @@ class Fotoo_Hosting
 		if ( isset($_GET['mesphotos']) ) {
 			$where = 'WHERE punid == ' . $GLOBALS['punid'] .'';
 		} else {
-			$where = $this->logged() ? '' : 'WHERE private != 1';
+			$where = $this->logged() ? '' : 'WHERE private != 1 AND import != 1';
 		}
 		return $this->db->querySingle('SELECT COUNT(*) FROM pictures '.$where.';');
 	}
@@ -1758,6 +1758,18 @@ class Fotoo_Hosting
 		$url.= !empty($img['filename']) ? '.' . $img['filename'] : '';
 		$url.= '.' . strtolower($img['format']);
 		return $url;
+	}
+
+	public function getImageAuthor($img)
+	{
+		$author = $img['punname'];
+		return $author;
+	}
+
+	public function getImagePunID($img)
+	{
+		$author = $img['punid'];
+		return $author;
 	}
 
 	public function getImageThumbUrl($img)
@@ -2810,9 +2822,10 @@ class Fotoo_Hosting_Config
     public function __construct()
     {
         // Defaults
+        $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443 ? 'https' : 'http' ;
         $this->db_file = dirname(__FILE__) . '/datas.db';
         $this->storage_path = dirname(__FILE__) . '/i/';
-        $this->base_url = 'http://'. $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+        $this->base_url = $is_https . '://'. $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
 
         if ($this->base_url[strlen($this->base_url) - 1] != '/')
             $this->base_url .= '/';
@@ -2904,8 +2917,9 @@ if (!empty($_GET['delete']))
     {
 
 	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
-        $where = isset ( $_GET['mesphotos'] ) ? '&mesphotos' : '' ;
-        header('Location: '.$config->base_url.'?list'.$page.$where);
+        $where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '' ;
+        $where = isset ( $_GET['uplo'] ) ? '' : $where ;
+        header('Location: '.$config->base_url.$where);
     }
     else
     {
@@ -2961,8 +2975,9 @@ elseif (!empty($_GET['deleteAlbum']))
     if ($fh->removeAlbum($_GET['deleteAlbum'], $id))
     {
 	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
-        $where = isset ( $_GET['mesalbums'] ) ? '&mesalbums' : '' ;
-        header('Location: ' . $config->base_url . '?albums'.$page.$where);
+        $where = isset ( $_GET['mesalbums'] ) ? '?albums'.$page.'&mesalbums' : '' ;
+        $where = isset ( $_GET['uploadsAlbum'] ) ? '?album' : '' ;
+        header('Location: ' . $config->base_url.$where);
     }
     else
     {
@@ -3119,7 +3134,7 @@ elseif (isset($_GET['login']))
 }
 elseif (isset($_GET['list']))
 {
-    $title = __('Browse pictures');
+    $title = isset($_GET['mesphotos']) ? __('Browse my pictures') : __('Browse pictures') ;
 
     if (!empty($_GET['list']) && is_numeric($_GET['list']))
         $page = (int) $_GET['list'];
@@ -3133,10 +3148,15 @@ elseif (isset($_GET['list']))
 
     if ($fh->logged())
     {
-        $html .= '<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked pictures') . '?\');">
-        <p class="admin">
-            <input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = this.form.querySelectorAll(\'input[type=checkbox]\'), s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
-        </p>';
+
+		if ( !isset($_GET['mesphotos']) ) :
+        	$html .= '
+			<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked pictures') . '?\');">
+				<p class="admin">
+            		<input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = this.form.querySelectorAll(\'input[type=checkbox]\'), s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
+        		</p>';
+		endif;
+
     }
 
     $html .= '
@@ -3162,14 +3182,16 @@ elseif (isset($_GET['list']))
         $bbcode = '[url='.$img_url.'][img]'.$thumb_url.'[/img][/url]';
         $bbcodefullw = '[url='.$img_url.'][img]'.$img_url.'[/img][/url]';
 
-		if ( isset($_GET['mesphotos']) || $fh->logged() ) {
+		if ( ( isset($_GET['mesphotos']) || $fh->logged() ) ) {
 			$mesphotos = isset($_GET['mesphotos']) ? '&amp;mesphotos' : '&amp;logged' ;
-            $html .= '
-            <ul class="rotate"><!--
-                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--
-                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=180' . $mesphotos . '&amp;page='.$page.'">' . __('180°') . '</a></li><!--
-                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=270' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--
-            --></ul>';
+            $html .= '<ul class="rotate"><!--';
+			if ( $img['format'] == 'JPEG' ) :
+	            $html .= '
+				    --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--
+	                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=180' . $mesphotos . '&amp;page='.$page.'">' . __('180°') . '</a></li><!--
+	                --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=270' . $mesphotos . '&amp;page='.$page.'">' . __('90°') . '</a></li><!--';
+			endif;
+            $html .= '--></ul>';
 		}
 
 		if ( isset($_GET['mesphotos']) ) {
@@ -3185,16 +3207,25 @@ elseif (isset($_GET['list']))
                 </form>
                 </aside>';
 
-            $html .= '
-            <p class="admin">
-                <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;mesphotos&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
-            </p>';
+				// 	$html .= '
+				// 	<p class="admin">
+				// 	<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;mesphotos&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
+				// 	</p>';
 
         }
 
-        if ($fh->logged())
-        {
-            $html .= '<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> ' . __('Delete') . '</label>';
+		if ($fh->logged()) {
+			$html .= '
+				<p class="admin">
+					<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;mesphotos&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
+				</p>';
+		}
+
+        if ($fh->logged() && !isset($_GET['mesphotos']) ) {
+		$author = null != ( $fh->getImageAuthor($img) ) ? $fh->getImageAuthor($img) . ' / ' : '' ;
+		$punid = null != ( $fh->getImagePunID($img) ) ? $fh->getImagePunID($img) : '' ;
+            $html .= '<p class="admin"><a href="../profile.php?id='. $punid .'">' . $author . $punid . '</a></p>
+			<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> ' . __('Delete') . '</label>';
         }
 
         $html .= '
@@ -3205,13 +3236,13 @@ elseif (isset($_GET['list']))
         </article>';
 
 
-    if ($fh->logged())
+    if ( $fh->logged() && !isset($_GET['mesphotos']) )
     {
         $html .= '
-        <p class="admin submit">
-            <input type="submit" name="delete_pictures" value="' . __('Delete checked pictures') . '" />
-        </p>
-        </form>';
+	        <p class="admin submit">
+	            <input type="submit" name="delete_pictures" value="' . __('Delete checked pictures') . '" />
+	        </p>
+		</form>';
     }
 
     if ($max > $config->nb_pictures_by_page)
@@ -3236,7 +3267,7 @@ elseif (isset($_GET['list']))
 }
 elseif (isset($_GET['albums']))
 {
-    $title = __('Browse albums');
+    $title = isset($_GET['mesalbums']) ? __('Browse my albums') : __('Browse albums') ;
 
     if (!empty($_GET['albums']) && is_numeric($_GET['albums']))
         $page = (int) $_GET['albums'];
@@ -3248,11 +3279,11 @@ elseif (isset($_GET['albums']))
 
     $html = '';
 
-    if ($fh->logged())
+    if ($fh->logged() && !isset($_GET['mesalbums']))
     {
         $html .= '<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked albums') . '?\');">
         <p class="admin">
-            <input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = document.forms[0].querySelectorAll(\'input[type=checkbox]\'); var s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
+            <input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = this.form.querySelectorAll(\'input[type=checkbox]\'); var s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
         </p>';
     }
 
@@ -3302,14 +3333,21 @@ elseif (isset($_GET['albums']))
             </form>
             </aside>';
 
-        $html .= '
-        <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
-        </p>';
+		// 	$html .= '
+		//         <p class="admin">
+		//             <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
+		//         </p>';
 
         }
 
-        if ($fh->logged())
+		if ($fh->logged()) {
+			$html .= '
+		        <p class="admin">
+		            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
+		        </p>';
+		}
+
+        if ($fh->logged() && !isset($_GET['mesalbums']) )
         {
             $html .= '<label><input type="checkbox" name="albums[]" value="' . escape($album['hash']) . '" /> ' . __('Delete') . '</label>';
         }
@@ -3321,7 +3359,7 @@ elseif (isset($_GET['albums']))
     $html .= '
         </article>';
 
-    if ($fh->logged())
+    if ($fh->logged() && !isset($_GET['mesalbums']) )
     {
         $html .= '
         <p class="admin submit">
@@ -3418,12 +3456,14 @@ elseif (!empty($_GET['a']))
 
         $html .= '
         <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
-        </p><!--
-        <p class="admin">
-            ' . __('Keep this URL in your favorites to be able to delete this album later') . ':<br />
-            <input type="text" onclick="this.select();" value="'.escape($url).'" />
-        </p>-->';
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadsAlbum" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
+        </p>';
+
+        // $html .= '
+        // <p class="admin">
+        //     ' . __('Keep this URL in your favorites to be able to delete this album later') . ':<br />
+        //     <input type="text" onclick="this.select();" value="'.escape($url).'" />
+        // </p>-->';
     }
 
     foreach ($list as &$img)
@@ -3438,7 +3478,7 @@ elseif (!empty($_GET['a']))
             <div class="img"><a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>
             <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>';
 
-        if ($img['punid'] == $GLOBALS['punid'] ) :
+        if ( $img['punid'] == $GLOBALS['punid'] && $img['format'] == 'JPEG' ) :
             $html .= '
                 <ul class="rotate"><!--
                     --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90&amp;a='.rawurlencode($album['hash']).'">' . __('90°') . '</a></li><!--
@@ -3510,7 +3550,7 @@ elseif (isset($_GET['stats']))
 		$poidsmoyen = $punid['nbimage'] < 1 ? 0 : round($punid['punstorage'] / $nbimage / 1024, 2) . ' KB';
 		$html .= '
 		<tr class="' . $rowclass . '">
-			<td class="tcl1">'. $id .'</td>
+			<td class="tcl1"><a href="../profile.php?id='. $id .'">'. $id .'</a></td>
 			<td class="tcl2">' . $name  . '</td>
 			<td class="tcl3">'  . $size . '</td>
 			<td class="tcl3">'  . $nbimage . '</td>
@@ -3575,10 +3615,10 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
                 | Size: '.$img['width'].' × '.$img['height'].' ('.$img['format'].', '.$size.')
             </p>
         </header>
-        <figure>
+        <figure class="picture-visu">
             <a href="'.$img_url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$img_url.refresh().'" alt="'.escape($title).'" /></a>';
 
-        if ($img['punid'] == $GLOBALS['punid'] ) :
+        if ( $img['punid'] == $GLOBALS['punid'] && $img['format'] == 'JPEG' ) :
         $html .= '
             <ul class="rotate"><!--
                 --><li class="button"><a href="?rotate='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;angle=90&amp;img">' . __('90°') . '</a></li><!--
@@ -3647,7 +3687,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     {
         $html .= '
         <p class="admin">
-            ' . __('IP address') . ': ' . escape(is_null($img['ip']) ? 'Not available' : ($img['ip'] == 'R' ? 'Automatically removed from database' : $img['ip'])) . '
+            ' . __('IP address') . ': ' . escape(is_null($img['ip']) ?  __('Not available') : ($img['ip'] == 'R' ? __('Automatically removed from database'): $img['ip'])) . '
         </p>
         <p class="admin">
             <a href="?delete='.rawurlencode($img['hash']).'" onclick="return confirm(\'Really?\');">' . __('Delete picture') . '</a>
@@ -3657,7 +3697,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     {
         $html .= '
         <p class="admin">
-            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
+            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadsPhoto" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
         </p>
         <!--<p class="admin">
             ' . __('Keep this URL in your favorites to be able to delete this picture later') . ':<br />
@@ -3737,6 +3777,16 @@ else
             <p class="submit">
                 <input type="submit" id="f_submit" value="' . __('Upload') . '" />
             </p>
+			<div class="information"><div class="inner">
+			Pour assurer sa pérennité utilisez ce service avec discernement :
+				<ul>
+					<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
+					<li>Ne supprimez pas celles qui sont publiées dans les messages ou dans le wiki&nbsp;;
+					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
+					<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
+				</ul>
+				En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.
+			</div></div>
         </article>
         </form>';
     }
@@ -3777,6 +3827,16 @@ else
             <p class="submit">
                 <input type="submit" id="f_submit" value="' . __('Upload') . '" />
             </p>
+			<div class="information"><div class="inner">
+			Pour assurer sa pérennité utilisez ce service avec discernement :
+				<ul>
+					<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
+					<li>Ne supprimez pas celles qui sont publiées dans les messages ou dans le wiki&nbsp;;
+					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
+					<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
+				</ul>
+				En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.
+			</div></div>
         </article>
         </form>';
     }

@@ -3782,7 +3782,7 @@ else
 				<ul>
 					<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
 					<li>Ne supprimez pas celles qui sont publiées dans les messages ou dans le wiki&nbsp;;
-					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont vocation à être affichées sur un autre site&nbsp;;
+					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
 					<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
 				</ul>
 				En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.
@@ -3832,7 +3832,7 @@ else
 				<ul>
 					<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
 					<li>Ne supprimez pas celles qui sont publiées dans les messages ou dans le wiki&nbsp;;
-					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont vocation à être affichées sur un autre site&nbsp;;
+					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
 					<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
 				</ul>
 				En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.

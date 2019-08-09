@@ -3082,7 +3082,8 @@ form#edit .infldset.txtarea::before {
 	margin-top: 2em;
 }
 .redirect form#login label {
-	width: 100%;
+	width: 30%;
+	min-width: 230px;
 	padding: 0;
 }
 .redirect form#login input {
@@ -3881,13 +3882,16 @@ form#edit .infldset.txtarea::before {
 	 */
 
 	 /* BEGIN IDENTIFICATION REDIRECT */
+	 .redirect form#login label {
+	 	width: 100%;
+	 }
  	.redirect form#login input[type="text"],
  	.redirect form#login input[type="password"] {
  		width: calc(100% - 18px);
  		max-width: 100%;
  	}
  	/* END IDENTIFICATION REDIRECT */
-	
+
 	#brdmenu,
 	#dokuwiki__sitetools {
 		top:-20px;
@@ -4562,7 +4566,7 @@ p.admin,
 #albumParent {
 	background: rgb(100, 100, 100);
 	background: #d2dbe0;
-	padding: 10px 0 !important;
+	padding: 10px 0;
 	width: 90%;
 	max-width: 1000px;
 	margin: .8em auto;
@@ -4575,6 +4579,10 @@ p.admin a,
 #albumParent a {
 	color:#4e4f51 !important;
 	font-weight: bold
+}
+#uploads figure p.admin {
+	width: 100%;
+	padding: 5px 0;
 }
 #uploads figure label {
 	 font-weight: bold;

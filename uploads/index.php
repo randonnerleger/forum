@@ -1760,6 +1760,18 @@ class Fotoo_Hosting
 		return $url;
 	}
 
+	public function getImageAuthor($img)
+	{
+		$author = $img['punname'];
+		return $author;
+	}
+
+	public function getImagePunID($img)
+	{
+		$author = $img['punid'];
+		return $author;
+	}
+
 	public function getImageThumbUrl($img)
 	{
 		if (!$img['thumb'])
@@ -3195,16 +3207,25 @@ elseif (isset($_GET['list']))
                 </form>
                 </aside>';
 
-            $html .= '
-            <p class="admin">
-                <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;mesphotos&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
-            </p>';
+				// 	$html .= '
+				// 	<p class="admin">
+				// 	<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;mesphotos&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
+				// 	</p>';
 
         }
 
-        if ($fh->logged() && !isset($_GET['mesphotos']) )
-        {
-            $html .= '<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> ' . __('Delete') . '</label>';
+		if ($fh->logged()) {
+			$html .= '
+				<p class="admin">
+					<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;mesphotos&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
+				</p>';
+		}
+
+        if ($fh->logged() && !isset($_GET['mesphotos']) ) {
+		$author = null != ( $fh->getImageAuthor($img) ) ? $fh->getImageAuthor($img) . ' / ' : '' ;
+		$punid = null != ( $fh->getImagePunID($img) ) ? $fh->getImagePunID($img) : '' ;
+            $html .= '<p class="admin"><a href="../profile.php?id='. $punid .'">' . $author . $punid . '</a></p>
+			<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> ' . __('Delete') . '</label>';
         }
 
         $html .= '
@@ -3262,7 +3283,7 @@ elseif (isset($_GET['albums']))
     {
         $html .= '<form method="post" action="" onsubmit="return confirm(\'' . __('Delete all the checked albums') . '?\');">
         <p class="admin">
-            <input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = document.forms[0].querySelectorAll(\'input[type=checkbox]\'); var s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
+            <input type="button" value="' . __('Check / uncheck all') . '" onclick="var l = this.form.querySelectorAll(\'input[type=checkbox]\'); var s = l[0].checked; for (var i = 0; i < l.length; i++) { l[i].checked = s ? false : true; }" />
         </p>';
     }
 
@@ -3312,12 +3333,19 @@ elseif (isset($_GET['albums']))
             </form>
             </aside>';
 
-        $html .= '
-        <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
-        </p>';
+		// 	$html .= '
+		//         <p class="admin">
+		//             <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
+		//         </p>';
 
         }
+
+		if ($fh->logged()) {
+			$html .= '
+		        <p class="admin">
+		            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
+		        </p>';
+		}
 
         if ($fh->logged() && !isset($_GET['mesalbums']) )
         {
@@ -3429,11 +3457,13 @@ elseif (!empty($_GET['a']))
         $html .= '
         <p class="admin">
             <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadsAlbum" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
-        </p><!--
-        <p class="admin">
-            ' . __('Keep this URL in your favorites to be able to delete this album later') . ':<br />
-            <input type="text" onclick="this.select();" value="'.escape($url).'" />
-        </p>-->';
+        </p>';
+
+        // $html .= '
+        // <p class="admin">
+        //     ' . __('Keep this URL in your favorites to be able to delete this album later') . ':<br />
+        //     <input type="text" onclick="this.select();" value="'.escape($url).'" />
+        // </p>-->';
     }
 
     foreach ($list as &$img)

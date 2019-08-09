@@ -2954,7 +2954,7 @@ input[type="button"],
 	text-decoration: none !important;
 }
 /* Bouton clairs */
-a.secondary-button,
+.pun a.secondary-button,
 form#post p.buttons a,
 form#edit p.buttons a,
 #punmisc .buttons a,
@@ -2978,7 +2978,7 @@ form#edit p.buttons a,
 	transition-duration: 0.2s;
 	transition-timing-function: ease;
 }
-a.secondary-button:hover,
+.pun a.secondary-button:hover,
 form#post p.buttons a:hover,
 form#edit p.buttons a:hover,
 #punmisc .buttons a:hover,
@@ -3081,13 +3081,18 @@ form#edit .infldset.txtarea::before {
 .redirect form#login {
 	margin-top: 2em;
 }
+.redirect form#login label {
+	width: 100%;
+	padding: 0;
+}
 .redirect form#login input {
 	vertical-align:unset;
 }
 .redirect form#login input[type="text"],
 .redirect form#login input[type="password"] {
 	min-width: 200px;
-	max-width: 95%;
+	width: calc(100% - 18px);
+	max-width: 100%;
 }
 .redirect form#login p {
 	padding: 9px 0;
@@ -4386,7 +4391,7 @@ form#edit .infldset.txtarea::before {
 
 
 /* UPLOAD */
-#uploads article.picture figure {max-width: 60%;}
+/* #uploads article.picture figure {max-width: 60%;} */
 #uploads article.picture figure img {max-width: 100%;}
 
 #uploads blockquote, q {
@@ -4448,21 +4453,22 @@ form#edit .infldset.txtarea::before {
 	background: rgb(220, 220, 220);
 	background: rgba(255, 255, 255, 0.25);
 	border-radius: 3px;
-	padding: 1em;
+	padding: 1em 0;
 	margin: 1em auto;
 }
 #uploads .picture footer.context img {
-	max-width: 200px;
-	max-height: 150px;
+	max-width: 100%;
+	max-height: auto;
 }
 #uploads .picture footer.context figure {
 	position: relative;
-	width: 200px;
+	width: 25%;
+	max-width: 200px;
 	height: 180px;
 	margin: 0;
 }
 #uploads .picture footer.context figure b {
-	font-size: 100px;
+	font-size: 7em;
 	line-height: 120px;
 	width: 100%;
 	height: 150px;
@@ -4502,7 +4508,11 @@ form#edit .infldset.txtarea::before {
 	background:#f2f4f4;
 	padding:1em;
 	width: 35%;
-	max-width: 200px !important;
+	max-width: 200px;
+}
+#uploads figure.picture-visu {
+	width: 90%;
+	max-width: 90%;
 }
 #uploads figure img {
 	max-width: 100%;
@@ -4510,10 +4520,10 @@ form#edit .infldset.txtarea::before {
 #uploads figure figcaption {
 	font-size: small;
 }
-#uploads figure .img {
+/* #uploads figure .img {
     min-height:135px;
 	width: 100%;
-}
+} */
 #uploads figure .img img {
 	max-height: 130px;
 	margin:0 auto;

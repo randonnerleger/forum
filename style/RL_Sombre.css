@@ -530,6 +530,9 @@ COLOUR UNIFORMISATION
 		color: #cecece;
 		text-decoration:none;
 	} */
+	.pun .blockpost .postleft {
+		background: #393939;
+	}
 }
 @media handheld, only screen and (max-width: 768px) {
 	.pun .blockpost {
@@ -572,10 +575,10 @@ form#edit p.buttons a,
 .pagestext .spacer, */
 .pun .pagepost a,
 .pun .pagepost strong,
-.pun .pagepost .spacer,
+/* .pun .pagepost .spacer, */
 #uploads nav ul li a,
 #nav li a.disconnect {
-	background: #111;
+	background: #1c1c1c;
 	color:#d4d4d4 !important;
 	text-shadow: none;
 }
@@ -588,18 +591,20 @@ form#edit p.buttons a:hover,
 .pagestext .spacer:hover, */
 .pun .pagepost a:hover,
 .pun .pagepost strong:hover,
-.pun .pagepost .spacer:hover,
+.pun .pagepost strong,
+/* .pun .pagepost .spacer:hover, */
 #uploads nav ul li a:hover,
 #nav li a.disconnect:hover {
-	background: #1c1c1c;
+	background: #111;
 }
 .pagepost strong,
 #uploads .pagination .selected a {
 	background: #020202;
 }
 /* .pagestext .spacer, */
-.pagepost .spacer {
+.pun .pagepost .spacer {
 	background:transparent;
+	color:#fff;
 }
 
 /*UPLOAD SOMBRE*/

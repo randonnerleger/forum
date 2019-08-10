@@ -1491,8 +1491,13 @@ class Fotoo_Hosting
 		$file = $this->_getPath($img);
 
 		if (file_exists($file))
-		$sizeremoved = $this->db->querySingle('SELECT size FROM pictures WHERE hash = \''.$hash.'\'');
-		$this->db->exec('UPDATE stats SET punstorage = punstorage - "' . $sizeremoved . '", nbimage = nbimage - 1 WHERE punid = \'' . $GLOBALS['punid'] .'\';');
+
+		$res = $this->db->querySingle(
+			'SELECT * FROM pictures WHERE hash = \''.$hash.'\';',
+			true
+		);
+
+		$this->db->exec('UPDATE stats SET punstorage = punstorage - "' . $res['size'] . '", nbimage = nbimage - 1 WHERE punid = \'' . $res['punid'] .'\';');
 
 			unlink($file);
 
@@ -1584,7 +1589,7 @@ class Fotoo_Hosting
 		} else {
 			$orderby = 'punstorage';
 		}
-		$res = $this->db->query('SELECT * FROM stats ORDER BY ' . $orderby . ' DESC LIMIT 100;');
+		$res = $this->db->query('SELECT * FROM stats ORDER BY ' . $orderby . ' DESC LIMIT 1000;');
 
 		while ($row = $res->fetchArray(SQLITE3_ASSOC))
 		{
@@ -1709,12 +1714,12 @@ class Fotoo_Hosting
 		$sizeremoved=0;
 
 		$res = $this->db->query('SELECT * FROM pictures WHERE album = \''.$this->db->escapeString($hash).'\';');
-
 		while ($row = $res->fetchArray(SQLITE3_ASSOC))
 		{
 			$file = $this->_getPath($row);
 
 			if (file_exists($file))
+				$punid = $row['punid'];
 				$imageremoved++;
 				$sizeremoved=$sizeremoved + $row['size'];
 				unlink($file);
@@ -1723,7 +1728,7 @@ class Fotoo_Hosting
 				return false;
 		}
 
-		$this->db->exec('UPDATE stats SET punstorage = punstorage - "' . $sizeremoved . '", nbimage = nbimage - ' . $imageremoved . '  WHERE punid = \'' . $GLOBALS['punid'] .'\';');
+		$this->db->exec('UPDATE stats SET punstorage = punstorage - "' . $sizeremoved . '", nbimage = nbimage - ' . $imageremoved . ' WHERE punid = \'' . $punid .'\';');
 		$this->db->exec('DELETE FROM albums WHERE hash = \''.$this->db->escapeString($hash).'\';');
 		return true;
 	}
@@ -2917,8 +2922,8 @@ if (!empty($_GET['delete']))
     {
 
 	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
-        $where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '' ;
-        $where = isset ( $_GET['uplo'] ) ? '' : $where ;
+        $where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '?list'.$page ;
+        $where = isset ( $_GET['uploadedPicture'] ) ? '' : $where ;
         header('Location: '.$config->base_url.$where);
     }
     else
@@ -2975,8 +2980,8 @@ elseif (!empty($_GET['deleteAlbum']))
     if ($fh->removeAlbum($_GET['deleteAlbum'], $id))
     {
 	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
-        $where = isset ( $_GET['mesalbums'] ) ? '?albums'.$page.'&mesalbums' : '' ;
-        $where = isset ( $_GET['uploadsAlbum'] ) ? '?album' : '' ;
+        $where = isset ( $_GET['mesalbums'] ) ? '?albums'.$page.'&mesalbums' : '?albums'.$page ;
+        $where = isset ( $_GET['uploadedAlbum'] ) ? '?album' : $where ;
         header('Location: ' . $config->base_url.$where);
     }
     else
@@ -3215,9 +3220,12 @@ elseif (isset($_GET['list']))
         }
 
 		if ($fh->logged()) {
+
+			$where = isset ( $_GET['mesphotos'] ) ? '&amp;mesphotos' : '&amp;list' ;
+
 			$html .= '
 				<p class="admin">
-					<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).'&amp;mesphotos&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
+					<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']) . $where . '&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
 				</p>';
 		}
 
@@ -3341,9 +3349,12 @@ elseif (isset($_GET['albums']))
         }
 
 		if ($fh->logged()) {
+
+			$where = isset ( $_GET['mesalbums'] ) ? '&amp;mesalbums' : '' ;
+
 			$html .= '
 		        <p class="admin">
-		            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
+		            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']) . $where . '&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
 		        </p>';
 		}
 
@@ -3445,7 +3456,7 @@ elseif (!empty($_GET['a']))
     {
         $html .= '
         <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;uploadedAlbum" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
         </p>';
     }
     elseif (!empty($_GET['c']))
@@ -3456,7 +3467,7 @@ elseif (!empty($_GET['a']))
 
         $html .= '
         <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadsAlbum" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadedAlbum" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
         </p>';
 
         // $html .= '
@@ -3516,6 +3527,9 @@ elseif (!empty($_GET['a']))
 }
 elseif (isset($_GET['stats']))
 {
+	if (!$fh->logged())
+		header('Location: '.$config->base_url);
+
 	$stats = $fh->getStats();
 	$title = 'Stats';
 
@@ -3690,14 +3704,14 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
             ' . __('IP address') . ': ' . escape(is_null($img['ip']) ?  __('Not available') : ($img['ip'] == 'R' ? __('Automatically removed from database'): $img['ip'])) . '
         </p>
         <p class="admin">
-            <a href="?delete='.rawurlencode($img['hash']).'" onclick="return confirm(\'Really?\');">' . __('Delete picture') . '</a>
+            <a href="?delete='.rawurlencode($img['hash']).'&amp;uploadedPicture" onclick="return confirm(\'Really?\');">' . __('Delete picture') . '</a>
         </p>';
     }
     elseif (!empty($_GET['c']))
     {
         $html .= '
         <p class="admin">
-            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadsPhoto" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
+            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadedPicture" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
         </p>
         <!--<p class="admin">
             ' . __('Keep this URL in your favorites to be able to delete this picture later') . ':<br />

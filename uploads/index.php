@@ -994,6 +994,13 @@ class Fotoo_Hosting
 			mkdir($config->storage_path);
 	}
 
+
+	public function isPrivateAllowed()
+	{
+		if ( in_array($GLOBALS['punusergroup'], $this->config->allow_private ) )
+			return true;
+	}
+
     public function isClientBanned()
     {
     	if (!empty($_COOKIE['bstats']))
@@ -1201,6 +1208,23 @@ class Fotoo_Hosting
 				return __('Unknown error.');
 		}
 	}
+
+	static public function getInfoMessage ()
+    {
+		$info = '';
+		$info .= '
+		<div class="information"><div class="inner">
+			Pour assurer sa pérennité utilisez ce service avec discernement :
+				<ul>
+					<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
+					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
+					<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
+				</ul>
+				En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.
+			</div></div>';
+		return $info;
+
+    }
 
 	protected function _processEncodedUpload(&$file)
 	{
@@ -1421,7 +1445,7 @@ class Fotoo_Hosting
 		$req->bindValue(':width', (int)$width);
 		$req->bindValue(':height', (int)$height);
 		$req->bindValue(':thumb', (int)$thumb);
-		$req->bindValue(':private', $private && $GLOBALS['punusergroup'] == 1 ? '1' : '0');
+		$req->bindValue(':private', $private && $this->isPrivateAllowed() ? '1' : '0');
 		$req->bindValue(':size', (int)$size);
 		$req->bindValue(':album', is_null($album) ? NULL : $album);
 		$req->bindValue(':ip', self::getIPAsString());
@@ -1845,7 +1869,7 @@ class Fotoo_Hosting
 		}
 
 		$hash = self::baseConv(hexdec(uniqid()));
-		$private = $GLOBALS['punusergroup'] == 1 ? (int)(bool)$private : 0 ;
+		$private = $this->isPrivateAllowed() ? (int)(bool)$private : 0 ;
 		$this->db->exec('INSERT INTO albums (hash, title, date, private, punid, punname )
 			VALUES (\''.$this->db->escapeString($hash).'\',
 			\''.$this->db->escapeString(trim($title)).'\',
@@ -2694,6 +2718,7 @@ class Fotoo_Hosting_Config
 
     private $admin_password = null;
     private $banned_ips = null;
+	private $allow_private = null;
     private $ip_storage_expiration = null;
 
     public function __set($key, $value)
@@ -2718,6 +2743,9 @@ class Fotoo_Hosting_Config
                 $this->$key = (string) $value;
                 break;
             case 'banned_ips':
+                $this->$key = (array) $value;
+                break;
+            case 'allow_private':
                 $this->$key = (array) $value;
                 break;
             case 'allow_upload':
@@ -2817,6 +2845,7 @@ class Fotoo_Hosting_Config
             case 'allow_upload':    return __('Allow upload of files? You can use this to restrict upload access. Can be a boolean or a PHP callback. See the FAQ for more informations.');
             case 'admin_password':  return __('Password to access admin UI? (edit/delete files, see private pictures)');
             case 'banned_ips':      return __('List of banned IP addresses (netmasks and wildcards accepted, IPv6 supported)');
+            case 'allow_private':   return __('List of groups for which private images are allowed');
             case 'allowed_formats': return __('Allowed formats, separated by a comma');
             case 'ip_storage_expiration':
                                     return __('Expiration (in days) of IP storage, after this delay IP addresses will be removed from database');
@@ -2862,6 +2891,7 @@ class Fotoo_Hosting_Config
         $this->allow_upload = true;
         $this->admin_password = 'fotoo';
         $this->banned_ips = [];
+        $this->allow_private = [];
         $this->ip_storage_expiration = 366;
         $this->nb_pictures_by_page = 20;
 
@@ -3772,7 +3802,7 @@ else
                     <dt><label for="f_title">' . __('Title') . ':</label></dt>
                     <dd><input type="text" name="title" id="f_title" maxlength="100" required="required" /></dd>';
 
-                    if ( $GLOBALS['punusergroup'] == 1 ) {
+                    if ( $fh->isPrivateAllowed() ) {
                     $html .= '
                     <dt><label for="f_private">' . __('Private') . '</label></dt>
                     <dd class="private"><label><input type="checkbox" name="private" id="f_private" value="1" />
@@ -3791,15 +3821,7 @@ else
             <p class="submit">
                 <input type="submit" id="f_submit" value="' . __('Upload') . '" />
             </p>
-			<div class="information"><div class="inner">
-			Pour assurer sa pérennité utilisez ce service avec discernement :
-				<ul>
-					<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
-					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
-					<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
-				</ul>
-				En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.
-			</div></div>
+			' . Fotoo_Hosting::getInfoMessage() . '
         </article>
         </form>';
     }
@@ -3823,7 +3845,7 @@ else
                     <dt><label for="f_name">' . __('Name') . ':</label></dt>
                     <dd><input type="text" name="name" id="f_name" maxlength="30" /></dd>';
 
-                    if ( $GLOBALS['punusergroup'] == 1 ) {
+                    if ( $fh->isPrivateAllowed() ) {
                     $html .= '
                     <dt><label for="f_private">' . __('Private') . '</label></dt>
                     <dd class="private"><label><input type="checkbox" name="private" id="f_private" value="1" />
@@ -3840,15 +3862,7 @@ else
             <p class="submit">
                 <input type="submit" id="f_submit" value="' . __('Upload') . '" />
             </p>
-			<div class="information"><div class="inner">
-			Pour assurer sa pérennité utilisez ce service avec discernement :
-				<ul>
-					<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
-					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
-					<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
-				</ul>
-				En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.
-			</div></div>
+			' . Fotoo_Hosting::getInfoMessage() . '
         </article>
         </form>';
     }
@@ -4020,5 +4034,6 @@ else
 </body>
 </html>';
 }
+
 
 ?>

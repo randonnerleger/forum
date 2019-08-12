@@ -168,6 +168,8 @@ $french_strings = array(
         =>  'Mot de passe pour accéder à l\'interface administrateur (éditer/supprimer, voir les images privées)',
     'List of banned IP addresses (netmasks and wildcards accepted, IPv6 supported)'
         =>  'Liste des adresses IP bannies (masques et wildcards acceptés, IPv6 supporté)',
+    'List of groups for which private images are allowed'
+        =>  'Liste des groupes pour lesquels les images privées sont autorisées',
     'Allowed formats, separated by a comma'
         =>  'Formats autorisés, séparés par une virgule',
     'Expiration (in days) of IP storage, after this delay IP addresses will be removed from database'

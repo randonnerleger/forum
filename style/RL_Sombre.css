@@ -32,10 +32,14 @@ body {
 }
 #nav li a,
 .togglebox li.display.identification label {
-	color:#999;
+	color:#fff;
 }
 #nav ul.sub-menu li a {
-	color:#60A0DC;
+	color:#AEAEAE;
+}
+#nav li a:hover,
+#nav ul.sub-menu li a:hover {
+	color:#d4d4d4;
 }
 #nav li.highlight {
 	background: #393939;
@@ -334,15 +338,15 @@ textarea {
 ----------------------------------------------------------------*/
 
 .pun a:link,
-.pun a:visited,
-.pun h2 a:link,
-.pun h2 a:visited {
-	color: #AEAEAE;
+.pun h2 a:link  {
+	color: #fff;
 	}
 
 .pun a:hover,
 .pun a:active,
-.pun a:focus {
+.pun a:focus,
+.pun a:visited,
+.pun h2 a:visited {
 	color: #d4d4d4;
 }
 
@@ -409,12 +413,12 @@ COLOUR DOKUWIKI
 }
 #dokuwiki__site a:link,
 #dokuwiki__site a:visited {
-	color: #AEAEAE;
+	color: #fff;
 }
 #dokuwiki__site a:hover,
 #dokuwiki__site a:active,
 #dokuwiki__site a:focus {
-	color: #d4d4d4;
+	color: #fff;
 }
 #dokuwiki__header,
 #dokuwiki__site > .site {
@@ -613,7 +617,7 @@ form#edit p.buttons a:hover,
 }
 #uploads figure {
 	border: 1px solid #222222;
-	background: #292929;
+	background: #222222;
 }
 #uploads .picture footer.context {
 	background: rgb(44, 44, 44);
@@ -628,6 +632,11 @@ form#edit p.buttons a:hover,
 }
 #uploads #resizeParent,
 #uploads p.admin, #albumParent,
-#uploads ul.rotate li {
-	background:#111;
+#uploads ul.rotate li,
+#uploads .information {
+	background:#292929;
+	color: #fff;
+}
+#uploads .information .inner:before {
+	color: #516f89;
 }

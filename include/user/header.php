@@ -1,35 +1,12 @@
-<div id="top-page"><a href="#wrapper-rl"></a></div>
-<div id="wrapper-rl">
+<?php
+// Je check si connecté
+$connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connected' ;
+?>
+<div id="top-page"><a onclick="window.top.window.scrollTo(0,0);return false" href="#wrapper-rl"></a></div>
+<div id="wrapper-rl" class="<?php echo $connected; ?>">
 	<input type="checkbox" id="menu-left-checkbox" class="menu-left-checkbox" role="button">
 	<input type="checkbox" id="menu-search-checkbox" class="menu-search-checkbox">
 	<input type="checkbox" id="menu-forum-checkbox" class="menu-forum-checkbox">
-
-<?php
-
-function get_browsername() {
-if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE){
-$browser = 'Microsoft Internet Explorer';
-}elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE) {
-$browser = 'Google Chrome';
-}elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE) {
-$browser = 'Mozilla Firefox';
-}elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== FALSE) {
-$browser = 'Opera';
-}elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE) {
-$browser = 'Apple Safari';
-}else {
-$browser = 'error'; //<-- Browser not found.
-}
-return $browser;
-}
-
-#echo '. ' . get_browsername() . ' .'; //<-- Display the browser name
-
-#if(get_browsername() == 'Mozilla Firefox') { 
-if(get_browsername() == 'Opera') { 
-	$hackOperaMini = 'opera';
-}
-?>
 
 	<div id="wrapper-inner" class="<?php echo $hackOperaMini ?>">
 		<div id="header">
@@ -52,102 +29,16 @@ if(get_browsername() == 'Opera') {
 
 # Redirection Search
 # Opitux
-class UserInput {
-	protected $post, $get, $cookie;
-	/**
-	* __construct
-	*
-	* Create a new instance of UserInput
-	*/
-	public function __construct() {
-		$this->post = $_POST;
-		$this->get = $_GET;
-		$this->cookie = $_COOKIE;
-	}
-	/**
-	* get
-	* Get a value from $_GET and sanitize it
-	*
-	* @param string $key	Key to get from array
-	* @param string $type   What type is the variable (string, email, int, float, encoded, url, email)
-	* @param array  $option Options for filter_var
-	* @return mixed will return false on failure
-	*/
-	public function get($key, $type = 'string', $options = array()) {
-		if (!isset($this->get[$key])) {
-			return false;
-		}
-		return filter_var($this->get[$key], $this->get_filter($type), $options);
-	}
-	/**
-	* post
-	* Get a value from $_POST and sanitize it
-	*
-	* @param string $key	Key to get from array
-	* @param string $type   What type is the variable (string, email, int, float, encoded, url, email)
-	* @param array  $option Options for filter_var
-	* @return mixed will return false on failure
-	*/
-	public function post($key, $type='string', $options = array()) {
-		if (isset($this->post[$key])) {
-			return false;
-		}
-		return filter_var($this->post[$key], $this->get_filter($type), $options);
-	}
-	/**
-	* cookie
-	* Get a value from $_COOKIE and sanitize it
-	*
-	* @param string $key	Key to get from array
-	* @param string $type   What type is the variable (string, email, int, float, encoded, url, email)
-	* @param array  $option Options for filter_var
-	* @return mixed will return false on failure
-	*/
-	public function cookie($key, $type='string', $options = array()) {
-		if (isset($this->cookie[$key])) {
-			return false;
-		}
-		return filter_var($this->cookie[$key], $this->get_filter($type), $options);
-	}
-	private function get_filter($type) {
-		switch (strtolower($type)) {
-			case 'string':
-				$filter = FILTER_SANITIZE_STRING;
-				break;
-			case 'int':
-				$filter = FILTER_SANITIZE_NUMBER_INT;
-				break;
-			case 'float' || 'decimal':
-				$filter = FILTER_SANITIZE_NUMBER_FLOAT;
-				break;
-			case 'encoded':
-				$filter = FILTER_SANITIZE_ENCODED;
-				break;
-			case 'url':
-				$filter = FILTER_SANITIZE_URL;
-				break;
-			case 'email':
-				$filter = FILTER_SANITIZE_EMAIL;
-				break;
-			default:
-				$filter = FILTER_SANITIZE_STRING;
-		}
-		return $filter;
-	}
-}
-
 $RLinput = new UserInput();
-$RLsearch = $RLinput->get('q', 'string');
+$RLsearch = str_replace('&#34;', '"', $RLinput->get('q', 'string'));
 $RLpath = $RLinput->get('domainroot', 'string');
 $RLwiki = $RLinput->get('do', 'string');
-
-echo $RLpath;
 
 if( isset($RLsearch) && null != $RLsearch ) {
 	switch ($RLpath) {
 		case 'interne':
 
-			header('Location: /wiki/doku.php?do=search&id='.$RLsearch.'');
+			header('Location: '.folder_rl.'/wiki/doku.php?do=search&id='.$RLsearch.'');
 			break;
 
 		default:
@@ -167,7 +58,7 @@ if( isset($RLsearch) && null != $RLsearch ) {
 							var RLvintage = (RLsearch == 'fermeture+rl');
 								if(RLvintage){
 									alert('Aïe !! \nVotre requête vous entraîne dans les tréfonds du forum ;)');
-									document.location.href="https://www.randonner-leger.org/forum/uploads/2_bd_annivrl_7ans.gif";
+									document.location.href="<?php echo $site_url . folder_rl ; ?>/forum/uploads/2_bd_annivrl_7ans.gif";
 									return false;
 								}
 						}

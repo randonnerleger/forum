@@ -5,7 +5,7 @@ if ((isset($required_fields['req_message']) && basename($_SERVER['PHP_SELF']) !=
 
 // Retrieving all values from config file
 require PUN_ROOT.'plugins/ezbbc/config.php';
-$smilies_path = ($ezbbc_config['smilies_set'] == 'fluxbb_default_smilies') ? 'img/smilies/' : 'plugins/ezbbc/style/smilies/'; 
+$smilies_path = ($ezbbc_config['smilies_set'] == 'fluxbb_default_smilies') ? 'img/smilies/' : 'plugins/ezbbc/style/smilies/';
 $plugin_folder = 'plugins/ezbbc/';
 
 // Identifying the name of the current page textatera
@@ -15,7 +15,7 @@ $textarea_name = (PUN_ACTIVE_PAGE == 'profile') ? 'signature' : 'req_message';
 if (($textarea_name == 'signature' && $ezbbc_config['signature_toolbar'] == 'signature_toolbar') || ($textarea_name == 'req_message' && (basename($_SERVER['PHP_SELF']) != 'viewtopic.php') && $ezbbc_config['post_toolbar'] == 'post_toolbar') || ($textarea_name == 'req_message' && (basename($_SERVER['PHP_SELF']) == 'viewtopic.php') && $ezbbc_config['quickpost_toolbar'] == 'quickpost_toolbar')):
 
 // Language file load
-$ezbbc_language_folder = (file_exists(PUN_ROOT.'plugins/ezbbc/lang/'.$pun_user['language'].'/ezbbc_plugin.php')) ? $pun_user['language'] : 'English';    
+$ezbbc_language_folder = (file_exists(PUN_ROOT.'plugins/ezbbc/lang/'.$pun_user['language'].'/ezbbc_plugin.php')) ? $pun_user['language'] : 'English';
 require PUN_ROOT.'plugins/ezbbc/lang/'.$ezbbc_language_folder.'/ezbbc_plugin.php';
 
 // Retrieving help file
@@ -59,13 +59,13 @@ echo substr($smiley_text, 0, strlen($smiley_text)-2);
 
 ?>
 );
-// Function to insert the tags in the textarea       
+// Function to insert the tags in the textarea
 function insertTag(startTag, endTag, tagType) {
-        var field  = document.getElementsByName('<?php echo $textarea_name ?>')[0]; 
+        var field  = document.getElementsByName('<?php echo $textarea_name ?>')[0];
         var scroll = field.scrollTop;
         field.focus();
-        
-        
+
+
         /* === Part 1: get the selection === */
         if (window.ActiveXObject) { //For IE
                 var textRange = document.selection.createRange();
@@ -75,7 +75,7 @@ function insertTag(startTag, endTag, tagType) {
                 var currentSelection = field.value.substring(field.selectionStart, field.selectionEnd);
                 var endSelection     = field.value.substring(field.selectionEnd);
         }
-        
+
         /* === Part 2: what Tag type ? === */
         if (tagType) {
                 switch (tagType) {
@@ -99,7 +99,7 @@ function insertTag(startTag, endTag, tagType) {
        		                        currentSelection = '';
        		                    }
        		                }
-       		                       
+
        		            } else { //For other browsers
        		                if (startSelection.length == 0) { //Looking if we are at the beginning of the textarea
        		                    startTag = ' ' + startTag + ' ';
@@ -115,7 +115,7 @@ function insertTag(startTag, endTag, tagType) {
        		                    }
        		                }
        		            }
-       		                       
+
        		            //Common situations for all browsers
        		            if (currentSelection.length >= 2) {
 							//To ease checking, variable definition
@@ -138,24 +138,24 @@ function insertTag(startTag, endTag, tagType) {
        		                    startTag = ' ' + starTag + ' ';
        		                }
        		                currentSelection = '';
-       		            } 
+       		            }
 			break;
 		}
         }
-        
+
         /* === Part 3: adding what was produced === */
         if (window.ActiveXObject) { //For IE
                 textRange.text = startTag + currentSelection + endTag;
                 textRange.moveStart('character', -endTag.length - currentSelection.length);
                 textRange.moveEnd('character', -endTag.length);
-                textRange.select();     
+                textRange.select();
         } else { //For other browsers
                 field.value = startSelection + startTag + currentSelection + endTag + endSelection;
                 field.focus();
                 field.setSelectionRange(startSelection.length + startTag.length, startSelection.length + startTag.length + currentSelection.length);
-        } 
+        }
 		field.scrollTop = scroll;
-		
+
 }
 //Function to make an element with a certain id visible or not
 function ezbbcVisibility(id) {
@@ -227,7 +227,7 @@ function doToolbar() {
 	<?php if ($ezbbc_config['em'] == 'em'): ?>
 	toolbar += '<a href="#" id="emphasis"  title="<?php echo $lang_ezbbc['Emphasis title'] ?>" onclick="insertTag(\'[em]\',\'[/em]\',\'\'); return false;"><span><?php echo $lang_ezbbc['Emphasis'] ?><\/span><\/a>';
 	<?php endif; ?>
-	
+
 	// Color and heading
 	<?php if ($ezbbc_config['color'] == 'color'): ?>
 	toolbar += '<a href="#" id="color"  title="<?php echo $lang_ezbbc['Colorize title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>colorpicker.php?textarea_name=<?php echo $textarea_name ?>\', \'Colorpicker\', \'height=400, width=400, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Colorize'] ?><\/span><\/a>';
@@ -243,15 +243,17 @@ function doToolbar() {
 	<?php if ($ezbbc_config['email'] == 'email'): ?>
 	toolbar += '<a href="#" id="email" title="<?php echo $lang_ezbbc['E-mail title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>email.php?textarea_name=<?php echo $textarea_name ?>\', \'Email\', \'height=300, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['E-mail'] ?><\/span><\/a>';
 	<?php endif; ?>
-    
+
 	<?php if ($pun_config['p_message_img_tag'] == '1' && $ezbbc_config['img'] == 'img'): ?>
 	// if image tag enabled
 	toolbar += '<a href="#" id="image" title="<?php echo $lang_ezbbc['Image title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>image.php?textarea_name=<?php echo $textarea_name ?>\', \'Image\', \'height=<?php echo ($ezbbc_config['img_upload'] == 'no_img_upload' || $pun_user['is_guest']) ? '300' : (($ezbbc_config['img_list'] == 'img_list') ? '560' : '410') ?>, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Image'] ?><\/span><\/a>';
 	<?php endif; ?>
 
-//********************* Modif : Tableaux
-    toolbar += '<a href="#" id="rltable" title="<?php echo $lang_ezbbc['RLtable'] ?>" onclick="window.open(\'plugins/rltable/\', \'Rltable\', \'height=600, width=1000, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['RLtable'] ?><\/span><\/a>';
-//********************* Fin Modif	
+	//********************* Modif : Tableaux + fotoo
+		toolbar += '<a href="#" id="rlgallery" title="<?php echo $lang_ezbbc['Image title'] ?>" onclick="window.open(\'uploads/?insert=1\', \'InsertImage\', \'height=600, width=1000, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Image'] ?><\/span><\/a>';
+
+	    toolbar += '<a href="#" id="rltable" title="<?php echo $lang_ezbbc['RLtable'] ?>" onclick="window.open(\'plugins/rltable/\', \'Rltable\', \'height=600, width=1000, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['RLtable'] ?><\/span><\/a>';
+	//********************* Fin Modif
 
 	// Quote and code
 	<?php if ($ezbbc_config['quote'] == 'quote'): ?>
@@ -271,15 +273,15 @@ function doToolbar() {
 	<?php if ($ezbbc_config['alist'] == 'alist'): ?>
 	toolbar += '<a href="#" id="aolist" title="<?php echo $lang_ezbbc['Alphabetical Ordered List title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>list.php?textarea_name=<?php echo $textarea_name ?>&amp;list_type=a\', \'List\', \'height=350, width=620, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Alphabetical Ordered List'] ?><\/span><\/a>';
 	<?php endif; ?>
-	
+
 	<?php if ($ezbbc_config['video'] == 'video'): ?>
 	// Video
     toolbar += '<a href="#" id="video" title="<?php echo $lang_ezbbc['Video title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>video.php?textarea_name=<?php echo $textarea_name ?>\', \'Video\', \'height=350, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Video'] ?><\/span><\/a>';
 	<?php endif; ?>
-	
+
   <?php endif; ?>
   // End if BBCode enabled
-  
+
         <?php if ($pun_config['o_smilies'] == '1' && $ezbbc_config['smiliesb'] == 'smiliesb'): ?>
         // Smilies toggle button
 	toolbar += '<a href="#" id="smiliesb" title="<?php echo $lang_ezbbc['Smilies toggle title'] ?>" onclick="ezbbcVisibility(\'ezbbcsmiliesbar\'); return false;"><span><?php echo $lang_ezbbc['Smilies toggle'] ?><\/span><\/a>';
@@ -288,7 +290,7 @@ function doToolbar() {
 	// Help link
 	toolbar += '<a href="#" id="help" title="<?php echo $lang_ezbbc['Toolbar help title'] ?>" onclick="window.open(\'<?php echo $help_file_path ?>\', \'Toolbar_help\', \'height=400, width=750, top=50, left=50, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Toolbar help'] ?><\/span><\/a>';
 	<?php endif; ?>
-  
+
 // End Toolbar for common teaxtareas
 <?php endif; ?>
 
@@ -335,20 +337,20 @@ function doToolbar() {
 	<?php if ($pun_config['p_sig_img_tag'] == '1' && $ezbbc_config['img'] == 'img'): ?>
 	toolbar += '<a href="#" id="image" title="<?php echo $lang_ezbbc['Image title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>image.php?textarea_name=<?php echo     $textarea_name ?>\', \'Image\', \'height=<?php echo ($ezbbc_config['img_upload'] == 'no_img_upload' || $pun_user['is_guest']) ? '300' : (($ezbbc_config['img_list'] == 'img_list') ? '560' : '410') ?>, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Image'] ?><\/span><\/a>';
 	<?php endif; ?>
-	
+
   // End if BBCode enabled
   <?php endif; ?>
-  
+
         <?php if ($pun_config['o_smilies_sig'] == '1' && $ezbbc_config['smiliesb'] == 'smiliesb'): ?>
         // smilies toggle button
 	toolbar += '<a href="#" id="smiliesb" title="<?php echo $lang_ezbbc['Smilies toggle title'] ?>" onclick="ezbbcVisibility(\'ezbbcsmiliesbar\'); return false;"><span><?php echo $lang_ezbbc['Smilies toggle'] ?><\/span><\/a>';
 	<?php endif; ?>
-  
+
 	<?php if (($pun_config['o_smilies_sig'] == '1' || $pun_config['p_sig_bbcode'] == '1') && ($ezbbc_config['help'] == 'help')): ?>
 	// Help link
     toolbar += '<a href="#" id="help" title="<?php echo $lang_ezbbc['Toolbar help title'] ?>" onclick="window.open(\'<?php echo $help_file_path ?>\', \'Toolbar_help\', \'height=400, width=750, top=50, left=50, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Toolbar help'] ?><\/span><\/a>';
 	<?php endif; ?>
-        
+
 // End for Signature textarea
 <?php endif; ?>
 

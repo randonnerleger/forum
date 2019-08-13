@@ -1,23 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<pun_language>" lang="<pun_language>" dir="<pun_content_direction>">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- BEGIN HEADER RL -->
-<pun_include "config.php">
-<pun_include "header_img_aleatoire.php">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- BEGIN Modif RL -->
+	<title>Maintenance / Randonner-Leger</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/forum/style/RL_Clair.css" />
 <!-- END RL -->
-<pun_head>
-<!-- BEGIN HEADER RL -->
-<pun_include "header_favicon.php">
-<!-- END RL -->
-<pun_head>
 </head>
 
 <body>
 
 <div id="punmaint" class="pun">
-<!-- BEGIN HEADER RL -->
-<pun_include "logo.php">
+<!-- BEGIN Modif RL -->
+<img src="/tpl/img/logo.png" />
 <!-- END RL -->
 <div class="top-box"></div>
 <div class="punwrap">
@@ -25,10 +21,6 @@
 <div id="brdmain">
 <pun_maint_main>
 </div>
-
-<!-- BEGIN FOOTER RL -->
-<pun_include "footer.php">
-<!-- END FOOTER RL -->
 
 </div>
 <div class="end-box"></div>

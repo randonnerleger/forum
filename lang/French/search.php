@@ -2,13 +2,14 @@
 
 // Language definitions used in search.php
 $lang_search = array(
- 
+
 // The search form
 'User search'			=>	'Rechercher un utilisateur',
 'No search permission'		=>	'Vous ne pouvez pas effectuer de recherche, vous n\'avez pas les permissions requises',
 'Search flood'			=>	'Vous devez patienter au minimum %s secondes avant d\'effectuer une nouvelle recherche. Veuillez patienter un moment et essayer à nouveau.',
 'Search'			=>	'Rechercher',
 'Search criteria legend'	=>	'Choisissez vos critères de recherche',
+// Modif RL ligne ci-dessous modifiee
 'Search info'			=>	'Pour effectuer une recherche par mots-clés, indiquez le ou les termes à rechercher en les séparant par des espaces. Utilisez AND, OR, NOT pour affiner votre recherche. Pour rechercher par auteur, saisissez le nom d\'utilisateur auquel les messages appartiennent. Utilisez le joker * pour des recherches sur des fragments de mot.<br />La liste des tags est: [Abri], [Alimentation], [Autre], [Bâtons], [Cartographie], [Chaussures], [Couchage], [Couteau], [Couture], [Electricité], [Hamac], [Hygiène], [Itinéraire], [Lampe], [Liste prévisionnelle], [Matelas], [Matériaux], [Montre], [Photo], [Popote], [Questions multiples], [Réchaud], [Sac à dos], [Sursac], [Vêtements].',
 'Keyword search'		=>	'Mots-clés',
 'Author search'			=>	'Rechercher un auteur',
@@ -34,11 +35,13 @@ $lang_search = array(
 'Show as'			=>	'Afficher les&#160;…',
 'Show as topics'		=>	'Discussions',
 'Show as posts'			=>	'Messages',
- 
+
 // Results
 'Search'              =>  'Recherche',
 'Search results'		=>	'Résultats de la recherche',
 'Quick search show_new'		=>	'Nouveaux',
+// Modif RL ligne ci-dessous ajoutee
+'Quick search show_new_hors_ventes'		=>	'Nouveaux (hors ventes)',
 'Quick search show_recent'	=>	'Récentes',
 'Quick search show_unanswered'	=>	'Sans réponse',
 'Quick search show_replies'	=>	'Publiés',

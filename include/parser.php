@@ -145,7 +145,7 @@ function strip_empty_bbcode($text)
 //********************* Modif : Tableaux
 //********************* Ancienne ligne : 	while (!is_null($new_text = preg_replace('%\[(b|video|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 	while (!is_null($new_text = preg_replace('%\[(b|video|u|s|ins|del|em|i|h|colou?r|quote|rltable|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
-//********************* Modif : 
+//********************* Modif :
 	{
 		if ($new_text != $text)
 			$text = $new_text;
@@ -238,7 +238,11 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	if ($pun_user['g_post_links'] != '1')
 		$tags_forbidden[] = 'url';
 
-	$split_text = preg_split('%(\[[\*a-zA-Z0-9-/]*?(?:=.*?)?\])%', $text, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
+		// Modifs OPITUX pour lien lien citation vers message original
+		$text = str_replace("[quote post", "[quote= post", $text);
+		// END Modifs
+
+		$split_text = preg_split('%(\[[\*a-zA-Z0-9-/]*?(?:=.*?)?\])%', $text, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
 
 	$open_tags = array('fluxbb-bbcode');
 	$open_args = array('');
@@ -759,7 +763,7 @@ function handle_rltable($colspec, $content){
     if (substr($l, 0, 1) == "^") { // on teste si c'est un header
       $header=true;
       $l = trim(substr($l, 1));
-      $output .= "<tr class='header'>"; } 
+      $output .= "<tr class='header'>"; }
     else { $output .= "<tr>"; }
     $cells = explode("|", $l);
     if ($l == "")
@@ -785,6 +789,12 @@ function do_bbcode($text, $is_signature = false)
 
 	if (strpos($text, '[quote') !== false)
 	{
+		// Modifs OPITUX pour lien lien citation vers message original
+		$text = preg_replace_callback('%\[quote= post=([0-9]+)\\]%s',create_function('$matches','return "[quote]<span class=\"quoted-origin\"><a href=\"viewtopic.php?pid=".$matches[1]."#p".$matches[1]."\" title=\"Lien vers le message cité\">#".$matches[1]."</a></span><!--.quoted-->";'),$text);
+		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?) post=([0-9]+)\\1\]%s',create_function('$matches','return "[quote=".$matches[1].$matches[2]."]<span class=\"quoted-origin\"><a href=\"viewtopic.php?pid=".$matches[3]."#p".$matches[3]."\" title=\"Lien vers le message cité\">#".$matches[3]."</a></span><!--.quoted-->";'),$text);
+		$text = str_replace("<!--.quoted-->\n", "", $text);
+		// END Modifs
+
 		$text = preg_replace('%\[quote\]\s*%', '</p><div class="quotebox"><blockquote><div><p>', $text);
 		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?)\\1\]%s', create_function('$matches', 'global $lang_common; return "</p><div class=\"quotebox\"><cite>".str_replace(array(\'[\', \'\\"\'), array(\'&#91;\', \'"\'), $matches[2])." ".$lang_common[\'wrote\']."</cite><blockquote><div><p>";'), $text);
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></div></blockquote></div><p>', $text);
@@ -835,8 +845,8 @@ function do_bbcode($text, $is_signature = false)
 
 //********************* Modif : Tableaux
     $pattern_callback[] = '%\[rltable=([lcr]+)\]\n(.*?)\n\[/rltable\]%ms';
-    $replace_callback[] = 'handle_rltable($matches[1], $matches[2])';    
-//********************* Fin Modif : 
+    $replace_callback[] = 'handle_rltable($matches[1], $matches[2])';
+//********************* Fin Modif :
 
 	$pattern_callback[] = '%\[url\]([^\[]*?)\[/url\]%';
 	$pattern_callback[] = '%\[url=([^\[]+?)\](.*?)\[/url\]%';

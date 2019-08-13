@@ -242,7 +242,34 @@ $subject = $tag->getSubject(false);
                         <input class="longinput" type="text" name="req_subject" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars($subject) ?>" /><br /></label>
 <!--********************* Fin Modif -->
 <?php endif; ?>						<label class="required"><strong><?php echo $lang_common['Message'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<textarea name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea><br /></label>
+						<textarea name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea>
+						<?php
+						// Modifs OPITUX pour adapter la hauteur du textarea quand virtual keyboard déployé sur mobile
+						?>
+						<div id="result" style="display:none"></div>
+						<script>
+						function displayWindowSize(){
+
+							var w = document.documentElement.clientWidth;
+							var h = document.documentElement.clientHeight;
+							var inputVal = document.getElementById('edit').elements['req_message'];
+
+							document.getElementById("result").innerHTML = "Width: " + w + ", " + "Height: " + h;
+							inputVal.style.maxHeight = h - 30  + 'px';
+							if ( w < 1024 && document.getElementById('header') !=null ) {
+								document.getElementById('header').remove();
+								document.getElementById('content').style.marginTop = "0";
+							}
+
+						}
+						window.addEventListener("resize", displayWindowSize);
+						displayWindowSize();
+
+						</script>
+						<?php
+						// END Modifs
+						?>
+						<br /></label>
 						<ul class="bblinks">
 							<li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
 							<li><span><a href="help.php#url" onclick="window.open(this.href); return false;"><?php echo $lang_common['url tag'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_user['g_post_links'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>

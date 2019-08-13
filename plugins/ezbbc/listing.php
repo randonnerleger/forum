@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Including common.php file to have access to fluxBB functions
 define('PUN_ROOT', '../../');
 require PUN_ROOT.'include/common.php';
@@ -7,7 +7,7 @@ if ($pun_user['g_id'] != PUN_ADMIN)
 	exit;
 
 // Language file load
-$ezbbc_language_folder = (file_exists(PUN_ROOT.'plugins/ezbbc/lang/'.$pun_user['language'].'/ezbbc_plugin.php')) ? $pun_user['language'] : 'English';    
+$ezbbc_language_folder = (file_exists(PUN_ROOT.'plugins/ezbbc/lang/'.$pun_user['language'].'/ezbbc_plugin.php')) ? $pun_user['language'] : 'English';
 require PUN_ROOT.'plugins/ezbbc/lang/'.$ezbbc_language_folder.'/ezbbc_plugin.php';
 
 // Retrieving config datas
@@ -48,7 +48,7 @@ if ($type == 'recent'):
 	$limit = intval($_GET['limit']);
 	$fselect = isset($_GET['fselect']) ? $_GET['fselect'] : null;
 	$cache = PUN_ROOT.'cache/ezbbc/';
-	
+
 	//Getting the listing of the files
 	$file_list = $file_list_display = $user_ids = $usernames = array();
         $timestamp = $ftype = $id = $name = $date = $file = $rootfolder = $file_path = array();
@@ -60,14 +60,14 @@ if ($type == 'recent'):
 	closedir($files);
 	rsort($file_list);
 	$file_count = count($file_list);
-	
+
 	// Deleting data files if more than 100 in the cache folder
 	if ($file_count > 100) {
 	        for ($i=99; $i<$file_count; $i++) {
 	                @unlink($cache.$file_list[$i]);
 	        }
 	}
-	
+
 	// Taking in account the file selection if set
 	if (isset($fselect)) {
 	        foreach ($file_list as $file) {
@@ -78,8 +78,8 @@ if ($type == 'recent'):
 	        $file_list = $sfile_list;
 	        $file_count = count($file_list);
 	}
-	
-	
+
+
         if ($file_count) {
                 $rlimit = ($limit > $file_count) ? $file_count : $limit;
                 // Generation of the listing with limit
@@ -153,7 +153,7 @@ if ($type == 'folder'):
 				$date = date($lang_ezbbc['Date format'], $timestamp);
 				$file_path = $pun_config['o_base_url'].'/'.$folder_path.'/'.$file_name;
 				$file_list_display[]= '<li><a href="'.$file_path.'" onclick="window.open(this.href, \'Preview\', \'height=300, width=400, top=50, left=50, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;" title="'.$lang_ezbbc['Display'].'"><img src="style/admin/listing/'.$ftype.'.png" alt="'.$lang_ezbbc['Display'].'" /></a> <a href="'.$_SERVER['SCRIPT_NAME'].'?type=folder&amp;ftype='.$ftype.'&amp;id='.$id.'&amp;action=remove&amp;fname='.$file_name.'" onclick="return window.confirm(\''.$lang_ezbbc['Remove file confirm'].'\')" title="'.$lang_ezbbc['Remove'].'"><img src="style/admin/listing/'.$ftype.'-del.png" alt="'.$lang_ezbbc['Remove'].'" /></a> '.$date.' - <strong>'.$name.'</strong> </li>'."\n";
-			} 
+			}
 		} else {
 			$file_list_display[]= '<li>'.$lang_ezbbc['No files in folder'].'</li>';
 		}
@@ -174,6 +174,7 @@ endif;
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Modif RL ligne ajoutee -->
 <link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/'.$pun_user['style'].'.css' ?>" />
 <style type="text/css">
  .recent {background: transparent url(style/admin/listing/recent.png) no-repeat; padding-left: 22px;}

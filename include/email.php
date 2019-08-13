@@ -213,7 +213,11 @@ function bbcode2email($text, $wrap_length = 72)
 //
 // Wrapper for PHP's mail()
 //
-function pun_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name = '')
+
+// OPITUX, EXPEDITEUR EN COPIE D'UN MP ENVOYÉ PAR LA PLATE-FORME
+// function pun_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name = '')
+function pun_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name = '', $mail_cc = '')
+// END OPITUX
 {
 	global $pun_config, $lang_common;
 
@@ -245,12 +249,17 @@ function pun_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name 
 		$reply_to = '"'.encode_mail_text($reply_to_name).'" <'.$reply_to_email.'>';
 
 		$headers .= $EOL.'Reply-To: '.$reply_to;
+		// OPITUX, EXPEDITEUR EN COPIE D'UN MP ENVOYÉ PAR LA PLATE-FORME
+		if (!empty($mail_cc))
+			$headers .= $EOL.'Cc: '.$reply_to;
+		// END OPITUX
+
 	}
 
 	// Make sure all linebreaks are LF in message (and strip out any NULL bytes)
 	$message = str_replace("\0", '', pun_linebreaks($message));
 	$message = str_replace("\n", $EOL, $message);
-	
+
 	$mailer = $smtp ? 'smtp_mail' : 'mail';
 	$mailer($to, $subject, $message, $headers);
 }

@@ -99,6 +99,11 @@ if (isset($_POST['form_sent']) && $action == 'in')
 		// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after login)
 		$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
 
+		// Opitux
+		// Redirection à partir des pages extérieurs au forum => wiki et page asso
+		$redirect_url = str_replace('/forum/wiki','/wiki', $redirect_url);
+		$redirect_url = str_replace('/forum/association','/association', $redirect_url);
+		// Opitux
 		redirect(pun_htmlspecialchars($redirect_url), $lang_login['Login redirect']);
 	}
 }

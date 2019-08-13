@@ -685,8 +685,10 @@ $subject = $tag->getSubject(false);
 
 							document.getElementById("result").innerHTML = "Width: " + w + ", " + "Height: " + h;
 							inputVal.style.maxHeight = h - 30  + 'px';
-							document.getElementById('header').remove();
-							document.getElementById('content').style.marginTop = "0";
+							if ( w < 1024 && document.getElementById('header') !=null ) {
+								document.getElementById('header').remove();
+								document.getElementById('content').style.marginTop = "0";
+							}
 
 						}
 						window.addEventListener("resize", displayWindowSize);

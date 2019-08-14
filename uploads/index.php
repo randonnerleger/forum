@@ -92,7 +92,7 @@ if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
 
         resize(
             file,
-            -config.max_width,
+            config.max_width,
             resized_img,
             progress,
             function()
@@ -413,7 +413,7 @@ if (isset($_GET["js"])): header("Content-Type: text/javascript"); ?>
 
                     resize(
                         file.files[0],
-                        -config.max_width, // thumb size
+                        config.max_width, // thumb size
                         div_img, // thumb resized
                         progress,
                         function () {
@@ -1357,8 +1357,10 @@ class Fotoo_Hosting
 		if ($img_mp > $max_mp)
 		{
 			$ratio = $img_mp / $max_mp;
-			$width = round($img['width'] / $ratio);
-			$height = round($img['height'] / $ratio);
+			// $width = round($img['width'] / $ratio);
+			$width = $this->config->max_width;
+			// $height = round($img['height'] / $ratio);
+			$height = $this->config->max_width;
 			$resize = true;
 		}
 		else

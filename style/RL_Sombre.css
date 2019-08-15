@@ -95,12 +95,20 @@ COLOUR FLUXBB
 #adstats dd {
 	background-color: #303030;
 	}
+
+.pun #viewprofile dl,
+.pun #viewprofile dd,
+#adstats dl,
+#adstats dd {
+	border-color: #1c1c1c;
+}
 .pun .punwrap,
 .pun #viewprofile dt, #adstats dt {
 	color: #939393;
 }
 .pun #viewprofile .box {
 	background: #222222;
+	border-color: #1c1c1c;
 }
 
 .pun legend {
@@ -156,7 +164,12 @@ textarea {
 .pun .blockpost .postfoot {
 	background-color: #303030;
 	}
-
+.pun .postright a,
+.pun .postright a span,
+.pun .postright a:link,
+.pun .postright a:visited {
+	color: #6CB1FF !important;
+}
 .pun .blocktable th,
 #punindex .blocktable h2,
 .pun #vf h2 {
@@ -206,7 +219,7 @@ textarea {
 	border-color: #303030;
 }
 .pun .postmsg {
-	color: #D3D4D4;
+	color: #E8E8E8;
 }
 .pun .postmsg ins,
 #punhelp samp ins {
@@ -215,11 +228,11 @@ textarea {
 
 #punmisc #rules .box,
 #punhelp .box {
-	background: #303030;
+	background: #292929;
 }
 
 .pun .quotebox {
-	background: #303030;
+	background: #292929;
 	color: #C8CDD4;
 }
 
@@ -537,6 +550,26 @@ COLOUR UNIFORMISATION
 	.pun .blockpost .postleft {
 		background: #393939;
 	}
+	a.secondary-button,
+	form#post p.buttons a,
+	form#edit p.buttons a,
+	#punmisc .buttons a,
+	#msg .inbox a,
+	/* .pagestext a,
+	.pagestext .spacer, */
+	.pun .pagepost a,
+	.pun .pagepost strong,
+	/* .pun .pagepost .spacer, */
+	#uploads nav ul li a,
+	#nav li a.disconnect,
+	.newtext a {
+		background: #1c1c1c;
+		color:#d4d4d4 !important;
+		text-shadow: none;
+	}
+	.newtext a:hover {
+		background: #111;
+	}
 }
 @media handheld, only screen and (max-width: 768px) {
 	.pun .blockpost {
@@ -585,6 +618,9 @@ form#edit p.buttons a,
 	background: #1c1c1c;
 	color:#d4d4d4 !important;
 	text-shadow: none;
+	transition-property: all;
+	transition-duration: 0.2s;
+	transition-timing-function: ease;
 }
 a.secondary-button:hover,
 form#post p.buttons a:hover,
@@ -595,7 +631,7 @@ form#edit p.buttons a:hover,
 .pagestext .spacer:hover, */
 .pun .pagepost a:hover,
 .pun .pagepost strong:hover,
-.pun .pagepost strong,
+/* .pun .pagepost strong, */
 /* .pun .pagepost .spacer:hover, */
 #uploads nav ul li a:hover,
 #nav li a.disconnect:hover {
@@ -619,10 +655,10 @@ form#edit p.buttons a:hover,
 	border: 1px solid #222222;
 	background: #222222;
 }
-#uploads .picture footer.context {
+/* #uploads .picture footer.context {
 	background: rgb(44, 44, 44);
 	background: rgba(255, 255, 255, 0.05);
-}
+} */
 #uploads ul.rotate li,
 #uploads ul.rotate li a,
 #uploads #resizeParent a,

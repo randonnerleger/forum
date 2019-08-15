@@ -78,6 +78,11 @@ li {
 iframe {
 	max-width: 100% !important;
 }
+input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
 /**
  * END Reset
  * ------------------------------------------------------------------------------
@@ -2303,6 +2308,9 @@ display:none;
 .pun table .rowodd {
 	background:#ecf0f0;
 }
+.pun table .roweven {
+	background:#fcfdfe;
+}
 .pun .blockpost .postbody,
 .pun .blockpost .postfoot {
 	background: #ecf0f0;
@@ -3072,7 +3080,7 @@ form#edit .infldset.txtarea::before {
 }
 .pagelink {padding-top: 5px !important;}
 .postlink a {
-	padding: 10px 30px !important;
+	padding: 8px 30px !important;
 	margin-right: 0;
 }
 /* END UNIFORMISATION DES INPUT ET BOUTONS */
@@ -3151,8 +3159,8 @@ form#edit .infldset.txtarea::before {
 		display:inline-block;
 		min-width:90%;
 		font-size:13px !important;
-		padding:10px;
-		margin-top:6px;
+		padding:5px;
+		margin-top:2px;
 		cursor: pointer;
 		background: #c7cfda;
 		border: medium none;
@@ -3261,7 +3269,6 @@ form#edit .infldset.txtarea::before {
 	}
 	form#login_menuG {
 		width:75%;
-		margin:0 auto;
 		padding:0px;
 		margin:10px auto;
 		margin-bottom: 30px;
@@ -3492,6 +3499,28 @@ form#edit .infldset.txtarea::before {
 	#wrapper-inner {
 		height:100%;
 	}
+
+	/* BEGIN PAGINATION PREV ET NEXT */
+	.pun .pagepost a[rel~="prev"],
+	.pun .pagepost a[rel~="next"] {
+	    font-size: 0px !important;
+	    color:transparent;
+	    text-shadow:none;
+
+	}
+	.pun .pagepost a[rel~="prev"]:before,
+	.pun .pagepost a[rel~="next"]:before {
+	    content:'\f137';
+	    font-family:fontawesome;
+	    font-size: 12px !important;
+	    color:#4e4f51;
+	    padding-left:3px;
+	    padding-right:3px;
+	}
+	.pun .pagepost a[rel~="next"]:before {
+	    content:'\f138';
+	}
+	/* END PAGINATION PREV ET NEXT  */
 
 	/**
 	 * END Media queries 1024 template RL
@@ -4279,11 +4308,11 @@ form#edit .infldset.txtarea::before {
 		font-size:12px;
 		white-space:nowrap;
 		text-indent:0px;
-		padding:10px 0;
+		padding:8px 0;
 		cursor: pointer;
 		background: #516F89;
 		border: medium none;
-		border-radius: 2px;
+		border-radius: 3px;
 		color: #FFF !important;
 		width:49.5%;
 		margin-right:1%;
@@ -4460,11 +4489,11 @@ form#edit .infldset.txtarea::before {
 	margin: 1em 0;
 }
 #uploads .picture footer.context {
-	background: rgb(220, 220, 220);
-	background: rgba(255, 255, 255, 0.25);
+	/* background: rgb(220, 220, 220);
+	background: rgba(255, 255, 255, 0.25); */
 	border-radius: 3px;
 	padding: 1em 0;
-	margin: 1em auto;
+	margin: 0 auto;
 }
 #uploads .picture footer.context img {
 	max-width: 100%;

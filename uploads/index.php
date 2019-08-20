@@ -1516,7 +1516,7 @@ class Fotoo_Hosting
 
 		$file = $this->_getPath($img);
 
-		if (file_exists($file))
+		if (file_exists($file)) {
 
 		$res = $this->db->querySingle(
 			'SELECT * FROM pictures WHERE hash = \''.$hash.'\';',
@@ -1526,6 +1526,7 @@ class Fotoo_Hosting
 		$this->db->exec('UPDATE stats SET punstorage = punstorage - "' . $res['size'] . '", nbimage = nbimage - 1 WHERE punid = \'' . $res['punid'] .'\';');
 
 			unlink($file);
+		}
 
 		return $this->get($hash) ? false : true;
 	}
@@ -1759,6 +1760,46 @@ class Fotoo_Hosting
 		return true;
 	}
 
+	public function removeAlbumEmpty($hash, $id = null)
+	{
+		if (!$this->checkRemoveId($hash, $id))
+			return false;
+
+		$this->db->exec('DELETE FROM albums WHERE hash = \''.$this->db->escapeString($hash).'\';');
+		return true;
+	}
+
+	public function isDeleteButtonDisplayed($date, $punid)
+	{
+		if ( $this->logged() || ( $GLOBALS['punid'] == $punid && ( time() - $date ) < 86400 ) )
+			return true;
+	}
+
+	public function setcookieFotooModo()
+	{
+		if ( $this->logged() ) :
+			setcookie('FotooModo', 1, time() + 3600 , "/");
+		endif;
+	}
+
+	public function unsetcookieFotooModo()
+	{
+		unset($_COOKIE['FotooModo']);
+		setcookie('FotooModo', null, -1, '/');
+	}
+
+	public function getPictureSize($size)
+	{
+	    if ($size > (1024 * 1024))
+	        $size = round($size / 1024 / 1024, 2) . ' MB';
+	    elseif ($size > 1024)
+	        $size = round($size / 1024, 2) . ' KB';
+	    else
+	        $size = $size . ' B';
+
+			return $size;
+	}
+
 	protected function _getPath($img, $optional = '')
 	{
 		return $this->config->storage_path . $img['hash']
@@ -1803,6 +1844,41 @@ class Fotoo_Hosting
 		return $author;
 	}
 
+	public function getImageAuthorBouton($img)
+	{
+		$author = null != ( $this->getImageAuthor($img) ) ? $this->getImageAuthor($img)  : '' ;
+		$size = null != $img['size'] ? $this->getPictureSize($img['size']) : '' ;
+		$punid = '';
+		$url = '';
+		if ( !isset($_GET['mesphotos']) ) {
+			if ($this->logged() )
+				$punid = (null != ( $this->getImagePunID($img) ) ) ? $this->getImagePunID($img) : '' ;
+				$spacer = (null != ( $this->getImagePunID($img) ) ) ? ' (id: ' . $this->getImagePunID($img) .')' : '' ;
+			$url = '
+			<p class="meta profile">
+				<a href="../profile.php?id='. $punid .'" class="author">' . $author . $spacer . '</a><br />
+				<i class="size">' . $this->getPictureSize($img['size']) . '<br />
+				<time datetime="'.date(DATE_W3C, $img['date']).'">'.strftime('%a %e %b %Y', $img['date']).'</time></i>
+			</p>';
+		}
+		return $url;
+	}
+
+	public function getAlbumAuthorBouton($author, $punid, $date)
+	{
+		$punid = ( $this->logged() && null != $punid ) ? $punid : '' ;
+		$spacer = ( $this->logged() && null != $punid ) ? ' (id: ' . $punid .')' : '' ;
+		$url ='';
+
+		if ( !isset ( $_GET['mesalbums'] ) )
+			$url = '<p class="meta profile">
+				<a href="../profile.php?id='. $punid .'" class="author">' . $author . $spacer . '</a><br />
+				<i><time datetime="'.date(DATE_W3C, $date).'">'.strftime('%a %e %b %Y', $date).'</time></i>
+			</p>';
+
+		return $url;
+	}
+
 	public function getImageThumbUrl($img)
 	{
 		if (!$img['thumb'])
@@ -1822,6 +1898,32 @@ class Fotoo_Hosting
 		$url = $this->config->storage_url . $img['hash'];
 		$url.= !empty($img['filename']) ? '.' . $img['filename'] : '';
 		$url.= '.s.' . $format;
+		return $url;
+	}
+
+	public function getImageThumbUrlForSearch($img, $import = null)
+	{
+		if (!$img['thumb'])
+		{
+			return $this->getImageUrl($img);
+		}
+
+		if ($img['format'] != 'JPEG' && $img['format'] != 'PNG')
+		{
+			$format = 'jpeg';
+		}
+		else
+		{
+			$format = strtolower($img['format']);
+		}
+
+		$url = '';
+
+		if ( $import != 1 )
+			$url = $this->config->storage_url . $img['hash'] . '.';
+
+		$url .= !empty($img['filename']) ? $img['filename'] : '';
+
 		return $url;
 	}
 
@@ -2952,9 +3054,9 @@ if (!empty($_GET['delete']))
 
     if ($fh->remove($_GET['delete'], $id))
     {
-
-	$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
-        $where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '?list'.$page ;
+		$page = ( !empty($_GET['page']) && is_numeric($_GET['page']) ) ? '='.(int) $_GET['page'] : '' ;
+		$where = isset ( $_GET['mesphotos'] ) ? '?list'.$page.'&mesphotos' : '?list'.$page ;
+		$where = isset ( $_GET['a'] ) ? '?a=' . $_GET['a'] : $where ;
         $where = isset ( $_GET['uploadedPicture'] ) ? '' : $where ;
         header('Location: '.$config->base_url.$where);
     }
@@ -3119,7 +3221,7 @@ if (isset($_GET['upload']))
         $img = $fh->get($res);
         $url = $fh->getUrl($img, true);
 
-        header('Location: ' . $url);
+        header('Location: ' . $url . '&uploadedPicture');
 
         exit;
     }
@@ -3171,7 +3273,14 @@ elseif (isset($_GET['login']))
 }
 elseif (isset($_GET['list']))
 {
-    $title = isset($_GET['mesphotos']) ? __('Browse my pictures') : __('Browse pictures') ;
+
+	if ( isset($_GET['mesphotos']) ) {
+		$title = __('Browse my pictures') ;
+		$fh->unsetcookieFotooModo();
+			} else {
+		$title = __('Browse pictures') ;
+		$fh->setcookieFotooModo();
+	}
 
     if (!empty($_GET['list']) && is_numeric($_GET['list']))
         $page = (int) $_GET['list'];
@@ -3205,14 +3314,15 @@ elseif (isset($_GET['list']))
     {
     $i++;
         $thumb_url = $fh->getImageThumbUrl($img);
+        $thumb_author_button = $fh->getImageAuthorBouton($img);
         $url = $fh->getUrl($img);
 
         $label = $img['filename'] ? escape(preg_replace('![_-]!', ' ', $img['filename'])) : 'View image';
 
-        $html .= '
+		$html .= '
         <figure>
-            <figcaption><h3>'.$label.'</h3></figcaption>
-            <div class="img"><a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').($img['import'] ? '<span class="import">Import</span>' : '').'<img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>';
+            <div class="img"><a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').($img['import'] ? '<span class="import">Import</span>' : '').'<img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>
+			<figcaption><div class="meta title"><h3>'.$label.'</h3></div></figcaption>';
 
         $img_url = $fh->getImageUrl($img);
         $thumb_url = $fh->getImageThumbUrl($img);
@@ -3251,22 +3361,25 @@ elseif (isset($_GET['list']))
 
         }
 
-		if ($fh->logged()) {
+		$html .= $thumb_author_button ;
 
+		$html .= '<p class="meta search"><a href="../search.php?action=search&keywords=' . $fh->getImageThumbUrlForSearch($img, $img['import']) . '&author=' . $img['punname'] . '&search_in=1&sort_by=0&sort_dir=DESC&show_as=posts&search=Valider" target="_blank">Rechercher</a></p>';
+
+		if ( ($fh->isDeleteButtonDisplayed($img['date'],$img['punid']) && isset($_GET['mesphotos'])) || $fh->logged() ) {
 			$where = isset ( $_GET['mesphotos'] ) ? '&amp;mesphotos' : '&amp;list' ;
 
-			$html .= '
-				<p class="admin">
-					<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']) . $where . '&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
+			$html .= '<p class="admin">
+					<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']) . $where . '&amp;page='.$page.'" title="La suppression est autorisée pendant 24h après un téléchargement" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
 				</p>';
 		}
 
-        if ($fh->logged() && !isset($_GET['mesphotos']) ) {
-		$author = null != ( $fh->getImageAuthor($img) ) ? $fh->getImageAuthor($img) . ' / ' : '' ;
-		$punid = null != ( $fh->getImagePunID($img) ) ? $fh->getImagePunID($img) : '' ;
-            $html .= '<p class="admin"><a href="../profile.php?id='. $punid .'">' . $author . $punid . '</a></p>
-			<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> ' . __('Delete') . '</label>';
-        }
+		$author = null != ( $fh->getImageAuthor($img) ) ? $fh->getImageAuthor($img)  : '' ;
+		// $punid = '';
+		if ( !isset($_GET['mesphotos']) ) {
+			if ($fh->logged() )
+				// $punid = null != ( $fh->getImagePunID($img) ) ? ' / ' . $fh->getImagePunID($img) : '' ;
+            $html .= '<label><input type="checkbox" name="pictures[]" value="' . escape($img['hash']) . '" /> ' . __('Delete') . '</label>';
+		}
 
         $html .= '
         </figure>';
@@ -3307,7 +3420,14 @@ elseif (isset($_GET['list']))
 }
 elseif (isset($_GET['albums']))
 {
-    $title = isset($_GET['mesalbums']) ? __('Browse my albums') : __('Browse albums') ;
+
+	if ( isset($_GET['mesalbums']) ) {
+		$title = __('Browse my albums') ;
+		$fh->unsetcookieFotooModo();
+	} else {
+		$title = __('Browse albums') ;
+		$fh->setcookieFotooModo();
+	}
 
     if (!empty($_GET['albums']) && is_numeric($_GET['albums']))
         $page = (int) $_GET['albums'];
@@ -3338,65 +3458,73 @@ elseif (isset($_GET['albums']))
         $url = $config->album_page_url . $album['hash'];
         $nb = $fh->countAlbumPictures($album['hash']);
 
-        $html .= '
-        <figure>
-            <h3>'.escape($album['title']).'</h3><!--Check user id : ' . $album['punid'] . '-->
-            <h6>('.$nb.' pictures)</h6>
-            <a href="'.$url.'">'.($album['private'] ? '<span class="private">' . __('Private') . '</span>' : '');
+		if ( $nb <= 0 ) {
+			$fh->removeAlbumEmpty($album['hash'], $fh->makeRemoveId($album['hash']));
+		} else {
 
-        foreach ($album['extract'] as $img)
-        {
-            $thumb_url = $fh->getImageThumbUrl($img);
-            $html .= '<div class="img"><img src="'.$thumb_url.refresh().'" alt="" /></div>';
-        }
+	        $html .= '
+	        <figure>
+	            <div class="meta title"><h3>'.escape($album['title']).'</h3><h6>('.$nb.' pictures)</h6></div><!--Check user id : ' . $album['punid'] . '-->
+	            <a href="'.$url.'">'.($album['private'] ? '<span class="private">' . __('Private') . '</span>' : '');
 
-        $html .= '</a>';
+	        foreach ($album['extract'] as $img)
+	        {
+	            $thumb_url = $fh->getImageThumbUrl($img);
+	            $html .= '<div class="img"><img src="'.$thumb_url.refresh().'" alt="" /></div>';
+	        }
 
-        if ( isset($_GET['mesalbums']) ) {
+	        $html .= '</a>';
 
-    $listAlbumIMages = $fh->getAlbumPictures($album['hash'], $page);
-    $bbcode = '[b][url=' . $config->album_page_url . $album['hash'] . ']' . $album['title'] . "[/url][/b]\n";
+	        if ( isset($_GET['mesalbums']) ) {
+
+	    $listAlbumIMages = $fh->getAlbumPictures($album['hash'], $page);
+	    $bbcode = '[b][url=' . $config->album_page_url . $album['hash'] . ']' . $album['title'] . "[/url][/b]\n";
 
 
-    foreach ($listAlbumIMages as $img)
-    {
-        $label = $img['filename'] ? escape(preg_replace('![_-]!', ' ', $img['filename'])) : 'View image';
-        $bbcode .= '[url='.$fh->getImageUrl($img).'][img]'.$fh->getImageThumbUrl($img)."[/img][/url] ";
-    }
+	    foreach ($listAlbumIMages as $img)
+	    {
+	        $label = $img['filename'] ? escape(preg_replace('![_-]!', ' ', $img['filename'])) : 'View image';
+	        $bbcode .= '[url='.$fh->getImageUrl($img).'][img]'.$fh->getImageThumbUrl($img)."[/img][/url] ";
+	    }
 
-    $html .= '
-            <aside class="examples">
-            <form name="bbform'.$i.'">
-                <label>' . __('All pictures for a forum') . ' (BBCode)</label>
-                <textarea id="codetoinsert'.$i.'1" rows="1" onclick="this.select();">'.escape($bbcode).'</textarea>
-                <div id="insert'.$i.'1"></div>
-            </form>
-            </aside>';
+	    $html .= '
+	            <aside class="examples">
+	            <form name="bbform'.$i.'">
+	                <label>' . __('All pictures for a forum') . ' (BBCode)</label>
+	                <textarea id="codetoinsert'.$i.'1" rows="1" onclick="this.select();">'.escape($bbcode).'</textarea>
+	                <div id="insert'.$i.'1"></div>
+	            </form>
+	            </aside>';
 
-		// 	$html .= '
-		//         <p class="admin">
-		//             <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
-		//         </p>';
+			// 	$html .= '
+			//         <p class="admin">
+			//             <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']).'&amp;mesalbums&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
+			//         </p>';
 
-        }
+	        }
 
-		if ($fh->logged()) {
+			$album_author_button = $fh->getAlbumAuthorBouton($album['punname'], $album['punid'], strtotime($album['date']));
+			$html .= '' . $album_author_button . '';
 
-			$where = isset ( $_GET['mesalbums'] ) ? '&amp;mesalbums' : '' ;
+			if ( ( ( $fh->isDeleteButtonDisplayed(strtotime($album['date']), $album['punid']) ) && isset($_GET['mesalbums'])) || $fh->logged() ) {
+				$where = isset ( $_GET['mesalbums'] ) ? '&amp;mesalbums' : '' ;
 
-			$html .= '
-		        <p class="admin">
-		            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']) . $where . '&amp;page='.$page.'" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
-		        </p>';
+				$html .= '
+			        <p class="admin">
+			            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.$fh->makeRemoveId($album['hash']) . $where . '&amp;page='.$page.'" title="La suppression est autorisée pendant 24h après un téléchargement" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre album si il est encore appelé\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete album') . '</a>
+			        </p>';
+			}
+
+	        if ($fh->logged() && !isset($_GET['mesalbums']) )
+	        {
+	            $html .= '<label><input type="checkbox" name="albums[]" value="' . escape($album['hash']) . '" /> ' . __('Delete') . '</label>';
+	        }
+
+	        $html .= '
+	        </figure>';
+
 		}
 
-        if ($fh->logged() && !isset($_GET['mesalbums']) )
-        {
-            $html .= '<label><input type="checkbox" name="albums[]" value="' . escape($album['hash']) . '" /> ' . __('Delete') . '</label>';
-        }
-
-        $html .= '
-        </figure>';
     }
 
     $html .= '
@@ -3465,49 +3593,11 @@ elseif (!empty($_GET['a']))
 
     $html = '
         <article class="browse">
-            <h2>'.escape($title).'</h2>
+            <div class="meta page-title"><h2>'.escape($title).'</h2></div>
             <p class="info">
                 ' . __('Uploaded on') . ' <time datetime="'.date(DATE_W3C, $album['date']).'">'.strftime('%c', $album['date']).'</time>
                 | '.(int)$max. ' ' . __('picture') .((int)$max > 1 ? 's' : '').'
             </p>';
-
-    if ($album['punid'] == $GLOBALS['punid'] ) :
-    $html = '
-            <aside class="examples">
-            <form name="bbform1">
-                <!--<dt>' . __('Share this album using this URL') . ':</dt>
-                <dd><input type="text" onclick="this.select();" value="'.escape($config->album_page_url . $album['hash']).'" /></dd>-->
-                <dt>' . __('All pictures for a forum') . ' (BBCode):</dt>
-                <dd><textarea id="codetoinsert11" rows="1" onclick="this.select();">'.escape($bbcode).'</textarea></dd>
-                <div id="insert11"></div>
-            </form>
-            </aside>';
-    endif;
-
-    if ($fh->logged())
-    {
-        $html .= '
-        <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;uploadedAlbum" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
-        </p>';
-    }
-    elseif (!empty($_GET['c']))
-    {
-        $url = $config->album_page_url . $album['hash']
-            . (strpos($config->album_page_url, '?') !== false ? '&c=' : '?c=')
-            . $fh->makeRemoveId($album['hash']);
-
-        $html .= '
-        <p class="admin">
-            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadedAlbum" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
-        </p>';
-
-        // $html .= '
-        // <p class="admin">
-        //     ' . __('Keep this URL in your favorites to be able to delete this album later') . ':<br />
-        //     <input type="text" onclick="this.select();" value="'.escape($url).'" />
-        // </p>-->';
-    }
 
     foreach ($list as &$img)
     {
@@ -3519,7 +3609,7 @@ elseif (!empty($_GET['a']))
         $html .= '
         <figure>
             <div class="img"><a href="'.$url.'">'.($img['private'] ? '<span class="private">' . __('Private') . '</span>' : '').'<img src="'.$thumb_url.refresh().'" alt="'.$label.'" /></a></div>
-            <figcaption><a href="'.$url.'">'.$label.'</a></figcaption>';
+            <figcaption><div class="meta title"<a href="'.$url.'">'.$label.'</a></div></figcaption>';
 
         if ( $img['punid'] == $GLOBALS['punid'] && $img['format'] == 'JPEG' ) :
             $html .= '
@@ -3530,9 +3620,62 @@ elseif (!empty($_GET['a']))
                 --></ul>';
         endif;
 
+		if ( $fh->isDeleteButtonDisplayed($img['date'], $img['punid']) ) {
+			$where = isset ( $_GET['mesphotos'] ) ? '&amp;mesphotos' : '&amp;list' ;
+			$where = isset ( $_GET['a'] ) ? '&amp;a='.rawurlencode($album['hash']) : $where ;
+
+			$html .= '
+				<p class="admin">
+					<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']) . $where . '" title="La suppression est autorisée pendant 24h après un téléchargement" onclick="return confirm(\'' . __('Really') . ' ?\n\n' . __('Merci de ne pas supprimer votre image si elle est encore appelée\nsur le forum ou une page du wiki.') . '\n\n\n\');">' . __('Delete picture') . '</a>
+				</p>';
+		}
+
         $html .= '
         </figure>';
     }
+
+
+	$album_author_button = $fh->getAlbumAuthorBouton($album['punname'], $album['punid'], $album['date']);
+	$html .= $album_author_button;
+
+	if ( $fh->isDeleteButtonDisplayed($album['date'], $album['punid']) )
+    {
+		$where = '';
+		if(!isset($_COOKIE['FotooModo'])) {
+			$where = isset($_GET['c']) ? '&amp;uploadedAlbum' : '' ;
+			$where = !isset($_GET['c']) ? '&amp;mesalbums' : $where ;
+		}
+
+		$html .= '
+        <p class="admin">
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c=' . $fh->makeRemoveId($album['hash']) . $where . '" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
+        </p>';
+    }
+    elseif (!empty($_GET['c']))
+    {
+        $url = $config->album_page_url . $album['hash']
+            . (strpos($config->album_page_url, '?') !== false ? '&c=' : '?c=')
+            . $fh->makeRemoveId($album['hash']);
+
+        $html .= '
+        <p class="admin">
+            <a href="?deleteAlbum='.rawurlencode($album['hash']).'&amp;c='.rawurldecode($_GET['c']).$where.'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete album') . '</a>
+        </p>';
+
+    }
+
+	if ($album['punid'] == $GLOBALS['punid'] ) :
+    $html .= '
+            <aside class="examples">
+            <form name="bbform1">
+                <!--<dt>' . __('Share this album using this URL') . ':</dt>
+                <dd><input type="text" onclick="this.select();" value="'.escape($config->album_page_url . $album['hash']).'" /></dd>-->
+                <dt>' . __('All pictures for a forum') . ' (BBCode):</dt>
+                <dd><textarea id="codetoinsert11" rows="1" onclick="this.select();">'.escape($bbcode).'</textarea></dd>
+                <div id="insert11"></div>
+            </form>
+            </aside>';
+    endif;
 
     $html .= '
         </article>';
@@ -3640,22 +3783,15 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     // Short URL auto discovery
     header('Link: <'.$short_url.'>; rel=shorturl');
 
+	$size = null != $img['size'] ? $fh->getPictureSize($img['size']) : '' ;
     $bbcode = '[url='.$img_url.'][img]'.$thumb_url.'[/img][/url]';
     $bbcodefullw = '[url='.$img_url.'][img]'.$img_url.'[/img][/url]';
     $html_code = '<a href="'.$img_url.'"><img src="'.$thumb_url.refresh().'" alt="'.(trim($img['filename']) ? $img['filename'] : '').'" /></a>';
 
-    $size = $img['size'];
-    if ($size > (1024 * 1024))
-        $size = round($size / 1024 / 1024, 2) . ' MB';
-    elseif ($size > 1024)
-        $size = round($size / 1024, 2) . ' KB';
-    else
-        $size = $size . ' B';
-
     $html = '
     <article class="picture">
         <header>
-            '.(trim($img['filename']) ? '<h2>' . escape(strtr($img['filename'], '-_.', '   ')) . '</h2>' : '').'
+            '.(trim($img['filename']) ? '<div class="meta page-title"><h2>' . escape(strtr($img['filename'], '-_.', '   ')) . '</h2></div>' : '').'
             <p class="info">
                 ' . __('Uploaded on') . ' <time datetime="'.date(DATE_W3C, $img['date']).'">'.strftime('%c', $img['date']).'</time>
                 | Size: '.$img['width'].' × '.$img['height'].' ('.$img['format'].', '.$size.')
@@ -3729,26 +3865,40 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
             </footer>';
     }
 
-    if ($fh->logged())
+	$thumb_author_button = $fh->getImageAuthorBouton($img);
+	$html .= $thumb_author_button;
+
+	$where = '';
+	if(!isset($_COOKIE['FotooModo'])) {
+		$where = '&amp;mesphotos' ;
+		$where = isset($_GET['uploadedPicture']) ? '&amp;uploadedPicture' : $where ;
+	}
+	// $where .= isset ( $_GET['a'] ) ? '?a=' . $_GET['a'] : '' ;
+
+	if(isset($album['title'])){
+		$where = '&amp;a=' . $album['hash'] ;
+	}
+
+	if ( $fh->isDeleteButtonDisplayed($img['date'], $img['punid']) && empty($_GET['c']) )
     {
-        $html .= '
-        <p class="admin">
-            ' . __('IP address') . ': ' . escape(is_null($img['ip']) ?  __('Not available') : ($img['ip'] == 'R' ? __('Automatically removed from database'): $img['ip'])) . '
-        </p>
-        <p class="admin">
-            <a href="?delete='.rawurlencode($img['hash']).'&amp;uploadedPicture" onclick="return confirm(\'Really?\');">' . __('Delete picture') . '</a>
-        </p>';
+		if ($fh->logged() ) {
+			$html .= '
+			<p class="admin">
+			' . __('IP address') . ': ' . escape(is_null($img['ip']) ?  __('Not available') : ($img['ip'] == 'R' ? __('Automatically removed from database'): $img['ip'])) . '
+			</p>';
+		}
+
+		$html .=  '
+		<p class="admin">
+		<a href="?delete='.rawurlencode($img['hash']).'&amp;c='.$fh->makeRemoveId($img['hash']).$where.'" title="La suppression est autorisée pendant 24h après un téléchargement" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
+		</p>';
     }
     elseif (!empty($_GET['c']))
     {
         $html .= '
         <p class="admin">
-            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).'&amp;uploadedPicture" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
-        </p>
-        <!--<p class="admin">
-            ' . __('Keep this URL in your favorites to be able to delete this picture later') . ':<br />
-            <input type="text" onclick="this.select();" value="'.$fh->getUrl($img, true).'" />
-        </p>-->';
+            <a href="?delete='.rawurlencode($img['hash']).'&amp;c='.rawurldecode($_GET['c']).$where.'" onclick="return confirm(\'' . __('Really') . '?\');">' . __('Delete picture') . '</a>
+        </p>';
     }
 
         if ($img['punid'] == $GLOBALS['punid'] ) :
@@ -3764,6 +3914,7 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
         </form>
         </aside>
         </article>';
+
     endif;
 
 }
@@ -3773,6 +3924,8 @@ elseif (!$config->allow_upload)
 }
 else
 {
+	$fh->unsetcookieFotooModo();
+
     $js_url = file_exists(__DIR__ . '/upload.js')
         ? $config->base_url . 'upload.js'
         : $config->base_url . '?js';

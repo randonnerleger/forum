@@ -19,6 +19,12 @@ body {
 .search-form .search-field:focus {
 	background: #222222;
 }
+.pun #posterror .error-info,
+.pun #adalerts p {
+	border-width: 0px;
+}
+.pun #posterror .error-info,
+.pun #adalerts p,
 #announce-block .important,
 form#edit .infldset.txtarea::before {
 	background-color: #513E27;

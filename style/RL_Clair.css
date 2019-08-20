@@ -78,6 +78,13 @@ li {
 iframe {
 	max-width: 100% !important;
 }
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"] {
+     -webkit-appearance: none;
+     border-radius: 0;
+}
 /**
  * END Reset
  * ------------------------------------------------------------------------------
@@ -2303,6 +2310,9 @@ display:none;
 .pun table .rowodd {
 	background:#ecf0f0;
 }
+.pun table .roweven {
+	background:#fcfdfe;
+}
 .pun .blockpost .postbody,
 .pun .blockpost .postfoot {
 	background: #ecf0f0;
@@ -2421,6 +2431,7 @@ display:none;
 /* BEGIN QUOTE */
 .pun .quotebox {
 	position: relative;
+	background: #f7f7f7;
 }
 .pun .quotebox .quoted-origin {
 	position: absolute;
@@ -2816,6 +2827,12 @@ div.hiddenGlobal {
 #dokuwiki__sitetools li {
 	float: left;
 }
+/* Uniformisation des images */
+.pun .postmsg .postimg img {
+	max-width: calc(100% - 6px);
+	margin: 7px 3px 7px 3px;
+}
+
 /* BEGIN Forum only */
 #brdwelcome li span {
 	line-height: inherit;
@@ -3072,7 +3089,7 @@ form#edit .infldset.txtarea::before {
 }
 .pagelink {padding-top: 5px !important;}
 .postlink a {
-	padding: 10px 30px !important;
+	padding: 8px 30px !important;
 	margin-right: 0;
 }
 /* END UNIFORMISATION DES INPUT ET BOUTONS */
@@ -3151,8 +3168,8 @@ form#edit .infldset.txtarea::before {
 		display:inline-block;
 		min-width:90%;
 		font-size:13px !important;
-		padding:10px;
-		margin-top:6px;
+		padding:5px;
+		margin-top:2px;
 		cursor: pointer;
 		background: #c7cfda;
 		border: medium none;
@@ -3261,7 +3278,6 @@ form#edit .infldset.txtarea::before {
 	}
 	form#login_menuG {
 		width:75%;
-		margin:0 auto;
 		padding:0px;
 		margin:10px auto;
 		margin-bottom: 30px;
@@ -3492,6 +3508,28 @@ form#edit .infldset.txtarea::before {
 	#wrapper-inner {
 		height:100%;
 	}
+
+	/* BEGIN PAGINATION PREV ET NEXT */
+	.pun .pagepost a[rel~="prev"],
+	.pun .pagepost a[rel~="next"] {
+	    font-size: 0px !important;
+	    color:transparent;
+	    text-shadow:none;
+
+	}
+	.pun .pagepost a[rel~="prev"]:before,
+	.pun .pagepost a[rel~="next"]:before {
+	    content:'\f137';
+	    font-family:fontawesome;
+	    font-size: 12px !important;
+	    color:#4e4f51;
+	    padding-left:3px;
+	    padding-right:3px;
+	}
+	.pun .pagepost a[rel~="next"]:before {
+	    content:'\f138';
+	}
+	/* END PAGINATION PREV ET NEXT  */
 
 	/**
 	 * END Media queries 1024 template RL
@@ -4279,11 +4317,11 @@ form#edit .infldset.txtarea::before {
 		font-size:12px;
 		white-space:nowrap;
 		text-indent:0px;
-		padding:10px 0;
+		padding:8px 0;
 		cursor: pointer;
 		background: #516F89;
 		border: medium none;
-		border-radius: 2px;
+		border-radius: 3px;
 		color: #FFF !important;
 		width:49.5%;
 		margin-right:1%;
@@ -4460,11 +4498,11 @@ form#edit .infldset.txtarea::before {
 	margin: 1em 0;
 }
 #uploads .picture footer.context {
-	background: rgb(220, 220, 220);
-	background: rgba(255, 255, 255, 0.25);
+	/* background: rgb(220, 220, 220);
+	background: rgba(255, 255, 255, 0.25); */
 	border-radius: 3px;
 	padding: 1em 0;
-	margin: 1em auto;
+	margin: 0 auto;
 }
 #uploads .picture footer.context img {
 	max-width: 100%;
@@ -4491,6 +4529,9 @@ form#edit .infldset.txtarea::before {
 	text-shadow: 0px 0px 10px #000;
 	font-family: Helvetica, "Liberation Sans", FreeSans, sans-serif;
 }
+#uploads .examples {
+	margin: 1em;
+}
 #uploads .examples dt {
 	margin: .5em 0;
 	font-weight: bold;
@@ -4498,7 +4539,7 @@ form#edit .infldset.txtarea::before {
 #uploads .examples input, .admin input[type=text], .examples textarea {
 	font-family: "Courier New", Courier, monospace;
 	max-width: 50em;
-	width: 80%;
+	width: 90%;
 	font-size: 10pt;
 	margin-top:0;
 }
@@ -4516,13 +4557,13 @@ form#edit .infldset.txtarea::before {
 	border:1px solid #dfe6ee;
 	border-radius:3px;
 	background:#f2f4f4;
-	padding:1em;
+	padding:10px;
 	width: 35%;
 	max-width: 200px;
 }
 #uploads figure.picture-visu {
 	width: 90%;
-	max-width: 90%;
+	max-width: 980px;
 }
 #uploads figure img {
 	max-width: 100%;
@@ -4533,10 +4574,14 @@ form#edit .infldset.txtarea::before {
 #uploads figure .img {
 	min-height:135px;
 }
-#uploads figure .img img {
+#uploads figure .img img,
+#uploads figure .thumb img {
 	max-height: 130px;
 	margin:0 auto;
 	display: block;
+}
+#uploads figure .thumb .preview {
+	margin-bottom:10px;
 }
 #uploads figure a:hover img {
 	box-shadow: 0px 0px 10px #000;
@@ -4562,20 +4607,43 @@ form#edit .infldset.txtarea::before {
 	margin-top:50px;
 }
 #uploads #resizeParent,
-p.admin,
+#uploads p.admin,
+#uploads p.info,
+#uploads .meta,
+#uploads .meta h2,
+#uploads .meta h3,
+#uploads .meta h4,
 #albumParent {
-	background: rgb(100, 100, 100);
 	background: #d2dbe0;
-	padding: 10px 0;
-	width: 90%;
+	padding: 5px 0;
+	width: 100%;
 	max-width: 1000px;
-	margin: .8em auto;
+	margin: 5px auto;
 	border-radius: 3px;
 	color: #566579;
-	font-size: 12px !important;
+	font-size: 12px;
+	line-height: 1.462em;
 }
+#uploads .meta h2,
+#uploads .meta h3,
+#uploads .meta h4,
+#uploads .meta h5,
+#uploads .meta h6 {
+	min-width:100%;
+	font-weight: bold;
+	margin: 0;
+	padding:0;
+	font-size: 1em;
+}
+#uploads figure p.info,
+#uploads .meta {
+	margin: 5px auto;
+}
+
 #uploads #resizeParent a,
-p.admin a,
+#uploads p.admin a,
+#uploads p.info a,
+#uploads .meta a,
 #albumParent a {
 	color:#4e4f51 !important;
 	font-weight: bold
@@ -4640,7 +4708,8 @@ p.admin a,
 	top: auto;
 }
 #uploads ul.rotate {
-	height:25px;
+	/* height:25px; */
+	padding: 0;
 }
 #uploads ul.rotate li {
 	display: inline-block;
@@ -4650,11 +4719,13 @@ p.admin a,
 	background: #d2dbe0;
 	padding:5px 0;
 	border-radius:3px;
-	width:32.5%;
+	width:32.6%;
 	margin-right:1%;
 }
 #uploads ul.rotate li a {
 	color: #4e4f51 !important;
+	padding:5px 10px;
+	margin-left:-10px;
 }
 #uploads ul.rotate li:last-child {
 	margin-right:0;
@@ -4672,10 +4743,15 @@ p.admin a,
 #uploads ul.rotate li:last-child:before {
 	content:'\f01e' !important;
 }
+#uploads.from-ez-toolbar #page {
+	margin: 0;
+	width:98%;
+}
 #uploads.from-ez-toolbar #header,
 #uploads.from-ez-toolbar .slide,
 #uploads.from-ez-toolbar #header label,
-#uploads.from-ez-toolbar #footer {
+#uploads.from-ez-toolbar #footer,
+#uploads.from-ez-toolbar .meta.profile {
 	display:none;
 }
 #uploads.from-ez-toolbar .outer {
@@ -4771,6 +4847,24 @@ p.admin a,
 	list-style: disclosure-closed;
 	margin-left: 20px;
 }
+#uploads .meta .author:before,
+#uploads .meta .size:before,
+#uploads .meta time:before,
+#uploads .meta.search:before {
+	content:'\f007';
+	font-family: 'fontawesome';
+	margin-right: 5px;
+}
+#uploads .meta time:before {
+	content:'\f133';
+}
+#uploads .meta.search:before {
+	content:'\f002';
+}
+#uploads .meta .size:before {
+	content:'\f1c5';
+}
+
 @media (max-width: 1024px) {
 
 	#uploads #page {

@@ -19,7 +19,8 @@ body {
 .search-form .search-field:focus {
 	background: #222222;
 }
-#announce-block .important {
+#announce-block .important,
+form#edit .infldset.txtarea::before {
 	background-color: #513E27;
 	color: #d4d4d4;
 }
@@ -43,6 +44,11 @@ body {
 }
 #nav li.highlight {
 	background: #393939;
+}
+#nav li a,
+#nav li strong,
+.togglebox li.display.identification label {
+	border-bottom: 1px solid #1c1c1c;
 }
 /* #nav li a:hover,
 #nav li a:active,
@@ -515,6 +521,17 @@ COLOUR DOKUWIKI
 /*****************************************************************
 COLOUR UNIFORMISATION
 *****************************************************************/
+#brdmenu,
+#brdmenu a,
+#brdmenu a:link,
+#brdmenu a:visited,
+#dokuwiki__sitetools,
+#dokuwiki__sitetools a,
+#dokuwiki__sitetools a:link,
+#dokuwiki__sitetools a:visited,
+#uploads.from-ez-toolbar #brdmenu ul {
+    background: #1c1c1c;
+}
 .pun h2 a:link,
 .pun h2 a:hover,
 .pun h2 a:active,
@@ -630,6 +647,7 @@ form#edit p.buttons a:hover,
 /* .pagestext a:hover,
 .pagestext .spacer:hover, */
 .pun .pagepost a:hover,
+.pun .pagepost strong,
 .pun .pagepost strong:hover,
 /* .pun .pagepost strong, */
 /* .pun .pagepost .spacer:hover, */
@@ -667,12 +685,19 @@ form#edit p.buttons a:hover,
 	color:#d4d4d4 !important;
 }
 #uploads #resizeParent,
-#uploads p.admin, #albumParent,
-#uploads ul.rotate li,
-#uploads .information {
-	background:#292929;
-	color: #fff;
+#uploads p.admin,
+#uploads p.info,
+#uploads .meta,
+#uploads .meta a,
+#uploads .meta h2,
+#uploads .meta h3,
+#uploads .meta h4,
+#albumParent,
+#uploads ul.rotate li {
+	background: #292929;
+	color:#939393 !important;
 }
-#uploads .information .inner:before {
-	color: #516f89;
+#uploads .information {
+	background: #233956;
+	color:#fff;
 }

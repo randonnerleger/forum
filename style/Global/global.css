@@ -194,6 +194,7 @@ h1, h2, h3, h4, h5, h6 {
 	content:"\f077";
 	font-family: fontawesome;
 	font-size:30px;
+	line-height: 1em;
 	position: absolute;
 	margin: 9px 12px;
 }
@@ -865,11 +866,7 @@ a[href$=".jpg"] img,
 a[href$=".jpeg"] img {
 	border-radius: 3px;
 	box-shadow: 0px 0px 4px #888;
-	max-width:388px;
-}
-a[href$=".jpg"] img:hover,
-a[href$=".jpeg"] img:hover {
-	opacity: .9;
+	max-width:100%;
 }
 /* BEGIN Images */
 

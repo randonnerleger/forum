@@ -1212,16 +1212,23 @@ class Fotoo_Hosting
 	static public function getInfoMessage ()
     {
 		$info = '';
-		$info .= '
-		<div class="information"><div class="inner">
-			Pour assurer sa pérennité utilisez ce service avec discernement :
-				<ul>
-					<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
-					<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
-					<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
-				</ul>
-				En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.
-			</div></div>';
+		if ( !isset($_GET['list']) && !isset($_GET['albums']) )
+		{
+			$info = '
+			<div id="announce-block" class="inbox">
+				<div class="usercontent">
+					<div class="info">
+						Pour assurer sa pérennité utilisez ce service avec discernement :
+							<ul>
+								<li>Sélectionnez bien vos images (l\'espace de stockage commun disponible n\'est pas illimité)&nbsp;;
+								<li>Les images hébergées sur randonner-leger.org grâce à ce service n\'ont pas vocation à être affichées sur un autre site&nbsp;;
+								<li>Tout fichier ne respectant pas le code de la propriété intellectuelle ou la législation en vigueur pourra être supprimé sans préavis et le compte utilisateur fermé.
+							</ul>
+							En envoyant vos images vous acceptez qu\'elles soient publiées sous la license <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/" target="_blank">Creative Commons BY-NC-SA</a>.
+					</div>
+				</div>
+			</div>';
+		}
 		return $info;
 
     }
@@ -3954,7 +3961,11 @@ else
             </header>
             <fieldset>
                 <dl>
-                    <dt><label for="f_title">' . __('Title') . ':</label></dt>
+                    <dt><label for="f_files">' . __('Files') . ':</label></dt>
+
+                    <dd id="f_file_container"><input type="file" name="upload" id="f_files" multiple="multiple" accept="image/jpeg" required="required" /></dd>
+
+					<dt><label for="f_title">' . __('Title') . ':</label></dt>
                     <dd><input type="text" name="title" id="f_title" maxlength="100" required="required" /></dd>';
 
                     if ( $fh->isPrivateAllowed() ) {
@@ -3968,15 +3979,13 @@ else
                    }
 
                    $html .= '
-                    <dt><label for="f_files">' . __('Files') . ':</label></dt>
-                    <dd id="f_file_container"><input type="file" name="upload" id="f_files" multiple="multiple" accept="image/jpeg" required="required" /></dd>
+
                 </dl>
             </fieldset>
             <div id="albumParent">' . __('Please select some files') . '...</div>
             <p class="submit">
                 <input type="submit" id="f_submit" value="' . __('Upload') . '" />
             </p>
-			' . Fotoo_Hosting::getInfoMessage() . '
         </article>
         </form>';
     }
@@ -4017,7 +4026,6 @@ else
             <p class="submit">
                 <input type="submit" id="f_submit" value="' . __('Upload') . '" />
             </p>
-			' . Fotoo_Hosting::getInfoMessage() . '
         </article>
         </form>';
     }
@@ -4054,7 +4062,7 @@ echo '
 
     		<div id="brdtitle" class="inbox">
     			<h1><a href="'.$config->base_url.'">'.$config->title.'</a></h1>
-        '.($fh->logged() ? '<h2>(admin mode)</h2>' : '').'
+        '.($fh->logged() ? '<h2 class="admin-mode">(admin mode)</h2>' : '').'
     		</div>
 
     		<div id="brdmenu" class="inbox">
@@ -4078,6 +4086,8 @@ echo '
     	</div>
 
     </div>
+
+	' . Fotoo_Hosting::getInfoMessage() . '
 
     <div id="page">
         ' . $html . '

@@ -1,0 +1,181 @@
+@media (max-width: 768px) {
+*
+.pun {
+	padding: 0 0;
+        margin: 30px auto;
+        width: 100%;
+}
+#brdtitle{display:none;}
+#punredirect, #punmaint {
+	width:318px;
+        margin: 60px auto;
+        padding: 0 185px;
+}
+/*****************************************************************
+3. COMMON BOARD ELEMENTS
+*****************************************************************/
+
+/* Logo, Description and Main Menu
+----------------------------------------------------------------*/
+
+#brdtitle h1 {
+	padding: 0 0 10px 0;
+}
+
+/* #brdtitle {
+	width: 100%;
+	height:80px;
+	background: #fff;
+} */
+
+/* #brdtitle:hover{
+    background: #fff;
+} */
+
+#brddesc {
+	padding: 0;
+	/* color: #333; */
+    width: 100%;
+	margin-top:0px;
+	/* background:#fff; */
+	font-size: 1em;
+}
+
+/* #brdtitle h1 a:link, #brdtitle h1 a:visited {
+	color: #333;
+	background:#fff;
+	padding-left:5px;
+	padding-top:5px;
+} */
+
+/* #brdtitle h1 a:hover, #brdtitle h1 a:active, #brdtitle h1 a:focus{
+	color: #333;
+	background:#f5f5f5;
+} */
+
+#brddesc p {
+	padding-bottom: 12px;
+}
+
+/* #brdmenu ul {
+	padding: 0;
+}
+
+#brdmenu li {
+    float:none;
+} */
+
+/* #brdmenu a:link, #brdmenu a:visited {
+	display: block;
+	padding: 9px 6px 3px 6px;
+	min-height: 1px;
+} */
+
+/* #brdmenu a:hover, #brmenu a:active, #brdmenu a:focus {
+	text-decoration: none;
+}
+
+#brdmenu{
+	text-align: left;
+	margin-right:2px;
+	float:center;
+	margin-top:-6px;
+	z-index:1;
+	display:block;
+} */
+.pun .blockpost .postleft .postavatar {
+    display: none;
+}
+
+.pun .blockpost .postright {
+    position: relative;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding: 9px 21px 7px 18px;
+}
+
+.pun .blockmenu {
+	width: 100%;
+	padding-bottom: 12px;
+}
+
+.pun .block2col .blockform, .pun .block2col .block {
+	margin-left: 0;
+}
+
+.pun .blockmenu .block2 {
+	padding-top: 19px;
+}
+
+.pun .blockmenu ul {
+	padding: 0;
+}
+
+.pun .blockmenu li {
+	font-weight: normal;
+	padding: 0;
+}
+/* .pun .blockmenu a:link, .pun .blockmenu a:visited {
+	display: block;
+	padding: 9px 6px 3px 6px;
+	min-height: 1px;
+	text-decoration: none;
+} */
+
+/* * html .pun .blockmenu a:link,  * html .pun .blockmenu a:visited {
+	height: 1%;
+} */
+
+/* .pun .blockmenu a:hover, .pun .blockmenu a:active, .pun .blockmenu a:focus {
+	text-decoration: none;
+} */
+.pun label input, .pun label select, .pun label textarea {width: 100%;}
+.pun fieldset label {width: 100%;}
+.pun #quickpost legend, #punpost legend, #punedit legend {width: 100%;}
+.pun .infldset {
+	padding: 12px 18px;
+}
+
+/* .pun input[type=text] {
+	font-family: "Open Sans", Helvetica, sans-serif;
+	border:1px solid #eee;
+	border-radius:2px;
+	padding: 2px;
+	max-width: 380px;
+} */
+
+/* .pun input[type=text]:hover {
+        border:1px solid #ddd;
+} */
+
+/* .pun select {
+       font-family: "Open Sans", Helvetica, sans-serif;
+       max-width: 380px;
+} */
+
+/* .pun .blocktable .tc3, .pun .blocktable .tc2 {
+    display: none;
+} */
+
+.pun #postpreview .postright {
+    padding-top:23px;
+	margin-left: 200px;
+}
+
+/* .pun .subscribelink {
+	position: absolute;
+	right: 0;
+	text-align: right;
+	top: 85px;
+	z-index:9999999;
+} */
+
+/* #brdwelcome li span,.pun .blocktable td .byuser ,.pun .blocktable td  {
+     white-space: normal;
+} */
+
+.pun .blockpost .postfootright {
+	margin-left: -400px;
+}
+
+}

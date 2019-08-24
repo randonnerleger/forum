@@ -1,709 +1,521 @@
-@import url('RL_Clair.css');
+@import url('Global/global.css');
 
-html,
-body {
+body,
+#top-page,
+#top-page a,
+.pun .quotebox,
+.pun #brdwelcome .conr::before {
 	background: #393939;
-	color: #d4d4d4;
-}
-#header,
-#footer {
-	background-color:#4E4F51;
-	border-color:#242424;
-}
-.search-form .search-field,
-.search-form .search-select {
-	background: #222222 none repeat scroll 0% 0%;
-	color:#c8c8c8;
-}
-.search-form .reset-btn,
-.search-form .search-field:focus {
-	background: #222222;
-}
-.pun #posterror .error-info,
-.pun #adalerts p {
-	border-width: 0px;
-}
-.pun #posterror .error-info,
-.pun #adalerts p,
-#announce-block .important,
-form#edit .infldset.txtarea::before {
-	background-color: #513E27;
-	color: #d4d4d4;
-}
-#announce-block .info {
-	background-color: #233956;
-	color: #d4d4d4;
-}
-#nav {
-	background:#292929;
-}
-#nav li a,
-.togglebox li.display.identification label {
-	color:#fff;
-}
-#nav ul.sub-menu li a {
-	color:#AEAEAE;
-}
-#nav li a:hover,
-#nav ul.sub-menu li a:hover {
 	color:#d4d4d4;
 }
-#nav li.highlight {
-	background: #393939;
+a,
+a:link,
+#nav .sub-menu a,
+/* Dokuwiki */
+#dokuwiki__header a,
+#dokuwiki__header h1 a {
+	color:#d4d4d4;
 }
-#nav li a,
-#nav li strong,
-.togglebox li.display.identification label {
-	border-bottom: 1px solid #1c1c1c;
+a:hover,
+a:visited,
+a:active,
+a:focus,
+#nav .sub-menu a:hover,
+#nav .sub-menu a:visited,
+#nav .sub-menu a:active,
+#nav .sub-menu a:focus,
+/* Dokuwiki */
+#dokuwiki__header a:hover,
+#dokuwiki__header a:visited,
+#dokuwiki__header a:active,
+#dokuwiki__header a:focus,
+#dokuwiki__header h1 a:hover,
+#dokuwiki__header h1 a:visited,
+#dokuwiki__header h1 a:active,
+#dokuwiki__header h1 a:focus {
+	color:#fff;
 }
-/* #nav li a:hover,
-#nav li a:active,
-#nav li a:focus,
-#nav ul.sub-menu li a:hover,
-#nav ul.sub-menu li a:active,
-#nav ul.sub-menu li a:focus {
-	color: #AEAEAE;
-} */
-#content,
-.pun .punwrap {
-	background:#292929;
+.pun .blockpost .postright a,
+.pun .blockpost .postright a:link,
+.dokuwiki div.page a.urlextern,
+.dokuwiki div.page a.urlextern:link,
+#announce-block a,
+#announce-block a:link {
+	color:#4CA0FF;
 }
-.slide, #content {
-	box-shadow: 0px 0px 0em #000;
+.pun .blockpost .postright a:hover,
+.pun .blockpost .postright a:active,
+.pun .blockpost .postright a:focus,
+.pun .blockpost .postright a:visited,
+.dokuwiki div.page a.urlextern:hover,
+.dokuwiki div.page a.urlextern:active,
+.dokuwiki div.page a.urlextern:focus,
+.dokuwiki div.page a.urlextern:visited,
+#announce-block a:hover,
+#announce-block a:active,
+#announce-block a:focus,
+#announce-block a:visited {
+	color:#3980D0;
 }
-form#login_menuG input[type="text"],
-form#login_menuG input[type="password"] {
-	background: #444;
-	border: 1px solid #888;
-	border-radius: 2px;
-	color: #fff;
-	box-shadow: 0px 0px 0px #EEE inset;
+/* BEGIN Liens vert/rouge wiki */
+.dokuwiki a.wikilink1 {
+	color: #0c0;
 }
-form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label::before,
-form#login_menuG .save-pass input[type="checkbox"]:checked + label::before {
-	background: #444;
-	border: 1px solid #888;
-	color: #999;
-	width: 17px;
-	height: 17px;
-	font-size: 1.5em;
-	line-height: 16px;
+.dokuwiki a.wikilink2 {
+	color: #ff3e04;
 }
-/*****************************************************************
-COLOUR FLUXBB
-*****************************************************************/
-
-/* Background / Text
-----------------------------------------------------------------*/
-
-.pun .punwrap {
-	color: #BFCEE3;
-}
-#viewprofile dd,
-.pun .forminfo,
-#brdfooter #modcontrols,
-#adminconsole fieldset td,
-.pun .blockmenu .box,
-#adstats dd {
-	background-color: #303030;
-	}
-
-.pun #viewprofile dl,
-.pun #viewprofile dd,
-#adstats dl,
-#adstats dd {
-	border-color: #1c1c1c;
-}
-.pun .punwrap,
-.pun #viewprofile dt, #adstats dt {
-	color: #939393;
-}
-.pun #viewprofile .box {
-	background: #222222;
-	border-color: #1c1c1c;
-}
-
-.pun legend {
-	color: #60a0dc;
-	}
-
-#posterror li strong {
-	color: #d4d4d4
-	}
-
-.pun .usercontent * {
-	background: transparent;
-	color: #d4d4d4
-	}
-
-input,
-input[type="text"],
-input[type="file"],
-input[type="password"],
-select,
-.pun select,
-textarea {
+#dokuwiki__pagetools div.tools ul:hover,
+#dokuwiki__pagetools div.tools ul:hover a {
 	background-color: #393939;
-	color: #d4d4d4;
-	border:1px solid #393939;
-	}
-
-.pun .multiselect,
-.pun .checklist {
-	color: #D4D4D4;
-	}
-
-.pun .checklist {
-	border-color: #666;
-	background:#393939;
-	}
-
-/* Posts
-----------------------------------------------------------------*/
-
-.pun .blockpost {
-	background: #393939;
-	border-color: #D9E1E7;
+	color:#cccccc;
 }
-.pun .blockpost .postright {
-	border-top: 1px solid #222222;
-}
-.pun .blockpost .box,
-.pun .postright,
-.pun .postfootright,
-.pun .deletemsg,
-.pun .blockpost .postbody,
-.pun .blockpost .postfoot {
-	background-color: #303030;
-	}
-.pun .postright a,
-.pun .postright a span,
-.pun .postright a:link,
-.pun .postright a:visited {
-	color: #6CB1FF !important;
-}
-.pun .blocktable th,
-#punindex .blocktable h2,
-.pun #vf h2 {
-	background: #222222;
-	color:#BCBCBC;
-}
-.pun .blocktable table {
-	background: #4A4949;
-}
-.pun table th.tcl,
-.pun table th.tc2,
-.pun table th.tc3,
-.pun table th.tc4,
-.pun table th.tc5,
-.pun table th.tcr,
-.pun table th.tcmod {
-	background: #222222;
-}
-.pun table .rowodd {
-	background: #303030;
-}
-.pun table .roweven {
-	background: #393939;
-}
-.pun #vf h2 {
-	color: #BCBCBC;
-}
-.pun .postright,
-.pun .postfootright {
-	border-left-color: #303030;
-	}
-.pun .blockpost h2 {
-	background-color: #222222;
-	}
-.pun #quickpost h2,
-#punpost .blockform h2,
-#punedit .blockform h2,
-#posterror h2,
-#pundelete .blockform h2 {
-	background: #222222;
-}
-.pun .blockpost h2 span.conr {
-	color: #a19e96;
-	}
-.pun .blockpost .postbody,
-.pun .blockpost .postfoot {
-	border-color: #303030;
-}
-.pun .postmsg {
-	color: #E8E8E8;
-}
-.pun .postmsg ins,
-#punhelp samp ins {
-	background-color: #ff0;
-	}
-
-#punmisc #rules .box,
-#punhelp .box {
-	background: #292929;
-}
-
-.pun .quotebox {
-	background: #292929;
-	color: #C8CDD4;
-}
-
-.pun hr {
-	background-color: #606060;
-	color: #606060;
-	}
-
-#ezbbcsmiliesbar .smiley {
-	border: 1px solid #393939;
-}
-.pun label, .pun legend, #adminconsole fieldset t {
-	color: #58a0dc;
-}
-
-/* Admin
-----------------------------------------------------------------*/
-.pun .blockform .box,
-#adstats,
-#adintro,
-.pun #adalerts,
-#postpreview,
-#posterror {
-	background: #222222;
-}
-.pun #adalerts {
-	background:#513e27;
-}
-.pun #adalerts p {
-	background: #513e27;
-	color:#d4d4c8;
-}
-.pun .infldset,
-#adintro .inbox,
-#adstats .inbox {
-	background: #303030;
-}
-.pun .blockmenu .isactive a:link,
-.pun .blockmenu .isactive a:visited,
-.pun .blockmenu a:active {
-	color: #CED2D5;
-}
-.pun .blockmenu .isactive a:link,
-.pun .blockmenu .isactive a:visited,
-.pun .blockmenu a:active,
-.pun .blockmenu a:hover,
-.pun .blockmenu a:focus {
-	background: #222222;
-}
-.pun .blockmenu a:hover {
-	color: #AEAEAE;
-}
-/* Borders
-----------------------------------------------------------------*/
-
-.pun .box {
-	border-color:#393939;
-	}
-
-.pun td,
-#brdfooter #modcontrols {
-	border-color: #393939;
-	}
-
-.pun th {
-	border-color: #484848;
-	}
-
-.pun fieldset {
-	border-color: #606060;
-	}
-
-#adminconsole td,
-#adminconsole th {
-	border-color: #222222;
-	}
-#adminconsole fieldset th,
-#adminconsole fieldset td {
-	background: #303030;
-	border-color: #393939;
-}
-.pun .quotebox,
-.pun .codebox,
-.pun .forminfo,
-.pun .blockpost label,
-.pun .deletemsg {
-	border-color: #606060;
-	}
-
-.pun .blocktable td,
-.pun .blocktable th,
-.pun .blocktable .box,
-.pun .blockpost h2,
-.pun .blockpost .postbody,
-.pun .blockpost,
-.pun .blockform .box,
-#adstats,
-#adintro,
-#adalerts,
-#postpreview,
-#posterror,
-.pun .infldset, #adintro .inbox, #adstats .inbox,
-.pun .txtarea textarea, .pun input.longinput,
-#punmisc #rules .box, #punhelp .box,
-#brdmenu a,
-#brdmenu a:link,
-#brdmenu a:visited,
-.dokuwiki div.page,
-#dokuwiki__sitetools a,
-#dokuwiki__sitetools a:link,
-#dokuwiki__sitetools a:visited,
-#uploads #page {
-	border-color: #222222;
-}
-/* Links
-----------------------------------------------------------------*/
-
-.pun a:link,
-.pun h2 a:link  {
-	color: #fff;
-	}
-
-.pun a:hover,
-.pun a:active,
-.pun a:focus,
-.pun a:visited,
-.pun h2 a:visited {
-	color: #d4d4d4;
-}
-
-.pun .postmsg .postimg a:link img,
-.pun .postmsg .postimg a:visited img {
-	border-color: #60a0dc;
-	}
-
-.pun .postmsg .postimg a:hover img,
-.pun .postmsg .postimg a:active img,
-.pun .postmsg .postimg a:focus img {
-	border-color: #AEAEAE;
-	}
-
-.pun h2 a:hover,
-.pun h2 a:active {
-	background:#404040;
-}
-
-.pun .postreport a:link,
-.pun .postreport a:visited,
-.pun .iclosed td.tcl a:link,
-.pun .iclosed td.tcl a:visited {
-	color: #888;
-	}
-
-.pun .postreport a:hover,
-.pun .postreport a:active,
-.pun .iclosed td.tcl a:hover,
-.pun .iclosed td.tcl a:active {
-	color: #aaa;
-	}
-
-.pun .maintenancelink a:link,
-.pun .maintenancelink a:visited {
-	color: #ff4000;
-	}
-
-.pun .maintenancelink a:hover,
-.pun .maintenancelink a:active {
-	color: #ff5010;
-	}
-
-/* Status Indicators
-----------------------------------------------------------------*/
-
-.pun .icon {
-	border-color: #484848 #404040 #3c3c3c #444444;
-	}
-
-.pun .iredirect .icon {
-	border-color: #222222 #222222 #222222 #222222;
-	}
-
-.pun .inew .icon {
-	border-color: #5496d8 #4b85c0 #4377ac #4f8dcb;
-	}
-
-/*****************************************************************
-COLOUR DOKUWIKI
-*****************************************************************/
-.dokuwiki {
-	color: #939393;
-}
-#dokuwiki__site a:link,
-#dokuwiki__site a:visited {
-	color: #fff;
-}
-#dokuwiki__site a:hover,
-#dokuwiki__site a:active,
-#dokuwiki__site a:focus {
-	color: #fff;
-}
-#dokuwiki__header,
-#dokuwiki__site > .site {
-	background: #292929;
-}
-#dokuwiki__header a {
-	color: #60A0DC;
-}
-#dokuwiki__site .page,
-#dw__toc {
-	background: #303030;
-	color:#D3D4D4;
-}
-#dokuwiki__site ul li,
-.dokuwiki .aside ul li,
-.dokuwiki .page ul li,
-.dokuwiki .aside ul li,
-.dokuwiki .page li .li,
-.dokuwiki .aside li .li,
-#dw__toc {
-	color:#D3D4D4;
-}
-#dokuwiki__site th {
-	background:#393939;
-}
-#dokuwiki__site tr:hover th {
-	background:#222;
-}
-.dokuwiki table.inline tr:hover td {
-	background-color: #393939;
-}
-#dokuwiki__pagetools div.tools ul:hover {
-	background:#393939;
-}
+#dokuwiki__pagetools div.tools ul li a:hover,
 #dokuwiki__pagetools div.tools ul li a:active,
 #dokuwiki__pagetools div.tools ul li a:focus,
-#dokuwiki__pagetools div.tools ul li a:hover {
+#dokuwiki__pagetools div.tools ul li a:visited {
 	background-color: #393939;
+	color: #cccccc;
 }
-.dokuwiki .wrap_box,
-.dokuwiki div.wrap_box,
-.dokuwiki div.wrap_box120h,
-.dokuwiki div.wrap_box200h,
-.dokuwiki div.wrap_box280h,
-.dokuwiki div.wrap_box320h,
-.dokuwiki div.wrap_box350h {
-	background: #292929;
-	color: #BCBCBC;
+/* END Liens wiki */
+.pun .postmsg,
+/* Dokuwiki */
+.dokuwiki div.page,
+.dokuwiki .page li .li,
+.dokuwiki .aside li .li,
+.dokuwiki .page ol li,
+.dokuwiki .aside ol li {
+	color:#fff;
 }
-.dokuwiki .wrap_info {
-	background:#2D271F;
+.pun .postsignature {
+	color: #d4d4d4;
 }
-.dokuwiki .wrap_download {
-	background:#280F3C;
+.pun .quotebox .quoted-origin a::after {
+	color:#ccc;
 }
-.dokuwiki .wrap_important {
-	background:#002B5F;
+#header {
+	background-color: #242424;
 }
-.dokuwiki .wrap_alert {
-	background:#00424F;
+#header a {
+	color: #fff;
+	text-shadow: 0px 0px 3px rgba(000, 000, 000, 0.9);
 }
-.dokuwiki .wrap_tip {
-	background:#00075F;
-}
-.dokuwiki .wrap_help {
-	background:#223C0F;
-}
-.dokuwiki .wrap_todo {
-	background:#3C0F21;
-}
-.plugin_wrap {
-	color:#888;
-}
-#dokuwiki__site pre,
-#dokuwiki__site code,
-#dokuwiki__site samp,
-#dokuwiki__site kbd {
-	background:#000;
-	color:#888;
-}
-/*****************************************************************
-COLOUR UNIFORMISATION
-*****************************************************************/
+
 #brdmenu,
+#footer,
 #brdmenu a,
 #brdmenu a:link,
 #brdmenu a:visited,
+/* Dokuwiki */
 #dokuwiki__sitetools,
 #dokuwiki__sitetools a,
 #dokuwiki__sitetools a:link,
-#dokuwiki__sitetools a:visited,
-#uploads.from-ez-toolbar #brdmenu ul {
-    background: #1c1c1c;
+#dokuwiki__sitetools a:visited {
+	background: #111;
+	color:#fff;
 }
-.pun h2 a:link,
-.pun h2 a:hover,
-.pun h2 a:active,
-.pun h2 a:visited {
-	color:#CECECE;
-}
-@media handheld, only screen and (max-width: 1024px) {
-/**
- * Min 1200px / max __1024px__ / max 768px / max 480px
-*/
-	#nav {
-		background:#333333;
-	}
-	#nav li a,
-	.togglebox li.display.identification label {
-		color:#fff;
-	}
-	#nav ul.sub-menu li a {
-		color:#fff;
-	}
-	/* #nav li a,
-	#nav ul.sub-menu li a,
-
-	#nav li a:hover,
-	#nav li a:active,
-	#nav li a:focus,
-	#nav ul.sub-menu li a:hover,
-	#nav ul.sub-menu li a:active,
-	#nav ul.sub-menu li a:focus {
-		color: #cecece;
-		text-decoration:none;
-	} */
-	.pun .blockpost .postleft {
-		background: #393939;
-	}
-	a.secondary-button,
-	form#post p.buttons a,
-	form#edit p.buttons a,
-	#punmisc .buttons a,
-	#msg .inbox a,
-	/* .pagestext a,
-	.pagestext .spacer, */
-	.pun .pagepost a,
-	.pun .pagepost strong,
-	/* .pun .pagepost .spacer, */
-	#uploads nav ul li a,
-	#nav li a.disconnect,
-	.newtext a {
-		background: #1c1c1c;
-		color:#d4d4d4 !important;
-		text-shadow: none;
-	}
-	.newtext a:hover {
-		background: #111;
-	}
-}
-@media handheld, only screen and (max-width: 768px) {
-	.pun .blockpost {
-		background: #222222;
-	}
+#brdmenu a:hover,
+/* Dokuwiki */
+#dokuwiki__sitetools a:hover {
+	background: #516f89;
 }
 
-/* BEGIN Tableaux */
-.pun .postmsg table.rl-table tr:hover {
-	background: grey;
+*,
+.pun .blocktable .box,
+.pun .blocktable th,
+.pun .blocktable td,
+.pun .blockpost,
+.pun .blockpost h2,
+.pun .blockpost .postbody,
+.pun .blockpost .postfoot,
+.pun .blockform .box,
+.pun .infldset,
+#adintro,
+#adstats,
+#adstats .inbox,
+#adintro .inbox,
+#viewprofile dd,
+#adstats dd,
+#punmisc #rules .box,
+#viewprofile .box,
+#viewprofile dl,
+#uploads #page,
+.pun .checklist,
+#register .forminfo,
+#posterror,
+#posterror .inbox,
+/* Dokuwiki */
+.dokuwiki div.page,
+.dokuwiki .plugin_wrap,
+#dw__toc,
+hr {
+	border-color: #222222;
 }
-.pun .postmsg table.rl-table td.mono-cell,
-.pun .postmsg table.rl-table tr.header td {
+.pun .postmsg hr {
 	background: #222222;
-	border-bottom: 2px solid #393939;
 }
-.pun .postmsg table.rl-table tr.header td {
+#header,
+#footer,
+.pun .quotebox,
+#top-page.visible,
+.pun #modcontrols,
+.pun .blockmenu ul,
+.pun .blockmenu li {
+	border-color: #242424;
+}
+.pun .icon {
+	border-color: #484848 #404040 #3c3c3c #444444;
+}
+#nav,
+#content,
+/* .inbox, */
+#brdfooternav,
+.pun #brdwelcome .conr::before,
+#punredirect .punwrap,
+.pun .postmsg table.rl-table tr:hover,
+.dokuwiki table.inline tr:hover td,
+#adminconsole .blockmenu li {
 	background: #292929;
 }
-.pun .postmsg table.rl-table td {
-	background-color: rgba(48, 48, 48);
-	border: 1px solid #222222;
+#nav ul > li a {
+	border-color:#111111;
+	color: #fff;
+}
+/* BEGIN Alternate colors */
+table .rowodd,
+.pun .blockpost .postright,
+.pun .blockpost .postfoot,
+.pun #postpreview.blockpost,
+#uploads #page,
+#posterror,
+/* Dokuwiki */
+#mediamanager__page .file dl dt {
+	background:#303030;
+}
+table .roweven,
+.pun .blockpost,
+.pun .quotebox,
+#register .forminfo,
+#postpreview .postbody,
+#punmisc #rules .box,
+#postpreview .postmsg,
+#adminconsole .inbox,
+/* Dokuwiki */
+.dokuwiki div.page,
+#mediamanager__page .file dl dd {
+	background:#393939;
+}
+.infldset {
+	background:#303030;
+}
+/* END Alternate colors */
+.pun .blockform .box,
+#adminconsole .box,
+.pun #quickpost h2,
+.pun #postpreview h2,
+#punpost .blockform h2,
+#punedit .blockform h2 {
+	background-color: #222222;
+}
+.pun .blockpost h2 {
+	background-color: #222222;
 }
 /* BEGIN Tableaux */
-
-/* Konami */
-	#tetris #upcoming { background-color: #222222; }
-	#tetris #menu p, #tetris #menu p a { color: #60A0DC; }
-
-/*Pagination*/
-.pagelink:before {
-	color:#d4d4d4;
+.pun .postmsg table.rl-table td,
+.dokuwiki .table td {
+	border-color: #222222;
 }
-a.secondary-button,
+.pun .postmsg table.rl-table td.mono-cell,
+.pun .postmsg table.rl-table tr.header td,
+.dokuwiki .table th {
+	border-color: #242424 #222222;
+}
+#mediamanager__page .panelHeader,
+#mediamanager__page .filelist .panelContent ul li {
+	background: #292929;
+	color:#999;
+}
+#mediamanager__page .ui-resizable-e,
+#mediamanager__page .ui-resizable-e:hover {
+	background-color: #888;
+}
+table thead,
+.pun .postmsg table.rl-table td.mono-cell,
+.dokuwiki table.inline th,
+.dokuwiki table.inline tr:hover th,
+#mediamanager__page .filelist .panelContent ul li:hover {
+	background: #222222;
+}
+/* END Tableaux */
+/* BEGIN Code */
+.pun pre,
+.pun code,
+pre,
+code,
+samp,
+kbd {
+	background-color: #4d4033;
+	border-color: #222222;
+	color: #fff;
+}
+.dokuwiki pre,
+.dokuwiki code,
+.dokuwiki samp,
+.dokuwiki kbd {
+	background-color: #4d4033;
+	/* box-shadow: inset 0 0 .5em #ccc; */
+}
+/* END Code */
+/* BEGIN Annonces */
+.important::before {
+	color: #d4d4d4;
+}
+/* Dokuwiki */
+.dokuwiki .plugin_wrap,
+.dokuwiki div[class*="wrap_"],
+.dokuwiki div[class*="wrap_"] li,
+.dokuwiki .page [class*="wrap_"] li .li {
+	color: #ccc;
+}
+.dokuwiki .wrap_box,
+.dokuwiki div[class*="wrap_box"] {
+	background-color: #303030;
+}
+#announce-block .info,
+#uploads .meta,
+#uploads p.admin,
+#uploads p.info,
+#uploads ul.rotate li,
+#uploads #resizeParent,
+#uploads #albumParent,
+/* Dokuwiki */
+.dokuwiki .wrap_info {
+	background-color:#1c1c1c;
+	border-color:#c7cfda;
+}
+.dokuwiki .wrap_download {
+	background-color:#1c1c1c;
+	border-color:#d6efc2;
+}
+#announce-block .important,
+.pun #adalerts,
+form#edit p.buttons::before,
+/* Dokuwiki */
+.dokuwiki .wrap_important {
+	background-color:#1c1c1c;
+	border-color:#ffd39f;
+}
+.dokuwiki .wrap_alert {
+	background-color:#1c1c1c;
+	border-color:#ffbcaf;
+}
+#posterror .inbox,
+/* Dokuwiki */
+.dokuwiki .wrap_tip {
+	background-color:#1c1c1c;
+	border-color:#fff79f;
+}
+.dokuwiki .wrap_help {
+	background-color:#1c1c1c;
+	border-color:#dcc2ef;
+}
+.dokuwiki .wrap_todo {
+	background-color:#1c1c1c;
+	border-color:#c2efdd;
+}
+.dokuwiki .wrap_em {
+	color:#c00;
+}
+.pun .postmsg ins,
+#punhelp samp ins,
+.dokuwiki .wrap_hi {
+	background-color:#797979;
+}
+.dokuwiki .wrap_lo {
+	color:#ccc;
+}
+/* END Annonces */
+
+/* BEGIN box shadow */
+.slide, #content {
+	/* box-shadow: 0px 0px 2px #888; */
+}
+#nav.fixed {
+	/* box-shadow: 0px 0px 0.5em #888; */
+}
+/* END box shadow */
+
+/* BEGIN Toolbar édition */
+.dokuwiki div.toolbar button.toolbutton {
+	background: transparent;
+}
+/* END Toolbar édition */
+
+/* BEGIN Boutons clairs */
+.pun a.secondary-button,
 form#post p.buttons a,
 form#edit p.buttons a,
 #punmisc .buttons a,
 #msg .inbox a,
-/* .pagestext a,
-.pagestext .spacer, */
 .pun .pagepost a,
 .pun .pagepost strong,
-/* .pun .pagepost .spacer, */
+.pun .pagepost .spacer,
 #uploads nav ul li a,
+#nav li a.disconnect,
+.pun .pagepost a[rel~="prev"]::before,
+.pun .pagepost a[rel~="next"]::before,
 #nav li a.disconnect {
-	background: #1c1c1c;
-	color:#d4d4d4 !important;
-	text-shadow: none;
-	transition-property: all;
-	transition-duration: 0.2s;
-	transition-timing-function: ease;
+	background:#1c1c1c;
+	color:#fff;
+	/* text-shadow: 0px 2px 1px rgba(255, 255, 255, .4); */
 }
-a.secondary-button:hover,
+.pun .pagepost .spacer {
+	background:transparent;
+}
+.pun .pagepost strong,
+.pun a.secondary-button:hover,
 form#post p.buttons a:hover,
 form#edit p.buttons a:hover,
 #punmisc .buttons a:hover,
 #msg .inbox a:hover,
-/* .pagestext a:hover,
-.pagestext .spacer:hover, */
 .pun .pagepost a:hover,
-.pun .pagepost strong,
-.pun .pagepost strong:hover,
-/* .pun .pagepost strong, */
-/* .pun .pagepost .spacer:hover, */
 #uploads nav ul li a:hover,
 #nav li a.disconnect:hover {
-	background: #111;
+	background:#111;
 }
-.pagepost strong,
-#uploads .pagination .selected a {
-	background: #020202;
+/* END Boutons clairs */
+
+/* BEGIN Input */
+input[type="text"],
+input[type="file"],
+input[type="password"],
+input[type="search"],
+select,
+textarea,
+.pun #search .checklist,
+.search-form .search-field:focus + .reset-btn,
+form#login_menuG .save-pass input[type="checkbox"] + label::before {
+	background-color: #393939;
+	color:#ccc;
+	border-color:#222222
 }
-/* .pagestext .spacer, */
-.pun .pagepost .spacer {
-	background:transparent;
-	color:#fff;
+#uploads input[type="text"],
+#uploads input[type="file"],
+#uploads input[type="password"] {
+	background-color: #393939;
+}
+/* END Input */
+
+/* BEGIN Uploads */
+#uploads figure {
+	background-color: #222222;
+}
+#uploads ul.rotate li a,
+#uploads .meta a,
+#uploads p.admin a {
+	color: #939393 !important;
+}
+/* END Uploads */
+@media (max-width: 1024px) {
+	#brdmenu,
+	.slide-left-toggle::after,
+	.menu-forum-toggle::after,
+	.menu-search-toggle::after,
+	#nav,
+	#nav a,
+	#nav ul li,
+	#nav ul li a,
+	#nav ul li a:hover,
+	#nav ul li a:visited,
+	#nav ul li a:active,
+	#nav ul li a:focus,
+	#nav .sub-menu a:hover,
+	#nav .sub-menu a:visited,
+	#nav .sub-menu a:active,
+	#nav .sub-menu a:focus,
+	#nav li a.disconnect,
+	#nav li a.disconnect:hover,
+	.togglebox li.display.identification label,
+	.togglebox li.display.identification label:hover,
+	#menu-search,
+	#brdmenu ul li,
+	#brdmenu ul li a,
+	#brdmenu ul li a:link,
+	#brdmenu ul li a:hover,
+	#brdmenu ul li a:visited,
+	#brdmenu ul li a:focus,
+	/* Uploads */
+	#uploads.from-ez-toolbar #brdmenu ul,
+	/* Dokuwiki */
+	#dokuwiki__sitetools ul li,
+	#dokuwiki__sitetools ul li a,
+	#dokuwiki__sitetools ul li a:link,
+	#dokuwiki__sitetools ul li a:hover,
+	#dokuwiki__sitetools ul li a:visited,
+	#dokuwiki__sitetools ul li a:focus {
+		outline: 0;
+		background: #333;
+		color: #fff;
+		text-shadow: none;
+	}
+	#nav ul.sub-menu li,
+	#nav ul.sub-menu li a {
+		background:#404040 !important;
+		border-color:#333333;
+		color:#fff;
+	}
+	form#login_menuG input[type="text"],
+	form#login_menuG input[type="password"],
+	form#login_menuG .save-pass input[type="checkbox"] + label::before,
+	.search-form input[type="search"],
+	.search-form select,
+	.search-form .search-field:focus + .reset-btn {
+		background: #444;
+		color: #fff;
+		border-color:#222;
+	}
+	.menu-left-checkbox:checked ~ #wrapper-inner #content #mobile-nav-overlay,
+	.menu-search-checkbox:checked ~ #wrapper-inner .outer #content #mobile-nav-overlay,
+	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #content #mobile-nav-overlay {
+		background-color: rgba(20, 20, 39, 0.4);
+	}
+}
+@media (max-width: 768px) {
+	.pun .blockpost {
+		background: #222222;
+	}
+	.pun .blockpost .postleft {
+		background: #393939;
+	}
+}
+@media (max-width: 480px) {
+	/* Boutons foncés */
+	.pun #brdwelcome .conr a,
+	.subscribelink.clearb a {
+		background: #516F89;
+		color: #fff;
+		text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4);
+	}
+	.pun #brdwelcome .conr a:hover,
+	.subscribelink.clearb a:hover {
+		background: #304D66;
+	}
+	/* Bouton clairs */
+	.pun .newtext a {
+		background:#1c1c1c;
+		color:#fff;
+		/* text-shadow: 0px 2px 1px rgba(255, 255, 255, .4); */
+	}
+	.pun .newtext a:hover {
+		background:#111;
+	}
+	#postreview .postleft{
+		background: #222222;
+	}
 }
 
-/*UPLOAD SOMBRE*/
-#uploads #page {
-	background: #303030;
+/* BEGIN PLUGINS */
+/* Dokuwiki */
+#plugin__schulzevote .votebar {
+	background-color: #4e4f51;
 }
-#uploads figure {
-	border: 1px solid #222222;
-	background: #222222;
-}
-/* #uploads .picture footer.context {
-	background: rgb(44, 44, 44);
-	background: rgba(255, 255, 255, 0.05);
-} */
-#uploads ul.rotate li,
-#uploads ul.rotate li a,
-#uploads #resizeParent a,
-#uploads p.admin a,
-#uploads #albumParent a {
-	color:#d4d4d4 !important;
-}
-#uploads #resizeParent,
-#uploads p.admin,
-#uploads p.info,
-#uploads .meta,
-#uploads .meta a,
-#uploads .meta h2,
-#uploads .meta h3,
-#uploads .meta h4,
-#albumParent,
-#uploads ul.rotate li {
-	background: #292929;
-	color:#939393 !important;
-}
-#uploads .information {
-	background: #233956;
-	color:#fff;
-}
+/* END PLUGINS */

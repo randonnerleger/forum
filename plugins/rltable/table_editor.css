@@ -75,7 +75,7 @@ table.rl-table tr.header td, table.rl-table td.mono-cell {
 	font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
 	border: none;
 	text-align: inherit;
-	max-width: 100%;
+	max-width: calc(100% - 16px);
 }
 
 .rl-table.edit .header input, .rl-table.edit .mono-cell input {

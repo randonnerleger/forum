@@ -215,7 +215,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 #brdstats {
 	border-style: solid none none none;
 	border-width: 2px 0 0 0;
-	margin-top: 24px;
+	/* margin-top: 24px; */
 	padding-top: 12px;
 }
 
@@ -496,9 +496,9 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	top: 0px;
 }
 
-#punindex .linksb {
+/* #punindex .linksb {
 	height: 12px;
-}
+} */
 
 /*****************************************************************
 4. MAIN TABLES

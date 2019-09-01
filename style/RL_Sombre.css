@@ -6,7 +6,7 @@ body,
 .pun .quotebox,
 .pun #brdwelcome .conr::before {
 	background: #393939;
-	color:#d4d4d4;
+	color:#a8a8a8;
 }
 a,
 a:link,
@@ -87,10 +87,10 @@ a:focus,
 	color:#fff;
 }
 .pun .postsignature {
-	color: #d4d4d4;
+	color: #a8a8a8;
 }
 .pun .quotebox .quoted-origin a::after {
-	color:#ccc;
+	color:#a8a8a8;
 }
 #header {
 	background-color: #242424;
@@ -144,6 +144,10 @@ a:focus,
 #posterror,
 #posterror .inbox,
 /* Dokuwiki */
+.dokuwiki fieldset,
+.dokuwiki th,
+.dokuwiki td,
+div.hiddenGlobal,
 .dokuwiki div.page,
 .dokuwiki .plugin_wrap,
 #dw__toc,
@@ -181,7 +185,9 @@ hr {
 	color: #fff;
 }
 /* BEGIN Alternate colors */
-table .rowodd,
+/* table .rowodd, */
+tbody tr:nth-child(odd),
+.pun .blockpost .postbody,
 .pun .blockpost .postright,
 .pun .blockpost .postfoot,
 .pun #postpreview.blockpost,
@@ -191,7 +197,8 @@ table .rowodd,
 #mediamanager__page .file dl dt {
 	background:#303030;
 }
-table .roweven,
+/* table .roweven, */
+tbody tr:nth-child(even),
 .pun .blockpost,
 .pun .quotebox,
 #register .forminfo,
@@ -263,6 +270,7 @@ kbd {
 .dokuwiki kbd {
 	background-color: #4d4033;
 	/* box-shadow: inset 0 0 .5em #ccc; */
+	color: #fff;
 }
 /* END Code */
 /* BEGIN Annonces */
@@ -270,15 +278,23 @@ kbd {
 	color: #d4d4d4;
 }
 /* Dokuwiki */
+div.hiddenGlobal,
 .dokuwiki .plugin_wrap,
 .dokuwiki div[class*="wrap_"],
 .dokuwiki div[class*="wrap_"] li,
 .dokuwiki .page [class*="wrap_"] li .li {
 	color: #ccc;
 }
+div.hiddenGlobal,
 .dokuwiki .wrap_box,
 .dokuwiki div[class*="wrap_box"] {
 	background-color: #303030;
+}
+.hiddenActive div.hiddenHead {
+	background-color: #292929;
+}
+.hiddenActive.hiddenHidden div.hiddenHead {
+	background-color: transparent;
 }
 #announce-block .info,
 #uploads .meta,
@@ -298,6 +314,7 @@ kbd {
 }
 #announce-block .important,
 .pun #adalerts,
+.pun .inform .forminfo,
 form#edit p.buttons::before,
 /* Dokuwiki */
 .dokuwiki .wrap_important {
@@ -354,6 +371,7 @@ form#edit p.buttons::before,
 .pun a.secondary-button,
 form#post p.buttons a,
 form#edit p.buttons a,
+#pundelete p.buttons a,
 #punmisc .buttons a,
 #msg .inbox a,
 .pun .pagepost a,
@@ -375,6 +393,7 @@ form#edit p.buttons a,
 .pun a.secondary-button:hover,
 form#post p.buttons a:hover,
 form#edit p.buttons a:hover,
+#pundelete p.buttons a:hover,
 #punmisc .buttons a:hover,
 #msg .inbox a:hover,
 .pun .pagepost a:hover,
@@ -415,6 +434,8 @@ form#login_menuG .save-pass input[type="checkbox"] + label::before {
 	color: #939393 !important;
 }
 /* END Uploads */
+
+/* BEGIN ezbbc toolbar et rltable */
 @media (max-width: 1024px) {
 	#brdmenu,
 	.slide-left-toggle::after,
@@ -489,14 +510,12 @@ form#login_menuG .save-pass input[type="checkbox"] + label::before {
 }
 @media (max-width: 480px) {
 	/* Boutons foncés */
-	.pun #brdwelcome .conr a,
-	.subscribelink.clearb a {
+	.pun #brdwelcome .conr a {
 		background: #516F89;
 		color: #fff;
 		text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4);
 	}
-	.pun #brdwelcome .conr a:hover,
-	.subscribelink.clearb a:hover {
+	.pun #brdwelcome .conr a:hover {
 		background: #304D66;
 	}
 	/* Bouton clairs */
@@ -513,9 +532,14 @@ form#login_menuG .save-pass input[type="checkbox"] + label::before {
 	}
 }
 
-/* BEGIN PLUGINS */
-/* Dokuwiki */
-#plugin__schulzevote .votebar {
-	background-color: #4e4f51;
+/* BEGIN ezbbc toolbar et rltable */
+#ezbbclink,
+#importModal {
+	background: #222222;
 }
-/* END PLUGINS */
+table.rl-table td {
+	background: rgba(57, 57, 57, .4);
+}
+table.rl-table tr:hover {
+	background: #393939;
+}

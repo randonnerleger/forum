@@ -129,7 +129,7 @@
 /* .pun .blockmenu a:hover, .pun .blockmenu a:active, .pun .blockmenu a:focus {
 	text-decoration: none;
 } */
-.pun label input, .pun label select, .pun label textarea {width: 100%;}
+/* .pun label input, .pun label select, .pun label textarea {width: 100%;} */
 .pun fieldset label {width: 100%;}
 .pun #quickpost legend, #punpost legend, #punedit legend {width: 100%;}
 .pun .infldset {
@@ -174,8 +174,8 @@
      white-space: normal;
 } */
 
-.pun .blockpost .postfootright {
+/* .pun .blockpost .postfootright {
 	margin-left: -400px;
-}
+} */
 
 }

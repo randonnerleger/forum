@@ -1,13 +1,13 @@
 html,body {
 	overflow: visible !important;
 	height: 100%;
-	background: #F7F7F7;
+	/* background: #F7F7F7; */
 }
 
-.pun .punwrap {
+/* .pun .punwrap {
 	padding: 0;
 	height: 100%;
-}
+} */
 
 .pun .rl-table-form {
 	height: 3em;
@@ -16,11 +16,12 @@ html,body {
 
 .rl-table-form select {
 	margin-right: 2em;
+	max-width: 250px;
 }
 
 .rl-table-container {
 	position: absolute;
-	top: 4em;
+	top: 5em;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -40,15 +41,15 @@ table.rl-table {
 	margin: 0 auto;
 }
 
-table.rl-table tr:hover {
+/* table.rl-table tr:hover {
 	background: lightyellow;
-}
+} */
 
 table.rl-table td {
 	border: 1px solid #CCCCCC;
 	padding: 2px 5px 1px 5px;
-	background-color: rgba(255,255,255,0.3);
-	font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
+	/* background-color: rgba(255,255,255,0.3); */
+	/* font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif; */
 	font-size: 95%;
 	min-width: 100px;
 }
@@ -61,7 +62,7 @@ table.rl-table td.blank-cell {
 
 table.rl-table tr.header td, table.rl-table td.mono-cell {
 	font-weight: bold;
-	border-bottom: 2px solid #9aacbc;
+	border-bottom: 2px solid red;
 }
 
 .rl-table.edit td {
@@ -72,10 +73,10 @@ table.rl-table tr.header td, table.rl-table td.mono-cell {
 	width: calc(100% - 6px);
 	padding: 2px 3px 1px 3px;
 	background-color: transparent;
-	font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
+	/* font-family: Verdana, Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif; */
 	border: none;
 	text-align: inherit;
-	max-width: 100%;
+	max-width: calc(100% - 16px);
 }
 
 .rl-table.edit .header input, .rl-table.edit .mono-cell input {
@@ -167,7 +168,7 @@ table.rl-table tr.header td, table.rl-table td.mono-cell {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: #eee;
+	/* background: #eee; */
 	padding: .5em;
 }
 

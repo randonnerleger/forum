@@ -1,0 +1,3283 @@
+/*
+
+Theme Name: RL Air
+Author: Opitux
+Version: 2.2
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+ * ==============================================================================
+ * ------------------------------------------------------------------------------
+ * Table of Contents:
+ *
+ *	1.0 - Reset
+ *	2.0 - FLUXBB AIR
+ *	3.0 - FLUXBB AIR RESPONSIVE
+ *	4.0 - TEMPLATE
+ *		4.1 - template RL
+ *		4.2 - fluxbb
+ *		4.3 - dokuwiki
+ *		4.4 - uniformisation
+
+ *	5.0 - MEDIA QUERIES 1024
+ *		5.1 - Media queries 1024 template RL
+ *		5.2 - Media queries 1024 fluxbb
+ *		5.3 - Media queries 1024 dokuwiki
+ *		5.4 - Media queries 1024 uniformisation
+
+ *	6.0 - MEDIA QUERIES 768
+ *		6.1 - Media queries 768 template RL
+ *		6.2 - Media queries 768 fluxbb
+ *		6.3 - Media queries 768 dokuwiki
+ *		6.4 - Media queries 768 uniformisation
+
+ *	7.0 - MEDIA QUERIES 480
+ *		7.1 - Media queries 480 template RL
+ *		7.2 - Media queries 480 fluxbb
+ *		7.3 - Media queries 480 dokuwiki
+ *		7.4 - Media queries 480 uniformisation
+
+ *	8.0 - MEDIA QUERIES 380
+
+ *	9.0 - UPLOADS FOTOO
+
+
+ */
+
+@font-face {
+	font-family: "FontAwesome";
+	src: url(../../../tpl/fonts/font-awesome/fonts/fontawesome-webfont.woff);
+}
+
+/**
+ * ------------------------------------------------------------------------------
+ * ==============================================================================
+ * 1.0 - Reset
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	overflow-y: scroll;
+}
+body,
+html {
+	overflow-x:hidden;
+	position:relative;
+	min-height: 100vh;
+	text-align: left;
+}
+li {
+	padding: 0px;
+	margin: 0px;
+}
+#brdmenu,
+#dokuwiki__header .tools li {
+	font-size: 1em;
+}
+iframe {
+	max-width: 100% !important;
+}
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="password"],
+input[type="search"] {
+	-webkit-appearance:	none;
+	appearance: none;
+	box-shadow: none;
+}
+h1,
+h1 a {
+	font-size: 2.4rem;
+	margin:0 0 .444em;
+}
+h2 {
+	font-size: 2rem;
+	margin:0 0 .666em;
+}
+h3 {
+	font-size: 1.8rem;
+	margin:0 0 .888em;
+}
+h4 {
+	font-size: 1.6rem;
+	margin:0 0 1em;
+}
+h5 {
+	font-size: 1.4rem;
+	margin:0 0 1.1428em;
+}
+h6 {
+	font-size: 1.2rem;
+	margin:0 0 1.333em;
+}
+/* Headings */
+
+h1,
+h1 span,
+h1 a,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+	padding: 0;
+	line-height: 1.2;
+}
+
+p,
+ul,
+ol,
+dl,
+pre,
+table,
+hr,
+blockquote,
+figure,
+details,
+fieldset,
+address {
+margin:0 0 1.4em 0;
+padding:0;
+}
+img {
+	max-width: 100%;
+	max-height: auto;
+}
+/**
+ * END Reset
+ * ------------------------------------------------------------------------------
+ * ==============================================================================
+ * 2.0 - FLUXBB AIR
+ */
+
+/*****************************************************************
+1. INITIAL SETTINGS
+Opitux :ici débute le style Air auquel je ne touche pas
+		Les modifs sont faite à la suite
+*****************************************************************/
+
+html,body,.pun table,.pun div,.pun form,.pun p,.pun h1,.pun h2,.pun h3,.pun h4,.pun h5,.pun pre,.pun blockquote,.pun ul,.pun ol,.pun li,.pun dl,.pun dt,.pun dd,.pun th,.pun td,.pun fieldset,.pun legend .pun img,.pun abbr,.pun cite{border:0;font-style:normal;font-weight:normal;margin:0;padding:0}.pun ul,.pun ol{list-style:none}.pun select{padding-bottom:1px;padding-top:1px;padding-right:1px}.pun table,.pun td,.pun th,.pun input,.pun select,.pun optgroup,.pun textarea,.pun legend{font-size:1em}.pun pre,.pun code{font-family:consolas,monaco,"bitstream vera sans mono","courier new",courier,monospace;font-size:1em}.pun pre code{font-size:1em}.pun table{border-collapse:collapse;border-spacing:0;border:0;empty-cells:show;width:100%}.pun h1{padding:7px 0}.pun h2,.pun .hd h2{padding:7px 0}.pun h3{font-size:1.154em;line-height:1.267em;padding:7px 0}.pun h4{font-size:1.077em;font-weight:bold;padding:7px 0}.pun h5,.pun h6{font-size:1em;font-weight:bold;padding:7px 0}.pun p,.pun ul,.pun ol,.pun dl,.pun th,.pun td,.pun legend{padding:7px 0}.pun strong,.pun th,.pun span.warntext,.pun p.warntext{font-weight:bold}.pun em{font-style:italic}.pun a,.pun a:link,.pun a:visited{text-decoration:none}.pun a:hover,.pun a:active,.pun a:focus{text-decoration:underline}.pun .actions span{padding-left:16px;padding-right:8px;display:inline-block;line-height:normal}#brdfooter h2,#brdstats h2,#debug h2,#brdstats .conl dt,#brdstats .conr dt,#modcontrols dt,#searchlinks dt,div.postright h3,.pun .subscribelink span,#announce .hd,#reportform h2,#punmoderate #vf h2,#punviewforum #vf h2,.pun .required strong span,.pun .icon div{display:block;overflow:hidden;position:absolute;text-indent:-9999em;width:0}.pun .inbox,.pun #brdmain,.pun .crumbs,.pun .pagepost,.pun .block2col{min-height:1px}* html .pun .inbox,* html .pun #brdmain,* html .pun .infldset,* html .pun .crumbs,* html .pun .pagepost,* html .pun .block2col{display:inline-block}* html .pun .inbox,* html .pun #bdrdmain,* html .pun .infldset,* html .pun .crumbs,* html .pun .pagepost,* html .pun .block2col{display:block}.pun .inbox:after,.pun #brdmain:after,.pun .crumbs:after,.pun .pagepost:after,.pun .block2col:after{content:" ";display:block;height:0;font-size:0;clear:both;visibility:hidden}.pun .block2col .inbox:after{content:none;clear:none}.clearl{clear:left}.pun{max-width:1070px;margin:0 auto;padding:30px 40px}#punredirect,#punmaint{padding:60px 20% 12px 20%}#puninstall,#pundb_update{padding:20px 10%}#punredirect h2,#punmaint h2{border-bottom-style:dotted;border-bottom-width:1px;margin-bottom:3px}#brdmain{border-style:solid none;border-width:2px 0;margin-bottom:12px;padding:12px 0}#punindex #brdmain{padding-top:24px}#punredirect #brdmain,#punmaint #brdmain{border:0;margin:0;padding:0}#brdstats{border-style:solid none none none;border-width:2px 0 0 0;padding-top:12px}#quickpost{border-style:solid none none none;border-width:2px 0 0 0;margin-top:12px;padding-top:12px}#announce{border-style:solid none none none;border-width:2px 0 0 0;padding-top:3px}#brdtitle h1{padding:0 0 10px 0}#brddesc{border-top-style:dotted;border-top-width:1px;padding:10px 0}#brddesc p{padding:0}#brdwelcome{padding:10px 0}#brdwelcome .conl,#brdwelcome .conr,#brdwelcome p,#brdwelcome li{display:inline;padding:0}#brdwelcome .conl{float:left}#brdwelcome .conr{float:right}#brdwelcome li span{display:inline-block;white-space:nowrap}#brdwelcome .conl li:first-child span{padding-left:0;background:0}#brdstats .conl{float:left}#brdstats .conr{float:right;text-align:right}#brdstats #onlinelist{border-top-style:dotted;border-top-width:1px;clear:both}#brdstats #onlinelist dt,#brdstats #onlinelist dd{display:inline}.pun #modcontrols{border-style:none none dotted none;border-width:0 0 1px 0;margin-bottom:0;text-align:center;width:100%}.pun #modcontrols dd{display:inline}.pun #brdfooter #modcontrols dd span{display:inline-block;line-height:normal;padding-left:18px;white-space:nowrap}.pun #brdfooter .conl{float:left}.pun #brdfooter .conr{text-align:right;float:right}.pun #brdfooter #poweredby a{font-size:1.077em;font-weight:bold}.pun #brdfooter #qjump{padding-top:5px}.pun #brdfooter #qjump *{white-space:nowrap}.pun #brdfooter #searchlinks dd span{display:inline-block;line-height:normal;padding-left:18px;white-space:nowrap}.pun #brdfooter #feedlinks{padding-bottom:0}.pun #brdfooter #feedlinks span{background:url(../../tpl/img/feed.png) center left no-repeat;display:inline-block;padding-left:18px;white-space:nowrap}.pun #debugtime{border-style:dotted none none none;border-width:1px 0 0 0;margin-top:7px;text-align:center}.pun .linkst .inbox,.pun .linksb .inbox,.pun .postlinksb .inbox{overflow:hidden}.pun .linksb,.pun .postlinksb,.pun .linkst,.pun .crumbs{clear:both;position:relative}.pun .linkst .crumbs{font-size:1.462em;line-height:1.211em;padding:7px 0}.pun .linksb .crumbs,.pun .postlinksb .crumbs{font-size:1.154em}.pun .linkst .crumbsplus .pagepost{border-top-style:dotted;border-top-width:1px}.pun .linksb .crumbsplus .pagepost,.pun .postlinksb .crumbsplus .pagepost{border-bottom-style:dotted;border-bottom-width:1px}.pun .postlinksb .crumbs{margin-right:11em}.pun .crumbs li{float:left;padding-right:.4em;white-space:nowrap}.pun .crumbs li strong{font-weight:normal}.pun .pagelink{float:left;white-space:nowrap}.pun .pagelink strong,.pun .pagelink a,.pun .pagelink span.spacer{border-style:none none none solid;border-width:0 0 0 1px;display:inline-block;padding:0 12px 0 10px;margin-right:-6px}.pun .pagelink .item1{border:0}.pun .pagelink .pages-label{display:inline-block}.pun .postlink{float:right;font-weight:bold;text-align:right}.pun .modbuttons{float:right;padding:5px 0 3px 0}.pun .modbuttons input{margin-left:8px}.pun .subscribelink{position:initial;right:0;text-align:right;top:33px}#punindex .subscribelink{top:0}.pun #brdmain .blocktable{position:relative}#punindex #brdmain .blocktable h2,#punsearch #vf h2{font-size:1em;line-height:1.462em;font-weight:bold;margin:1px 1px 0 1px;padding-left:8px;position:absolute;left:0;white-space:nowrap;z-index:100}#punindex .blocktable th.tcl,#punsearch #vf th.tcl{font-size:0;text-indent:-9999em}.pun .blocktable .box{border-style:solid;border-width:1px;margin-bottom:-1px;overflow:hidden;position:relative}* html .pun .blocktable .box{display:inline-block}.pun .blocktable table{table-layout:fixed;margin-bottom:-1px}.pun .blocktable th{padding:7px 8px;border-style:none none solid none;border-width:1px;text-align:left}.pun .blocktable td{padding:7px 8px;line-height:1.3077em;border-style:none none solid none;border-width:1px;text-align:left}.pun .blocktable h3{font-size:1.077em;font-weight:bold;padding:0}.pun .blocktable p{padding:0}.pun .blocktable .tcl p{padding:5px 0 0 0}.pun .blocktable .tcl{width:auto}.pun .blocktable .tc2,.pun .blocktable .tc3,.pun .blocktable .tcmod{padding-left:0;padding-right:0;text-align:center;width:11%}.pun .blocktable td .newtext,.pun .blocktable td .pagestext,.pun .blocktable td .byuser{white-space:nowrap}.pun .blocktable .tcl h3 span.newtext{font-size:.929em;font-weight:normal}.pun #vf td.tcl span.stickytext,.pun #vf td.tcl span.closedtext{font-size:1em;font-weight:bold}#punsearch #vf .tc2{padding-left:8px;padding-right:8px;text-align:left;width:18%}#users1 .tcr{width:25%}#users1 .tc2{padding-left:8px;padding-right:8px;text-align:left;width:25%}#debug{margin-top:12px}#debug .tcl{width:10%}#punredirect #debug .tcl,#punmaint #debug .tcl{width:20%}#debug .tcr{width:90%;white-space:normal}#punindex .tcr .byuser{display:block}#punindex td.tc2,#punindex td.tc3,#punindex td.tcr,.pun #vf td.tc2,.pun #vf td.tc3,.pun #vf td.tcr,#punindex td.tcl div.forumdesc,.pun #vf td.tcl span{font-size:.923em}.pun #vf td.tcl a{font-weight:bold}.pun #vf td.tcl span a{font-weight:normal}.pun .blocktable .tclcon{min-height:1px;overflow:hidden;padding:0 11px 0 12px;position:relative}.pun .blocktable .tclcon div{width:100%;overflow:hidden}.pun .icon{border-style:solid;border-width:8px;float:left;height:0;overflow:hidden;width:0}.pun .iposted .ipost{font-weight:bold;left:0;padding-left:4px;position:absolute;text-align:center;top:0;width:8px}.pun .blockpost{border-style:solid;border-width:1px;overflow:hidden;position:relative}* html .pun .blockpost{display:inline-block}.pun .blockpost h2{font-size:1em;line-height:1.462em;white-space:nowrap;border-bottom-style:solid;border-bottom-width:1px;height:1.462em;padding:.538em 8px .538em 236px;font-weight:normal}#punsearch .blockpost h2{height:auto;padding-left:36px;white-space:normal}#punsearch .blockpost h2 span span{white-space:nowrap;display:inline-block;font-size:1.077em}#punsearch .blockpost .icon{position:absolute;top:0;margin-top:-2.154em}.pun .blockpost h2 .conr{float:right;text-align:right}.pun .blockpost .inbox{float:right;position:relative;width:100%}.pun .blockpost .postbody,.pun .blockpost .postfoot{border-left-style:solid;border-left-width:1px;float:right;margin-right:-218px;position:relative;text-align:left;width:100%}.pun .blockpost .postleft,.pun .blockpost .postfootleft{width:194px;padding:7px 12px 7px 12px;float:left;margin-left:-218px;position:relative}.pun .blockpost .postleft dl{padding:0}#punviewtopic .blockpost dt,#punmoderate .blockpost dt{display:block;position:absolute;padding:.538em 0 .538em 12px;height:1.462em;top:-2.615em;left:0;overflow:hidden;width:206px}.pun .blockpost dt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pun .blockpost dt strong{font-size:1.231em;font-weight:bold}.pun .blockpost .postleft dd{font-size:.923em}.pun .blockpost .postleft .usertitle{padding:4px 0 6px 0;font-size:1em}.pun .blockpost .postleft .postavatar{display:block;margin:0 0 4px 0}.pun .blockpost .postright{position:relative;padding:4px 230px 7px 18px}.pun .postmsg{width:100%;overflow:hidden;word-wrap:break-word}.pun .blockpost .postfootright{position:relative;padding:7px 230px 7px 18px;text-align:right}.pun .postfoot p,.pun .postfoot ul{padding:0}.pun .blockpost .postfootright li{display:inline}.pun .blockpost .postfootright li span{display:inline-block;padding-left:16px;margin-left:8px;line-height:normal}.pun .blockpost .usercontacts{padding:7px 0}.pun .blockpost .usercontacts .email{background:url(../../tpl/img/email.png) left 65% no-repeat;margin-right:5px;padding-left:21px;display:inline-block;line-height:normal}.pun .blockpost .usercontacts .website{background:url(../../tpl/img/ext.png) left 65% no-repeat;padding-left:18px;display:inline-block;line-height:normal}.pun .postsignature hr{border:0;height:1px;margin-left:0;text-align:left}.pun .usercontent h1,.pun .usercontent h2,.pun .usercontent h3,.pun .usercontent h4,.pun .usercontent h5,.pun .usercontent h6{padding:7px 0 0 0}.pun .postmsg h5,#punhelp h5{font-size:1.231em;font-weight:bold;padding:7px 0}.pun .usercontent ul,.pun .postmsg ul{list-style:disc;padding:4px 13px 4px 30px}.pun .usercontent ol,.pun .postmsg ol{list-style:decimal;padding:4px 13px 4px 30px}.pun .usercontent ol.alpha,.pun .postmsg ol.alpha{list-style:lower-alpha}.pun .usercontent li,.pun .postmsg li{padding:0 3px}.pun .usercontent li p,.pun .postmsg li p{padding:0}.pun span.bbu{text-decoration:underline}.pun span.bbs,.pun del{text-decoration:line-through}.pun .postmsg ins,#punhelp samp ins{text-decoration:none}.pun .blockpost .postmsg .postedit{font-size:.857em}.pun .blockform .postsignature,.pun .blockpost .postsignature{font-size:.923em}.pun .codebox{border-style:solid;border-width:1px;margin:.75em 1em;padding:0}.pun .quotebox{border-style:solid;border-width:1px 1px 1px 3px;margin:.75em 1em;padding:0 .75em}.pun .quotebox cite{display:block;padding:.75em 0 0 0;font-weight:bold;line-height:1.462em}.pun .quotebox blockquote{overflow:hidden;width:100%}.pun .codebox pre{overflow:auto;width:100%;direction:ltr;text-align:left}* html .pun .codebox pre{padding-bottom:10px}*:first-child+html .pun .codebox pre{padding-bottom:10px}.pun .codebox pre code{padding:.5em;white-space:pre}.pun div[class*=codebox] pre code{display:inline-block}* html .pun .codebox pre code{display:block}.pun .codebox pre.vscroll{height:32em;overflow:auto;overflow-y:auto}.pun .postmsg img,#punhelp samp img{vertical-align:text-top}.pun .postmsg .postimg a:link img,.pun .postmsg .postimg a:visited img{border-style:solid;border-width:2px}#punedit .blockform h2,#punpost .blockform h2,#postpreview h2,#posterror h2,.pun #quickpost h2,.pun #reportform h2,#pundelete .blockform h2{font-size:1em;line-height:1.462em;font-weight:bold;white-space:nowrap;padding:10px 19px 4px 37px;border:0}#punpost .blockform h2,#punedit .blockform h2,.pun #quickpost h2,#pundelete .blockform h2{margin:1px 1px 0 1px;width:25em;position:absolute;z-index:100}.pun #quickpost legend,#punpost legend,#punedit legend{width:25em;overflow:hidden;white-space:nowrap}.pun .blockform .box{border-style:solid;border-width:1px;padding-bottom:12px}.pun #posterror{border-style:solid;border-width:1px}.pun #posterror .box{padding:0 18px 12px 18px}* html .pun .blockform .box,* html .pun #posterror{display:inline-block}.pun .blockform .forminfo,.pun .error-info{padding:12px 18px;border-style:solid;border-width:1px;position:relative}.pun .blockform .forminfo{margin-top:12px}#pundelete .blockform .forminfo{margin-top:33px}.pun .forminfo h3{padding-bottom:0}.pun .error-list li{padding-left:24px;background:url(../../tpl/img/exclaim.png) center left no-repeat}.pun .inform{padding:0 18px}.pun legend{font-weight:bold;padding:10px 19px 4px 19px}* html .pun legend{margin-left:-7px}*:first-child+html .pun legend{margin-left:-7px}.pun .infldset{border-style:solid;border-width:1px;padding:12px 18px}#punregister #rules .infldset{padding:5px 18px}.pun fieldset p{padding:0 0 7px 0;width:100%}.pun fieldset .usercontent p{padding:7px 0}.pun fieldset label{display:block;padding:0 0 7px 0}.pun label em{font-weight:normal;font-style:normal}.pun .required strong{background:url(../../tpl/img/asterisk.png) center right no-repeat;font-weight:normal;padding-right:14px;white-space:pre;display:inline-block;line-height:normal}.pun label input,.pun label select,.pun label textarea{margin-top:2px}.pun label.conl{display:inline-block;padding-right:12px}.pun form .buttons{padding:8px 19px 8px 34px;margin-bottom:-12px}.pun .blockform .buttons input{margin-right:12px}.pun .rbox{padding:3px 0}.pun .rbox label{padding:3px 0 3px 1.75em;position:relative;min-height:1px}* html .pun .rbox label{text-indent:-3px;height:1%}.pun .rbox input{margin:3px .75em 3px -1.75em;float:left;position:relative;vertical-align:middle;padding:0;height:1em;width:1em}.pun textarea{resize:vertical}.pun #quickpost .txtarea{padding-right:12px;position:relative}.pun .blockform .bblinks{padding-top:0}.pun .blockform .bblinks li{display:inline}.pun .blockform .bblinks li span{background:url(../../tpl/img/help.png) center left no-repeat;margin-right:8px;padding-left:20px;display:inline-block}.pun #quickpost .bblinks{padding-top:0}.pun #quickpost .bblinks li{display:inline}.pun #login p.clearb{border-top-style:dotted;border-top-width:1px;font-size:0;height:0;line-height:0;margin-top:7px;overflow:hidden;padding-bottom:3px;padding-top:7px;text-indent:-9999em;width:100%}.pun #postreview{padding-top:12px}.pun #postpreview,.pun #posterror{margin-bottom:12px}.pun #postpreview .postright{padding:0}.pun #postpreview .postbody{border-style:solid;border-width:1px;float:none;margin:0 18px 12px 18px;padding:0;padding:4px 18px 4px 18px;width:auto}.pun span.email{background:url(../../tpl/img/email.png) left 65% no-repeat;margin-right:5px;padding-left:21px;display:inline-block;line-height:normal}.pun span.website{background:url(../../tpl/img/ext.png) left 65% no-repeat;padding-left:18px;display:inline-block;line-height:normal}#punmisc #rules .box{border-style:solid;border-width:1px;padding:5px 18px}#punhelp .box{border-style:solid;border-width:1px;padding:7px 12px}.pun .multiselect{float:left;padding-bottom:7px}.pun .checklist{border-width:1px;border-style:solid;max-height:9em;width:20em;overflow:auto;padding:.25em .5em;margin:.25em 16px 0 .15em}.pun .checklist legend{padding:0}.pun .checklist legend span{width:auto;max-width:25em}.pun .blockmenu{width:13em;float:left;padding-bottom:12px}.pun .block2col .blockform,.pun .block2col .block{margin-left:15em}.pun .blockmenu .block2{padding-top:19px}.pun .blockmenu ul{border-top-style:dotted;border-top-width:1px;padding:0}.pun .blockmenu li{border-bottom-style:dotted;border-bottom-width:1px;font-weight:bold;padding:0}* html .pun .blockmenu a:link,* html .pun .blockmenu a:visited{height:1%}.pun .blockmenu a:hover,.pun .blockmenu a:active,.pun .blockmenu a:focus{text-decoration:none}#viewprofile .box{border-style:solid;border-width:1px;padding-bottom:18px}#viewprofile dt,#adstats dt{padding:7px 0;position:absolute;width:13em;left:0}#viewprofile dl{border-style:solid none none none;border-width:1px;margin:7px 0;padding:0;width:100%;position:relative}#adintro,#adstats{border-style:solid;border-width:1px;padding:18px}#adintro li span{display:inline-block;padding-left:16px;margin-left:8px;line-height:normal}#adstats .inbox,#adintro .inbox{border-style:solid;border-width:1px;padding:18px}#adstats dl{margin:0;padding:0;width:100%;position:relative}#viewprofile dd,#adstats dd{border-style:none none solid none;border-width:1px;padding:7px 0 7px 13em}.pun .iredirect .icon{border-color:#b9c5ce;border-width:1px;padding:7px}.pun .inew .icon{border-color:#91b3d9 #87a8d1 #6c85bb #7292c3}
+
+
+/**
+ * END FLUXBB AIR
+ * ------------------------------------------------------------------------------
+ * ==============================================================================
+ * 3.0 - FLUXBB AIR RESPONSIVE
+ * Source : https://fluxbb.org/forums/viewtopic.php?id=7889
+ */
+
+@media(max-width:768px){* .pun{padding:0;margin:30px auto;width:100%}#brdtitle{display:none}#punredirect,#punmaint{width:318px;margin:60px auto;padding:0 185px}#brdtitle h1{padding:0 0 10px 0}#brddesc{padding:0;width:100%;margin-top:0;font-size:1em}#brddesc p{padding-bottom:12px}.pun .blockpost .postleft .postavatar{display:none}.pun .blockpost .postright{position:relative;margin-top:0;margin-left:0;padding:9px 21px 7px 18px}.pun .blockmenu{width:100%;padding-bottom:12px}.pun .block2col .blockform,.pun .block2col .block{margin-left:0}.pun .blockmenu .block2{padding-top:19px}.pun .blockmenu ul{padding:0}.pun .blockmenu li{font-weight:normal;padding:0}.pun label input,.pun label select,.pun label textarea{width:100%}.pun fieldset label{width:100%}.pun #quickpost legend,#punpost legend,#punedit legend{width:100%}.pun .infldset{padding:12px 18px}.pun #postpreview .postright{padding-top:23px;margin-left:200px}}
+
+/**
+ * END FLUXBB AIR RESPONSIVE
+ * ------------------------------------------------------------------------------
+ * ==============================================================================
+ * 4.0 - TEMPLATE
+ */
+
+html {
+	/* set base font-size to equiv "10px", which is adapted to rem unit */
+	font-size: 62.5%;
+	/* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
+	font-size: calc(1em * 0.625);
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, Roboto, Oxygen-Sans, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 1.4rem;
+	/* line-height: normal; */
+	line-height: 1.5;
+}
+#content {
+	font-size: .95em;
+}
+
+/**
+ * END TEMPLATE
+ * ==============================================================================
+ * 4.1 - template RL
+**/
+
+.tclcon a,
+.pun .postmsg,
+#dokuwiki__site .page {
+	font-size: 1.4rem;
+}
+
+/* Structure du template RL (header, menu gauche et footer)
+----------------------------------------------------------------*/
+#top-page {
+	display: none;
+	opacity: 0;
+}
+#top-page.visible {
+	display:block;
+	opacity:.6;
+	border-width:1px;
+	border-style:solid;
+	border-radius: 50%;
+	height: 52px;
+	width: 52px;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	margin: 5px;
+	text-decoration: none;
+	z-index: 9999;
+}
+#top-page a {
+	outline: 0;
+}
+#top-page a:before {
+	text-decoration:none;
+	content:"\f077";
+	font-family: fontawesome;
+	font-size:30px;
+	line-height: 1em;
+	position: absolute;
+	margin: 9px 12px;
+}
+#header {
+	background-position: center top !important;
+	background-repeat: no-repeat !important;
+	margin: 0 auto;
+	z-index: 2000;
+	width:100%;
+	height:90px;
+	border-bottom-width:7px;
+	border-bottom-style:solid;
+}
+#header #logo,
+#header #logo img {
+	max-width:118px;
+	padding: 1px;
+}
+#header #logo a {
+	border: none;
+	text-decoration: none;
+}
+#header .inbl {
+	display:inline-block;
+	vertical-align:top;
+}
+#RL {
+	margin:29px 10px;
+	width:400px;
+	font-size: 2.2em;
+	line-height: 1em;
+	font-weight:bold;
+}
+#RL a {
+	text-decoration:none;
+}
+#footer {
+	width:100%;
+	border-top-width:5px;
+	border-top-style:solid;
+	margin-top:20px;
+	height:30px;
+}
+#header .inner,
+#footer .inner {
+	vertical-align:top;
+	width:96%;
+	max-width:1500px;
+	margin:0 auto;
+}
+#header .inner form {
+	display:inline;
+}
+#mobile-nav-overlay {
+	display:none;
+}
+#menu-search {
+	z-index:1000;
+	text-align:right;
+	float: right;
+	display: block;
+	margin-top: 17px;
+	margin-right: 0em;
+	padding: 5px 0;
+	width:40%;
+	max-width:780px;
+	opacity:1;
+}
+#menu-search input,
+#menu-search select,
+#menu-search button {
+	-webkit-appearance:	none;
+	appearance: none;
+	vertical-align:middle;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.outer {
+	overflow: visible;
+	max-width:1600px;
+	margin:20px auto;
+	margin-bottom:0;
+	position:relative;
+}
+.slide, #content {
+	display:inline-block;
+	vertical-align:top;
+	width :15%;
+	margin-left:1%;
+	margin-top: 0px;
+	border-radius:3px;
+}
+#content {
+	position:relative;
+	z-index:1000;
+	width :82%;
+	min-height:calc(100vh - 172px);
+}
+/* Search
+----------------------------------------------------------------*/
+input[type="search"] {
+	box-sizing: border-box;
+}
+.search-form .search-field,
+.search-form .search-select {
+	border:none;
+	border-radius:3px 0 0 3px;
+	width:35%;
+	height:40px;
+	padding:4px 48px 4px 10px;
+	/* line-height:32px; */
+	font-size: 0.9em;
+
+}
+.search-form .search-field{
+	border-radius:3px;
+}
+.search-form .search-select {
+	width:30%;
+	padding:4px 4px 4px 10px;
+}
+.search-form .submit-btn,
+.search-form .reset-btn {
+	border:none;
+	border-radius:0 3px 3px 0;
+	position:relative;
+	width:40px;
+	height:40px;
+	transition-property: all;
+	transition-duration: 0.2s;
+	transition-timing-function: ease;
+	/* top:0px;
+	bottom:0; */
+}
+.search-form .submit-btn {
+	right:5px;
+}
+.search-form .reset-btn {
+	width:40px;
+	right:48px;
+	opacity:0;
+	background:transparent;
+}
+.search-form .search-field:focus+.reset-btn {
+	opacity:1;
+}
+.search-form .submit-btn:before,
+.search-form .reset-btn:before {
+	content:"\f002";
+	font-family: fontawesome;
+	font-weight: normal;
+	font-size:16px;
+	padding-left: 2px;
+	top:5px;
+}
+.search-form .reset-btn:before {
+	content:"\f00d";
+	font-size:15px;
+	top:9px;
+	padding-left: 0px;
+}
+/* Menu Gauche, effet slide
+----------------------------------------------------------------*/
+@-webkit-keyframes bugfix { from { padding: 0; } to { padding: 0; } }
+.slide-left-toggle,
+.menu-forum-toggle,
+.menu-search-toggle {
+	cursor: pointer;
+	position: absolute;
+	display: none;
+	margin: 10px;
+	z-index:1020;
+}
+.menu-forum-toggle,
+.menu-search-toggle {
+	position:relative;
+}
+.slide-left-toggle,
+.slide-left-toggle:active,
+.slide-left-toggle:focus {
+	border: none !important;
+	outline: none !important;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.slide-left-toggle:after,
+.menu-forum-toggle:after,
+.menu-search-toggle:after {
+	content: '\f0c9';
+	display: block;
+	width: 48px;
+	border-radius: 3px;
+	font: 24px/30px 'FontAwesome';
+	text-align: center;
+	padding:10px;
+}
+.slide-left-toggle,
+.menu-forum-toggle,
+.menu-search-toggle {
+	margin:20px 15px;
+}
+.menu-forum-toggle,
+.menu-search-toggle {
+	float:right;
+}
+.menu-forum-toggle:after {
+	content: '\f142';
+}
+.menu-search-toggle:after {
+	content: '\f002';
+}
+.menu-left-checkbox,
+.menu-forum-checkbox,
+.menu-search-checkbox {
+	display: none;
+}
+.menu-left-checkbox:checked ~ #wrapper-inner #header .slide-left-toggle:after,
+.menu-forum-checkbox:checked ~ #wrapper-inner #header .menu-forum-toggle:after,
+.menu-search-checkbox:checked ~ #wrapper-inner #header .menu-search-toggle:after {
+	content: '\f00d';
+	z-index:1100;
+}
+/* Menu Gauche, mise en forme
+----------------------------------------------------------------*/
+#nav {
+	border-radius:3px;
+	max-width:240px;
+	padding-top:10px;
+	padding-bottom:10px;
+	overflow:auto;
+	overflow-x: hidden;
+}
+#nav.fixed {
+	position: fixed!important;
+	width :15%;
+	max-height:calc(100vh - 85px);
+	top:0px!important;
+	margin-top:10px!important;
+	z-index: 1900;
+	/* box-shadow: 0px 0px 0.5em #888; */
+}
+#nav ul, #nav ol {
+	list-style: none;
+	padding: 0px;
+	margin:0;
+}
+#nav li {
+	margin-top:10px;
+	margin-left:0;
+}
+#nav li:first-child {
+	margin-top:0px;
+}
+#nav li a,
+#nav li strong,
+.togglebox li.display.identification label {
+	display:block;
+	font-size:1.05em;
+	line-height: 1.18em;
+	text-decoration: none;
+	padding: 2px 0 0 10px;
+	border-bottom-width:1px;
+	border-bottom-style: solid;
+}
+#nav li strong {
+	font-weight: normal;
+}
+#nav li a.active {
+	font-weight:bold;
+}
+#nav li a:hover,
+#nav li a:active,
+#nav li a:focus,
+#nav ul.sub-menu li a:hover,
+#nav ul.sub-menu li a:active,
+#nav ul.sub-menu li a:focus,
+.togglebox .identification label:hover {
+	text-decoration:underline !important;
+}
+#nav li a.active {
+	font-weight:bold;
+}
+#nav li ul li a {
+	border-bottom-width:0px;
+}
+#nav ul.sub-menu li {
+	width :100%;
+	margin-top:0px;
+	border-bottom-width:0px;
+}
+#nav ul.sub-menu li a {
+	display:block;
+	font-size:0.9em;
+	text-decoration: none;
+	padding: 2px 0 2px 20px;
+}
+form#login_menuG {
+	padding:5px 0;
+}
+form#login_menuG,
+form#login_menuG input,
+form#login_menuG input[type="submit"] {
+	display: block;
+	text-align: center;
+	width:100%;
+	margin-bottom:5px;
+}
+form#login_menuG input[type="text"],
+form#login_menuG input[type="password"] {
+	padding: 4px;
+	border-width:1px;
+	border-style:solid;
+	border-radius:2px;
+	box-sizing: border-box;
+}
+form#login_menuG {
+	width:90%;
+	margin:0 auto;
+}
+form#login_menuG input {
+	text-align:left;
+}
+.togglebox input[type="checkbox"] {
+	display: none;
+	-webkit-appearance: none;
+	position: absolute;
+	opacity: 0;
+}
+form#login_menuG p {
+	margin: 10px 0 0;
+	font-size: .9em;
+}
+form#login_menuG p a {
+	display: inline-block;
+	padding: 5px 0;
+	width: auto !important;
+	border-width: 0;
+}
+form#login_menuG p a:first-child {
+	padding-right: 5px;
+}
+form#login_menuG a {
+	text-decoration: underline;
+	border-bottom: none;
+	cursor: pointer;
+}
+form#login_menuG .save-pass {
+	font-size: 0.9em;
+	min-height:20px;
+	margin-left: 25px;
+	margin-bottom:5px;
+}
+form#login_menuG .save-pass label {
+	width:85%;
+	text-align: left;
+	padding:2px 0 0;
+	font-size:small;
+	border-width: 0;
+}
+form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:after,
+form#login_menuG .save-pass input[type="checkbox"]:checked + label:after {
+	content: '';
+	display: none;
+}
+form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:before,
+form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
+	content: '';
+	position: absolute;
+	left:-25px; top: 1px;
+	width: 14px;
+	height: 14px;
+	line-height: 13px;
+/*	box-shadow: inset 0 1px 3px rgba(0,0,0,.3);*/
+	border-width:1px;
+	border-style: solid;
+	border-radius:2px;
+	/* box-shadow: 0px 0px 0px #EEE inset; */
+	font-size:1em;
+}
+form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
+/*	content: '✔';*/
+	content: '\f00c';
+	font-family:fontawesome;
+	position: absolute;
+}
+/* When navbar is stuck */
+.nav-is-stuck #header {
+	/* http://caniuse.com/#feat=css-sticky */
+	/* not good support at this time (nov 2015) */
+	/* so use fixed if JS activated */
+	position: sticky;
+}
+.nav-is-stuck #header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	animation: stickAnim .3s;
+}
+.nav-is-stuck #nav.fixed {
+	margin-top:107px!important;
+	animation: stickAnim .3s;
+}
+/*BEGIN togglebox*/
+.togglebox label {
+display:none;
+}
+.togglebox li.display label {
+	display:block;
+	font-size:1em;
+	line-height: 1em;
+	cursor: pointer;
+	position:relative;
+	right:0;
+	padding:8px 10px 0px 10px;
+	margin-top:-26px;
+	float:right;
+}
+.togglebox label:after {
+	content:'\f196';
+	font-family: fontawesome;
+}
+.togglebox li.display.identification label {
+	display:block;
+	font-size: .9em;
+	cursor: pointer;
+	margin-top:0;
+	float:none;
+}
+.togglebox .identification label:after {
+	content:'\f196';
+	float: right;
+	font-family: fontawesome;
+	font-size:1em;
+	padding:0px 10px 0px 0px;
+}
+.togglebox li.display input[type="checkbox"]:not(:checked) ~ .content-togglebox {
+	height:0px;
+	overflow:hidden;
+	opacity:0;
+	-webkit-transition: opacity 0s;
+	-moz-transition: opacity 0s;
+	-o-transition: opacity 0s;
+	transition:opacity 0s;
+	position: absolute;
+	left: 9999px;
+}
+.togglebox li.display input[type="checkbox"]:checked ~ .content-togglebox {
+	opacity:1;
+	-webkit-transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition:opacity 1s;
+	position: relative;
+	left: 0;
+}
+.togglebox input[type="checkbox"]:checked ~ label:after {
+	content:'\f147';
+}
+.togglebox input[type="checkbox"] ~ label.menug-label-identification::after {
+	content: '\f090';
+	padding-left: 10px;
+	float:none;
+}
+/*END togglebox*/
+
+/**
+ * END template RL
+ * ==============================================================================
+ * 4.2 - fluxbb
+ */
+h1 span, {
+	margin:0;
+}
+#punredirect h2,
+#punmaint h2 {font-size: 1.8rem;font-weight: bold;}
+
+.pun {
+ max-width: 100%;
+ padding: 0;
+}
+.pun form .buttons,
+.pun form .submittop,
+.pun form .submitend {
+	padding-left: 18px;
+}
+#brddesc {
+	display:none;
+}
+#brdmenu #navindex,
+#brdmenu #navlogin,
+#brdmenu #navlogout {
+	display: none;
+}
+/* BEGIN Réduction colonne des avatars*/
+.pun .blockpost .postbody,
+.pun .blockpost .postfoot {
+	margin-right: -160px;
+}
+.pun .blockpost .postleft,
+.pun .blockpost .postfootleft {
+	width: 148px;
+	margin-left: -160px;
+}
+/* END Réduction colonne des avatars*/
+
+/* BEGIN MESSAGES */
+.pun .blockpost .postright {
+	padding: 4px 180px 7px 18px;
+}
+.pun .postmsg {
+	min-height: 200px
+}
+.pun .postsignature.postmsg {
+	min-height: 0px
+}
+#punviewtopic .blockpost dt,
+#punmoderate .blockpost dt {
+	line-height: 1.6em;
+}
+/* END MESSAGES */
+
+/* BEGIN Page de redirection et maintenance */
+#punredirect,
+#punmaint {
+	padding: 0;
+	margin:5% auto;
+	height:100%;
+	width:90%;
+	max-width: 850px;
+}
+#punredirect img,
+#punmaint img {
+	padding:1%;
+	width:20%;
+	max-width:120px;
+	min-width: 80px;
+	margin:0 20%;
+}
+#punredirect .inbox,
+#punmaint .inbox {
+	font-size: .9em;
+}
+/* END Page de redirection */
+
+/* BEGIN page répondre, modifier message */
+/* .infldset textarea,
+#punpost textarea,
+#punedit textarea,
+#quickpostform textarea */
+textarea {
+	width:96%;
+}
+/* END page répondre, modifier message */
+
+/* BEGIN PAGE RECHERCHE */
+.pun #search .checklist {
+	padding: 2px 2px 3px;
+	margin-bottom:10px;
+	width: 90%;
+	max-width: 380px;
+	height:300px;
+	max-height:300px;
+}
+/* END PAGE RECHERCHE */
+
+/* BEGIN liste des discussions */
+.pun .blocktable h3 {
+	font-size: 1em;
+}
+.pun .blocktable .rowodd .tcl,
+.pun .blocktable .rowodd .tc2,
+.pun .blocktable .rowodd .tc3,
+.pun .blocktable .rowodd .tcr {
+	vertical-align: top;
+}
+.pun .blocktable .rowodd .tc2,
+.pun .blocktable .rowodd .tc3,
+.pun .blocktable .rowodd .tcr {
+	padding-top:8px;
+}
+.pun .icon,
+.pun .inew .icon {
+	margin-top: 2px;
+}
+/* END liste des discussions */
+
+/* BEGIN INTITULE DES FORUMS TROP LONG */
+#punindex #brdmain .blocktable h2 {
+	white-space: nowrap;
+	max-width:57%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.pun .blocktable .tcr {
+	width: 25%;
+}
+.pun .blocktable .tcr a,
+.pun .blocktable .tcr span {
+	font-size:0.95em;
+}
+/* END INTITULE DES FORUMS TROP LONG */
+
+/* BEGIN Images */
+.pun .postmsg .postimg img {
+	margin: .3%;
+}
+/* END Images */
+
+/* BEGIN Tableaux */
+.pun .postmsg table.rl-table {
+	width: auto;
+	display: block;
+	overflow:auto;
+	overflow-y: hidden;
+}
+.pun .postmsg table.rl-table td {
+	border-width: 1px;
+	border-style: solid;
+	padding: 2px 5px 1px 5px;
+}
+.pun .postmsg table.rl-table td.blank-cell {
+	border: none;
+	line-height: 0.3em;
+}
+.pun .postmsg table.rl-table td.mono-cell,
+.pun .postmsg table.rl-table tr.header td,
+.dokuwiki .table th {
+	border-bottom-width:2px;
+	border-bottom-style: solid;
+	font-weight: bold;
+}
+/* END Tableaux */
+
+/* BEGIN Code */
+.pun .codebox {
+	margin: .75em 0;
+}
+.pun pre,
+.pun code,
+pre,
+code,
+samp,
+kbd {
+	border-radius: 0;
+	box-shadow: none;
+	font-family: consolas, monaco, "bitstream vera sans mono", "courier new", courier, monospace,
+}
+/* END Code */
+
+/* BEGIN QUOTE */
+.pun .quotebox {
+	position: relative;
+}
+.pun .quotebox .quoted-origin {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0.55em 0.75em 0;
+}
+.pun .quotebox .quoted-origin a {
+	font-size: 0px;
+	color: transparent !important;
+	text-decoration: none !important;
+}
+.pun .quotebox .quoted-origin a:after {
+	content: '\f0c1';
+	font-family: fontawesome;
+	font-size: 14px;
+}
+/* END QUOTE */
+
+/* BEGIN Réponse rapide */
+#quickpost {
+	border-width: 0px 0px 0px;
+}
+#punindex #brdmain {
+	padding: 0 0 12px 0;
+}
+#brdmain {
+	border-width: 0px;
+	padding: 0;
+}
+/* END Réponse rapide */
+
+/* BEGIN Masquer les modos */
+p.modlist {
+	display:none;
+}
+/* END Masquer les modos */
+
+/* BEGIN BDRfooter */
+.pun #brdfooter #qjump label,
+.pun #brdfooter #qjump select {
+	width:100%;
+	max-width:100%;
+}
+.pun #brdfooter #qjump select {
+	display:block;
+}
+/* END BDRfooter */
+
+/* PAGE REDACTION/EDITION */
+#ezbbcsmiliesbar,
+#ezbbctoolbar {
+	display: inline !important;
+}
+#ezbbctoolbar #smiliesb {
+	display: none;
+}
+#ezbbcsmiliesbar .smiley {
+	margin: 2.5px;
+	}
+#ezbbctoolbar a,
+#ezbbcsmiliesbar .smiley,
+#ezbbctoolbar a:hover,
+#ezbbcsmiliesbar .smiley:hover {
+	border: 0;
+}
+#ezbbclink,
+#importModal {
+	padding: 10px;
+	min-height: calc(100vh - 60px);
+}
+form#edit p.buttons::before {
+	content:"Editons nos messages en prenant soin d'indiquer ce qui a été modifié dans nos textes";
+	display: block;
+	margin:10px 0;
+	padding:10px;
+}
+ /* BEGIN ADMIN */
+.pun .blockmenu a {
+	padding: 6px;
+	display: block;
+}
+.pun .blockmenu a:hover,
+.pun .blockmenu a:active,
+.pun .blockmenu a:focus,
+.pun .blockmenu .isactive a,
+.pun .blockmenu .isactive a:link,
+.pun .blockmenu .isactive a:visited {
+	background: #516f89;
+	color:#fff;
+}
+#adminconsole .inform .infldset table tbody td span {
+	display: block;
+	max-width: 90%;
+}
+/* Signalement */
+#adminconsole .inform .infldset input[type="text"] {
+	margin-right: 10px;
+}
+#adminconsole .inform .infldset table tbody th {
+	width: 30%;
+	padding-right:10px;
+}
+#adminconsole .inform .infldset table tbody td {
+	width: 70%;
+}
+/* END Admin */
+
+/**
+ * END fluxbb
+ * ==============================================================================
+ * 4.3 - dokuwiki
+ */
+
+#dokuwiki__header {
+	padding: 18px 18px 14px;
+}
+#dokuwiki__header .headings.group img {
+	display:none;
+}
+#brdtitle {
+		display:block;
+}
+#dokuwiki__pagetools {
+	position: absolute;
+	right: -40px;
+	top: 0em;
+	width: 40px;
+}
+#dokuwiki__site {
+	max-width: 100%;
+}
+#dokuwiki__site li,
+#dokuwiki__site dd {
+	margin: 0px 0px 0px 1.5em;
+}
+#dokuwiki__site #dw__recent ul,
+#dokuwiki__site #dw__recent li {
+	margin-left: 0;
+	padding-left: 0;
+}
+#dokuwiki__site .pageId {
+	display:none;
+}
+#dokuwiki__site > .site {
+	padding-left: 0px;
+	padding-right: 36px;
+}
+#dw__search {
+	display:none;
+}
+#dokuwiki__site .page.group {
+	padding: 20px;
+	margin:0 -4px 0 18px;
+}
+.dokuwiki div.breadcrumbs {
+	text-align:left;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+	margin-bottom: 0px;
+	clear: both;
+	text-transform: capitalize;
+}
+.dokuwiki div.breadcrumbs div:only-child {
+	border-top-width: 0px;
+	padding-left:0;
+	border-bottom-width: 0px;
+	padding-top:0px;
+}
+.bchead {
+	display:none;
+}
+.dokuwiki span.curid a {
+	font-weight: normal;
+}
+.dokuwiki,
+.pun .punwrap {
+	border-width: 0px;
+	border-radius: 3px;
+	box-shadow :none;
+	padding: 18px;
+}
+.dokuwiki div.page {
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 0px;
+	margin: 0 0 0 18px;
+	box-shadow: none;
+}
+#dw__toc {
+	margin-top: 0em;
+	background: transparent;
+}
+/* Mauvais padding des Annonces dans le wiki*/
+div.error,
+div.info,
+div.success,
+div.notify {
+	margin-left:23px;
+}
+/* menu wrap, titre et plugin qui ne s'affichaient pas sans le z-index */
+div.picker {
+	z-index: 1010;
+}
+/*Largeur du gestionnaire multimédia*/
+#mediamanager__page .filelist {
+	width: 70%;
+}
+#mediamanager__page .panelContent dd {
+	margin:0;
+}
+/*Toolbar page d'édition*/
+.dokuwiki div.toolbar button.toolbutton {
+	border-radius: 3px;
+	padding: 0.5em 0.6em 0.6em 0.6em;
+	margin: 0.05em;
+	border-width: 1px;
+}
+div.picker button.pickerbutton,
+div.picker button.toolbutton {
+	padding: 0.6em;
+	border-width: 0px;
+}
+/* BEGIN Gestion des bloc nav historique et projet en cours dans les pages assos du wiki */
+.wrap_asso_bloc_historique p,
+.wrap_asso_bloc_projet p {
+	margin:0px;
+	}
+.wrap_asso_bloc_historique ul,
+.wrap_asso_bloc_projet ul {
+	padding:0px;
+	margin-bottom:10px;
+}
+#dokuwiki__site .wrap_asso_bloc_historique ul li,
+#dokuwiki__site .wrap_asso_bloc_projet ul li {
+	display: inline-block;
+	margin-left: 0px;
+	hyphens: none;
+}
+/* BEGIN Accordeons */
+div.hiddenGlobal {
+	margin-bottom: 1.5em;
+	border-radius:3px;
+}
+div.hiddenActive .hiddenHead {
+	border-radius:3px 3px 0px 0px;
+}
+div.hiddenHidden .hiddenHead {
+	border-radius:3px 3px 3px 3px;
+}
+div.hiddenGlobal h3,
+div.hiddenGlobal h4,
+div.hiddenGlobal p {
+	padding:16px;
+	margin:0;
+}
+div.hiddenGlobal.hiddenHidden > div.hiddenHead p:after,
+div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead p::after {
+	background-image: url('');
+}
+div.hiddenHead p:before,
+div.hiddenHead h3:before,
+div.hiddenHead h4:before {
+	content: '';
+	font-family: fontawesome;
+	color:#444444;
+}
+div.hiddenGlobal.hiddenHidden > div.hiddenHead p:before,
+div.hiddenGlobal.hiddenHidden > div.hiddenHead h3:before,
+div.hiddenGlobal.hiddenHidden > div.hiddenHead h4:before {
+	content: '\f065';
+	padding-right:10px;
+}
+div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead p::before,
+div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead h3:before,
+div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead h4:before {
+	content: '\f066';
+	padding-right:10px;
+}
+/* BEGIN Accordeons */
+
+/* BEGIN derniers changements */
+.dokuwiki form.changes li .sizechange.positive {
+	background-color: #179f17;
+	color: #fff;
+}
+.dokuwiki form.changes li .sizechange.negative {
+	background-color: #ac1313;
+	color: #fff;
+}
+/* END derniers changements */
+
+/* END Gestion des bloc nav historique et projet en cours dans les pages assos du wiki */
+
+/* BEGIN DOKUWIKI FOOTER*/
+.dokuwiki .docInfo,
+#dokuwiki__footer div.license,
+#dokuwiki__footer div.buttons {
+	padding-left:20px;
+}
+/* END DOKUWIKI FOOTER*/
+
+/* BEGIN DOKUWIKI FOOTER*/
+.dokuwiki .docInfo,
+#dokuwiki__footer div.license,
+#dokuwiki__footer div.buttons {
+	padding-left:20px;
+}
+/* END DOKUWIKI FOOTER*/
+
+/**
+ * END dokuwiki
+ * ==============================================================================
+ * 4.4 - uniformisation
+ */
+a:hover,
+a span:hover,
+.pun .postright a,
+.dokuwiki div.page a.urlextern {
+	text-decoration: underline;
+}
+
+#dokuwiki__header h1 span,
+#brdtitle h1,
+.pun h1 {
+	padding-top: 0px;
+}
+/* Uniformisation Breadcrumbs */
+.pun .crumbs li,
+.dokuwiki div.breadcrumbs .youarehere {
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.pun .linkst .crumbs,
+.pun .linksb .crumbs,
+.pun .postlinksb .crumbs,
+.dokuwiki div.breadcrumbs {
+	font-size: 1em;
+	line-height: 1.6em;
+	padding: 0;
+}
+.pun .linkst .crumbsplus .pagepost,
+.pun .linksb .crumbsplus .pagepost {
+	border-width: 0px;
+}
+.postlinksb .crumbsplus .pagepost {
+	border-bottom-width: 0px !important;
+}
+/* Uniformisation du titre de la page */
+#brdwelcome {
+	padding:0;
+}
+#dokuwiki__header #brdwelcome {
+	right: 0px;
+	position: static;
+	text-align: left;
+	width: 100%;
+}
+#dokuwiki__header #brdwelcome p.conl {
+	margin-bottom:0;
+}
+#brdwelcome .conl,
+#brdwelcome .conr {
+	margin:10px auto !important;
+}
+#brdwelcome .conl,
+#brdwelcome .conr,
+#brdwelcome p,
+#brdwelcome li {
+	padding: 0;
+}
+#brdwelcome li {
+	display: inline;
+}
+#brdwelcome.inbox:after {
+	content: " ";
+	display: block;
+	height: 0px;
+	font-size: 0;
+	clear: both;
+	visibility: hidden;
+}
+#dokuwiki__header h1,
+#brdtitle h1,
+.pun h1 {
+	padding: 0px 0px 18px;
+}
+/* Uniformisation de la nav horizontale*/
+#dokuwiki__pagetools ul li:last-child {
+	display: none;
+}
+#dokuwiki__pagetools div.tools ul li a {
+	display: block;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	line-height: 36px;
+	vertical-align: middle;
+	height: 36px;
+}
+#dokuwiki__header .tools {
+	width:100%;
+	margin-top:0px;
+}
+#dokuwiki__header .tools {
+	margin-bottom: 0px;
+}
+#dokuwiki__header .headings {
+	margin-bottom: 0px;
+	width: 100%;
+}
+#dokuwiki__header .tools li {
+	margin-left: 0;
+}
+.pun .inbox {
+	min-height: 0px;
+}
+#brdmenu,
+#dokuwiki__sitetools {
+	text-align: left;
+}
+#brdmenu ul,
+#dokuwiki__sitetools ul {
+	padding: 0;
+}
+#brdmenu li,
+#dokuwiki__header .tools li {
+	display: inline-block;
+}
+#brdmenu a,
+#brdmenu a:hover,
+#brmenu a:active,
+#brdmenu a:focus,
+#dokuwiki__sitetools a,
+#dokuwiki__sitetools a:hover,
+#dokuwiki__sitetools a:active,
+#dokuwiki__sitetools a:focus {
+	border-right-style: solid;
+	border-width: 1px;
+	display: block;
+	min-width: auto;
+	padding: 12px 16px 6px 8px;
+	white-space: nowrap;
+	text-decoration: none;
+	padding: 6px 16px;
+}
+/* BEGIN Forum only */
+#brdmenu li {
+	float: left;
+}
+#brdwelcome li span {
+	line-height: inherit;
+	padding-right: 15px;
+}
+/* END Forum only */
+
+/* BEGIN Images */
+a[href$=".jpg"] img,
+a[href$=".jpeg"] img {
+	border-radius: 3px;
+	box-shadow: 0px 0px 4px #888;
+	max-width:100%;
+}
+/* END Images */
+
+/* BEGIN UNIFORMISATION DES INPUT ET BOUTONS */
+/*Inputs et boutons*/
+input[type="text"],
+input[type="file"],
+input[type="password"],
+select,
+.pun select,
+textarea {
+	padding: 6px 8px !important;
+	border-width:1px;
+	border-style:solid;
+	border-radius:3px;
+	margin-top:.2em;
+	margin-bottom:.2em;
+	line-height: 16px;
+}
+#adminconsole textarea {
+	display:block;
+}
+/* Boutons foncés */
+input[type="submit"],
+input[type="button"],
+#nav input[type="submit"],
+.pun .blockform .buttons input,
+.pun .usercontent .buttons,
+.subscribelink.clearb a,
+.dokuwiki button,
+.dokuwiki .editButtons button,
+.dokuwiki .qq-upload-button,
+.dokuwiki .qq-upload-action,
+.togglebox input[type="checkbox"] ~ label.menug-label-identification,
+
+/* Bouton clairs */
+.pun a.secondary-button,
+form#post p.buttons a,
+form#edit p.buttons a,
+#pundelete p.buttons a,
+#punmisc .buttons a,
+#msg .inbox a,
+/* .pagestext a,
+.pagestext .spacer, */
+.pun .pagepost a,
+.pun .pagepost strong,
+.pun .pagepost .spacer,
+#uploads nav ul li a,
+#nav li a.disconnect {
+	text-decoration:none !important;
+	border: medium none;
+	border-radius: 3px;
+	padding: 8px 30px;
+	margin-top:4px;
+	transition-property: all;
+	transition-duration: 0.2s;
+	transition-timing-function: ease;
+}
+/* Boutons foncés */
+input[type="submit"],
+input[type="button"],
+.pun .blockform .buttons input,
+.pun .usercontent .buttons,
+.subscribelink.clearb a,
+.dokuwiki button,
+.dokuwiki .editButtons button,
+.dokuwiki .qq-upload-button,
+.dokuwiki .qq-upload-action,
+.togglebox input[type="checkbox"] ~ label.menug-label-identification,
+.search-form .submit-btn {
+	background:#516F89;
+	color:#FFF;
+	text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4);
+}
+#punindex .subscribelink {
+	margin: 2% 0;
+}
+.pun .subscribelink.clearb {
+	color: transparent;
+}
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.pun .blockform .buttons input:hover,
+.pun .usercontent .buttons:hover,
+.dokuwiki button:hover,
+.dokuwiki .editButtons button:hover,
+.dokuwiki .qq-upload-button:hover,
+.dokuwiki .qq-upload-action:hover,
+.togglebox input[type="checkbox"] ~ label.menug-label-identification:hover,
+.search-form .submit-btn:hover {
+	cursor:pointer;
+	background:#304D66;
+	color:#fff !important;
+	text-decoration: none !important;
+}
+
+/* .pagestext a,
+.pagestext .spacer,*/
+.pun .pagepost a,
+.pun .pagepost strong,
+.pun .pagepost .spacer,
+#uploads nav ul li a {
+	font-size: 12px !important;
+}
+.pun .pagepost .pagelink strong,
+.pun .pagepost .pagelink a,
+#uploads nav ul li a {
+	padding:4px 8px 4px 8px !important;
+	height:14px;
+	line-height: 14px;
+	margin:0 1px !important;
+}
+.pun .pagelink span.spacer {
+	border-width: 0;
+	margin: 0 0px;
+}
+/* Connexion/deconnexion */
+.togglebox input[type="checkbox"] ~ label.menug-label-identification,
+#nav li a.disconnect {
+	width: 90%;
+	margin: 0 auto;
+	padding: 8px 0px;
+	text-align: center;
+	font-size: 0.9em;
+}
+/* Pagination des messages */
+#uploads nav ul li {
+	display: inline-block;
+	margin: .5em 0;
+}
+/* .pagestext, */
+.pagepost {
+	display:block;
+	margin:15px 0 5px;
+}
+.pagepost .pagelink {
+	font-size:0 !important;
+	color:transparent;
+}
+.pun .pagepost strong,
+#uploads .pagination .selected a {
+	font-weight: bold;
+}
+/* .pagestext .spacer, */
+.pun .pagepost .spacer {
+	padding:4px 5px !important;
+	background:transparent;
+}
+.pagepost {
+	padding: 10px 0 !important;
+	padding-bottom: 3px !important;
+}
+.pagelink {padding-top: 5px !important;}
+/* END UNIFORMISATION DES INPUT ET BOUTONS */
+
+/* BEGIN IDENTIFICATION REDIRECT */
+.redirect form#login {
+	margin-top: 2em;
+}
+.redirect form#login label {
+	width: 30%;
+	min-width: 230px;
+	padding: 0;
+}
+.redirect form#login input {
+	vertical-align:unset;
+}
+.redirect form#login input[type="text"],
+.redirect form#login input[type="password"] {
+	min-width: 200px;
+}
+.redirect form#login p {
+	padding: 9px 0;
+}
+.redirect label.conl {
+	display: inline-block;
+	padding-right: 12px;
+}
+.redirect .required strong {
+	background: unset;
+	font-weight: normal;
+	padding-right: 14px;
+	white-space: pre;
+	display: inline-block;
+	line-height: normal;
+}
+.redirect .required strong::after {
+	background: unset;
+	content: '*';
+	font-size: 13px;
+	color: red;
+	display: inline-block;
+}
+.redirect .required strong span {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	text-indent: -9999em;
+	width: 0;
+}
+/* END IDENTIFICATION REDIRECT */
+
+/* BEGIN Annonces */
+#announce {
+	border-style: solid none none;
+	border-width: 0px 0px 0px;
+	padding-top: 0px;
+}
+#announce-block .usercontent ul {
+	margin:0;
+	padding:0;
+	padding-left:10px;
+	padding-right:1em;
+}
+#announce-block .info,
+#announce-block .important,
+.pun #adalerts,
+/* Dokuwiki */
+/* .dokuwiki .plugin_wrap, */
+.dokuwiki div.wrap_box,
+.dokuwiki div.wrap_info,
+.dokuwiki div.wrap_important,
+.dokuwiki div.wrap_alert,
+.dokuwiki div.wrap_tip,
+.dokuwiki div.wrap_help,
+.dokuwiki div.wrap_todo,
+.dokuwiki div.wrap_download {
+	font-size: 1em;
+	text-align: left;
+	line-height: 1.6;
+	min-height: auto;
+	position: relative;
+	max-width: calc(100% - 20px);
+	padding: 16px 2% 16px 60px;
+	border-width: 1px;
+	border-style: solid;
+}
+.dokuwiki div.wrap_box {
+	padding-left: 28px;
+}
+.dokuwiki .plugin_wrap {
+	border-radius:5px !important;
+}
+#announce-block .info,
+#announce-block .important,
+.pun #adalerts {
+	margin: 0 auto;
+	margin-bottom: 5px;
+	border-radius: 3px;
+}
+#announce-block .info:before,
+#announce-block .important:before,
+.pun #adalerts:before {
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	margin-top: -.8em;
+	font-size: 200%;
+	font-family: fontawesome;
+}
+#uploads #announce-block .info li {
+	list-style: disclosure-closed;
+	margin-left: 20px;
+}
+form#edit .infldset.txtarea:before {
+	position: relative;
+}
+#announce-block .info:before {
+	content: "\f05a";
+}
+#announce-block .important:before,
+.pun #adalerts:before {
+	content: "\f071";
+}
+.dokuwiki .plugin_wrap p {
+ margin: 0;
+}
+/* END Annonces */
+
+/* BEGIN PLUGINS */
+#plugin__schulzevote .votebar {
+	background-color: #516f89;
+/* Adjust with JavaScript */
+	border-radius: 3px;
+	background-image: -webkit-linear-gradient(135deg, rgba(255,255,255,0.125) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.125) 50%, rgba(255,255,255,0.125) 75%, transparent 75%, transparent);
+background-image: linear-gradient(-45deg, rgba(255,255,255,0.125) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.125) 50%, rgba(255,255,255,0.125) 75%, transparent 75%, transparent);
+background-size: 35px 35px;
+}
+.dokuwiki .level2 {
+	overflow-x: auto;
+}
+/* END PLUGINS */
+
+/**
+ * END uniformisation
+ * ------------------------------------------------------------------------------
+ * ==============================================================================
+ * 5.0 - MEDIA QUERIES 1024
+ */
+
+@media (max-width: 1024px) {
+
+	/**
+	 * ==========================================================================
+	 * 5.1 - Media queries 1024 template RL
+	**/
+
+	/* .tclcon a, */
+	.pun .postmsg,
+	#dokuwiki__site .page {
+		font-size: 1.7rem;
+	}
+
+	h1,
+	h1 span,
+	h1 a {font-size: 2.2rem;font-weight: bold;}
+	h2 {font-size: 2rem;}
+	#punredirect h2,
+	#punmaint h2 {font-size: 1.8rem;font-weight: bold;}
+	h2 {font-size: 1.8rem;}
+	h3 {font-size: 1.6rem;}
+	h4 {font-size: 1.4rem;}
+	h5 {font-size: 1.2rem;}
+	h6 {font-size: 1.1rem;}
+
+	.pagestext {display: none;}
+	.newtext {
+		font-size:0px !important;
+		color:transparent;
+		margin-left:-3000px;
+	}
+	.newtext a {
+		margin-left:3000px;
+		text-indent:0px;
+		display:inline-block;
+		min-width:90%;
+		font-size:13px !important;
+		padding:5px;
+		margin-top:2px;
+		cursor: pointer;
+		border: medium none;
+		border-radius: 3px;
+		text-align:center;
+		transition-property: all;
+		transition-duration: 0.2s;
+		transition-timing-function: ease;
+	}
+	.newtext a:hover {
+		text-decoration:none;
+	}
+	/*
+	 * Enable hardware acceleration and stop flickering
+	 * More details: http://indiegamr.com/ios6-html-hardware-acceleration-changes-and-how-to-fix-them/
+	 * Add more browser prefixes as required for your environment
+	**/
+	.slide,
+	#nav {
+		-webkit-transform: translateZ(0);
+		-moz-transform: translateZ(0);
+		-webkit-perspective: 1000;
+		-moz-perspective: 1000;
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+	}
+	.slide,
+	#brdmenu,
+	#dokuwiki__sitetools,
+	#wrapper-inner #header #menu-search {
+		-webkit-transition: -webkit-transform 500ms ease;
+		-moz-transition: -moz-transform 500ms ease;
+		-o-transition: -o-transform 500ms ease;
+		transition: transform 500ms ease;
+	}
+	#nav {
+		-webkit-transform: translateX(-100%);
+		-moz-transform: translateX(-100%);
+		-ms-transform: translateX(-100%);
+		-o-transform: translateX(-100%);
+		transform: translateX(-100%);
+	}
+	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide {
+		width:1px;
+		background:transparent;
+		height:100% !important;
+		max-height:100% !important;
+		-webkit-transform: translateX(300px) scale(1);
+		-moz-transform: translateX(300px) scale(1);
+		-ms-transform: translateX(300px) scale(1);
+		-o-transform: translateX(300px) scale(1);
+		transform: translateX(300px) scale(1);
+	}
+	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #brdmenu,
+	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #dokuwiki__sitetools,
+	.menu-search-checkbox:checked ~ #wrapper-inner #header #menu-search {
+		-webkit-transform: translateX(-300px) scale(1);
+		-moz-transform: translateX(-300px) scale(1);
+		-ms-transform: translateX(-300px) scale(1);
+		-o-transform: translateX(-300px) scale(1);
+		transform: translateX(-300px) scale(1);
+	}
+	/*BEGIN MENUG @MEDIA*/
+
+	.outer {
+	margin: 0px auto;
+	}
+	#header #logo {
+		margin-left:100px;
+		position: absolute;
+		z-index:1020;
+	}
+	#RL {
+		position: absolute;
+		margin-left: 220px;
+	}
+	#content {
+		width :100%;
+		z-index:1000;
+		margin:0;
+		margin-top:20px;
+	}
+	.slide {
+		position:absolute;
+		width:0px;
+		/* box-shadow: 0px 0px 0px #888; */
+	}
+	#nav {
+		padding-top:0;
+		padding-bottom:0;
+		border-radius: 0px;
+		max-width:300px;
+		display: block;
+		margin-left: 0;
+		width: 300px;
+	}
+	.slide,
+	#nav {
+		margin:0;
+		left: 0;
+		z-index:1010;
+	}
+	form#login_menuG {
+		width:75%;
+		padding:0px;
+		margin:10px auto;
+		margin-bottom: 30px;
+	}
+	form#login_menuG input[type="text"],
+	form#login_menuG input[type="password"] {
+		padding: 6px;
+		border-width:1px;
+		border-style:solid;
+		border-radius:2px;
+		/* box-shadow: 0px 0px 0px #EEE inset; */
+	}
+	form#login_menuG p a {
+		text-align: right;
+		width:100%;
+		max-width: 95%;
+		padding-bottom:0px;
+	}
+	form#login_menuG .save-pass label {
+		width:79%;
+		margin-top:-1px;
+		padding-top:2px;
+	}
+	form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:before,
+	form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
+		border-width:1px;
+		border-style:solid;
+		width: 17px;
+		height: 17px;
+		font-size: 1.5em;
+		line-height: 16px;
+	}
+	.slide-left-toggle {
+		position:absolute;
+	}
+	.slide-left-toggle,
+	.menu-forum-toggle,
+	.menu-search-toggle {
+		display: block;
+	}
+	#nav ul.first {
+		margin-bottom: 150px;
+	}
+	#nav li {
+		float: none;
+		margin-top:0px;
+	}
+	#nav li a,
+	#nav li strong,
+	.togglebox li.display.identification label,
+	#nav li a.disconnect {
+		padding: 15px 5px;
+		padding-left: 10px;
+		max-width: 65%;
+		border-width: 0px;
+		font-size: 1em;
+	}
+	#nav li:first-child a {
+		border-top: none;
+	}
+	#nav li:last-child a {
+		border-bottom: none;
+	}
+	#nav li a:hover,
+	#nav li a:active,
+	#nav li a:focus,
+	#nav ul.sub-menu li a:hover,
+	#nav ul.sub-menu li a:active,
+	#nav ul.sub-menu li a:focus,
+	#nav label:hover,
+	#nav label:active,
+	#nav label:focus {
+		text-decoration:none !important;
+	}
+	#nav ul.sub-menu li a {
+		padding-left: 30px;
+		padding: 15px 5px 15px 30px;
+	}
+	#nav ul.sub-menu li {
+		width:100%;
+		border-bottom-width: 1px;
+		border-bottom-style:solid;
+	}
+	#nav ul.sub-menu li:last-child {
+		border-bottom-width: 0px;
+	}
+	ul.sub-menu li {
+		padding-left: 0px;
+	}
+	.togglebox li.display.identification label,
+	#nav li a.disconnect {
+		margin:0;
+		text-align: left;
+	}
+	/*END MENUG @MEDIA*/
+
+	/*BEGIN togglebox*/
+	.togglebox li.display.identification label {
+		position: relative;
+		margin-left: 0;
+		width: 100%;
+		max-width: 95%;
+		text-align: left;
+		font-size: 1em;
+	}
+	.togglebox label,
+	.togglebox li.display label,
+	.togglebox li.display.identification label:after {
+		display:block;
+		font-size:22px;
+		cursor: pointer;
+		position:absolute;
+		right:0;
+		padding: 12px 15px;
+		margin-top: -47px;
+		margin-left: 85%;
+		line-height: 1em;
+		background: #333333;
+	}
+	.togglebox li.display.identification label:after {
+		font-family: fontawesome;
+		padding:15px;
+		margin-top:-33px;
+		margin-left:85%;
+	}
+	.togglebox label:after {
+		content:'\f196';
+	}
+	.togglebox .content-togglebox {
+		overflow: hidden;
+	}
+	.togglebox input[type="checkbox"]:not(:checked) ~ .content-togglebox {
+		height:0px;
+		opacity:0;
+		-webkit-transition: opacity 0s;
+		-moz-transition: opacity 0s;
+		-o-transition: opacity 0s;
+		transition:opacity 0s;
+	}
+	.togglebox input[type="checkbox"]:checked ~ .content-togglebox {
+		opacity:1;
+		-webkit-transition: opacity 1s;
+		-moz-transition: opacity 1s;
+		-o-transition: opacity 1s;
+		transition:opacity 1s;
+	}
+	.togglebox input[type="checkbox"]:checked ~ label:after {
+		content:'\f147';
+	}
+	/*END togglebox*/
+
+	/* BEGIN RECHERCHE HEADER */
+	#menu-search #menu-search-inner {
+		position: relative;
+		z-index: 1010;
+		width: 250px;
+		margin:40px 50px;
+	}
+	#menu-search {
+		text-align:left;
+		position: absolute;
+		margin-top: 97px;
+		padding: 0;
+		width:100%;
+		max-width:300px;
+		z-index: 1010;
+	}
+	.search-form .search-field {
+		width: 200px;
+		margin-bottom:20px;
+	}
+	.search-form .search-select {
+		width:160px;
+		border-radius:3px 0px 0px 3px;
+	}
+	.search-form .search-field,
+	.search-form .search-select {
+		margin: 0 auto;
+		margin-bottom:10px;
+	}
+	.search-form .reset-btn,
+	.search-form .submit-btn {
+		top: -5px;
+	}
+	/* END RECHERCHE HEADER */
+
+	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide #nav {
+		position:absolute;
+	}
+	#brdmenu ul {
+		max-height:calc(100vh - 97px);
+		padding-bottom: 150px;
+		overflow: hidden;
+		overflow-y:auto;
+	}
+	#wrapper-inner #header #menu-search {
+		right: -300px;
+	}
+	.menu-left-checkbox:checked ~ #wrapper-inner ,
+	.menu-search-checkbox:checked ~ #wrapper-inner ,
+	.menu-forum-checkbox:checked ~ #wrapper-inner {
+		position: fixed;
+		width:100%;
+		max-width:100%;
+		overflow: visible;
+	}
+	.menu-left-checkbox:checked ~ #wrapper-inner #content #mobile-nav-overlay,
+	.menu-search-checkbox:checked ~ #wrapper-inner .outer #content #mobile-nav-overlay,
+	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #content #mobile-nav-overlay {
+		position:absolute;
+		top:-20px;
+		display:block;
+		width:100%;
+		height:120%;
+		z-index: 1001;
+		/* background-color: rgba(20, 20, 39, 0.4); */
+		cursor: not-allowed;
+	}
+
+	#wrapper-rl,
+	#wrapper-inner {
+		height:100%;
+	}
+
+	/* BEGIN PAGINATION PREV ET NEXT */
+	.pun .pagepost a[rel~="prev"],
+	.pun .pagepost a[rel~="next"] {
+		font-size: 0px !important;
+		color:transparent;
+
+	}
+	.pun .pagepost a[rel~="prev"]:before,
+	.pun .pagepost a[rel~="next"]:before {
+		content:'\f137';
+		font-family:fontawesome;
+		font-size: 12px !important;
+		padding-left:3px;
+		padding-right:3px;
+	}
+	.pun .pagepost a[rel~="next"]:before {
+		content:'\f138';
+	}
+	/* END PAGINATION PREV ET NEXT  */
+
+	/**
+	 * END Media queries 1024 template RL
+	 * ==========================================================================
+	 * 5.2 - Media queries 1024 fluxbb
+	**/
+
+	/* BEGIN Images */
+	.pun .postmsg .postimg img {
+		max-width: calc(100% - 6px);
+		margin: .3% 3px;
+	}
+	/* BEGIN Images */
+
+	/* BEGIN Admin */
+	/* Signalement */
+	#adminconsole .inform .infldset input {
+		white-space:initial;
+		padding:5px 10px;
+		width: unset
+	}
+	.pun input[type="text"],
+	.pun select,
+	.pun textarea {
+		width: 90%;
+		max-width: 90%;
+	}
+	#adminconsole .inform .infldset table tbody td input[type="text"],
+	#adminconsole .inform .infldset table tbody td input[type="password"],
+	#adminconsole .inform .infldset table tbody td textarea {
+		width: 90%;
+	}
+	#adminconsole .inform .infldset table tbody td select {
+		width: 100%;
+	}
+	/* END Admin */
+
+	/**
+	 * END Media queries 1024 fluxbb
+	 * ==========================================================================
+	 * 5.3 - Media queries 1024 dokuwiki
+	**/
+
+
+	/**
+	 * END Media queries 1024 dokuwiki
+	 * ==========================================================================
+	 * 5.4 - Media queries 1024 uniformisation
+	**/
+
+	#brdheader #brdtitle h1 a,
+	#dokuwiki__header h1 a span {
+		visibility: hidden;
+		font-size:0;
+	}
+	#brdheader #brdtitle h1 a:before,
+	#dokuwiki__header h1 a span:before {
+		content:'Forum de la randonnée légère';
+		font-size :2.2rem;
+		visibility: visible;
+	}
+	#dokuwiki__header h1 a span:before {
+		content:'Wiki de la randonnée légère';
+	}
+
+	/* BEGIN FONT SIZE */
+	#dokuwiki__header h1,
+	#dokuwiki__header h1 a span,
+	#brdtitle h1,
+	.pun h1 {
+		/* font-size: 24px; */
+		margin: 0px;
+		padding: 0px;
+	}
+	#brdmenu ul li a,
+	#dokuwiki__sitetools ul li a {
+		font-size:1.1em;
+	}
+	/* END FONT SIZE */
+
+	#brdmenu,
+	#dokuwiki__sitetools,
+	#menu-search {
+		overflow-y:auto;
+	}
+	#brdmenu,
+	#dokuwiki__sitetools {
+		text-align: left;
+		position:absolute;
+		margin-top:0px;
+		top:-20px;
+		width:100%;
+		max-width:300px;
+		z-index:1010;
+		right: -300px;
+	}
+	#brdmenu{
+		margin-right: 0px;
+		margin-top: 0px;
+	}
+	#brdmenu ul,
+	#dokuwiki__sitetools ul {
+		margin:0;
+		width:100%;
+	}
+	#brdmenu ul li,
+	#dokuwiki__sitetools ul li {
+		width:100%;
+		border: 0;
+	}
+	#brdmenu a:link,
+	#brdmenu a:visited,
+	#dokuwiki__sitetools a:link,
+	#dokuwiki__sitetools a:visited {
+		padding:13px;
+		border-right-style: none;
+	}
+	.pun {
+		margin: 0px auto;
+	}
+	/* BEGIN CALCUL DES HAUTEURS */
+	#wrapper-inner .outer .slide #nav,
+	#wrapper-inner .outer #brdmenu,
+	#wrapper-inner .outer #dokuwiki__sitetools,
+	#wrapper-inner #header #menu-search {
+		height:calc( 100vh - 97px);
+	}
+
+}
+
+/**
+ * END MEDIA QUERIES 1024
+ * ------------------------------------------------------------------------------
+ * ==============================================================================
+ * 6.0 - Media queries 768
+ */
+
+@media (max-width: 768px) {
+
+	/**
+	 * ==========================================================================
+	 * 6.1 - Media queries 768 template RL
+	**/
+
+	#header #logo,
+	#header #logo img {
+		max-width:118px;
+	}
+	#RL.inbl {
+		display:none;
+	}
+
+	/**
+	 * END Media queries 768 template RL
+	 * ==========================================================================
+	 * 6.2 - Media queries 768 fluxbb
+	**/
+
+	/* BEGIN Réduction colonne des avatars*/
+	.pun .blockpost .postleft .postavatar {display:block;position:absolute;top:-37px;margin-left: -11px;}
+	.pun .blockpost .postleft .postavatar img {height:37px;width: auto;max-width:37px;margin-right: 0px}
+	.pun .blockpost dt strong {margin-left: 28px;}
+	.pun .blockpost .postbody,
+	.pun .blockpost .postfoot {
+		margin-right: 0px;
+	}
+	.pun .blockpost .postleft,
+	.pun .blockpost .postfootleft {
+		width: 100%;
+		margin-left: 0px;
+	}
+	/* END Réduction colonne des avatars*/
+
+	/* BEGIN DIVERS MISE EN FORME */
+	.pun .blockpost .postleft {
+		float: none;
+	}
+	.pun .blockpost dd {
+		display:inline;
+		margin-right:20px;
+	}
+	.pun .blocktable .tc2 {
+		display: none;
+	}
+	.pun .blocktable thead .tc2,
+	.pun .blocktable thead .tc3,
+	.pun .blocktable thead .tcr {
+		font-size: 10px;
+	}
+	#punindex #brdmain .blocktable h2,
+	#punsearch #vf h2 {
+		padding: 4px;
+	}
+	/* END DIVERS MISE EN FORME */
+
+	/* BEGIN LIENS CRUMBS BAS DE PAGE*/
+	.pun .linksb .crumbs,
+	.postlinksb ul.crumbs {
+		display: none;
+	}
+	#modcontrols span {
+		padding:10px 5px;
+	}
+	.pun .subscribelink {
+		margin-top: 7px;
+	}
+	/* END LIENS CRUMBS BAS DE PAGE*/
+
+	.pun .blockpost h2 {
+		text-align:right;
+	}
+
+	/* BEGIN PAGE RECHERCHE, INSCRIPTION, INDENTIFICATION, PROFIL, LISTE DES MEMBRES */
+	.pun .inform fieldset legend {
+			padding-left:5px;
+			width: 90%;
+		}
+	.pun .infldset .rbox {
+		max-width:90%;
+	}
+	.pun .infldset input[type="text"],
+	.pun .infldset input[type="password"],
+	.pun .infldset label select,
+	.pun .infldset textarea,
+	.pun #search .checklist	{
+		padding:2px;
+		max-width: 95%;
+	}
+	.pun .infldset input[type="password"] {
+		padding-top:4px;
+		padding-bottom:4px;
+	}
+	.pun input[type="file"] {
+		display:block;
+	}
+	.pun .multiselect {
+		width: 96%;
+	}
+	.pun .inform {
+		padding:0;
+		width: 100%;
+	}
+	.pun .inform fieldset {
+		padding-left:0;
+		width: 98%;
+		margin:0 auto;
+	}
+	/* END PAGE RECHERCHE, INSCRIPTION, INDENTIFICATION, PROFIL, LISTE DES MEMBRES */
+
+	/* BEGIN MENU DEROULANT ATTEINDRE*/
+	.pun #brdfooter .conl {
+		float: none;
+	}
+	.pun #qjump label select {
+		padding:2px 2px 4px 2px;
+		width:65%;
+	}
+	/* END MENU DEROULANT ATTEINDRE*/
+
+	/* BEGIN PSEUDO/DATE DANS MESSAGE */
+	.pun .blockpost h2 {
+	height: 20px;
+	}
+	#punviewtopic .blockpost dt {
+		top: -38px;
+		white-space: nowrap;
+	}
+	#punviewtopic .blockpost dt, #punmoderate .blockpost dt {
+		width: 100%;
+	}
+	/* END PSEUDO/DATE DANS MESSAGE */
+
+	/* BEGIN MESSAGE */
+	.pun .blockpost .postright {
+		padding: 0 5px 0px 5px;
+		margin:0px;
+	}
+	.pun .blockpost .postfootright {
+		padding: 1em 2%;
+	}
+	.pun .postmsg {
+		min-height: 150px
+	}
+	.pun .postsignature.postmsg {
+		min-height: 0px
+	}
+	.pun .postfootleft {
+		display:none;
+	}
+	/* END MESSAGE */
+
+	/* BEGIN Tableaux */
+	.pun .postmsg table.rl-table {
+			margin-left: 0px;
+	}
+	/* END Tableaux */
+
+	/* BEGIN Page de redirection */
+	#punredirect {
+		padding: 2%;
+	}
+	#punredirect img {
+		width:20%;
+		margin:0 20%;
+	}
+	/* END Page de redirection */
+
+	/* BEGIN page répondre, modifier message */
+	#punpost .blockform h2,
+	#punedit .blockform h2 {
+		padding-left:25px;
+	}
+	#punpost .inform fieldset strong,
+	#editform .inform fieldset strong {
+		white-space: pre-wrap;
+	}
+	/* END page répondre, modifier message */
+
+	/**
+	 * END Media queries 768 fluxbb
+	 * ==========================================================================
+	 * 6.3 - Media queries 768 dokuwiki
+	**/
+
+	/* BEGIN table des matières*/
+	#dw__toc {
+		margin: 0px 0px 0.5em;
+	}
+	.dokuwiki h3.toggle {
+		padding: 10px 0;
+	}
+	/* END table de smatières*/
+
+	/* BEGIN mise en forme de la page*/
+	#dokuwiki__site .page {
+		padding: 0px 10px;
+	}
+	/* END mise en forme de la page*/
+
+	/* BEGIN plugin WRAP */
+	.dokuwiki .plugin_wrap	{
+		width:100% !important;
+	}
+	/* END plugin WRAP */
+
+	/**
+	 * END Media queries 768 dokuwiki
+	 * ==========================================================================
+	 * 6.4 - Media queries 768 uniformisation
+	**/
+
+	 /* BEGIN IDENTIFICATION REDIRECT */
+	.redirect form#login label {
+		width: 100%;
+	}
+ 	.redirect form#login input[type="text"],
+ 	.redirect form#login input[type="password"] {
+ 		width: calc(100% - 18px);
+ 		max-width: 100%;
+ 	}
+ 	/* END IDENTIFICATION REDIRECT */
+
+	#brdmenu,
+	#dokuwiki__sitetools {
+		top:-20px;
+	}
+
+}
+
+/**
+ * END Media queries 768
+ * ------------------------------------------------------------------------------
+ * ==============================================================================
+ * 7.0 - MEDIA QUERIES 480
+ */
+
+@media (max-width: 480px) {
+
+	/**
+	 * ==========================================================================
+	 * 7.1 - Media queries 480 template RL
+	**/
+
+	#header {
+		height:60px;
+		background-size: auto 60px !important;
+	}
+	#header #logo {
+		margin-left: 81px;
+	}
+	#header #logo, #header #logo img {
+		max-width:78px;
+	}
+	#menu-search {
+		margin-top: 67px;
+	}
+	.menu-left-checkbox:checked ~ #wrapper-inner #content #mobile-nav-overlay,
+	.menu-search-checkbox:checked ~ #wrapper-inner .outer #content #mobile-nav-overlay,
+	.menu-forum-checkbox:checked ~ #wrapper-inner .outer #content #mobile-nav-overlay {
+		top:-15px;
+	}
+	#content {
+		margin-top:15px;
+	}
+	.slide-left-toggle:after,
+	.menu-forum-toggle:after,
+	.menu-search-toggle:after {
+		width: 30px;
+		border-radius: 3px;
+		font-size: 20px;
+		font-family: 'FontAwesome';
+		padding: 9px 10px;
+		line-height: 1.3em;
+	}
+	.slide-left-toggle,
+	.menu-forum-toggle,
+	.menu-search-toggle {
+		margin:8px 10px;
+	}
+
+	/**
+	 * END Media queries 480 template RL
+	 * ==========================================================================
+	 * 7.2 - Media queries 480 fluxbb
+	**/
+
+	.pun {
+		margin: 0px auto;
+	}
+	.pun .blocktable thead .tc2,
+	.pun .blocktable thead .tc3,
+	.pun .blocktable thead .tcr {
+		font-size: 9px;
+	}
+	#postreview,
+	.pun #brdfooter #qjump {
+		padding-left: 1%;
+		padding-right: 1%;
+		width: 98%;
+	}
+	#brdstats {
+		margin:50px 0 20px;
+		border-width:0;
+	}
+	/* BEGIN brdwelcome */
+	.connected  .pun #brdwelcome li:nth-child(2) {
+		display: none;
+		padding-left: 0px;
+	}
+	.pun #brdwelcome .conr,
+	.pun #brdwelcome span {
+		width: 100%;
+	}
+	.pun #brdwelcome .conr {
+		color:transparent;
+		font-size:0 !important;
+		margin: 0px !important;
+		padding-bottom:5px;
+	}
+	.pun #brdwelcome .conr:before {
+		content:'Contributions';
+		font-size:12px;
+		margin-left:.5%;
+		}
+	.pun #brdwelcome .conr a,
+	.subscribelink.clearb a {
+		font-size:12px;
+		white-space:nowrap;
+		text-indent:0px;
+		padding:8px 0;
+		cursor: pointer;
+		border: medium none;
+		border-radius: 3px;
+		width:49.5%;
+		margin-right:1%;
+		text-align:center;
+		float: right;
+		transition-property: all;
+		transition-duration: 0.2s;
+		transition-timing-function: ease;
+		line-height: normal;
+	}
+	.connected .pun #brdwelcome .conr a {
+		width:24.25%;
+	}
+	.pun #brdwelcome .conr a:hover {
+		text-decoration: none;
+	}
+	.pun #brdwelcome .conr a:first-child {
+		margin-right:0;
+	}
+	.subscribelink.clearb a {
+		width:100%;
+		margin:0;
+	}
+	/* END brdwelcome */
+
+	/* BEGIN Annonces */
+	#announce-block .usercontent {
+		font-size:1em;
+	}
+	#announce-block .usercontent .buttons {
+		display:none;
+	}
+	#announce-block .usercontent ul {
+		width:100%;
+	}
+	#announce-block .info,
+	#announce-block .important,
+	.pun #adalerts {
+		width: auto;
+		background-image: none;
+		padding: 0.5em 1em 0.5em 3em;
+		min-height: 10px;
+	}
+	#announce-block .info:before,
+	#announce-block .important:before,
+	.pun #adalerts:before {
+		left: 12px;
+		font-size: 1.1em;
+	}
+	/* END Annonces */
+
+	/* BEGIN PAGINATION */
+	.pagelink:before {
+		content: '';
+	}
+	/* END PAGINATION */
+
+	/* BEGIN PAGE RECHERCHE, INSCRIPTION, INDENTIFICATION, PROFIL, LISTE DES MEMBRES */
+	#search {
+		padding-left: 0px;
+		width:100%;
+	}
+	.pun #search .multiselect {
+		width:100%;
+	}
+	.pun form#login_menuG .buttons,
+	.pun form#register .buttons,
+	.pun #profile form .buttons,
+	.pun form#search .buttons,
+	.pun form#userlist .buttons,
+	.pun form .buttons {
+		padding-left:1%;
+		padding-right:1%;
+		width: 98%;
+	}
+	.pun form#login_menuG  input[type="submit"],
+	.pun #register input[type="submit"],
+	.pun #profile input[type="submit"],
+	.pun #search input[type="submit"],
+	.pun #userlist input[type="submit"]	{
+		width:100%;
+		padding:10px;
+		margin:10px auto;
+	}
+	/* END PAGE RECHERCHE, INSCRIPTION, INDENTIFICATION, PROFIL, LISTE DES MEMBRES */
+
+	/* BEGIN liste des messages d'un pseudo */
+	#punsearch .blockpost h2 {
+		margin:0px 0px 2px 0px;
+		padding:10px;
+		font-size:0.9em;
+	}
+	#punsearch .postleft {
+		display:none;
+	}
+	/* END liste des messages d'un pseudo */
+
+	/* BEGIN Réponse rapide */
+	.pun #quickpost h2 {
+		padding-left:10px;
+		width:80%;
+	}
+	.pun #quickpost legend {
+		width:70%;
+		padding: 10px 0px 4px;
+	}
+	/* END Réponse rapide */
+
+	/* BEGIN AFFICHER/MASQUER IPCONNEXION, EMAIL, NOMBRE DE MESSAGE */
+	.pun .blockpost .postleft .usertitle {display:none;}
+	.pun .blockpost .postleft .postavatar {top:-42px;margin-left: -6px;}
+	.pun .blockpost dt strong {
+		margin-left: 33px;
+	}
+	.pun #postreview .blockpost dt strong {margin-left:0;}
+	.pun .blockpost dd {
+		display:none;
+	}
+	.pun .blockpost dd:last-child {
+		display:block;
+		padding-top:7px;
+	}
+	.pun .blockpost .postleft,
+	.pun .blockpost .postfootleft {
+		height: 35px;
+		padding:0 10px;
+	}
+	.pun .blockpost dd.usercontacts {
+		display: block;
+	}
+	#punviewtopic .blockpost dt {
+		top: -50px;
+	}
+	.pun .blockpost h2 {
+		margin-top:20px;
+		margin-bottom:0px;
+		text-align:right;
+		padding: 0.4em 8px 0.1em 0px;
+	}
+	.pun .blocktable {
+		display:block;
+		max-width:100%;
+	}
+	/* END AFFICHER/MASQUER IPCONNEXION, EMAIL, NOMBRE DE MESSAGE */
+
+	/* BEGIN DISCUSSIONS */
+	.pun .pagelink .pages-label {
+		display: none;
+	}
+	/* END DISCUSSIONS */
+
+	/* BEGIN Tableaux */
+	.pun .postmsg table.rl-table {
+		white-space: pre-wrap;
+		hyphens: auto;
+	}
+	/* END Tableaux */
+
+	/* BEGIN PAGE REDACTION/EDITION */
+	#punpost .punwrap,
+	#punpost #brdmain,
+	#punedit .punwrap,
+	#punedit #brdmain {
+		padding:0;
+		margin:0;
+	}
+	#punpost .infldset,
+	#punedit .infldset {
+		padding: 5px;
+	}
+	#punpost .required strong,
+	#punpost .blockform h2,
+	#punpost #brdtitle,
+	#punpost #brdwelcome,
+	#punpost #announce-block,
+	#punpost .linkst,
+	#punpost .bblinks,
+
+	#punedit .required strong,
+	#punedit .blockform h2,
+	#punedit #brdtitle,
+	#punedit #brdwelcome,
+	#punedit #announce-block,
+	#punedit .linkst,
+	#punedit .bblinks {
+		display:none;
+	}
+	#punpost .infldset.txtarea textarea,
+	#punedit .infldset.txtarea textarea {
+		height:100vh;
+	}
+	#punpost .inform fieldset,
+	#punedit .inform fieldset {
+		margin-top:4px;
+	}
+	#punpost .blockform h2,
+	#punedit .blockform h2 {
+		padding-left:15px;
+		width:78%;
+	}
+	#punpost .inform fieldset legend,
+	#punedit .inform fieldset legend {
+		width:92%;
+		white-space: pre-wrap;
+		display:none;
+	}
+	#postreview .blockpost .postleft {
+		height: 48px;
+	}
+	#postreview .blockpost dl {
+	padding-top: 5px;
+	}
+	#postreview .blockpost dd {
+	padding-top: 0px;
+	}
+	form#edit p.buttons {
+		padding-left: 1%;
+		width: 98%;
+		margin: 0 auto;
+	}
+	a.secondary-button,
+	form#post p.buttons a,
+	form#edit p.buttons a {
+		display: block;
+		text-align:center;
+		margin: 10px 0;
+		line-height: normal;
+	}
+	/* END PAGE REDACTION/EDITION */
+
+	/**
+	 * END Media queries 480 fluxbb
+	 * ==========================================================================
+	 * 7.3 - Media queries 480 dokuwiki
+	**/
+
+	.dokuwiki,
+	.pun .punwrap,
+	#dokuwiki__header {
+		padding: 15px 1%;
+	}
+	#dokuwiki__site .page.group {
+		margin: 0px -4px 0px 1%;
+		padding:1% 2%;
+	}
+	#dokuwiki__site #dw__toc {
+		padding-left:1em;
+	}
+	#dokuwiki__content .page h1 {
+		padding: 1em 0;
+		margin-bottom: 0px;
+	}
+	.dokuwiki .toolbutton {
+		width:inherit;
+	}
+	/* BEGIN plugin WRAP */
+	.dokuwiki div.wrap_column,
+	.dokuwiki div.wrap_box,
+	.dokuwiki div.wrap_box120h,
+	.dokuwiki div.wrap_box200h,
+	.dokuwiki div.wrap_box280h,
+	.dokuwiki div.wrap_box320h,
+	.dokuwiki div.wrap_box350h {
+		width:100%;
+		max-width:100%;
+		margin-left:0;
+		margin-right:0;
+		min-height:100px;
+	}
+	/* BEGIN plugin WRAP */
+
+	/**
+	 * END Media queries 480 dokuwiki
+	 * ==========================================================================
+	 * 7.4 - Media queries 480 uniformisation
+	**/
+
+	#brdmenu,
+	#dokuwiki__sitetools {
+		top:-15px;
+	}
+	/* BEGIN UNIFORMISATION DES INPUT ET BOUTONS */
+	.pun input[type="submit"],
+	.pun input[type="button"],
+	#nav input[type="submit"],
+	.pun .blockform .buttons input,
+	.pun .usercontent .buttons,
+	.dokuwiki button,
+	.dokuwiki .editButtons button,
+	.dokuwiki .qq-upload-button,
+	.dokuwiki .qq-upload-action {
+		width:100%;
+		margin: 10px 0;
+	}
+	/* END UNIFORMISATION DES INPUT ET BOUTONS */
+
+	/* BEGIN CALCUL DES HAUTEURS */
+	#wrapper-inner .outer .slide #nav,
+	#wrapper-inner .outer #brdmenu,
+	#wrapper-inner .outer #dokuwiki__sitetools,
+	#wrapper-inner #header #menu-search {
+		height:calc( 100vh - 67px);
+	}
+	#content {
+		min-height:calc(100vh - 137px);
+	}
+
+}
+
+	/**
+	 * END MEDIA QUERIES 480
+	 * ------------------------------------------------------------------------------
+	 * ==============================================================================
+	 * 8.0 - MEDIA QUERIES 380
+	**/
+
+@media (max-width: 380px) {
+	#brdwelcome .conr a,
+	.subscribelink.clearb a {
+	font-size: 12px;
+	}
+}
+
+	/**
+	 * END Media queries 380 dokuwiki
+	 * ==========================================================================
+	 * 9.0 - UPLOADS FOTOO
+	**/
+
+/* #uploads article.picture figure {max-width: 60%;} */
+#uploads article.picture figure img {max-width: 100%;}
+
+#uploads blockquote, q {
+	quotes: none;
+}
+#uploads blockquote:before,
+#uploads blockquote:after,
+#uploads q:before, q:after {
+	content: '';
+	content: none;
+}
+#uploads table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+#uploads #page {
+	width: calc(100% - 40px);
+	padding:18px;
+	border-width:1px;
+	border-style: solid;
+	border-radius: 3px;
+	text-align: center;
+}
+#uploads footer {
+	font-size: .9em;
+	text-align:center;
+	margin-top:1em;
+}
+#uploads input[type=submit] {
+	cursor: pointer;
+}
+#uploads label {
+	cursor: pointer;
+}
+#uploads input[type=text],
+#uploads input[type=file],
+#uploads input[type=password] {
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: .5em;
+}
+#uploads fieldset dl dt {
+	font-weight: bold;
+}
+#uploads fieldset {
+	margin: 0 auto;
+}
+#uploads .info {
+	margin: .8em 0;
+	font-size:.9em;
+}
+#uploads #announce-block .info {
+	margin: 0;
+	margin-bottom: 5px;
+}
+#uploads .picture footer {
+	margin: 1em 0;
+}
+#uploads .picture footer.context {
+	background: rgb(220, 220, 220);
+	background: rgba(255, 255, 255, 0.25);
+	border-radius: 3px;
+	padding: 1em 0;
+	margin: 0 auto;
+}
+#uploads .picture footer.context figure {
+	position: relative;
+	width: 25%;
+	max-width: 200px;
+	height: 180px;
+	margin: 0;
+}
+#uploads .picture footer.context figure b {
+	font-size: 7em;
+	line-height: 120px;
+	width: 100%;
+	height: 150px;
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+}
+#uploads .examples {
+	margin: .8em 0;
+	font-weight: bold;
+}
+#uploads .examples dt {
+	font-weight: bold;
+}
+#uploads .examples input,
+.admin input[type=text],
+.examples textarea {
+	font-family: "Courier New", Courier, monospace;
+	width: 80%;
+}
+#uploads .examples textarea {
+  height:100px;
+}
+#uploads figure {
+	display: inline-block;
+	margin: 0.5em;
+	vertical-align: middle;
+	position: relative;
+	border-width:1px;
+	border-style: solid;
+	border-radius:3px;
+	padding:1em;
+	width: 35%;
+	max-width: 200px;
+}
+#uploads figure.picture-visu {
+	width: 90%;
+	max-width: 90%;
+}
+#uploads figure figcaption {
+	margin-top:5px;
+	font-size: small;
+}
+#uploads figure .img {
+	min-height:135px;
+}
+#uploads figure .img img,
+#uploads figure .thumb img  {
+	max-height: 130px;
+	margin:0 auto;
+	display: block;
+}
+#uploads figure a:hover img {
+	box-shadow: 0px 0px 10px #000;
+}
+#uploads figure span {
+	background: rgb(0, 0, 0);
+	background: rgba(0, 0, 0, 0.75);
+	color: #fff;
+	position: absolute;
+	padding: .5em 1em;
+	font-weight: bold;
+	top: 1em;
+	left: 0;
+}
+#uploads figure span.private {
+	background: rgb(150, 0, 0);
+	background: rgba(150, 0, 0, 0.75);
+	margin-top:50px;
+}
+#uploads figure span.import {
+	background: rgb(0, 71, 150);
+	background: rgba(0, 71, 150, 0.75);
+	margin-top:50px;
+}
+#uploads figure span.private,
+#uploads figure span.import {
+	margin-top:50px;
+}
+#uploads #resizeParent,
+#uploads p.admin,
+#uploads p.info,
+#uploads .meta,
+#uploads .meta h2,
+#uploads .meta h3,
+#uploads .meta h4,
+#albumParent {
+	padding: 10px 0;
+	width: 100%;
+	max-width: 1000px;
+	margin: 5px auto;
+	border-radius: 3px;
+	font-size: 12px;
+	line-height: 1.462em;
+}
+#uploads .meta h2,
+#uploads .meta h3,
+#uploads .meta h4 {
+	min-width:100%;
+	font-weight: bold;
+	margin: 0;
+	padding:0;
+	font-size: 1em;
+}
+#uploads figure p.info,
+#uploads .meta {
+	padding: 5px 0;
+	margin: 5px auto;
+}
+
+#uploads #resizeParent a,
+#uploads p.admin a,
+#uploads p.info a,
+#uploads .meta a,
+#albumParent a {
+	font-weight: bold
+}
+#uploads figure p.admin {
+	width: 100%;
+	padding: 5px 0;
+}
+#uploads figure label {
+	font-weight: bold;
+	font-size:.8em;
+	display: block;
+}
+#uploads #resizeParent img.loading, #albumParent img.loading, #albumParent span b {
+	padding: .5em;
+	border-radius: 1em;
+	vertical-align: middle;
+	display: inline-block;
+	line-height: 16px;
+}
+/* #uploads #resizeParent img, #albumParent img {
+	box-shadow: 0px 0px 10px #000;
+}*/
+#uploads p.error {
+	margin: .8em;
+}
+#uploads p.admin input[type="button"],
+#uploads p.admin input[type="submit"] {
+	margin: 10px 0;
+}
+
+#uploads .albums h3,
+.browse h3 {
+	max-width: 195px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+#uploads .albums figure img {
+	display: block;
+	margin:.5em auto;
+}
+#uploads .albums figure span {
+	margin: 0 auto;
+	left: 0px;
+	right: 0px;
+	bottom: 50%;
+	top: auto;
+}
+#uploads ul.rotate {
+	display: grid;
+	grid-gap: 2%;
+	grid-template-columns: 32% 32% 32%;
+	padding: 0;
+}
+#uploads ul.rotate li {
+	padding:5px 0;
+	border-radius:3px;
+}
+#uploads ul.rotate li a {
+	padding:5px 10px;
+	margin-left:-10px;
+}
+#uploads ul.rotate li:last-child {
+	margin-right:0;
+}
+#uploads ul.rotate li:before {
+	font-family: fontawesome;
+	padding:0 5px !important;
+}
+#uploads ul.rotate li:first-child:before {
+	content:'\f0e2';
+}
+#uploads ul.rotate li:nth-child(2):before {
+	content:'\f07d' !important;
+}
+#uploads ul.rotate li:last-child:before {
+	content:'\f01e' !important;
+}
+#uploads.from-ez-toolbar #page {
+	margin: 0;
+	width:98%;
+}
+#uploads.from-ez-toolbar #header,
+#uploads.from-ez-toolbar .slide,
+#uploads.from-ez-toolbar #header label,
+#uploads.from-ez-toolbar #footer,
+#uploads.from-ez-toolbar .meta.profile {
+	display:none;
+}
+#uploads.from-ez-toolbar .outer {
+	margin-top:0;
+}
+#uploads.from-ez-toolbar #content {
+	float:none;
+	margin:0;
+	width:100%;
+}
+#uploads.from-ez-toolbar #brdtitle,
+#uploads.from-ez-toolbar #brdwelcome,
+#uploads.from-ez-toolbar p.admin,
+#uploads.from-ez-toolbar p.info,
+#uploads.from-ez-toolbar .hidden-from-ez-toolbar {
+	display:none;
+}
+#uploads.from-ez-toolbar #brdmenu {
+	display:contents;
+	top: 0;
+	max-width:100%;
+	position: relative;
+	height: unset;
+	right: 0px;
+}
+#uploads.from-ez-toolbar #brdmenu a {
+	padding: 6px 16px;
+}
+#uploads.from-ez-toolbar #brdmenu ul {
+	height:initial !important;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	padding-bottom: 0px;
+	width:100%;
+}
+#uploads.from-ez-toolbar ul:after {
+	content: " ";
+	display: block;
+	height: 0;
+	font-size: 0;
+	clear: both;
+	visibility: hidden;
+}
+#uploads.from-ez-toolbar #brdmenu li {
+	width:unset;
+}
+#uploads.from-ez-toolbar .picture {
+	max-width:300px;
+	margin:0 auto;
+}
+#uploads.from-ez-toolbar .pun form .buttons {
+	padding-top:0;
+	padding-bottom:15px;
+}
+#uploads .tc3 a:hover {
+	text-decoration: none;
+}
+#uploads .tc3 a:after {
+	content:'\f0d7';
+	font-family: fontawesome;
+	padding-left: 3px;
+	color: transparent;
+}
+#uploads .tc3.orderby a:after {
+	content:'\f0d7';
+	color:inherit;
+}
+#uploads .meta .author:before,
+#uploads .meta .size:before,
+#uploads .meta time:before,
+#uploads .meta.search:before {
+	content:'\f007';
+	font-family: fontawesome;
+	margin-right: 5px;
+}
+#uploads .meta time:before {
+	content:'\f133';
+}
+#uploads .meta.search:before {
+	content:'\f002';
+}
+#uploads .meta .size:before {
+	content:'\f1c5';
+}
+#uploads .admin-mode {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #fa9494;
+	color: white;
+	margin: 18px;
+	padding: 5px 30px;
+	font-size: 1em;
+}
+@media (max-width: 1024px) {
+
+	#uploads input[type="text"],
+	#uploads input[type="file"],
+	#uploads input[type="password"] {
+		width: 85% !important;
+		max-width: 85% !important;
+	}
+	#uploads figure {
+		margin: 0.2em;
+		padding:.5em;
+		width: 42%;
+	}
+}
+
+/* BEGIN Opéra */
+#wrapper-inner.opera .pun #search .checklist {
+	height:inherit;
+	max-height:inherit;
+}
+
+@media (max-width: 1024px) {
+	#wrapper-inner.opera {position:relative;}
+	.menu-left-checkbox:checked ~ #wrapper-inner.opera #content #mobile-nav-overlay,
+	.menu-search-checkbox:checked ~ #wrapper-inner.opera .outer #content #mobile-nav-overlay,
+	.menu-forum-checkbox:checked ~ #wrapper-inner.opera .outer #content #mobile-nav-overlay,
+	.menu-left-checkbox:checked ~ #wrapper-inner.opera .outer .slide #nav,
+	.menu-search-checkbox:checked ~ #wrapper-inner.opera #header .inner #menu-search,
+	.menu-forum-checkbox:checked ~ #wrapper-inner.opera .outer #brdmenu,
+	.menu-forum-checkbox:checked ~ #wrapper-inner.opera .outer #dokuwiki__sitetools {
+		height:100% !important;
+		min-height: 100% !important;
+	}
+/* END Opéra */
+
+}
+
+@keyframes stickAnim {
+	0% {
+		transform: translateY(-86px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+/* Konami */
+#tetris   { margin: 0 auto; padding: 0.5em; }
+#tetris #stats	{ display: none; vertical-align: top; }
+#tetris #canvas	{ display: inline-block; vertical-align: top; box-shadow: 1px 1px 0.5em #888; border: 1px solid #333; }
+#tetris #menu	{ display: inline-block; vertical-align: top; position: relative; }
+#tetris #menu p	{ margin: 0.5em 0; text-align: center; }
+#tetris #menu p a	{ text-decoration: none; color: black; }
+#tetris #upcoming	{ display: block; margin: 0 auto; background-color:#E0E0E0; }
+#tetris #score	{ color: red; font-weight: bold; vertical-align: middle; }
+#tetris #rows	{ color: blue; font-weight: bold; vertical-align: middle; }
+#tetris #stats	{ position: absolute; bottom: 0em; right: 1em; }
+@media screen and (min-width:   0px) and (min-height:   0px)  { #tetris { font-size: 0.75em; width: 250px; } #menu { width: 100px; height: 200px; } #upcoming { width:  50px; height:  50px; } #canvas { width: 100px; height: 200px; } } /* 10px chunks */
+@media screen and (min-width: 400px) and (min-height: 400px)  { #tetris { font-size: 1.00em; width: 350px; } #menu { width: 150px; height: 300px; } #upcoming { width:  75px; height:  75px; } #canvas { width: 150px; height: 300px; } } /* 15px chunks */
+@media screen and (min-width: 500px) and (min-height: 500px)  { #tetris { font-size: 1.25em; width: 450px; } #menu { width: 200px; height: 400px; } #upcoming { width: 100px; height: 100px; } #canvas { width: 200px; height: 400px; } } /* 20px chunks */
+@media screen and (min-width: 600px) and (min-height: 600px)  { #tetris { font-size: 1.50em; width: 550px; } #menu { width: 250px; height: 500px; } #upcoming { width: 125px; height: 125px; } #canvas { width: 250px; height: 500px; } } /* 25px chunks */
+@media screen and (min-width: 700px) and (min-height: 700px)  { #tetris { font-size: 1.75em; width: 650px; } #menu { width: 300px; height: 600px; } #upcoming { width: 150px; height: 150px; } #canvas { width: 300px; height: 600px; } } /* 30px chunks */
+@media screen and (min-width: 800px) and (min-height: 800px)  { #tetris { font-size: 2.00em; width: 750px; } #menu { width: 350px; height: 700px; } #upcoming { width: 175px; height: 175px; } #canvas { width: 350px; height: 700px; } } /* 35px chunks */
+@media screen and (min-width: 900px) and (min-height: 900px)  { #tetris { font-size: 2.25em; width: 850px; } #menu { width: 400px; height: 800px; } #upcoming { width: 200px; height: 200px; } #canvas { width: 400px; height: 800px; } } /* 40px chunks */
+
+
+/* @media (prefers-color-scheme: dark) {
+} */

@@ -23,13 +23,13 @@ $french_strings = array(
 	'Browse my albums'
 		=>  'Mes albums',
     'Title'
-        =>  'Titre',
+        =>  'Titre de l\'album',
     'File'
         =>  'Fichier',
     'Files'
         =>  'Fichiers',
     'Name'
-        =>  'Nom',
+        =>  'Titre de l\'image',
     'Album'
         =>  'Album',
     'Private'

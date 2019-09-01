@@ -1,8 +1,12 @@
+<?php
+define('PUN_ROOT', '../../');
+require PUN_ROOT.'include/common.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Tableau RL</title>
-	<link rel="stylesheet" type="text/css" href="../../style/RL_Clair.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/'.$pun_user['style'].'.css' ?>" />
 	<link rel="stylesheet" type="text/css" href="table_editor.css" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +16,7 @@
 
 <div class="pun">
 <div class="punwrap">
+<div id="ezbbclink">
 
 	<div class="rl-table-form">
 		<select id="table_select">
@@ -38,6 +43,7 @@
 	<script type="text/javascript" src="table_editor.js"></script>
 	<script type="text/javascript" src="table_form.js"></script>
 
+</div>
 </div>
 </div>
 

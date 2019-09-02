@@ -15,7 +15,7 @@ echo '<!DOCTYPE html>
 require '../include/user/header_favicon.php';
 require '../include/user/header_img_aleatoire.php';
 
-echo '<link rel="stylesheet" type="text/css" href="' . path_to_forum . 'style/' . $pun_user['style'] . '.css?' . current_theme . '" />
+echo '<link rel="stylesheet" type="text/css" href="' . path_to_forum . 'style/' . $pun_user['style'] . '.css?version=' . current_theme . '" />
 </head>
 <body id="uploads">
 

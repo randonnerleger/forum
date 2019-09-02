@@ -851,23 +851,26 @@ textarea {
 /* END Images */
 
 /* BEGIN Tableaux */
-.pun .postmsg table.rl-table {
+.pun table.rl-table {
 	width: auto;
-	display: block;
+	/* display: block; */
 	overflow:auto;
 	overflow-y: hidden;
 }
-.pun .postmsg table.rl-table td {
+.pun .ezbbclink table.rl-table {
+	display: table;
+}
+.pun table.rl-table td {
 	border-width: 1px;
 	border-style: solid;
 	padding: 2px 5px 1px 5px;
 }
-.pun .postmsg table.rl-table td.blank-cell {
+.pun table.rl-table td.blank-cell {
 	border: none;
 	line-height: 0.3em;
 }
-.pun .postmsg table.rl-table td.mono-cell,
-.pun .postmsg table.rl-table tr.header td,
+.pun table.rl-table td.mono-cell,
+.pun table.rl-table tr.header td,
 .dokuwiki .table th {
 	border-bottom-width:2px;
 	border-bottom-style: solid;
@@ -2333,7 +2336,7 @@ background-size: 35px 35px;
 	/* END MESSAGE */
 
 	/* BEGIN Tableaux */
-	.pun .postmsg table.rl-table {
+	.pun table.rl-table {
 			margin-left: 0px;
 	}
 	/* END Tableaux */
@@ -2665,7 +2668,7 @@ background-size: 35px 35px;
 	/* END DISCUSSIONS */
 
 	/* BEGIN Tableaux */
-	.pun .postmsg table.rl-table {
+	.pun table.rl-table {
 		white-space: pre-wrap;
 		hyphens: auto;
 	}

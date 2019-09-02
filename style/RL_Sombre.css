@@ -175,7 +175,7 @@ hr {
 #brdfooternav,
 .pun #brdwelcome .conr::before,
 #punredirect .punwrap,
-.pun .postmsg table.rl-table tr:hover,
+.pun table.rl-table tr:hover,
 .dokuwiki table.inline tr:hover td,
 #adminconsole .blockmenu li {
 	background: #292929;
@@ -227,12 +227,12 @@ tbody tr:nth-child(even),
 	background-color: #222222;
 }
 /* BEGIN Tableaux */
-.pun .postmsg table.rl-table td,
+.pun table.rl-table td,
 .dokuwiki .table td {
 	border-color: #222222;
 }
-.pun .postmsg table.rl-table td.mono-cell,
-.pun .postmsg table.rl-table tr.header td,
+.pun table.rl-table td.mono-cell,
+.pun table.rl-table tr.header td,
 .dokuwiki .table th {
 	border-color: #242424 #222222;
 }
@@ -246,7 +246,7 @@ tbody tr:nth-child(even),
 	background-color: #888;
 }
 table thead,
-.pun .postmsg table.rl-table td.mono-cell,
+.pun table.rl-table td.mono-cell,
 .dokuwiki table.inline th,
 .dokuwiki table.inline tr:hover th,
 #mediamanager__page .filelist .panelContent ul li:hover {

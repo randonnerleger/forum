@@ -62,7 +62,6 @@ table.rl-table td.blank-cell {
 
 table.rl-table tr.header td, table.rl-table td.mono-cell {
 	font-weight: bold;
-	border-bottom: 2px solid red;
 }
 
 .rl-table.edit td {

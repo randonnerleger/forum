@@ -1,12 +1,13 @@
 <?php
 define('PUN_ROOT', '../../');
 require PUN_ROOT.'include/common.php';
+require '../../../configRL.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Tableau RL</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/'.$pun_user['style'].'.css' ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/'.$pun_user['style'].'.css?version=' . current_theme . ''; ?>" />
 	<link rel="stylesheet" type="text/css" href="table_editor.css" />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />

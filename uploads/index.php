@@ -1855,12 +1855,14 @@ class Fotoo_Hosting
 	{
 		$author = null != ( $this->getImageAuthor($img) ) ? $this->getImageAuthor($img)  : '' ;
 		$size = null != $img['size'] ? $this->getPictureSize($img['size']) : '' ;
-		$punid = '';
+		$punid = (null != $this->getImagePunID($img) ) ? $this->getImagePunID($img) : '' ;
+		$spacer = '';
 		$url = '';
+
 		if ( !isset($_GET['mesphotos']) ) {
 			if ($this->logged() )
-				$punid = (null != ( $this->getImagePunID($img) ) ) ? $this->getImagePunID($img) : '' ;
-				$spacer = (null != ( $this->getImagePunID($img) ) ) ? ' (id: ' . $this->getImagePunID($img) .')' : '' ;
+				$spacer = (null != $punid) ? ' (id: ' . $punid .')' : '' ;
+
 			$url = '
 			<p class="meta profile">
 				<a href="../profile.php?id='. $punid .'" class="author">' . $author . $spacer . '</a><br />
@@ -1873,16 +1875,19 @@ class Fotoo_Hosting
 
 	public function getAlbumAuthorBouton($author, $punid, $date)
 	{
-		$punid = ( $this->logged() && null != $punid ) ? $punid : '' ;
-		$spacer = ( $this->logged() && null != $punid ) ? ' (id: ' . $punid .')' : '' ;
+		$punid = ( null != $punid ) ? $punid : '' ;
+		$spacer = '';
 		$url ='';
 
-		if ( !isset ( $_GET['mesalbums'] ) )
+		if ( !isset ( $_GET['mesalbums'] ) ) {
+			if ($this->logged() )
+				$spacer = (null != $punid ) ? ' (id: ' . $punid .')' : '' ;
+
 			$url = '<p class="meta profile">
 				<a href="../profile.php?id='. $punid .'" class="author">' . $author . $spacer . '</a><br />
 				<i><time datetime="'.date(DATE_W3C, $date).'">'.strftime('%a %e %b %Y', $date).'</time></i>
 			</p>';
-
+		}
 		return $url;
 	}
 

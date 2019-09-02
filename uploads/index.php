@@ -3476,7 +3476,7 @@ elseif (isset($_GET['albums']))
 
 	        $html .= '
 	        <figure>
-	            <div class="meta title"><h3>'.escape($album['title']).'</h3><h6>('.$nb.' pictures)</h6></div><!--Check user id : ' . $album['punid'] . '-->
+	            <div class="meta title"><h3>'.escape($album['title']).'</h3><strong>('.$nb.' pictures)</strong></div><!--Check user id : ' . $album['punid'] . '-->
 	            <a href="'.$url.'">'.($album['private'] ? '<span class="private">' . __('Private') . '</span>' : '');
 
 	        foreach ($album['extract'] as $img)

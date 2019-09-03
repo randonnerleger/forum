@@ -413,7 +413,7 @@ textarea,
 .search-form .search-field:focus + .reset-btn,
 form#login_menuG .save-pass input[type="checkbox"] + label::before {
 	background-color: #f7f7f7;
-	color:#566579;
+	color:#333;
 	border-color:#9eabb9;
 }
 #uploads input[type="text"],

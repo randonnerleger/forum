@@ -194,6 +194,10 @@ body {
 	/* line-height: normal; */
 	line-height: 1.5;
 }
+textarea {
+	font-family: Monaco, 'DejaVu Sans Mono', 'Lucida Sans Unicode', Andale Mono, monospace;
+	font-size: inherit;
+}
 #content {
 	font-size: .95em;
 }

@@ -172,7 +172,7 @@ html,body,.pun table,.pun div,.pun form,.pun p,.pun h1,.pun h2,.pun h3,.pun h4,.
  * Source : https://fluxbb.org/forums/viewtopic.php?id=7889
  */
 
-@media(max-width:768px){* .pun{padding:0;margin:30px auto;width:100%}#brdtitle{display:none}#punredirect,#punmaint{width:318px;margin:60px auto;padding:0 185px}#brdtitle h1{padding:0 0 10px 0}#brddesc{padding:0;width:100%;margin-top:0;font-size:1em}#brddesc p{padding-bottom:12px}.pun .blockpost .postleft .postavatar{display:none}.pun .blockpost .postright{position:relative;margin-top:0;margin-left:0;padding:9px 21px 7px 18px}.pun .blockmenu{width:100%;padding-bottom:12px}.pun .block2col .blockform,.pun .block2col .block{margin-left:0}.pun .blockmenu .block2{padding-top:19px}.pun .blockmenu ul{padding:0}.pun .blockmenu li{font-weight:normal;padding:0}.pun label input,.pun label select,.pun label textarea{width:100%}.pun fieldset label{width:100%}.pun #quickpost legend,#punpost legend,#punedit legend{width:100%}.pun .infldset{padding:12px 18px}.pun #postpreview .postright{padding-top:23px;margin-left:200px}}
+@media(max-width:768px){* .pun{padding:0;margin:30px auto;width:100%}#brdtitle{display:none}#punredirect,#punmaint{width:318px;margin:60px auto;padding:0 185px}#brdtitle h1{padding:0 0 10px 0}#brddesc{padding:0;width:100%;margin-top:0;font-size:1em}#brddesc p{padding-bottom:12px}.pun .blockpost .postleft .postavatar{display:none}.pun .blockpost .postright{position:relative;margin-top:0;margin-left:0;padding:9px 21px 7px 18px}.pun .blockmenu{width:100%;padding-bottom:12px}.pun .block2col .blockform,.pun .block2col .block{margin-left:0}.pun .blockmenu .block2{padding-top:19px}.pun .blockmenu ul{padding:0}.pun .blockmenu li{font-weight:normal;padding:0}.pun fieldset label{width:100%}.pun #quickpost legend,#punpost legend,#punedit legend{width:100%}.pun .infldset{padding:12px 18px}}
 
 /**
  * END FLUXBB AIR RESPONSIVE
@@ -193,6 +193,10 @@ body {
 	font-size: 1.4rem;
 	/* line-height: normal; */
 	line-height: 1.5;
+}
+textarea {
+	font-family: Monaco, 'DejaVu Sans Mono', 'Lucida Sans Unicode', Andale Mono, monospace;
+	font-size: inherit;
 }
 #content {
 	font-size: .95em;
@@ -2251,9 +2255,9 @@ background-size: 35px 35px;
 	}
 	/* END LIENS CRUMBS BAS DE PAGE*/
 
-	.pun .blockpost h2 {
+	/* .pun .blockpost h2 {
 		text-align:right;
-	}
+	} */
 
 	/* BEGIN PAGE RECHERCHE, INSCRIPTION, INDENTIFICATION, PROFIL, LISTE DES MEMBRES */
 	.pun .inform fieldset legend {
@@ -2651,7 +2655,7 @@ background-size: 35px 35px;
 	.pun .blockpost h2 {
 		margin-top:20px;
 		margin-bottom:0px;
-		text-align:right;
+		/* text-align:right; */
 		padding: 0.4em 8px 0.1em 0px;
 	}
 	.pun .blocktable {

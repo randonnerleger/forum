@@ -2255,10 +2255,6 @@ background-size: 35px 35px;
 	}
 	/* END LIENS CRUMBS BAS DE PAGE*/
 
-	/* .pun .blockpost h2 {
-		text-align:right;
-	} */
-
 	/* BEGIN PAGE RECHERCHE, INSCRIPTION, INDENTIFICATION, PROFIL, LISTE DES MEMBRES */
 	.pun .inform fieldset legend {
 			padding-left:5px;
@@ -2309,6 +2305,10 @@ background-size: 35px 35px;
 	/* BEGIN PSEUDO/DATE DANS MESSAGE */
 	.pun .blockpost h2 {
 	height: 20px;
+	text-align:right;
+	}
+	.pun .blockpost h2 a {
+		padding-right: 2%;
 	}
 	#punviewtopic .blockpost dt {
 		top: -38px;

@@ -64,7 +64,6 @@ html {
 }
 body,
 html {
-	overflow-x:hidden;
 	position:relative;
 	min-height: 100vh;
 	text-align: left;
@@ -856,7 +855,7 @@ textarea {
 /* BEGIN Tableaux */
 .pun table.rl-table {
 	width: auto;
-	/* display: block; */
+	display: block;
 	overflow:auto;
 	overflow-y: hidden;
 }
@@ -1669,6 +1668,11 @@ background-size: 35px 35px;
 	 * 5.1 - Media queries 1024 template RL
 	**/
 
+	body,
+	html {
+		overflow-x:hidden;
+	}
+
 	/* .tclcon a, */
 	.pun .postmsg,
 	#dokuwiki__site .page {
@@ -2303,11 +2307,11 @@ background-size: 35px 35px;
 	/* END MENU DEROULANT ATTEINDRE*/
 
 	/* BEGIN PSEUDO/DATE DANS MESSAGE */
-	.pun .blockpost h2 {
+	#punviewtopic .blockpost h2 {
 	height: 20px;
 	text-align:right;
 	}
-	.pun .blockpost h2 a {
+	#punviewtopic .blockpost h2 a {
 		padding-right: 2%;
 	}
 	#punviewtopic .blockpost dt {

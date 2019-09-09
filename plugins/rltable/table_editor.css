@@ -18,7 +18,9 @@ html,body {
 	margin-right: 2em;
 	max-width: 250px;
 }
-
+.pun table.rl-table {
+	display: initial;
+}
 .rl-table-container {
 	position: absolute;
 	top: 5em;
@@ -27,6 +29,7 @@ html,body {
 	left: 0;
 	overflow: auto;
 	padding: 0 1% !important;
+	text-align: center;
 }
 
 table {

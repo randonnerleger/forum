@@ -64,7 +64,6 @@ html {
 }
 body,
 html {
-	overflow-x:hidden;
 	position:relative;
 	min-height: 100vh;
 	text-align: left;
@@ -856,7 +855,7 @@ textarea {
 /* BEGIN Tableaux */
 .pun table.rl-table {
 	width: auto;
-	/* display: block; */
+	display: block;
 	overflow:auto;
 	overflow-y: hidden;
 }
@@ -1650,6 +1649,9 @@ form#edit .infldset.txtarea:before {
 background-image: linear-gradient(-45deg, rgba(255,255,255,0.125) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.125) 50%, rgba(255,255,255,0.125) 75%, transparent 75%, transparent);
 background-size: 35px 35px;
 }
+#plugin__schulzevote input {
+	width: 100%;
+}
 .dokuwiki .level2 {
 	overflow-x: auto;
 }
@@ -1669,10 +1671,15 @@ background-size: 35px 35px;
 	 * 5.1 - Media queries 1024 template RL
 	**/
 
+	body,
+	html {
+		overflow-x:hidden;
+	}
+
 	/* .tclcon a, */
 	.pun .postmsg,
 	#dokuwiki__site .page {
-		font-size: 1.7rem;
+		font-size: 1.6rem;
 	}
 
 	h1,
@@ -2255,10 +2262,6 @@ background-size: 35px 35px;
 	}
 	/* END LIENS CRUMBS BAS DE PAGE*/
 
-	/* .pun .blockpost h2 {
-		text-align:right;
-	} */
-
 	/* BEGIN PAGE RECHERCHE, INSCRIPTION, INDENTIFICATION, PROFIL, LISTE DES MEMBRES */
 	.pun .inform fieldset legend {
 			padding-left:5px;
@@ -2307,8 +2310,12 @@ background-size: 35px 35px;
 	/* END MENU DEROULANT ATTEINDRE*/
 
 	/* BEGIN PSEUDO/DATE DANS MESSAGE */
-	.pun .blockpost h2 {
+	#punviewtopic .blockpost h2 {
 	height: 20px;
+	text-align:right;
+	}
+	#punviewtopic .blockpost h2 a {
+		padding-right: 2%;
 	}
 	#punviewtopic .blockpost dt {
 		top: -38px;

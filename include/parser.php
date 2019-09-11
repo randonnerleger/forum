@@ -881,6 +881,19 @@ function do_bbcode($text, $is_signature = false)
 	{
 		$text = preg_replace_callback($pattern_callback[$i], create_function('$matches', 'return '.$replace_callback[$i].';'), $text);
 	}
+
+	// MODIF RL OPITUX
+	// RGPD VIDEO CONSENT
+	// REMPLACEMENT DES VIGNETTES VIMEO DONT L'ID DU THUMBNAIL EST DIFFERENT DE L'ID VIDEO
+
+	$SearchVimeoImgId = preg_match_all('#https://i.vimeocdn.com/video/(?:[a-z]*/)*([0-9]{6,11})[?]?.*#', $text, $VimeoImgId);
+	foreach ($VimeoImgId[1] as $id){
+		$arr_vimeo = unserialize(file_get_contents("https://vimeo.com/api/v2/video/$id.php"));
+		$text = str_replace('https://i.vimeocdn.com/video/' . $id, $arr_vimeo[0]['thumbnail_large'], $text);
+	}
+
+	// END RL OPITUX
+
 	return $text;
 }
 

@@ -13,13 +13,23 @@ $connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connect
 			<label for="menu-left-checkbox" class="slide-left-toggle" onClick="CloseOtherMenu('forum','search', '', 0);"></label>
 			<label for="menu-forum-checkbox" class="menu-forum-toggle" onClick="CloseOtherMenu('left','search', '', 0);"></label>
 			<label for="menu-search-checkbox" class="menu-search-toggle" onClick="CloseOtherMenu('left','forum', '', 1);"></label>
+			<div id="menu-switch-css">
+			<label class="switch-css">
+				<input type="checkbox" name="cssID" id="cssID" <?php isRLSombre($pun_user['style']); ?> />
+				<span class="switch-slider round"></span>
+			</label>
+			</div>
+			<div id="menu-switch-font-size">
+				<label id="switch-font-size-minus">-</label>
+				<label id="switch-font-size-plus">+</label>
+			</div>
 			<div class="inner">
 				<div id="logo" class="inbl">
-					<a href="<?php echo path_to_home ?>" rel="nofollow"><img src="<?php echo path_to_rl.'tpl/img/logo.png'?>" /></a>
+					<a href="<?php echo path_to_rl ?>" rel="nofollow"><img src="<?php echo path_to_rl.'tpl/img/logo.png'?>" /></a>
 				</div><!-- #logo -->
 
 				<div id="RL" class="inbl">
-					<a href="<?php echo path_to_home ?>">Randonner-leger.org</a>
+					<a href="<?php echo path_to_rl ?>">Randonner-leger.org</a>
 				</div><!-- #logo -->
 
 				<div id="menu-search">

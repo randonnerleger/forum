@@ -57,9 +57,7 @@
 					}
 						?>
 
-						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=start" class="<?php echo $GLOBALS['menuG_start']; ?>" title="Accueil de Randonner léger">Accueil du site</a></li>
-
-
+						<li><a href="<?php echo path_to_rl; ?>" class="<?php echo $GLOBALS['menuG_start']; ?>" title="Accueil de Randonner léger">Accueil du site</a></li>
 
 						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=presentation:sommaire" class="<?php echo $GLOBALS['menuG_presentation']; ?>" title="Découverte de la randonnée légère">Découverte</a>
 						<input id="menug-wiki-debuter" type="checkbox" <?php if ($GLOBALS['menuG_presentation']=="active") { echo "checked='checked'"; } ?> name="toggle" />

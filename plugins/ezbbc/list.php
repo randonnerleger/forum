@@ -30,8 +30,18 @@ require PUN_ROOT.'plugins/ezbbc/lang/'.$ezbbc_language_folder.'/ezbbc_plugin.php
 <head>
 	<title><?php echo $lang_ezbbc['EZBBC List creator'] ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Modif RL ligne ajoutee -->
-	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/'.$pun_user['style'].'.css' ?>" />
+	<?php
+	// MODIF RL
+	// OPITUX
+	// VIEWPORT & GESTION DES THEMES, DE LA VERSION ET DU SWITCH CSS
+	require '../../../configRL.php';
+	?>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/Global/global.css?version=' . current_theme . '' ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT . 'style/' . RLStyle($pun_user['style']).'.css?version=' . current_theme . '' ?>" id="MyCss" />
+	<?php
+	// END MODIF RL
+	?>
 	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'plugins/ezbbc/style/'.$ezbbc_config['style_folder'].'/ezbbc.css' ?>" />
 	<!-- Adding JS function to send the generated list to the opener -->
 	<script type="text/javascript">

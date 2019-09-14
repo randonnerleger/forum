@@ -174,8 +174,18 @@ endif;
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Modif RL ligne ajoutee -->
-<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/'.$pun_user['style'].'.css' ?>" />
+<?php
+// MODIF RL
+// OPITUX
+// VIEWPORT & GESTION DES THEMES, DE LA VERSION ET DU SWITCH CSS
+require '../../../configRL.php';
+?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/Global/global.css?version=' . current_theme . '' ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT . 'style/' . RLStyle($pun_user['style']).'.css?version=' . current_theme . '' ?>" id="MyCss" />
+<?php
+// END MODIF RL
+?>
 <style type="text/css">
  .recent {background: transparent url(style/admin/listing/recent.png) no-repeat; padding-left: 22px;}
  .user {background: transparent url(style/admin/listing/user.png) no-repeat; padding-left: 15px;}

@@ -89,6 +89,12 @@ input[type="search"] {
 	appearance: none;
 	box-shadow: none;
 }
+input,
+textarea,
+select,
+keygen {
+	box-shadow: none;
+}
 h1,
 h1 a {
 	font-size: 2.4rem;
@@ -206,7 +212,9 @@ textarea {
  * ==============================================================================
  * 4.1 - template RL
 **/
-
+.hidden {
+	display: none;
+}
 .tclcon a,
 .pun .postmsg,
 #dokuwiki__site .page {
@@ -709,6 +717,163 @@ display:none;
 }
 /*END togglebox*/
 
+/* BEGIN Video Consent */
+.embedvideo {
+	position: relative;
+	cursor: pointer;
+	/* margin: 7px 0; */
+	line-height: 1em;
+}
+iframe {
+	border:0;
+}
+#embedhover {
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 3em;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+}
+#embedhover div {
+	padding: 10px 20px;
+	line-height: 32px;
+	width: 50px;
+	text-align: center;
+	color: #fff;
+	margin: 0 auto;
+}
+#youtube-consent {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.9);
+}
+#youtube-consent .inner {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color:#fff;
+	font-size:1.3rem;
+	text-align:center;
+}
+#youtube-consent .inner p {
+	padding:2%;
+}
+#youtube-consent .inner .consent {
+	display: block;
+	margin-bottom: .7em;
+}
+#youtube-consent .inner input[type="submit"] {
+	width: auto !important;
+	margin: 0;
+	margin-bottom: 2%;
+}
+#youtube-consent .inner input:last-child {
+	margin-left: 2%;
+}
+/* Responsive embed */
+/* .embedvideo,
+embed {
+	max-width: 480px;
+	max-height: 360px;
+} */
+.embedvideo img {
+	width:100%;
+	auto:100%;
+}
+.embedvideo .innervideo {
+	position: relative;
+	height: 0;
+	padding-bottom: 56.25%;
+}
+.embedvideo iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+/* END Video Consent */
+
+/* BEGIN CSS SWITCHER */
+#menu-switch-css {
+	position: absolute;
+	padding-right: 35px;
+	right: 0;
+	top: 138px;
+	z-index: 1009;
+}
+.switch-css {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 24px;
+}
+.switch-css input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+.switch-slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.switch-slider:before {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+input:checked + .switch-slider {
+	background-color: #516f89;
+}
+input:checked + .switch-slider:before {
+	-webkit-transform: translateX(16px);
+	-ms-transform: translateX(16px);
+	transform: translateX(16px);
+}
+.switch-slider.round {
+	border-radius: 24px;
+}
+.switch-slider.round:before {
+	border-radius: 50%;
+}
+#menu-switch-font-size {
+	position: absolute;
+	right: 90px;
+	top: 135px;
+	z-index: 1009;
+	font-size: 1.8rem;
+}
+#switch-font-size-minus {
+	font-size: 1.6rem;
+}
+#switch-font-size-plus,
+#switch-font-size-minus {
+	cursor: pointer;
+}
+#switch-font-size-plus:before,
+#switch-font-size-minus:before {
+	font-family:fontawesome;
+	content:'\f031';
+}
+
+/* END CSS SWITCHER */
 /**
  * END template RL
  * ==============================================================================
@@ -1221,6 +1386,29 @@ a span:hover,
 	text-decoration: underline;
 }
 
+/* .extwiki #dokuwiki__header,
+.extwiki #dokuwiki__header h1 {
+	margin: 0;
+	padding: 0;
+} */
+.extwiki .dokuwiki {
+	padding-top: 0;
+}
+.extwiki #dokuwiki__header h1 {
+	margin-bottom: 0;
+	font-size: 1.5em;
+	font-weight: normal;
+}
+.extwiki #dokuwiki__header h1 a {
+	text-decoration: none;
+	margin: 0;
+}
+#dokuwiki__site.extwiki .page.group {
+	margin: 0 18px;
+}
+#dokuwiki__site.extwiki > .site {
+	padding-right: 0;
+}
 #dokuwiki__header h1 span,
 #brdtitle h1,
 .pun h1 {
@@ -1270,6 +1458,9 @@ a span:hover,
 #brdwelcome p,
 #brdwelcome li {
 	padding: 0;
+}
+#brdwelcome .conl li {
+	padding-right: 15px;
 }
 #brdwelcome li {
 	display: inline;
@@ -1349,10 +1540,7 @@ a span:hover,
 #brdmenu li {
 	float: left;
 }
-#brdwelcome li span {
-	line-height: inherit;
-	padding-right: 15px;
-}
+
 /* END Forum only */
 
 /* BEGIN Images */
@@ -1676,12 +1864,6 @@ background-size: 35px 35px;
 		overflow-x:hidden;
 	}
 
-	/* .tclcon a, */
-	.pun .postmsg,
-	#dokuwiki__site .page {
-		font-size: 1.6rem;
-	}
-
 	h1,
 	h1 span,
 	h1 a {font-size: 2.2rem;font-weight: bold;}
@@ -1769,6 +1951,15 @@ background-size: 35px 35px;
 		-o-transform: translateX(-300px) scale(1);
 		transform: translateX(-300px) scale(1);
 	}
+	.menu-forum-checkbox:checked ~ #wrapper-inner [id*=menu-switch] {
+		visibility: hidden;
+		opacity: 0;
+	}
+	.menu-forum-checkbox:not(:checked) ~ #wrapper-inner [id*=menu-switch] {
+		visibility: visible;
+		opacity: 1;
+		transition-delay:450ms;
+	}
 	/*BEGIN MENUG @MEDIA*/
 
 	.outer {
@@ -1782,6 +1973,12 @@ background-size: 35px 35px;
 	#RL {
 		position: absolute;
 		margin-left: 220px;
+	}
+	#menu-switch-css {
+		right: -16px;
+	}
+	#menu-switch-font-size {
+		right: 70px;
 	}
 	#content {
 		width :100%;
@@ -2115,10 +2312,15 @@ background-size: 35px 35px;
 		font-size :2.2rem;
 		visibility: visible;
 	}
+	#uploads #brdheader #brdtitle h1 a::before {
+		content: 'Mes images';
+	}
 	#dokuwiki__header h1 a span:before {
 		content:'Wiki de la randonnée légère';
 	}
-
+	.extwiki #dokuwiki__header h1 a span::before {
+		content: 'Le site de la randonnée légère';
+	}
 	/* BEGIN FONT SIZE */
 	#dokuwiki__header h1,
 	#dokuwiki__header h1 a span,
@@ -2473,7 +2675,17 @@ background-size: 35px 35px;
 	.menu-search-toggle {
 		margin:8px 10px;
 	}
-
+	#menu-switch-css {
+		right: -30px;
+		top: 98px;
+	}
+	#menu-switch-font-size {
+		right: 5px;
+		top: 135px;
+	}
+	.extwiki #menu-switch-font-size {
+		display: none;
+	}
 	/**
 	 * END Media queries 480 template RL
 	 * ==========================================================================
@@ -2762,6 +2974,9 @@ background-size: 35px 35px;
 	 * 7.3 - Media queries 480 dokuwiki
 	**/
 
+	#dokuwiki__site.extwiki .page.group {
+		margin: 0px 1%;
+	}
 	.dokuwiki,
 	.pun .punwrap,
 	#dokuwiki__header {
@@ -2902,10 +3117,6 @@ background-size: 35px 35px;
 }
 #uploads fieldset {
 	margin: 0 auto;
-}
-#uploads .info {
-	margin: .8em 0;
-	font-size:.9em;
 }
 #uploads #announce-block .info {
 	margin: 0;
@@ -3279,7 +3490,7 @@ background-size: 35px 35px;
 #tetris #menu	{ display: inline-block; vertical-align: top; position: relative; }
 #tetris #menu p	{ margin: 0.5em 0; text-align: center; }
 #tetris #menu p a	{ text-decoration: none; color: black; }
-#tetris #upcoming	{ display: block; margin: 0 auto; background-color:#E0E0E0; }
+#tetris #upcoming	{ display: block; margin: 0 auto; background-color:rgba(0, 0, 0, 0.1); }
 #tetris #score	{ color: red; font-weight: bold; vertical-align: middle; }
 #tetris #rows	{ color: blue; font-weight: bold; vertical-align: middle; }
 #tetris #stats	{ position: absolute; bottom: 0em; right: 1em; }

@@ -1,5 +1,3 @@
-@import url('Global/global.css');
-
 body,
 #top-page,
 #top-page a,
@@ -118,7 +116,6 @@ a:focus,
 #dokuwiki__sitetools a:hover {
 	background: #516f89;
 }
-
 *,
 .pun .blocktable .box,
 .pun .blocktable th,
@@ -174,6 +171,7 @@ hr {
 /* .inbox, */
 #brdfooternav,
 .pun #brdwelcome .conr::before,
+#punmaint .punwrap,
 #punredirect .punwrap,
 .pun table.rl-table tr:hover,
 .dokuwiki table.inline tr:hover td,
@@ -191,10 +189,12 @@ tbody tr:nth-child(odd),
 .pun .blockpost .postright,
 .pun .blockpost .postfoot,
 .pun #postpreview.blockpost,
+.pun #postpreview h2,
 #uploads #page,
 #posterror,
 /* Dokuwiki */
-#mediamanager__page .file dl dt {
+#mediamanager__page .file dl dt,
+#media__content .odd {
 	background:#303030;
 }
 /* table .roweven, */
@@ -218,7 +218,6 @@ tbody tr:nth-child(even),
 .pun .blockform .box,
 #adminconsole .box,
 .pun #quickpost h2,
-.pun #postpreview h2,
 #punpost .blockform h2,
 #punedit .blockform h2 {
 	background-color: #222222;
@@ -363,7 +362,7 @@ form#edit p.buttons::before,
 
 /* BEGIN Toolbar édition */
 .dokuwiki div.toolbar button.toolbutton {
-	background: transparent;
+	background: #292929;
 }
 /* END Toolbar édition */
 
@@ -397,6 +396,7 @@ form#edit p.buttons a:hover,
 #punmisc .buttons a:hover,
 #msg .inbox a:hover,
 .pun .pagepost a:hover,
+#uploads nav ul li.selected a,
 #uploads nav ul li a:hover,
 #nav li a.disconnect:hover {
 	background:#111;
@@ -467,6 +467,7 @@ form#login_menuG .save-pass input[type="checkbox"] + label::before {
 	/* Uploads */
 	#uploads.from-ez-toolbar #brdmenu ul,
 	/* Dokuwiki */
+	#dokuwiki__sitetools,
 	#dokuwiki__sitetools ul li,
 	#dokuwiki__sitetools ul li a,
 	#dokuwiki__sitetools ul li a:link,

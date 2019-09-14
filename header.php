@@ -103,13 +103,16 @@ if (!defined('PUN_ALLOW_INDEX'))
 ?>
 <title><?php echo generate_page_title($page_title, $p) ?></title>
 <?php require PUN_ROOT.'plugins/ezbbc/ezbbc_head.php'; ?>
-<!-- Modif RL Opitux
-Ajout de
-. current_theme . ''
-dans la ligne ci-dessous
--->
-<link rel="stylesheet" type="text/css" href="style/<?php echo $pun_user['style'].'.css?version=' . current_theme . '' ?>" />
 <?php
+// MODIF RL
+// OPITUX
+// GESTION DES THEMES, DE LA VERSION ET DU SWITCH CSS
+?>
+<link rel="stylesheet" type="text/css" href="style/Global/global.css?version=<?php echo current_theme ?>" />
+<link rel="stylesheet" type="text/css" href="style/<?php echo RLStyle($pun_user['style']).'.css?version=' . current_theme . '' ?>" id="MyCss" />
+<?php
+GetRLStyle();
+// END MODIF RL
 
 if (defined('PUN_ADMIN_CONSOLE'))
 {

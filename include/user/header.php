@@ -22,6 +22,7 @@ $connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connect
 			<div id="menu-switch-font-size">
 				<label id="switch-font-size-minus">-</label>
 				<label id="switch-font-size-plus">+</label>
+				<label id="switch-font-size-reset"></label>
 			</div>
 			<div class="inner">
 				<div id="logo" class="inbl">

@@ -863,14 +863,18 @@ input:checked + .switch-slider:before {
 #switch-font-size-minus {
 	font-size: 1.6rem;
 }
-#switch-font-size-plus,
-#switch-font-size-minus {
+[id*=switch-font] {
 	cursor: pointer;
+	margin-left: 5px;
 }
 #switch-font-size-plus:before,
-#switch-font-size-minus:before {
+#switch-font-size-minus:before,
+#switch-font-size-reset:before {
 	font-family:fontawesome;
 	content:'\f031';
+}
+#switch-font-size-reset:before {
+	content:'\f0e2';
 }
 
 /* END CSS SWITCHER */

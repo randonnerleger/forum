@@ -95,7 +95,7 @@
 						</div>
 						</li>
 
-						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=accueil_du_wiki" class="<?php echo $GLOBALS['menuG_wiki_gene']; ?>" title="Wiki Randonner léger">Wiki</a>
+						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=accueil" class="<?php echo $GLOBALS['menuG_wiki_gene']; ?>" title="Wiki Randonner léger">Wiki</a>
 						<input id="menug-wiki" type="checkbox" <?php if ($GLOBALS['menuG_wiki_gene']=="active") { echo "checked='checked'"; } ?> name="toggle" />
 						<label for="menug-wiki"></label>
 						<div class="content-togglebox">

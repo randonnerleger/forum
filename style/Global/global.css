@@ -860,6 +860,9 @@ input:checked + .switch-slider:before {
 	z-index: 1009;
 	font-size: 1.8rem;
 }
+#menu-switch-font-size label {
+	vertical-align: baseline;
+}
 #switch-font-size-minus {
 	font-size: 1.6rem;
 }
@@ -875,6 +878,7 @@ input:checked + .switch-slider:before {
 }
 #switch-font-size-reset:before {
 	content:'\f0e2';
+	opacity: .5;
 }
 
 /* END CSS SWITCHER */

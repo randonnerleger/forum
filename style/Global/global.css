@@ -296,6 +296,7 @@ textarea {
 }
 #header .inner,
 #footer .inner {
+	position: relative;
 	vertical-align:top;
 	width:96%;
 	max-width:1500px;
@@ -801,8 +802,7 @@ embed {
 /* BEGIN CSS SWITCHER */
 #menu-switch-css {
 	position: absolute;
-	padding-right: 35px;
-	right: 0;
+	right: -10px;
 	top: 138px;
 	z-index: 1009;
 }
@@ -855,7 +855,7 @@ input:checked + .switch-slider:before {
 }
 #menu-switch-font-size {
 	position: absolute;
-	right: 90px;
+	right: 45px;
 	top: 135px;
 	z-index: 1009;
 	font-size: 1.8rem;
@@ -1404,6 +1404,7 @@ a span:hover,
 }
 .extwiki #dokuwiki__header h1 {
 	margin-bottom: 0;
+	padding-bottom: 0;
 	font-size: 1.5em;
 	font-weight: normal;
 }
@@ -1978,12 +1979,15 @@ background-size: 35px 35px;
 		position: absolute;
 		z-index:1020;
 	}
+	#header .inner, #footer .inner {
+		position: initial;
+	}
 	#RL {
 		position: absolute;
 		margin-left: 220px;
 	}
 	#menu-switch-css {
-		right: -16px;
+		right: 15px;
 	}
 	#menu-switch-font-size {
 		right: 70px;
@@ -2684,7 +2688,7 @@ background-size: 35px 35px;
 		margin:8px 10px;
 	}
 	#menu-switch-css {
-		right: -30px;
+		right: 4px;
 		top: 98px;
 	}
 	#menu-switch-font-size {
@@ -3013,7 +3017,7 @@ background-size: 35px 35px;
 	.dokuwiki div.wrap_box320h,
 	.dokuwiki div.wrap_box350h {
 		width:100%;
-		max-width:100%;
+		/* max-width:100%; */
 		margin-left:0;
 		margin-right:0;
 		min-height:100px;

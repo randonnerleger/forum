@@ -1,5 +1,7 @@
 <?php
-require '../../wiki/conf/local.protected.php';
+require '../../configRL.php';
+define('PUN_ROOT', '../' );
+require PUN_ROOT.'include/common.php';
 
 $pun_user_guest = ($pun_user['is_guest'] ? true : false );
 define('pun_user_guest', $pun_user_guest);

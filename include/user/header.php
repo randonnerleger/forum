@@ -15,11 +15,11 @@ $connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connect
 			<label for="menu-search-checkbox" class="menu-search-toggle" onClick="CloseOtherMenu('left','forum', '', 1);"></label>
 			<div class="inner">
 				<div id="logo" class="inbl">
-					<a href="<?php echo path_to_home ?>" rel="nofollow"><img src="<?php echo path_to_rl.'tpl/img/logo.png'?>" /></a>
+					<a href="<?php echo path_to_rl ?>" rel="nofollow"><img src="<?php echo path_to_rl.'tpl/img/logo.png'?>" /></a>
 				</div><!-- #logo -->
 
 				<div id="RL" class="inbl">
-					<a href="<?php echo path_to_home ?>">Randonner-leger.org</a>
+					<a href="<?php echo path_to_rl ?>">Randonner-leger.org</a>
 				</div><!-- #logo -->
 
 				<div id="menu-search">
@@ -79,6 +79,19 @@ if( isset($RLsearch) && null != $RLsearch ) {
 						</form>
 					</div><!-- #search -->
 				</div><!-- #menu-search -->
+
+				<div id="menu-switch-css">
+				<label class="switch-css">
+					<input type="checkbox" name="cssID" id="cssID" <?php isRLSombre($pun_user['style']); ?> />
+					<span class="switch-slider round"></span>
+				</label>
+				</div>
+				<div id="menu-switch-font-size">
+					<label id="switch-font-size-minus">-</label>
+					<label id="switch-font-size-plus">+</label>
+					<label id="switch-font-size-reset"></label>
+				</div>
+
 			</div><!-- .inner -->
 		</div><!-- #header -->
 

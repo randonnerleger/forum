@@ -54,7 +54,7 @@ generate_admin_menu('reports');
 ?>
 	<div class="blockform">
 <!-- MODIF RL -->
-		<h3><span><a href="http://www.randonner-leger.org/forum/admin_editing.php">Editions récentes</a></span></h3> 
+		<h3><span><a href="<?php echo path_to_forum; ?>admin_editing.php">Editions récentes</a></span></h3> 
 <!-- FIN MODIF RL -->
 		<h2><span><?php echo $lang_admin_reports['New reports head'] ?></span></h2>
 		<div class="box">

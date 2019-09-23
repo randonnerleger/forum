@@ -1,16 +1,16 @@
 <?php
- 
+
  // Language definitions for frequently used strings
  $lang_common                        = array(
- 
+
  // Text orientation and encoding
  'lang_direction'                    =>	'ltr',	// ltr (Left-To-Right) or rtl (Right-To-Left)
  'lang_identifier'                   =>	'fr', //iso code 639-1 value (see http://www.loc.gov/standards/iso639-2/php/code_list.php)
- 
+
  // Number formatting
  'lang_decimal_point'                => ',',
  'lang_thousands_sep'                => ' ',
- 
+
  // Notices
  'Bad request'                       =>	'Impossible d\'afficher le message, soit parce que vous n\'avez pas les droits nécessaires, soit parce que le lien que vous avez suivi est incorrect ou périmé.',
  'No view'                           =>	'Vous n\'êtes pas autorisé(e) à visiter ces forums.',
@@ -21,7 +21,7 @@
  'Pun include extension'             =>	'Impossible de procéder à l\'inclusion utilisateur %s depuis le gabarit %s. Fichiers "%s" non autorisés',
  'Pun include directory'             =>	'Impossible de procéder à l\'inclusion utilisateur %s depuis le gabarit %s. Ouverture de dossier non autorisé',
  'Pun include error'                 =>	'Impossible de procéder à l\'inclusion utilisateur %s à partir du gabarit %s. Ce fichier ne se trouve ni dans le dossier des gabarits, ni dans le dossier d\'inclusion d\'utilisateur.',
- 
+
  // Miscellaneous
  'Announcement'                      =>	'Annonce',
  'Options'                           =>	'Options',
@@ -76,7 +76,7 @@
  'Previous'                          => 'Précédent',
  'Next'                              => 'Suivant',
  'Spacer'                            => '…', // Ellipsis for paginate
- 
+
  // Title
  'Title'                             =>	'Titre de l\'utilisateur',
  'Member'                            =>	'Membre',	// Default title
@@ -84,7 +84,7 @@
  'Administrator'                     =>	'Administrateur',
  'Banned'                            =>	'Banni(e)',
  'Guest'                             =>	'Invité',
- 
+
  // Stuff for include/parser.php
  'BBCode error no opening tag'       =>	'La balise [/%1$s] a été trouvée sans balise [%1$s] correspondante',
  'BBCode error invalid nesting'      =>	'La balise [%1$s] a été ouverte dans la balise [%2$s], ceci n\'est pas autorisé',
@@ -95,7 +95,7 @@
  'BBCode error tag url not allowed'  =>	'Vous n\'êtes pas autorisé à mettre des liens',
  'BBCode code problem'               =>	'Il y a un problème avec vos balises [code]',
  'BBCode list size error'            =>	'Votre liste étant trop longue pour être analysée, veuillez la réduire s\'il vous plaît&#160;!',
- 
+
  // Stuff for the navigator (top of every page)
  'Index'                             =>	'Accueil',
  'User list'                         =>	'Liste des membres',
@@ -121,7 +121,7 @@
  'Mark all as read'                  =>	'Marquer toutes les discussions comme lues',
  'Mark forum read'                   => 'Marquer ce forum comme lu',
  'Title separator'                   =>	' / ',
- 
+
  // Stuff for the page footer
  'Board footer'                      =>	'Pied de page des forums',
  'Jump to'                           =>	'Atteindre',
@@ -135,7 +135,7 @@
  'Stick topic'                       => 'Épingler la discussion',
  'Moderate forum'                    =>	'Modérer le forum',
  'Powered by'                        => 'Propulsé par %s',
- 
+
  // Debug information
  'Debug table'                       => 'Informations de débogage',
  'Querytime'                         => 'Générées en %1$s secondes, %2$s requêtes exécutées',
@@ -144,7 +144,7 @@
  'Query times'                       => 'Temps (s)',
  'Query'                             => 'Requête',
  'Total query time'                  => 'Temps total d\'exécution de la requête&#160;: %s',
- 
+
  // For extern.php RSS feed
  'RSS description'                   => 'Les sujets les plus récents sur %s.',
  'RSS description topic'             => 'Les sujets les plus récents dans %s.',
@@ -155,11 +155,14 @@
  'Atom forum feed'                   =>	'Flux Atom du forum',
  'RSS topic feed'                    =>	'Flux RSS de la discussion',
  'Atom topic feed'                   =>	'Flux Atom de la discussion',
- 
+
  // Admin related stuff in the header
- 'New reports'                       =>	'De nouveaux signalements ont été envoyés&#160;!',
+ // MODIF RL
+ // OPITUX
+ // 'New reports'                       =>	'De nouveaux signalements ont été envoyés&#160;!',
+ 'New reports'                       =>	'signalement(s)',
  'Maintenance mode enabled'          =>	'Le mode maintenance est activé&#160;!',
- 
+
  // Units for file sizes
  'Size unit B'                       =>  '%s O',
  'Size unit KiB'                     =>  '%s Kio',
@@ -168,5 +171,5 @@
  'Size unit TiB'                     =>  '%s Tio',
  'Size unit PiB'                     =>  '%s Pio',
  'Size unit EiB'                     =>  '%s Eio',
- 
- ); 
+
+ );

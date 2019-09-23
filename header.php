@@ -259,8 +259,15 @@ else
 		{
 			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
 
-			if ($db->result($result_header))
-				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="admin_reports.php">'.$lang_common['New reports'].'</a></strong></span></li>';
+			// MODIF RL
+			// OPITUX
+			if ($db->result($result_header)) {
+			$reponse = $db->query('SELECT created FROM '.$db->prefix.'reports WHERE zapped IS NULL ORDER BY created DESC');
+			$num_report = $db->num_rows($reponse);
+			$data = mysqli_fetch_array($reponse);
+				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="admin_reports.php">'.$num_report.' '.$lang_common['New reports'].' - dernier le '.strftime('%d/%m', $data['created']).'</a></strong></span></li>';
+			}
+			// END MODIF
 		}
 
 		if ($pun_config['o_maintenance'] == '1')

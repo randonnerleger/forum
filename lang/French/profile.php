@@ -30,7 +30,7 @@ $lang_profile = array(
 'Old pass'			=>	'Ancien mot de passe',
 'New pass'			=>	'Nouveau mot de passe',
 'Confirm new pass'		=>	'Confirmez le nouveau mot de passe',
-'Pass info'			=>	'Les mots de passe doivent comporter au moins 6 caractères. Ils sont sensibles à la casse.',
+'Pass info'			=>	'Les mots de passe doivent comporter au moins 9 caractères. Ils sont sensibles à la casse.',
 
 // E-mail stuff
 'Email key bad'			=>	'La clef d\'activation d\'adresse électronique est incorrecte ou a expiré. Veuillez demander à nouveau un changement d\'adresse électronique. Si cela échoue, contactez l\'administrateur',

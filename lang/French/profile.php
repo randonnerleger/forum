@@ -30,8 +30,8 @@ $lang_profile = array(
 'Old pass'			=>	'Ancien mot de passe',
 'New pass'			=>	'Nouveau mot de passe',
 'Confirm new pass'		=>	'Confirmez le nouveau mot de passe',
-'Pass info'			=>	'Les mots de passe doivent comporter au moins 4 caractères. Ils sont sensibles à la casse.',
- 
+'Pass info'			=>	'Les mots de passe doivent comporter au moins 9 caractères. Ils sont sensibles à la casse.',
+
 // E-mail stuff
 'Email key bad'			=>	'La clef d\'activation d\'adresse électronique est incorrecte ou a expiré. Veuillez demander à nouveau un changement d\'adresse électronique. Si cela échoue, contactez l\'administrateur',
 'Email updated'			=>	'Votre adresse électronique a été mise à jour.',
@@ -95,6 +95,7 @@ $lang_profile = array(
 'Avatar info'			=>	'Un avatar est une petite image qui sera affichée avec chacun de vos messages. Vous pouvez envoyer un avatar en cliquant sur le lien ci-dessous.',
 'Change avatar'			=>	'Changer d\'avatar',
 'Signature legend'		=>	'Rédigez votre signature',
+// Modif RL
 'Signature info'		=>	'Une signature est un petit texte ajouté à la suite de tous vos messages. Il peut contenir des liens, par exemple vers la discussion où vous vous présentez dans le trombinoscope. La charte du forum doit être respectée, les liens externes (hors randonner-leger.org y sont interdits). Pour mettre en lien vers votre site personnel utilisez le champ "Site web" dans le menu "Personnel" de votre profil ou utilisez votre trombinoscope.',
 'Sig preview'			=>	'Aperçu de la signature actuelle&#160;:',
 'No sig'			=>	'Pas de signature dans le profil.',

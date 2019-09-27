@@ -54,6 +54,7 @@ $lang_search = array(
 'By user show as posts'         =>      'Messages de %s',
 'By both show as topics'        =>      'Discussions avec messages de %s contenant «&#160;%s&#160;»',
 'By both show as posts'         =>      'Messages de %s contenant «&#160;%s&#160;»',
+// Modif RL
 'No terms'			=>	'Vous devez saisir au moins un mot-clé et/ou un auteur à rechercher. Les mots clés doivent contenir au moins 3 caractères.',
 'No hits'			=>	'Désolé, aucun résultat n\'a été trouvé pour votre recherche.',
 'No user posts'			=>	'Il n\'y a pas de message de cet utilisateur dans ce forum.',

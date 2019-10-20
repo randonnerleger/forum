@@ -831,10 +831,10 @@ embed {
 .switch-slider:before {
 	position: absolute;
 	content: "";
-	height: 16px;
-	width: 16px;
-	left: 4px;
-	bottom: 4px;
+	height: 22px;
+	width: 22px;
+	left: 1px;
+	bottom: 1px;
 	background-color: white;
 	-webkit-transition: .4s;
 	transition: .4s;

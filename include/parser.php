@@ -715,7 +715,11 @@ function handle_img_tag($url, $is_signature = false, $alt = null)
 	if ($is_signature && $pun_user['show_img_sig'] != '0')
 		$img_tag = '<img class="sigimage" src="'.$url.'" alt="'.$alt.'" />';
 	else if (!$is_signature && $pun_user['show_img'] != '0')
-		$img_tag = '<span class="postimg"><img src="'.$url.'" alt="'.$alt.'" /></span>';
+		// MODIF RL OPITUX
+		// AJOUT loading="lazy"
+		// $img_tag = '<span class="postimg"><img src="'.$url.'" alt="'.$alt.'" /></span>';
+		$img_tag = '<span class="postimg"><img src="'.$url.'" alt="'.$alt.'" loading="lazy" /></span>';
+		// END MODIF
 
 	return $img_tag;
 }

@@ -703,7 +703,7 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 //
 // Turns an URL from the [img] tag into an <img> tag or a <a href...> tag
 //
-function handle_img_tag($url, $is_signature = false, $alt = null)
+function handle_img_tag($url, $is_signature = false, $alt = null, $width = null, $height = null )
 {
 	global $lang_common, $pun_user;
 
@@ -712,14 +712,13 @@ function handle_img_tag($url, $is_signature = false, $alt = null)
 
 	$img_tag = '<a href="'.$url.'" rel="nofollow">&lt;'.$lang_common['Image link'].' - '.$alt.'&gt;</a>';
 
+	// MODIF OPITUX
+	// UTILISATION DES WIDTH & HEIGHT DES IMAGES ENREGISTRÉES DANS FOTOO + LAZY NATIF
 	if ($is_signature && $pun_user['show_img_sig'] != '0')
 		$img_tag = '<img class="sigimage" src="'.$url.'" alt="'.$alt.'" />';
 	else if (!$is_signature && $pun_user['show_img'] != '0')
-		// MODIF RL OPITUX
-		// AJOUT loading="lazy"
-		// $img_tag = '<span class="postimg"><img src="'.$url.'" alt="'.$alt.'" /></span>';
-		$img_tag = '<span class="postimg"><img src="'.$url.'" alt="'.$alt.'" loading="lazy" /></span>';
-		// END MODIF
+		$img_tag = '<span class="postimg"><img src="'.$url.'" loading="lazy" alt="'.$alt.'" width="'.$width.'" height="'.$height.'" /></span>';
+	// END MODIF
 
 	return $img_tag;
 }
@@ -831,21 +830,27 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '</p><h5>$1</h5><p>';
 	require PUN_ROOT.'plugins/ezbbc/ezbbc_video_replace.php';
 
+	// MODIF OPITUX
+	// UTILISATION DES WIDTH & HEIGHT DES IMAGES ENREGISTRÉES DANS FOTOO
 	if (($is_signature && $pun_config['p_sig_img_tag'] == '1') || (!$is_signature && $pun_config['p_message_img_tag'] == '1'))
 	{
 		$pattern_callback[] = '%\[img\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
+		$pattern_callback[] = '%\[img=([0-9]+),([0-9]+)\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
 		$pattern_callback[] = '%\[img=([^\[]*?)\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
 		if ($is_signature)
 		{
 			$replace_callback[] = 'handle_img_tag($matches[1].$matches[3], true)';
+			$replace_callback[] = 'handle_img_tag($matches[3].$matches[5], true, null, $matches[1], $matches[2])';
 			$replace_callback[] = 'handle_img_tag($matches[2].$matches[4], true, $matches[1])';
 		}
 		else
 		{
 			$replace_callback[] = 'handle_img_tag($matches[1].$matches[3], false)';
+			$replace_callback[] = 'handle_img_tag($matches[3].$matches[5], false, null, $matches[1], $matches[2])';
 			$replace_callback[] = 'handle_img_tag($matches[2].$matches[4], false, $matches[1])';
 		}
 	}
+	// END MODIF OPITUX
 
 //********************* Modif : Tableaux
     $pattern_callback[] = '%\[rltable=([lcr]+)\]\n(.*?)\n\[/rltable\]%ms';

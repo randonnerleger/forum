@@ -2273,6 +2273,7 @@ background-size: 35px 35px;
 	/* BEGIN Images */
 	.pun .postmsg .postimg img {
 		max-width: calc(100% - 6px);
+		height: auto;
 		margin: .3% 3px;
 	}
 	/* BEGIN Images */

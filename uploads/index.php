@@ -1833,6 +1833,20 @@ class Fotoo_Hosting
 		return $url;
 	}
 
+	public function getImageWidth($img, $append_id = false)
+	{
+		$width = $img['width'];
+
+		return intval($width);
+	}
+
+	public function getImageHeight($img, $append_id = false)
+	{
+		$height = $img['height'];
+
+		return intval($height);
+	}
+
 	public function getImageUrl($img)
 	{
 		$url = $this->config->storage_url . $img['hash'];
@@ -3340,8 +3354,10 @@ elseif (isset($_GET['list']))
 
         $img_url = $fh->getImageUrl($img);
         $thumb_url = $fh->getImageThumbUrl($img);
+		$width = null != ($fh->getImageWidth($img)) ? $fh->getImageWidth($img) : '' ;
+		$height = null != ($fh->getImageHeight($img)) ? $fh->getImageHeight($img) : '' ;
         $bbcode = '[url='.$img_url.'][img]'.$thumb_url.'[/img][/url]';
-        $bbcodefullw = '[url='.$img_url.'][img]'.$img_url.'[/img][/url]';
+        $bbcodefullw = '[url='.$img_url.'][img='.$width.','.$height.']'.$img_url.'[/img][/url]';
 
 		if ( ( isset($_GET['mesphotos']) || $fh->logged() ) ) {
 			$mesphotos = isset($_GET['mesphotos']) ? '&amp;mesphotos' : '&amp;logged' ;
@@ -3798,8 +3814,10 @@ elseif (!isset($_GET['album']) && !isset($_GET['error']) && !empty($_SERVER['QUE
     header('Link: <'.$short_url.'>; rel=shorturl');
 
 	$size = null != $img['size'] ? $fh->getPictureSize($img['size']) : '' ;
+	$width = null != ($fh->getImageWidth($img)) ? $fh->getImageWidth($img) : '' ;
+	$height = null != ($fh->getImageHeight($img)) ? $fh->getImageHeight($img) : '' ;
     $bbcode = '[url='.$img_url.'][img]'.$thumb_url.'[/img][/url]';
-    $bbcodefullw = '[url='.$img_url.'][img]'.$img_url.'[/img][/url]';
+    $bbcodefullw = '[url='.$img_url.'][img='.$width.','.$height.']'.$img_url.'[/img][/url]';
     $html_code = '<a href="'.$img_url.'"><img src="'.$thumb_url.refresh().'" alt="'.(trim($img['filename']) ? $img['filename'] : '').'" /></a>';
 
     $html = '

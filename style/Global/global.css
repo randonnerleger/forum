@@ -831,10 +831,10 @@ embed {
 .switch-slider:before {
 	position: absolute;
 	content: "";
-	height: 16px;
-	width: 16px;
-	left: 4px;
-	bottom: 4px;
+	height: 22px;
+	width: 22px;
+	left: 1px;
+	bottom: 1px;
 	background-color: white;
 	-webkit-transition: .4s;
 	transition: .4s;
@@ -2273,6 +2273,7 @@ background-size: 35px 35px;
 	/* BEGIN Images */
 	.pun .postmsg .postimg img {
 		max-width: calc(100% - 6px);
+		height: auto;
 		margin: .3% 3px;
 	}
 	/* BEGIN Images */
@@ -3138,8 +3139,8 @@ background-size: 35px 35px;
 	margin: 1em 0;
 }
 #uploads .picture footer.context {
-	background: rgb(220, 220, 220);
-	background: rgba(255, 255, 255, 0.25);
+	/* background: rgb(220, 220, 220);
+	background: rgba(255, 255, 255, 0.25); */
 	border-radius: 3px;
 	padding: 1em 0;
 	margin: 0 auto;

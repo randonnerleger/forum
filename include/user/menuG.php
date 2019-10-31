@@ -78,6 +78,7 @@
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:adherer" title="Adhérer à l'association">Adhérer à l'association</a></li>
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:comites_regionaux" title="Comités régionaux">Comités régionaux</a></li>
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:camps" title="Camps">Camps</a></li>
+								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:faq_de_l_association" title="FAQ de l'asso">FAQ de l'association</a></li>
 							</ul>
 						</div>
 						</li>

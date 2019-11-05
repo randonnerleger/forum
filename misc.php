@@ -137,9 +137,8 @@ else if (isset($_GET['email']))
 		require_once PUN_ROOT.'include/email.php';
 
 		// OPITUX, EXPEDITEUR EN COPIE D'UN MP ENVOYÉ PAR LA PLATE-FORME
-		// pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
-		// pun_mail($recipient_email, $mail_subject, $mail_message, $pun_user['email'], $pun_user['username']);
-		pun_mail($recipient_email, $mail_subject, $mail_message, $pun_user['email'], $pun_user['username'], 1);
+		pun_mail($recipient_email, $mail_subject, $mail_message, $pun_user['email'], $pun_user['username']);
+		// pun_mail($recipient_email, $mail_subject, $mail_message, $pun_user['email'], $pun_user['username'], 1);
 		// END OPITUX
 
 		$db->query('UPDATE '.$db->prefix.'users SET last_email_sent='.time().' WHERE id='.$pun_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
@@ -184,7 +183,7 @@ else if (isset($_GET['email']))
 						<p><?php
 						echo $lang_misc['Email disclosure note'];
 						// OPITUX, EXPEDITEUR EN COPIE D'UN MP ENVOYÉ PAR LA PLATE-FORME
-						echo '<br /><b>Vous recevrez également une copie de ce mail</b>';
+						// echo '<br /><b>Vous recevrez également une copie de ce mail</b>';
 						// END OPITUX
 						?></p>
 					</div>

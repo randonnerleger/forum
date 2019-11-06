@@ -28,7 +28,9 @@ if (isset($_POST['form_sent']))
 		'board_title'			=> pun_trim($_POST['form']['board_title']),
 		'board_desc'			=> pun_trim($_POST['form']['board_desc']),
 		'base_url'				=> pun_trim($_POST['form']['base_url']),
+		// MODIF RL Bohwaz amélioration des Timezone.
 		'default_timezone'		=> trim($_POST['form']['default_timezone']),
+		// FIN MODIF Bohwaz
 		'default_lang'			=> pun_trim($_POST['form']['default_lang']),
 		'default_style'			=> pun_trim($_POST['form']['default_style']),
 		'time_format'			=> pun_trim($_POST['form']['time_format']),
@@ -262,11 +264,16 @@ generate_admin_menu('options');
 								<tr>
 									<th scope="row"><?php echo $lang_admin_options['Timezone label'] ?></th>
 									<td>
+										<?php // MODIF RL Bohwaz amélioration des Timezone. ?>
 										<?=html_timezone_select('form[default_timezone]', $pun_config['o_default_timezone'])?>
+										<?php // FIN MODIF Bohwaz ?>
 
 										<span><?php echo $lang_admin_options['Timezone help'] ?></span>
 									</td>
 								</tr>
+								// MODIF RL Bohwaz amélioration des Timezone.
+								// Suppression bouton heure d'été
+								// FIN MODIF Bohwaz
 								<tr>
 									<th scope="row"><?php echo $lang_admin_options['Language label'] ?></th>
 									<td>
@@ -315,7 +322,9 @@ generate_admin_menu('options');
 				</div>
 <?php
 
+	// MODIF RL Bohw// MODIF RL Bohwaz amélioration des Timezone.az amélioration des Timezone.
 	$timestamp = time() + timezone_get_offset($pun_user['timezone']);
+	// FIN MODIF Bohwaz
 
 ?>
 				<div class="inform">

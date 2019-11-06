@@ -92,7 +92,10 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 		else
 			message($lang_common['Bad request'], false, '404 Not Found');
 
+		// MODIF RL Bohwaz amélioration des Timezone.
 		$diff = timezone_get_offset($pun_user['timezone']);
+		// FIN MODIF Bohwaz
+
 		$ban_expire = ($ban_expire != '') ? gmdate('Y-m-d', $ban_expire + $diff) : '';
 
 		$mode = 'edit';

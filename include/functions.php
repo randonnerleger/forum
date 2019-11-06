@@ -305,6 +305,9 @@ function set_default_user()
 	$pun_user['disp_topics'] = $pun_config['o_disp_topics_default'];
 	$pun_user['disp_posts'] = $pun_config['o_disp_posts_default'];
 	$pun_user['timezone'] = $pun_config['o_default_timezone'];
+	// MODIF RL Bohwaz amélioration des Timezone.
+	// Suppression dst
+	// FIN MODIF Bohwaz
 	$pun_user['language'] = $pun_config['o_default_lang'];
 	$pun_user['style'] = $pun_config['o_default_style'];
 	$pun_user['is_guest'] = true;
@@ -988,7 +991,9 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
 	if (is_null($user))
 		$user = $pun_user;
 
+	// MODIF RL Bohwaz amélioration des Timezone.
 	$diff = timezone_get_offset($user['timezone']);
+	// FIN MODIF Bohwaz
 	$timestamp += $diff;
 	$now = time();
 
@@ -2244,7 +2249,7 @@ function dump()
 	exit;
 }
 
-
+// MODIF RL Bohwaz amélioration des Timezone.
 function html_timezone_select($name, $selected = null) {
 	$out = sprintf('<select name="%s">', $name);
 
@@ -2300,3 +2305,4 @@ function timezone_get_offset($tz_name) {
 	$_tz_cache[$tz_name] = $offset;
 	return $offset;
 }
+// FIN MODIF Bohwaz

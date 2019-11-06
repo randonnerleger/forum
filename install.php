@@ -1424,11 +1424,13 @@ else
 				'allow_null'	=> false,
 				'default'		=> '1'
 			),
+			// MODIF RL Bohwaz amélioration des Timezone.
 			'timezone'			=> array(
 				'datatype'		=> 'VARCHAR(255)',
 				'allow_null'	=> false,
 				'default'		=> '\''.$db->escape('Europe/Paris').'\'',
 			),
+			// FIN MODIF Bohwaz
 			'time_format'		=> array(
 				'datatype'		=> 'TINYINT(1)',
 				'allow_null'	=> false,
@@ -1542,7 +1544,9 @@ else
 		'o_parser_revision'			=> FORUM_PARSER_REVISION,
 		'o_board_title'				=> $title,
 		'o_board_desc'				=> $description,
+		// MODIF RL Bohwaz amélioration des Timezone.
 		'o_default_timezone'		=> 'Europe/Paris',
+		// FIN MODIF Bohwaz
 		'o_time_format'				=> 'H:i:s',
 		'o_date_format'				=> 'Y-m-d',
 		'o_timeout_visit'			=> 1800,
@@ -1598,6 +1602,9 @@ else
 		'o_rules_message'			=> $lang_install['Rules'],
 		'o_maintenance'				=> 0,
 		'o_maintenance_message'		=> $lang_install['Maintenance message'],
+		// MODIF RL Bohwaz amélioration des Timezone.
+		// suppression dst
+		// FIN MODIF Bohwaz
 		'o_feed_type'				=> 2,
 		'o_feed_ttl'				=> 0,
 		'p_message_bbcode'			=> 1,

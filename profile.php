@@ -745,7 +745,9 @@ else if (isset($_POST['form_sent']))
 			$form = array(
 				'time_format'	=> intval($_POST['form']['time_format']),
 				'date_format'	=> intval($_POST['form']['date_format']),
+				// MODIF RL Bohwaz amélioration des Timezone.
 				'timezone' => trim($_POST['form']['timezone']),
+				// FIN MODIF Bohwaz
 			);
 
 			// Make sure we got a valid language string
@@ -1043,7 +1045,9 @@ else if (isset($_POST['form_sent']))
 flux_hook('profile_after_form_handling');
 
 
+// MODIF RL Bohwaz amélioration des Timezone.
 $result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.jabber, u.icq, u.msn, u.aim, u.yahoo, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+// FIN MODIF Bohwaz
 if (!$db->num_rows($result))
 	message($lang_common['Bad request'], false, '404 Not Found');
 
@@ -1336,7 +1340,9 @@ else
 							<label><?php echo $lang_prof_reg['Time zone']."\n" ?>
 							<br />
 
+							<?php // MODIF RL Bohwaz amélioration des Timezone. ?>
 							<?=html_timezone_select('form[timezone]', $user['timezone'])?>
+							<?php // FIN MODIF Bohwaz ?>
 
 							</label>
 							<label><?php echo $lang_prof_reg['Time format'] ?>

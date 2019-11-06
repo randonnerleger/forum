@@ -151,11 +151,13 @@ if (isset($_POST['form_sent']))
 	else
 		$language = $pun_config['o_default_lang'];
 
+	// MODIF RL Bohwaz amélioration des Timezone.
 	$timezone = $_POST['timezone'];
 
 	if (!timezone_check($timezone)) {
 		$errors[] = 'Invalid timezone';
 	}
+	// FIN MODIF Bohwaz
 
 	$email_setting = intval($_POST['email_setting']);
 	if ($email_setting < 0 || $email_setting > 2)
@@ -173,7 +175,9 @@ if (isset($_POST['form_sent']))
 		$password_hash = pun_hash($password1);
 
 		// Add the user
+		// MODIF RL Bohwaz amélioration des Timezone.
 		$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, email_setting, timezone, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', '.$email_setting.', \''.$db->escape($timezone).'\' , \''.$db->escape($language).'\', \''.$pun_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
+		// FIN MODIF Bohwaz
 		$new_uid = $db->insert_id();
 
 		if ($pun_config['o_regs_verify'] == '0')
@@ -287,6 +291,9 @@ define('PUN_ACTIVE_PAGE', 'register');
 require PUN_ROOT.'header.php';
 
 $timezone = isset($timezone) ? $timezone : $pun_config['o_default_timezone'];
+// MODIF RL Bohwaz amélioration des Timezone.
+// Suppression dst
+// FIN MODIF Bohwaz
 $email_setting = isset($email_setting) ? $email_setting : $pun_config['o_default_email_setting'];
 
 // If there are errors, we display them
@@ -365,7 +372,9 @@ if (!empty($errors))
 						<p><?php echo $lang_prof_reg['Time zone info'] ?></p>
 						<label><?php echo $lang_prof_reg['Time zone']."\n" ?>
 						<br />
+						<?php // MODIF RL Bohwaz amélioration des Timezone. ?>
 						<?=html_timezone_select('timezone', $timezone)?>
+						<?php // FIN MODIF Bohwaz ?>
 						</label>
 
 						<br />

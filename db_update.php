@@ -712,6 +712,7 @@ switch ($stage)
 		// Make the message field MEDIUMTEXT to allow proper conversion of 65535 character posts to UTF-8
 		$db->alter_field('posts', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
+		// MODIF RL Bohwaz amélioration des Timezone.
 		// Remove DST option, migrate timezones
 		if (array_key_exists('o_default_dst', $pun_config)) {
 			$db->drop_field('users', 'dst') or error('Unable to drop dst field', __FILE__, __LINE__, $db->error());
@@ -775,6 +776,7 @@ switch ($stage)
 
 			$db->query(sprintf('UPDATE %sconfig SET conf_value = \'%s\' WHERE conf_name = \'o_default_timezone\'', $db->prefix, $db->escape($tz_table[$default_offset])));
 		}
+		// FIN MODIF Bohwaz
 
 		// Add the last_post column to the online table
 		$db->add_field('online', 'last_post', 'INT(10) UNSIGNED', true, null, null) or error('Unable to add last_post field', __FILE__, __LINE__, $db->error());
@@ -825,6 +827,10 @@ switch ($stage)
 		// Insert new config option o_smtp_ssl
 		if (!array_key_exists('o_smtp_ssl', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_smtp_ssl\', \'0\')') or error('Unable to insert config value \'o_smtp_ssl\'', __FILE__, __LINE__, $db->error());
+
+		// MODIF RL Bohwaz amélioration des Timezone.
+		// Suppression config heure d'été
+		// FIN MODIF Bohwaz
 
 		// Insert new config option o_quote_depth
 		if (!array_key_exists('o_quote_depth', $pun_config))
@@ -1074,9 +1080,11 @@ switch ($stage)
 		// Add the ban_creator column to the bans table
 		$db->add_field('bans', 'ban_creator', 'INT(10) UNSIGNED', false, 0) or error('Unable to add ban_creator field', __FILE__, __LINE__, $db->error());
 
+		// MODIF RL Bohwaz amélioration des Timezone.
 		// Add the time/date format settings to the user table
 		$db->add_field('users', 'time_format', 'TINYINT(1)', false, 0, 'timezone') or error('Unable to add time_format field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'date_format', 'TINYINT(1)', false, 0, 'timezone') or error('Unable to add date_format field', __FILE__, __LINE__, $db->error());
+		// FIN MODIF Bohwaz
 
 		// Change the search_data column to mediumtext
 		$db->alter_field('search_cache', 'search_data', 'MEDIUMTEXT', true) or error('Unable to alter search_data field', __FILE__, __LINE__, $db->error());

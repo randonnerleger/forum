@@ -173,7 +173,7 @@ if (isset($_POST['form_sent']))
 		$password_hash = pun_hash($password1);
 
 		// Add the user
-		$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, email_setting, timezone, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', '.$email_setting.', '.$db->escape($timezone).' , \''.$db->escape($language).'\', \''.$pun_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, email_setting, timezone, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', '.$email_setting.', \''.$db->escape($timezone).'\' , \''.$db->escape($language).'\', \''.$pun_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
 		$new_uid = $db->insert_id();
 
 		if ($pun_config['o_regs_verify'] == '0')
@@ -287,7 +287,6 @@ define('PUN_ACTIVE_PAGE', 'register');
 require PUN_ROOT.'header.php';
 
 $timezone = isset($timezone) ? $timezone : $pun_config['o_default_timezone'];
-$dst = isset($dst) ? $dst : $pun_config['o_default_dst'];
 $email_setting = isset($email_setting) ? $email_setting : $pun_config['o_default_email_setting'];
 
 // If there are errors, we display them

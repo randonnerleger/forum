@@ -1588,6 +1588,8 @@ class Fotoo_Hosting
             imagejpeg($rotatedth,$savenameth,70);
             imagedestroy($rotatedth);
 
+			if( $angle != 180  )
+				$this->db->exec('UPDATE pictures SET width = "' . $res['height'] . '", height = ' . $res['width'] . ' WHERE hash = \'' . $res['hash'] .'\';');
 
         } else {
 

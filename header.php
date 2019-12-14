@@ -102,7 +102,7 @@ if (!defined('PUN_ALLOW_INDEX'))
 
 ?>
 <title><?php echo generate_page_title($page_title, $p) ?></title>
-<?php require PUN_ROOT.'plugins/ezbbc/ezbbc_head.php'; ?>
+<?php require PUN_ROOT.'plugins/ezbbc/ezbbc_head_async.php'; ?>
 <?php
 // MODIF RL
 // OPITUX

@@ -582,7 +582,9 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 			if ($ban_expire == -1 || !$ban_expire)
 				message($lang_admin_users['Invalid date message'].' '.$lang_admin_users['Invalid date reasons']);
 
-			$diff = ($pun_user['timezone'] + $pun_user['dst']) * 3600;
+			// MODIF RL Bohwaz amélioration des Timezone.
+			$diff = timezone_get_offset($pun_user['timezone']);
+			// FIN MODIF Bohwaz
 			$ban_expire -= $diff;
 
 			if ($ban_expire <= time())

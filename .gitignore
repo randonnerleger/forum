@@ -2,6 +2,7 @@
 !/cache/index.html
 !/cache/.htaccess
 !/cache/ezbbc/_dummy
+/rehost/i
 /uploads/*.png
 /uploads/*.jpg
 /uploads/*.jpeg

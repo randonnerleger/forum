@@ -1,0 +1,8 @@
+<Files ~ "(.txt)">
+	Order allow,deny
+	Deny from all
+</Files>
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.* [NC]
+RewriteRule (.*) 404.png [NC,L]

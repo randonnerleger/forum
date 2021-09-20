@@ -19,7 +19,23 @@ $smilies = array(
 	':lol:' => 'lol.png',
 	':mad:' => 'mad.png',
 	':rolleyes:' => 'roll.png',
-	':cool:' => 'cool.png');
+	':cool:' => 'cool.png',
+
+	// MODIF
+	// Ajout de smileys
+	'8.(' => 'cry.gif',
+	':cry:' => 'cry.gif',
+	':-O' => 'eek.gif',
+	':eek:' => 'eek.gif',
+	':-[' => 'ops.png',
+	':ops:' => 'ops.png',
+	']:D' => 'devil.gif',
+	':devil:' => 'devil.gif',
+	':rl:' => 'rl.png',
+	':unicorn:' => 'unicorn.png'
+	// END
+
+	);
 
 if ($ezbbc_config['smilies_set'] == 'ezbbc_smilies'):
 $ezbbc_smilies = array(

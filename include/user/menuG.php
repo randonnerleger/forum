@@ -24,7 +24,7 @@
 													<input type="hidden" name="redirect_url" value="<?php echo $redirect_url; ?>" />
 													<input type="hidden" name="csrf_token" value="<?php echo pun_csrf_token() ?>" />
 
-													<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" autofocus />
+													<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" />
 													<input placeholder="Mot de passe" class="fastlogin" id="password" type="password" name="req_password" size="10" />
 														<div class="save-pass">
 														<input name="save_pass" id="save_pass" value="1" type="checkbox" />

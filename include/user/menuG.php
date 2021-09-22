@@ -16,7 +16,7 @@
 						?>
 										<li class="display identification">
 											<input id="menug-identification" type="checkbox" name="toggle" />
-											<label for="menug-identification" class="menug-label-identification">Identification</label>
+											<label for="menug-identification" class="menug-label-identification" onClick="FocusOnUserName();">Identification</label>
 
 											<div class="content-togglebox">
 												<form id="login_menuG" method="post" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" onsubmit="return process_form(this)">
@@ -24,7 +24,7 @@
 													<input type="hidden" name="redirect_url" value="<?php echo $redirect_url; ?>" />
 													<input type="hidden" name="csrf_token" value="<?php echo pun_csrf_token() ?>" />
 
-													<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" />
+													<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" autofocus />
 													<input placeholder="Mot de passe" class="fastlogin" id="password" type="password" name="req_password" size="10" />
 														<div class="save-pass">
 														<input name="save_pass" id="save_pass" value="1" type="checkbox" />

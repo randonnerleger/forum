@@ -294,6 +294,27 @@ textarea {
 	margin-top:20px;
 	height:30px;
 }
+#header .blur {
+	position: absolute;
+	z-index: -1;
+	top:0;
+	width: 100%;
+	height: 90px;
+	overflow: hidden;
+}
+#header .blur::before {
+	content: "";
+	position: absolute;
+	top:-15px;
+	width: 100%;
+	height: 120px;
+	background-size: cover;
+	filter: blur(8px);
+	transform: scale(1.02);
+}
+.nav-is-stuck #header .blur {
+	display:none;
+}
 #header .inner,
 #footer .inner {
 	position: relative;
@@ -2655,6 +2676,9 @@ background-size: 35px 35px;
 	#header {
 		height:60px;
 		background-size: auto 60px !important;
+	}
+	#header .blur {
+		display:none;
 	}
 	#header #logo {
 		margin-left: 81px;

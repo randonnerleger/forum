@@ -13,6 +13,7 @@ $connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connect
 			<label for="menu-left-checkbox" class="slide-left-toggle" onClick="CloseOtherMenu('forum','search', '', 0);"></label>
 			<label for="menu-forum-checkbox" class="menu-forum-toggle" onClick="CloseOtherMenu('left','search', '', 0);"></label>
 			<label for="menu-search-checkbox" class="menu-search-toggle" onClick="CloseOtherMenu('left','forum', '', 1);"></label>
+			<div class="blur"></div>
 			<div class="inner">
 				<div id="logo" class="inbl">
 					<a href="<?php echo path_to_rl ?>" rel="nofollow"><img src="<?php echo path_to_rl.'tpl/img/logo.png'?>" /></a>

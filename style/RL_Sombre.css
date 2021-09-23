@@ -90,9 +90,9 @@ a:focus,
 .pun .quotebox .quoted-origin a::after {
 	color:#a8a8a8;
 }
-#header {
+/* #header {
 	background-color: #242424;
-}
+} */
 #header a {
 	color: #fff;
 	text-shadow: 0px 0px 3px rgba(000, 000, 000, 0.9);

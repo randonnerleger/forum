@@ -1197,8 +1197,9 @@ form#edit p.buttons::before {
 	width: 30%;
 	padding-right:10px;
 }
-#adminconsole .inform .infldset table tbody td {
-	width: 70%;
+#adminconsole .infldset tr th,
+#adminconsole .infldset tr td {
+	padding: 6px 12px;
 }
 /* END Admin */
 

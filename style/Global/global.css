@@ -1385,6 +1385,9 @@ div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead h4:before {
 	background-color: #ac1313;
 	color: #fff;
 }
+.dokuwiki .diffnav select {
+	height: 2.5em;
+}
 /* END derniers changements */
 
 /* END Gestion des bloc nav historique et projet en cours dans les pages assos du wiki */

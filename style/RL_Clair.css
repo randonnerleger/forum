@@ -74,6 +74,29 @@ a:focus,
 	background-color: #eee;
 	color: #566579;
 }
+/* Dokuwiki diff page */
+.dokuwiki .diffnav a::before {
+	color: #333;
+}
+.dokuwiki .diffnav a:hover,
+.dokuwiki .diffnav a:active,
+.dokuwiki .diffnav a:focus {
+	background-color: #eee;
+}
+.dokuwiki table.diff th,
+.dokuwiki table.diff td {
+	background-color: #fff;
+	color: #333;
+}
+.dokuwiki table.diff td.diff-context {
+	background-color: #eee;
+}
+.dokuwiki table.diff .diff-addedline {
+	background-color: #cfc;
+}
+.dokuwiki table.diff .diff-deletedline {
+	background-color: #fdd;
+}
 /* END Liens wiki */
 .pun .postmsg,
 /* Dokuwiki */
@@ -90,9 +113,6 @@ a:focus,
 .pun .quotebox .quoted-origin a::after {
 	color:#566579;
 }
-/* #header {
-	background-color: #9EABB9;
-} */
 #header a {
 	color: #fff;
 	text-shadow: 0px 0px 3px rgba(000, 000, 000, 0.9);

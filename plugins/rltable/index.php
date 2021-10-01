@@ -8,7 +8,7 @@ require '../../../configRL.php';
 <head>
 	<title>Tableau RL</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/Global/global.css?version=' . current_theme . '' ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/Global/global.min.css?version=' . current_theme . '' ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT . 'style/' . RLStyle($pun_user['style']).'.css?version=' . current_theme . '' ?>" id="MyCss" />
 
 	<link rel="stylesheet" type="text/css" href="table_editor.css" />

@@ -707,6 +707,17 @@ function handle_img_tag($url, $is_signature = false, $alt = null, $width = null,
 {
 	global $lang_common, $pun_user;
 
+	// MODIF OPITUX
+	// REHOST DES IMAGES EXTERIEURES
+	if( strpos( $url, 'www.randonner-leger.org') === false ) {
+		// $url = path_to_forum . 'rehost/?img=' . $url;
+		$img_attr	= get_rehost_attr($url);
+		$width		= $img_attr['width'];
+		$height		= $img_attr['height'];
+		$url		= $img_attr['src'];
+	}
+	// END MODIF
+
 	if (is_null($alt))
 		$alt = basename($url);
 
@@ -898,7 +909,7 @@ function do_bbcode($text, $is_signature = false)
 	$SearchVimeoImgId = preg_match_all('#https://i.vimeocdn.com/video/(?:[a-z]*/)*([0-9]{6,11})[?]?.*#', $text, $VimeoImgId);
 	foreach ($VimeoImgId[1] as $id){
 		$arr_vimeo = unserialize(file_get_contents("https://vimeo.com/api/v2/video/$id.php"));
-		$text = str_replace('https://i.vimeocdn.com/video/' . $id, 'https://reho.st/' . $arr_vimeo[0]['thumbnail_large'], $text);
+		$text = str_replace('https://i.vimeocdn.com/video/' . $id, '' . path_to_forum . 'rehost/?img=' . $arr_vimeo[0]['thumbnail_large'], $text);
 	}
 
 	// END RL OPITUX

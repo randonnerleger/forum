@@ -37,7 +37,7 @@ require PUN_ROOT.'plugins/ezbbc/lang/'.$ezbbc_language_folder.'/ezbbc_plugin.php
 	require '../../../configRL.php';
 	?>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/Global/global.css?version=' . current_theme . '' ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT.'style/Global/global.min.css?version=' . current_theme . '' ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo PUN_ROOT . 'style/' . RLStyle($pun_user['style']).'.css?version=' . current_theme . '' ?>" id="MyCss" />
 	<?php
 	// END MODIF RL

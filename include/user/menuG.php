@@ -16,7 +16,7 @@
 						?>
 										<li class="display identification">
 											<input id="menug-identification" type="checkbox" name="toggle" />
-											<label for="menug-identification" class="menug-label-identification">Identification</label>
+											<label for="menug-identification" class="menug-label-identification" onClick="FocusOnUserName();">Identification</label>
 
 											<div class="content-togglebox">
 												<form id="login_menuG" method="post" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" onsubmit="return process_form(this)">

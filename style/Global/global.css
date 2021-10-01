@@ -247,8 +247,8 @@ textarea {
 }
 #top-page a:before {
 	text-decoration:none;
-	content:"\f077";
-	font-family: fontawesome;
+	content: "\f077";
+	font-family: "ForkAwesome";
 	font-size:30px;
 	line-height: 1em;
 	position: absolute;
@@ -422,15 +422,15 @@ input[type="search"] {
 }
 .search-form .submit-btn:before,
 .search-form .reset-btn:before {
-	content:"\f002";
-	font-family: fontawesome;
+	content: "\f002";
+	font-family: "ForkAwesome";
 	font-weight: normal;
 	font-size:16px;
 	padding-left: 2px;
 	top:5px;
 }
 .search-form .reset-btn:before {
-	content:"\f00d";
+	content: "\f00d";
 	font-size:15px;
 	top:9px;
 	padding-left: 0px;
@@ -461,7 +461,7 @@ input[type="search"] {
 .slide-left-toggle:after,
 .menu-forum-toggle:after,
 .menu-search-toggle:after {
-	content: '\f0c9';
+	content: "\f0c9";
 	display: block;
 	width: 48px;
 	border-radius: 3px;
@@ -479,10 +479,10 @@ input[type="search"] {
 	float:right;
 }
 .menu-forum-toggle:after {
-	content: '\f142';
+	content: "\f142";
 }
 .menu-search-toggle:after {
-	content: '\f002';
+	content: "\f002";
 }
 .menu-left-checkbox,
 .menu-forum-checkbox,
@@ -492,7 +492,7 @@ input[type="search"] {
 .menu-left-checkbox:checked ~ #wrapper-inner #header .slide-left-toggle:after,
 .menu-forum-checkbox:checked ~ #wrapper-inner #header .menu-forum-toggle:after,
 .menu-search-checkbox:checked ~ #wrapper-inner #header .menu-search-toggle:after {
-	content: '\f00d';
+	content: "\f00d";
 	z-index:1100;
 }
 /* Menu Gauche, mise en forme
@@ -634,12 +634,12 @@ form#login_menuG .save-pass label {
 }
 form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:after,
 form#login_menuG .save-pass input[type="checkbox"]:checked + label:after {
-	content: '';
+	content: "";
 	display: none;
 }
 form#login_menuG .save-pass input[type="checkbox"]:not(:checked) + label:before,
 form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
-	content: '';
+	content: "";
 	position: absolute;
 	left:-25px; top: 1px;
 	width: 14px;
@@ -653,9 +653,9 @@ form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
 	font-size:1em;
 }
 form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
-/*	content: '✔';*/
-	content: '\f00c';
-	font-family:fontawesome;
+/*	content: "✔";*/
+	content: "\f00c";
+	font-family: "ForkAwesome";
 	position: absolute;
 }
 /* When navbar is stuck */
@@ -692,8 +692,8 @@ display:none;
 	float:right;
 }
 .togglebox label:after {
-	content:'\f196';
-	font-family: fontawesome;
+	content: "\f196";
+	font-family: "ForkAwesome";
 }
 .togglebox li.display.identification label {
 	display:block;
@@ -703,9 +703,9 @@ display:none;
 	float:none;
 }
 .togglebox .identification label:after {
-	content:'\f196';
+	content: "\f196";
 	float: right;
-	font-family: fontawesome;
+	font-family: "ForkAwesome";
 	font-size:1em;
 	padding:0px 10px 0px 0px;
 }
@@ -730,10 +730,10 @@ display:none;
 	left: 0;
 }
 .togglebox input[type="checkbox"]:checked ~ label:after {
-	content:'\f147';
+	content: "\f147";
 }
 .togglebox input[type="checkbox"] ~ label.menug-label-identification::after {
-	content: '\f090';
+	content: "\f090";
 	padding-left: 10px;
 	float:none;
 }
@@ -894,11 +894,11 @@ input:checked + .switch-slider:before {
 #switch-font-size-plus:before,
 #switch-font-size-minus:before,
 #switch-font-size-reset:before {
-	font-family:fontawesome;
-	content:'\f031';
+	font-family: "ForkAwesome";
+	content: "\f031";
 }
 #switch-font-size-reset:before {
-	content:'\f0e2';
+	content: "\f0e2";
 	opacity: .5;
 }
 
@@ -1107,8 +1107,8 @@ kbd {
 	text-decoration: none !important;
 }
 .pun .quotebox .quoted-origin a:after {
-	content: '\f0c1';
-	font-family: fontawesome;
+	content: "\f0c1";
+	font-family: "ForkAwesome";
 	font-size: 14px;
 }
 /* END QUOTE */
@@ -1166,7 +1166,7 @@ p.modlist {
 	min-height: calc(100vh - 60px);
 }
 form#edit p.buttons::before {
-	content:"Editons nos messages en prenant soin d'indiquer ce qui a été modifié dans nos textes";
+	content: "Editons nos messages en prenant soin d'indiquer ce qui a été modifié dans nos textes";
 	display: block;
 	margin:10px 0;
 	padding:10px;
@@ -1358,20 +1358,20 @@ div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead p::after {
 div.hiddenHead p:before,
 div.hiddenHead h3:before,
 div.hiddenHead h4:before {
-	content: '';
-	font-family: fontawesome;
+	content: "";
+	font-family: "ForkAwesome";
 	color:#444444;
 }
 div.hiddenGlobal.hiddenHidden > div.hiddenHead p:before,
 div.hiddenGlobal.hiddenHidden > div.hiddenHead h3:before,
 div.hiddenGlobal.hiddenHidden > div.hiddenHead h4:before {
-	content: '\f065';
+	content: "\f065";
 	padding-right:10px;
 }
 div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead p::before,
 div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead h3:before,
 div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead h4:before {
-	content: '\f066';
+	content: "\f066";
 	padding-right:10px;
 }
 /* BEGIN Accordeons */
@@ -1772,7 +1772,7 @@ input[type="button"]:hover,
 }
 .redirect .required strong::after {
 	background: unset;
-	content: '*';
+	content: "*";
 	font-size: 13px;
 	color: red;
 	display: inline-block;
@@ -1842,7 +1842,7 @@ input[type="button"]:hover,
 	top: 50%;
 	margin-top: -.8em;
 	font-size: 200%;
-	font-family: fontawesome;
+	font-family: "ForkAwesome";
 }
 #uploads #announce-block .info li {
 	list-style: disclosure-closed;
@@ -2166,13 +2166,13 @@ background-size: 35px 35px;
 		background: #333333;
 	}
 	.togglebox li.display.identification label:after {
-		font-family: fontawesome;
+		font-family: "ForkAwesome";
 		padding:15px;
 		margin-top:-33px;
 		margin-left:85%;
 	}
 	.togglebox label:after {
-		content:'\f196';
+		content: "\f196";
 	}
 	.togglebox .content-togglebox {
 		overflow: hidden;
@@ -2193,7 +2193,7 @@ background-size: 35px 35px;
 		transition:opacity 1s;
 	}
 	.togglebox input[type="checkbox"]:checked ~ label:after {
-		content:'\f147';
+		content: "\f147";
 	}
 	/*END togglebox*/
 
@@ -2279,14 +2279,14 @@ background-size: 35px 35px;
 	}
 	.pun .pagepost a[rel~="prev"]:before,
 	.pun .pagepost a[rel~="next"]:before {
-		content:'\f137';
-		font-family:fontawesome;
+		content: "\f137";
+		font-family: "ForkAwesome";
 		font-size: 12px !important;
 		padding-left:3px;
 		padding-right:3px;
 	}
 	.pun .pagepost a[rel~="next"]:before {
-		content:'\f138';
+		content: "\f138";
 	}
 	/* END PAGINATION PREV ET NEXT  */
 
@@ -2346,18 +2346,18 @@ background-size: 35px 35px;
 	}
 	#brdheader #brdtitle h1 a:before,
 	#dokuwiki__header h1 a span:before {
-		content:'Forum de la randonnée légère';
+		content: "Forum de la randonnée légère";
 		font-size :2.2rem;
 		visibility: visible;
 	}
 	#uploads #brdheader #brdtitle h1 a::before {
-		content: 'Mes images';
+		content: "Mes images";
 	}
 	#dokuwiki__header h1 a span:before {
-		content:'Wiki de la randonnée légère';
+		content: "Wiki de la randonnée légère";
 	}
 	.extwiki #dokuwiki__header h1 a span::before {
-		content: 'Le site de la randonnée légère';
+		content: "Le site de la randonnée légère";
 	}
 	/* BEGIN FONT SIZE */
 	#dokuwiki__header h1,
@@ -2767,7 +2767,7 @@ background-size: 35px 35px;
 		padding-bottom:5px;
 	}
 	.pun #brdwelcome .conr:before {
-		content:'Contributions';
+		content: "Contributions";
 		font-size:12px;
 		margin-left:.5%;
 		}
@@ -2832,7 +2832,7 @@ background-size: 35px 35px;
 
 	/* BEGIN PAGINATION */
 	.pagelink:before {
-		content: '';
+		content: "";
 	}
 	/* END PAGINATION */
 
@@ -3120,7 +3120,7 @@ background-size: 35px 35px;
 #uploads blockquote:before,
 #uploads blockquote:after,
 #uploads q:before, q:after {
-	content: '';
+	content: "";
 	content: none;
 }
 #uploads table {
@@ -3363,17 +3363,17 @@ background-size: 35px 35px;
 	margin-right:0;
 }
 #uploads ul.rotate li:before {
-	font-family: fontawesome;
+	font-family: "ForkAwesome";
 	padding:0 5px !important;
 }
 #uploads ul.rotate li:first-child:before {
-	content:'\f0e2';
+	content: "\f0e2";
 }
 #uploads ul.rotate li:nth-child(2):before {
-	content:'\f07d' !important;
+	content: "\f07d" !important;
 }
 #uploads ul.rotate li:last-child:before {
-	content:'\f01e' !important;
+	content: "\f01e" !important;
 }
 #uploads.from-ez-toolbar #page {
 	margin: 0;
@@ -3442,31 +3442,31 @@ background-size: 35px 35px;
 	text-decoration: none;
 }
 #uploads .tc3 a:after {
-	content:'\f0d7';
-	font-family: fontawesome;
+	content: "\f0d7";
+	font-family: "ForkAwesome";
 	padding-left: 3px;
 	color: transparent;
 }
 #uploads .tc3.orderby a:after {
-	content:'\f0d7';
+	content: "\f0d7";
 	color:inherit;
 }
 #uploads .meta .author:before,
 #uploads .meta .size:before,
 #uploads .meta time:before,
 #uploads .meta.search:before {
-	content:'\f007';
-	font-family: fontawesome;
+	content: "\f007";
+	font-family: "ForkAwesome";
 	margin-right: 5px;
 }
 #uploads .meta time:before {
-	content:'\f133';
+	content: "\f133";
 }
 #uploads .meta.search:before {
-	content:'\f002';
+	content: "\f002";
 }
 #uploads .meta .size:before {
-	content:'\f1c5';
+	content: "\f1c5";
 }
 #uploads .admin-mode {
 	position: absolute;

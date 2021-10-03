@@ -244,7 +244,7 @@ textarea {
 #top-page a:before {
 	text-decoration:none;
 	content: "\f077";
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	font-size:30px;
 	line-height: 1em;
 	position: absolute;
@@ -419,7 +419,7 @@ input[type="search"] {
 .search-form .submit-btn:before,
 .search-form .reset-btn:before {
 	content: "\f002";
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	font-weight: normal;
 	font-size:16px;
 	padding-left: 2px;
@@ -461,7 +461,8 @@ input[type="search"] {
 	display: block;
 	width: 48px;
 	border-radius: 3px;
-	font: 24px/30px 'FontAwesome';
+	font-size: 24px;
+	font-family: ForkAwesome;
 	text-align: center;
 	padding:10px;
 }
@@ -651,7 +652,7 @@ form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
 form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
 /*	content: "✔";*/
 	content: "\f00c";
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	position: absolute;
 }
 /* When navbar is stuck */
@@ -689,7 +690,7 @@ display:none;
 }
 .togglebox label:after {
 	content: "\f196";
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 }
 .togglebox li.display.identification label {
 	display:block;
@@ -701,7 +702,7 @@ display:none;
 .togglebox .identification label:after {
 	content: "\f196";
 	float: right;
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	font-size:1em;
 	padding:0px 10px 0px 0px;
 }
@@ -890,7 +891,7 @@ input:checked + .switch-slider:before {
 #switch-font-size-plus:before,
 #switch-font-size-minus:before,
 #switch-font-size-reset:before {
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	content: "\f031";
 }
 #switch-font-size-reset:before {
@@ -1104,7 +1105,7 @@ kbd {
 }
 .pun .quotebox .quoted-origin a:after {
 	content: "\f0c1";
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	font-size: 14px;
 }
 /* END QUOTE */
@@ -1355,7 +1356,7 @@ div.hiddenHead p:before,
 div.hiddenHead h3:before,
 div.hiddenHead h4:before {
 	content: "";
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	color:#444444;
 }
 div.hiddenGlobal.hiddenHidden > div.hiddenHead p:before,
@@ -1838,7 +1839,7 @@ input[type="button"]:hover,
 	top: 50%;
 	margin-top: -.8em;
 	font-size: 200%;
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 }
 #uploads #announce-block .info li {
 	list-style: disclosure-closed;
@@ -2162,7 +2163,7 @@ background-size: 35px 35px;
 		background: #333333;
 	}
 	.togglebox li.display.identification label:after {
-		font-family: "ForkAwesome";
+		font-family: ForkAwesome;
 		padding:15px;
 		margin-top:-33px;
 		margin-left:85%;
@@ -2276,7 +2277,7 @@ background-size: 35px 35px;
 	.pun .pagepost a[rel~="prev"]:before,
 	.pun .pagepost a[rel~="next"]:before {
 		content: "\f137";
-		font-family: "ForkAwesome";
+		font-family: ForkAwesome;
 		font-size: 12px !important;
 		padding-left:3px;
 		padding-right:3px;
@@ -2703,7 +2704,7 @@ background-size: 35px 35px;
 		width: 30px;
 		border-radius: 3px;
 		font-size: 20px;
-		font-family: 'FontAwesome';
+		font-family: ForkAwesome;
 		padding: 9px 10px;
 		line-height: 1.3em;
 	}
@@ -3359,7 +3360,7 @@ background-size: 35px 35px;
 	margin-right:0;
 }
 #uploads ul.rotate li:before {
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	padding:0 5px !important;
 }
 #uploads ul.rotate li:first-child:before {
@@ -3439,7 +3440,7 @@ background-size: 35px 35px;
 }
 #uploads .tc3 a:after {
 	content: "\f0d7";
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	padding-left: 3px;
 	color: transparent;
 }
@@ -3452,7 +3453,7 @@ background-size: 35px 35px;
 #uploads .meta time:before,
 #uploads .meta.search:before {
 	content: "\f007";
-	font-family: "ForkAwesome";
+	font-family: ForkAwesome;
 	margin-right: 5px;
 }
 #uploads .meta time:before {

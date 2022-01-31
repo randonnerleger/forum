@@ -1293,7 +1293,7 @@ class Fotoo_Hosting
 
 	public function upload($file, $name = '', $private = false, $album = null)
 	{
-		if ($this->isClientBanned())
+		if ($this->isClientBanned() || (int)$GLOBALS['punid'] == 1)
 		{
 			throw new FotooException('Upload error: upload not permitted.', -42);
 		}

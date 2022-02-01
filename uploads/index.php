@@ -1293,7 +1293,7 @@ class Fotoo_Hosting
 
 	public function upload($file, $name = '', $private = false, $album = null)
 	{
-		if ($this->isClientBanned())
+		if ($this->isClientBanned() || (int)$GLOBALS['punid'] == 1)
 		{
 			throw new FotooException('Upload error: upload not permitted.', -42);
 		}
@@ -3315,6 +3315,12 @@ elseif (isset($_GET['list']))
 			} else {
 		$title = __('Browse pictures') ;
 		$fh->setcookieFotooModo();
+
+		if(  isset($_GET['rehost']) ) {
+			header("Location: ../rehost/list.php");
+			exit();
+		}
+
 	}
 
     if (!empty($_GET['list']) && is_numeric($_GET['list']))
@@ -4101,12 +4107,18 @@ echo '
 
     		<div id="brdmenu" class="inbox">
     			<ul>
-                <li><a href="'.$config->base_url.'">' . __('Upload a file') . '</a></li>
-                <li><a href="'.$config->base_url.'?list&mesphotos">' . __('Mes images') . '</a></li>
-                <li><a href="'.$config->base_url.'?albums&mesalbums">' . __('Mes albums') . '</a></li>
-                <li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?list">' . __('Browse pictures') . '</a></li>
-                <li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?albums">' . __('Browse albums') . '</a></li>
-				'.($fh->logged() ? '<li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?stats">' . __('Stats') . '</a></li>' : '').'
+	                <li><a href="'.$config->base_url.'">' . __('Upload a file') . '</a></li>
+	                <li><a href="'.$config->base_url.'?list&mesphotos">' . __('Mes images') . '</a></li>
+	                <li><a href="'.$config->base_url.'?albums&mesalbums">' . __('Mes albums') . '</a></li>
+	                <li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?list">' . __('Browse pictures') . '</a></li>
+	                <li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?albums">' . __('Browse albums') . '</a></li>';
+
+			if ( $fh->logged() )
+                echo '
+				<li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?stats">' . __('Stats') . '</a></li>
+					<li class="hidden-from-ez-toolbar"><a href="'.$config->base_url.'?list&rehost">' . __('Rehost') . '</a></li>';
+
+			echo '
     			</ul>
     		</div>
 

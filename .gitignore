@@ -2,6 +2,7 @@
 !/cache/index.html
 !/cache/.htaccess
 !/cache/ezbbc/_dummy
+/rehost/i
 /uploads/*.png
 /uploads/*.jpg
 /uploads/*.jpeg
@@ -24,7 +25,9 @@
 /config.php
 *.bak
 *.bak.*
-*.min.css
+/style/Air/*
+/style/RL_*.min.css
+/plugins/rltable/*.min.css
 *.js.css
 *.old
 *~

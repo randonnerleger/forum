@@ -1,6 +1,1 @@
-@import url('RL_Sombre.css');
-
-#header {
-	background-image: url("../../tpl/img/header_old_school.jpg");
-}
-
+@import url('Global/sombre.min.css');

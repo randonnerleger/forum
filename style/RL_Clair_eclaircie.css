@@ -1,6 +1,1 @@
-@import url('RL_Clair.css');
-
-#header {
-	background-image: url("../../tpl/img/header_eclaircie.jpg");
-}
-
+@import url('Global/clair.min.css');

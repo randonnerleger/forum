@@ -32,7 +32,9 @@ $smilies = array(
 	']:D' => 'devil.gif',
 	':devil:' => 'devil.gif',
 	':rl:' => 'rl.png',
-	':unicorn:' => 'unicorn.png'
+	':unicorn:' => 'unicorn.png',
+	':pouce:' => 'pouce.png',
+	':calin:' => 'calin.png',
 	// END
 
 	);

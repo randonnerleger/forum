@@ -742,6 +742,7 @@ display:none;
 	cursor: pointer;
 	/* margin: 7px 0; */
 	line-height: 1em;
+	overflow: hidden;
 }
 iframe {
 	border:0;

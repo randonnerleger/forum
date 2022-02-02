@@ -106,7 +106,7 @@ echo '<div id="punindex" class="pun">
 				echo '
 				<figure>
 					<div class="img">
-						<a href="i/' . $img[2] . '" target="_blank"><img src="i/' . $img[2] . '"/></a>
+						<a href="i/' . $img[2] . (null!=$img[3] ? '.' . $img[3] : '') . '" target="_blank"><img src="i/' . $img[2] . (null!=$img[3] ? '.' . $img[3] : '') . '"/></a>
 					</div>
 					<p class="meta profile">
 						<strong class="author">' . filter_var( str_replace( 'www.', '', $source['host'] ), FILTER_SANITIZE_URL ) . '</strong><br />

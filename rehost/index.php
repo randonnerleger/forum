@@ -69,49 +69,79 @@ function resize_image( $src , $dest , $toWidth , $toHeight , $options = array() 
 
 }
 
-$img_attr = get_rehost_attr( $_GET['img'], true );
+function pingDomain($domain){
 
-// Make generic storage folder
-if ( ! file_exists( 'i' ) )
-	mkdir( 'i' );
+	$starttime = microtime(true);
+	// supress error messages with @
+	$file      = @fsockopen($domain, 80, $errno, $errstr, 10);
+	$stoptime  = microtime(true);
+	$status    = 0;
 
-// If the file does not exist...
-if ( ! file_exists( $img_attr['path'] ) ) {
+	if (!$file){
 
-	// Only connected user are alloxad to rehost
-	if ( $pun_user['group_id'] != 3 ) {
+		$status = -1;  // Site is down
 
-		if ( isset( $img_attr['broken'] ) && $img_attr['broken'] ) {			// If file we want to rehost is not an image (missing)
-			$image = file_get_contents( htmlentities( '404-missing.png' ) );
-		} else {
-			$image = file_get_contents( htmlentities( $img_attr['source'] ) );	// Get file content
+	} else {
+
+		fclose($file);
+		$status = ($stoptime - $starttime) * 1000;
+		$status = floor($status);
+
+	}
+
+	return $status;
+
+}
+
+$source = array_map( 'rawurlencode', parse_url( $_GET['img'] ) );
+$ping = pingDomain( $source['host'] );
+if ( $ping > 0 && $ping < 300 ) {	// Site id up
+
+	$img_attr = get_rehost_attr( $_GET['img'], true );
+
+	// Make generic storage folder
+	if ( ! file_exists( 'i' ) )
+		mkdir( 'i' );
+
+	// If the file does not exist...
+	if ( ! file_exists( $img_attr['path'] ) ) {
+
+		// Only connected user are alloxad to rehost
+		if ( $pun_user['group_id'] != 3 ) {
+
+			if ( isset( $img_attr['broken'] ) && $img_attr['broken'] ) {			// If file we want to rehost is not an image (missing)
+				$image = file_get_contents( htmlentities( '404-missing.png' ) );
+			} else {
+				$image = file_get_contents( htmlentities( $img_attr['source'] ) );	// Get file content
+			}
+
+			// Make image storage folder
+			if ( ! file_exists( 'i/' . $img_attr['folder'] ) )
+				mkdir( 'i/' . $img_attr['folder'] );
+
+			// Write rehost data in a file
+			file_put_contents( $img_attr['path'], $image );
+
+			if ( extension_loaded( 'imagick' ) ) {									// Resize with Imagick
+
+				$resized_image	= new Imagick( $img_attr['path'] );
+				$resized_image->resizeImage( (int)$img_attr['width'], (int)$img_attr['height'], imagick::FILTER_LANCZOS, 1, true );
+				$resized_image->writeImage( $img_attr['path'] );
+
+			} else {																// Or resize with GD
+
+				resize_image( $img_attr['path'] , $img_attr['path'] , (int)$img_attr['width'] , (int)$img_attr['height']);
+
+			}
+
+			// Add image attr in .txt files
+			file_put_contents(
+				'i/' . ( $img_attr['broken'] ? 'broken' : 'rehost' ) . '.txt',
+				time() . ' ' . $img_attr['source'] . ' ' . $img_attr['hash'] . ' ' . $img_attr['extension'] . ' ' . $img_attr['width'] . ' ' . $img_attr['height'] . ' ' . filesize( $img_attr['path'] ) . PHP_EOL,
+				FILE_APPEND
+			);
+
 		}
-
-		// Make image storage folder
-		if ( ! file_exists( 'i/' . $img_attr['folder'] ) )
-			mkdir( 'i/' . $img_attr['folder'] );
-
-		// Write rehost data in a file
-		file_put_contents( $img_attr['path'], $image );
-
-		if ( extension_loaded( 'imagick' ) ) {									// Resize with Imagick
-
-			$resized_image	= new Imagick( $img_attr['path'] );
-			$resized_image->resizeImage( (int)$img_attr['width'], (int)$img_attr['height'], imagick::FILTER_LANCZOS, 1, true );
-			$resized_image->writeImage( $img_attr['path'] );
-
-		} else {																// Or resize with GD
-
-			resize_image( $img_attr['path'] , $img_attr['path'] , (int)$img_attr['width'] , (int)$img_attr['height']);
-
-		}
-
-		// Add image attr in .txt files
-		file_put_contents(
-			'i/' . ( $img_attr['broken'] ? 'broken' : 'rehost' ) . '.txt',
-			time() . ' ' . $img_attr['source'] . ' ' . $img_attr['hash'] . ' ' . $img_attr['extension'] . ' ' . $img_attr['width'] . ' ' . $img_attr['height'] . ' ' . filesize( $img_attr['path'] ) . PHP_EOL,
-			FILE_APPEND
-		);
 
 	}
 

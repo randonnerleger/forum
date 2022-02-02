@@ -32,18 +32,21 @@ if (file_exists('../uploads/user_header.php'))
 	require_once '../uploads/user_header.php';
 
 $rehosted	= "i/rehost.txt";
-$lines		= file( $rehosted );
+$broken		= "i/broken.txt";
+$rehosted_file		= file( $rehosted );
+$broken_file		= file( $broken );
 
 $limit	= 20;
-$total	= count( $lines );
-echo '<br>total : '. $total;
+$rehosted_count	= count( $rehosted_file );
+$broken_count	= count( $broken_file );
+echo '<div class="rehost-count">'. (int)$rehosted_count . ' rehost / ' . (int)$broken_count . ' en 404</div>';
 $page	= isset($_GET['page']) ? (int)$_GET['page'] : (int)1;
-$nbpage	= ceil($total/$limit);
+$nbpage	= ceil($rehosted_count/$limit);
 
 // $min  = ($page-1)*$limit;
 // $max  = $page*$limit-1;
 
-$max  = ($total-1)-(($page-1)*$limit);
+$max  = ($rehosted_count-1)-(($page-1)*$limit);
 $min  = $max-($limit-1);
 $min  = $min > 0 ? $min : 0;
 
@@ -88,11 +91,11 @@ echo '<div id="punindex" class="pun">
 		<article class="browse">
 			<h2>Rehost</h2>';
 
-		if( $min < $total ) {
+		if( $min < $rehosted_count ) {
 
 			// for ( $i=$min; $i<=$max; $i++ ) {
 			for ( $i=$max; $i>=$min; $i-- ) {
-				$img = explode(' ', $lines[$i]);
+				$img = explode(' ', $rehosted_file[$i]);
 
 				$search = str_replace( 'https://www.dailymotion.com/thumbnail/video/', 'https://www.dailymotion.com/video/', $img[1] );
 				$search = preg_replace( '/https:\/\/i.vimeocdn\.com\/video\/([0-9]+[0-9])+_([0-9]+[0-9])/', '[video][url]https://vimeo.com/', $search);

@@ -85,7 +85,6 @@ if ( ! file_exists( $img_attr['path'] ) ) {
 			$image = file_get_contents( '404-missing.png' );
 		} else {
 			$image = file_get_contents( $img_attr['source'] );					// Get file content
-			$image = str_replace( array( '<?php', '<?=', '?>' ), '', $image);
 		}
 
 		// Make image storage folder

@@ -82,9 +82,10 @@ if ( ! file_exists( $img_attr['path'] ) ) {
 	if ( $pun_user['group_id'] != 3 ) {
 
 		if ( isset( $img_attr['broken'] ) && $img_attr['broken'] ) {			// If file we want to rehost is not an image (missing)
-			$image = file_get_contents( htmlentities( '404-missing.png' ) );
+			$image = file_get_contents( '404-missing.png' );
 		} else {
-			$image = file_get_contents( htmlentities( $img_attr['source'] ) );	// Get file content
+			$image = file_get_contents( $img_attr['source'] );					// Get file content
+			$image = str_replace( array( '<?php', '<?=', '?>' ), '', $image);
 		}
 
 		// Make image storage folder

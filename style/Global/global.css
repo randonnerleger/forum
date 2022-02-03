@@ -742,6 +742,7 @@ display:none;
 	cursor: pointer;
 	/* margin: 7px 0; */
 	line-height: 1em;
+	overflow: hidden;
 }
 iframe {
 	border:0;
@@ -3474,6 +3475,9 @@ background-size: 35px 35px;
 	margin: 18px;
 	padding: 5px 30px;
 	font-size: 1em;
+}
+#uploads .rehost-count {
+	margin: 18px 18px 0px 18px;
 }
 @media (max-width: 1024px) {
 

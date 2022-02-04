@@ -1043,6 +1043,10 @@ textarea {
 	margin: .3%;
 	height: auto;
 }
+img.smiley {
+	width: auto;
+	height: auto;
+}
 /* END Images */
 
 /* BEGIN Tableaux */

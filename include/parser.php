@@ -709,7 +709,8 @@ function handle_img_tag($url, $is_signature = false, $alt = null, $width = null,
 
 	// MODIF OPITUX
 	// REHOST DES IMAGES EXTERIEURES
-	if( strpos( $url, 'randonner-leger.org') === false ) {
+	$is_rehost_off	= isset( $_GET['rehostoff'] ) || isset( $_GET['action'] ) && $_GET['action'] == 'feed' ? true : false ;
+	if( strpos( $url, 'randonner-leger.org') === false && ! $is_rehost_off ) {
 		// $url = path_to_forum . 'rehost/?img=' . $url;
 		$img_attr	= get_rehost_attr($url);
 		$width		= $img_attr['width'];

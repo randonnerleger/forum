@@ -69,7 +69,7 @@ function resize_image( $src , $dest , $toWidth , $toHeight , $options = array() 
 
 }
 
-$img_attr = get_rehost_attr( $_GET['img'], true );
+$img_attr = get_rehost_attr($_GET['img'], true );
 
 // Make generic storage folder
 if ( ! file_exists( 'i' ) )
@@ -84,7 +84,7 @@ if ( ! file_exists( $img_attr['path'] ) ) {
 		if ( isset( $img_attr['broken'] ) && $img_attr['broken'] ) {			// If file we want to rehost is not an image (missing)
 			$image = file_get_contents( '404-missing.png' );
 		} else {
-			$image = file_get_contents( $img_attr['source'] );					// Get file content
+			$image = file_get_contents( ( $img_attr['location'] != false ? $img_attr['location'] : $img_attr['source'] ) );					// Get file content
 		}
 
 		// Make image storage folder

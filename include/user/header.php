@@ -10,7 +10,7 @@ $connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connect
 
 	<div id="wrapper-inner" class="<?php echo $hackOperaMini ?>">
 		<div id="header">
-			<label for="menu-left-checkbox" class="slide-left-toggle" onClick="CloseOtherMenu('forum','search', '', 0);"></label>
+			<label for="menu-left-checkbox" class="menu-left-toggle" onClick="CloseOtherMenu('forum','search', '', 0);"></label>
 			<label for="menu-forum-checkbox" class="menu-forum-toggle" onClick="CloseOtherMenu('left','search', '', 0);"></label>
 			<label for="menu-search-checkbox" class="menu-search-toggle" onClick="CloseOtherMenu('left','forum', '', 1);"></label>
 			<div class="blur"></div>

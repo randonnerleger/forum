@@ -110,7 +110,7 @@ if (!defined('PUN_ALLOW_INDEX'))
 ?>
 <link rel="stylesheet" type="text/css" href="style/Global/global.min.css?version=<?php echo current_theme ?>" />
 <link rel="stylesheet" type="text/css" href="style/<?php echo RLStyle($pun_user['style']).'.css?version=' . current_theme . '' ?>" id="MyCss" />
-<link rel="stylesheet" type="text/css" href="<?php echo path_to_rl ?>tpl/fonts/fork-awesome/style.css?version='<?php echo current_theme ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo path_to_rl ?>tpl/fonts/fork-awesome/style.css?version=<?php echo current_theme ?>" />
 <?php
 GetRLStyle();
 // END MODIF RL

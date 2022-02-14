@@ -83,14 +83,14 @@ if( isset($RLsearch) && null != $RLsearch ) {
 
 				<div id="menu-switch-css">
 				<label class="switch-css">
-					<input type="checkbox" name="cssID" id="cssID" <?php isRLSombre($pun_user['style']); ?> />
+					<input aria-labelledby="Changer de thème" type="checkbox" name="cssID" id="cssID" <?php isRLSombre($pun_user['style']); ?> />
 					<span class="switch-slider round"></span>
 				</label>
 				</div>
 				<div id="menu-switch-font-size">
-					<label id="switch-font-size-minus">-</label>
-					<label id="switch-font-size-plus">+</label>
-					<label id="switch-font-size-reset"></label>
+					<label aria-label="Diminuer les Polices" id="switch-font-size-minus">-</label>
+					<label aria-label="Augmenter les Polices" id="switch-font-size-plus">+</label>
+					<label aria-label="Réinitialiser les Polices" id="switch-font-size-reset"></label>
 				</div>
 
 			</div><!-- .inner -->

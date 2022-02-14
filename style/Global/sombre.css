@@ -232,7 +232,7 @@ tbody tr:nth-child(even),
 	background:#393939;
 }
 .infldset {
-	background:#303030;
+	background:#393939;
 }
 /* END Alternate colors */
 .pun .blockform .box,
@@ -372,7 +372,7 @@ form#edit p.buttons::before,
 /* END Annonces */
 
 /* BEGIN box shadow */
-.slide, #content {
+.menu-left, #content {
 	/* box-shadow: 0px 0px 2px #888; */
 }
 #nav.fixed {
@@ -392,7 +392,7 @@ form#post p.buttons a,
 form#edit p.buttons a,
 #pundelete p.buttons a,
 #punmisc .buttons a,
-#msg .inbox a,
+#msg .inbox a:not([href^="mailto:"]),
 .pun .pagepost a,
 .pun .pagepost strong,
 .pun .pagepost .spacer,
@@ -400,7 +400,8 @@ form#edit p.buttons a,
 #nav li a.disconnect,
 .pun .pagepost a[rel~="prev"]::before,
 .pun .pagepost a[rel~="next"]::before,
-#nav li a.disconnect {
+#nav li a.disconnect,
+.pun #modcontrols dd span a {
 	background:#1c1c1c;
 	color:#fff;
 	/* text-shadow: 0px 2px 1px rgba(255, 255, 255, .4); */
@@ -414,11 +415,12 @@ form#post p.buttons a:hover,
 form#edit p.buttons a:hover,
 #pundelete p.buttons a:hover,
 #punmisc .buttons a:hover,
-#msg .inbox a:hover,
+#msg .inbox a:not([href^="mailto:"]):hover,
 .pun .pagepost a:hover,
 #uploads nav ul li.selected a,
 #uploads nav ul li a:hover,
-#nav li a.disconnect:hover {
+#nav li a.disconnect:hover,
+.pun #modcontrols dd span a:hover {
 	background:#111;
 }
 /* END Boutons clairs */
@@ -433,7 +435,7 @@ textarea,
 .pun #search .checklist,
 .search-form .search-field:focus + .reset-btn,
 form#login_menuG .save-pass input[type="checkbox"] + label::before {
-	background-color: #393939;
+	background-color: #292929;
 	color:#ccc;
 	border-color:#222222
 }
@@ -458,7 +460,7 @@ form#login_menuG .save-pass input[type="checkbox"] + label::before {
 /* BEGIN ezbbc toolbar et rltable */
 @media (max-width: 1024px) {
 	#brdmenu,
-	.slide-left-toggle::after,
+	.menu-left-toggle::after,
 	.menu-forum-toggle::after,
 	.menu-search-toggle::after,
 	#nav,

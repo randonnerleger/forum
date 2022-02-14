@@ -1,4 +1,4 @@
-			<div class="slide togglebox <?php echo $hackOperaMini ?>">
+			<div class="menu-left togglebox <?php echo $hackOperaMini ?>">
 				<div id="nav" class="<?php echo $hackOperaMini ?>">
 					<ul class="first">
 
@@ -129,7 +129,7 @@
 						</li>
 					</ul>
 				</div><!-- .nav -->
-			</div><!-- .slide --><!--
+			</div><!-- .menu-left --><!--
 
 			--><div id="content">
 			<div id="mobile-nav-overlay" onClick="CloseOtherMenu('left','forum','search');"></div>

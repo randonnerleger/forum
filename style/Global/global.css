@@ -40,7 +40,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
  *	8.0 - MEDIA QUERIES 380
 
  *	9.0 - UPLOADS FOTOO
-
+ * 10.0 - FORWAWESOME
+ * 11.0 - SWIPEBOX
 
  */
 
@@ -354,7 +355,7 @@ textarea {
 	margin-bottom:0;
 	position:relative;
 }
-.slide, #content {
+.menu-left, #content {
 	display:inline-block;
 	vertical-align:top;
 	width :15%;
@@ -434,7 +435,7 @@ input[type="search"] {
 /* Menu Gauche, effet slide
 ----------------------------------------------------------------*/
 @-webkit-keyframes bugfix { from { padding: 0; } to { padding: 0; } }
-.slide-left-toggle,
+.menu-left-toggle,
 .menu-forum-toggle,
 .menu-search-toggle {
 	cursor: pointer;
@@ -447,14 +448,14 @@ input[type="search"] {
 .menu-search-toggle {
 	position:relative;
 }
-.slide-left-toggle,
-.slide-left-toggle:active,
-.slide-left-toggle:focus {
+.menu-left-toggle,
+.menu-left-toggle:active,
+.menu-left-toggle:focus {
 	border: none !important;
 	outline: none !important;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-.slide-left-toggle:after,
+.menu-left-toggle:after,
 .menu-forum-toggle:after,
 .menu-search-toggle:after {
 	content: "\f0c9";
@@ -466,7 +467,7 @@ input[type="search"] {
 	text-align: center;
 	padding:10px;
 }
-.slide-left-toggle,
+.menu-left-toggle,
 .menu-forum-toggle,
 .menu-search-toggle {
 	margin:20px 15px;
@@ -486,7 +487,7 @@ input[type="search"] {
 .menu-search-checkbox {
 	display: none;
 }
-.menu-left-checkbox:checked ~ #wrapper-inner #header .slide-left-toggle:after,
+.menu-left-checkbox:checked ~ #wrapper-inner #header .menu-left-toggle:after,
 .menu-forum-checkbox:checked ~ #wrapper-inner #header .menu-forum-toggle:after,
 .menu-search-checkbox:checked ~ #wrapper-inner #header .menu-search-toggle:after {
 	content: "\f00d";
@@ -656,6 +657,16 @@ form#login_menuG .save-pass input[type="checkbox"]:checked + label:before {
 	position: absolute;
 }
 /* When navbar is stuck */
+@keyframes stickAnim {
+	0% {
+		-webkit-transform: translateY(-86px);
+		transform: translateY(-86px);
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
 .nav-is-stuck #header {
 	/* http://caniuse.com/#feat=css-sticky */
 	/* not good support at this time (nov 2015) */
@@ -1203,6 +1214,25 @@ form#edit p.buttons::before {
 #adminconsole .infldset tr td {
 	padding: 6px 12px;
 }
+.pun #modcontrols {
+	box-sizing: border-box;
+	margin: 50px 0 !important;
+	border-width: 0;
+}
+.pun #modcontrols dl {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+}
+.pun #modcontrols dd span {
+	padding: 0px !important;
+	display: flex !important;
+}
+.pun #modcontrols dd span a {
+	padding: 8px 30px !important;
+	margin: 0 !important;
+}
 /* END Admin */
 
 /**
@@ -1627,14 +1657,15 @@ form#post p.buttons a,
 form#edit p.buttons a,
 #pundelete p.buttons a,
 #punmisc .buttons a,
-#msg .inbox a,
+#msg .inbox a:not([href^="mailto:"]),
 /* .pagestext a,
 .pagestext .spacer, */
 .pun .pagepost a,
 .pun .pagepost strong,
 .pun .pagepost .spacer,
 #uploads nav ul li a,
-#nav li a.disconnect {
+#nav li a.disconnect,
+.pun #modcontrols dd span a {
 	text-decoration:none !important;
 	border: medium none;
 	border-radius: 3px;
@@ -1943,7 +1974,7 @@ background-size: 35px 35px;
 	 * More details: http://indiegamr.com/ios6-html-hardware-acceleration-changes-and-how-to-fix-them/
 	 * Add more browser prefixes as required for your environment
 	**/
-	.slide,
+	.menu-left,
 	#nav {
 		-webkit-transform: translateZ(0);
 		-moz-transform: translateZ(0);
@@ -1952,7 +1983,7 @@ background-size: 35px 35px;
 		-webkit-backface-visibility: hidden;
 		-moz-backface-visibility: hidden;
 	}
-	.slide,
+	.menu-left,
 	#brdmenu,
 	#dokuwiki__sitetools,
 	#wrapper-inner #header #menu-search {
@@ -1968,7 +1999,7 @@ background-size: 35px 35px;
 		-o-transform: translateX(-100%);
 		transform: translateX(-100%);
 	}
-	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide {
+	.menu-left-checkbox:checked ~ #wrapper-inner .outer .menu-left {
 		width:1px;
 		background:transparent;
 		height:100% !important;
@@ -2026,7 +2057,7 @@ background-size: 35px 35px;
 		margin:0;
 		margin-top:20px;
 	}
-	.slide {
+	.menu-left {
 		position:absolute;
 		width:0px;
 		/* box-shadow: 0px 0px 0px #888; */
@@ -2040,7 +2071,7 @@ background-size: 35px 35px;
 		margin-left: 0;
 		width: 300px;
 	}
-	.slide,
+	.menu-left,
 	#nav {
 		margin:0;
 		left: 0;
@@ -2080,10 +2111,10 @@ background-size: 35px 35px;
 		font-size: 1.5em;
 		line-height: 16px;
 	}
-	.slide-left-toggle {
+	.menu-left-toggle {
 		position:absolute;
 	}
-	.slide-left-toggle,
+	.menu-left-toggle,
 	.menu-forum-toggle,
 	.menu-search-toggle {
 		display: block;
@@ -2234,7 +2265,7 @@ background-size: 35px 35px;
 	}
 	/* END RECHERCHE HEADER */
 
-	.menu-left-checkbox:checked ~ #wrapper-inner .outer .slide #nav {
+	.menu-left-checkbox:checked ~ #wrapper-inner .outer .menu-left #nav {
 		position:absolute;
 	}
 	#brdmenu ul {
@@ -2417,7 +2448,7 @@ background-size: 35px 35px;
 		margin: 0px auto;
 	}
 	/* BEGIN CALCUL DES HAUTEURS */
-	#wrapper-inner .outer .slide #nav,
+	#wrapper-inner .outer .menu-left #nav,
 	#wrapper-inner .outer #brdmenu,
 	#wrapper-inner .outer #dokuwiki__sitetools,
 	#wrapper-inner #header #menu-search {
@@ -2496,11 +2527,8 @@ background-size: 35px 35px;
 	.postlinksb ul.crumbs {
 		display: none;
 	}
-	#modcontrols span {
-		padding:10px 5px;
-	}
 	.pun .subscribelink {
-		margin-top: 7px;
+		margin: 50px 0;
 	}
 	/* END LIENS CRUMBS BAS DE PAGE*/
 
@@ -2703,7 +2731,7 @@ background-size: 35px 35px;
 	#content {
 		margin-top:15px;
 	}
-	.slide-left-toggle:after,
+	.menu-left-toggle:after,
 	.menu-forum-toggle:after,
 	.menu-search-toggle:after {
 		width: 30px;
@@ -2713,7 +2741,7 @@ background-size: 35px 35px;
 		padding: 9px 10px;
 		line-height: 1.3em;
 	}
-	.slide-left-toggle,
+	.menu-left-toggle,
 	.menu-forum-toggle,
 	.menu-search-toggle {
 		margin:8px 10px;
@@ -3011,6 +3039,23 @@ background-size: 35px 35px;
 	}
 	/* END PAGE REDACTION/EDITION */
 
+	/* BEGIN LIENS MODERATIONS EN BAS DE PAGE */
+	.pun #modcontrols {
+		padding: 0 1%;
+	}
+	.pun #modcontrols dl {
+		flex-direction: column;
+		flex-wrap: wrap;
+	}
+	.pun #modcontrols dd {
+		text-align: center;
+	}
+	.pun #modcontrols a {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	/* END LIENS MODERATIONS EN BAS DE PAGE */
+
 	/**
 	 * END Media queries 480 fluxbb
 	 * ==========================================================================
@@ -3081,7 +3126,7 @@ background-size: 35px 35px;
 	/* END UNIFORMISATION DES INPUT ET BOUTONS */
 
 	/* BEGIN CALCUL DES HAUTEURS */
-	#wrapper-inner .outer .slide #nav,
+	#wrapper-inner .outer .menu-left #nav,
 	#wrapper-inner .outer #brdmenu,
 	#wrapper-inner .outer #dokuwiki__sitetools,
 	#wrapper-inner #header #menu-search {
@@ -3093,12 +3138,12 @@ background-size: 35px 35px;
 
 }
 
-	/**
-	 * END MEDIA QUERIES 480
-	 * ------------------------------------------------------------------------------
-	 * ==============================================================================
-	 * 8.0 - MEDIA QUERIES 380
-	**/
+/**
+ * END MEDIA QUERIES 480
+ * ------------------------------------------------------------------------------
+ * ==============================================================================
+ * 8.0 - MEDIA QUERIES 380
+**/
 
 @media (max-width: 380px) {
 	#brdwelcome .conr a,
@@ -3107,11 +3152,11 @@ background-size: 35px 35px;
 	}
 }
 
-	/**
-	 * END Media queries 380 dokuwiki
-	 * ==========================================================================
-	 * 9.0 - UPLOADS FOTOO
-	**/
+/**
+ * END Media queries 380 dokuwiki
+ * ==========================================================================
+ * 9.0 - UPLOADS FOTOO
+**/
 
 /* #uploads article.picture figure {max-width: 60%;} */
 #uploads article.picture figure img {max-width: 100%;}
@@ -3382,7 +3427,7 @@ background-size: 35px 35px;
 	width:98%;
 }
 #uploads.from-ez-toolbar #header,
-#uploads.from-ez-toolbar .slide,
+#uploads.from-ez-toolbar .menu-left,
 #uploads.from-ez-toolbar #header label,
 #uploads.from-ez-toolbar #footer,
 #uploads.from-ez-toolbar .meta.profile {
@@ -3498,6 +3543,46 @@ background-size: 35px 35px;
 	}
 }
 
+/**
+ * END UPLOADS FOTOO
+ * ==========================================================================
+ * 10.0 - FORWAWESOME
+**/
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+/**
+ * END FORWAWESOME
+ * ==========================================================================
+ * 11.0 - SWIPEBOX
+**/
+
+#swipebox-slider .slide img {
+	max-height:calc(100vh - 100px) !important;
+	max-width:calc(100vw - 10px) !important
+}
+#swipebox-top-bar {
+	display: none !important;
+}
+#swipebox-overlay {
+	background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/**
+ * END SWIPEBOX
+ * ==========================================================================
+ * XX.0 - XXXXXXXXXX
+**/
+
 /* BEGIN Opéra */
 #wrapper-inner.opera .pun #search .checklist {
 	height:inherit;
@@ -3509,7 +3594,7 @@ background-size: 35px 35px;
 	.menu-left-checkbox:checked ~ #wrapper-inner.opera #content #mobile-nav-overlay,
 	.menu-search-checkbox:checked ~ #wrapper-inner.opera .outer #content #mobile-nav-overlay,
 	.menu-forum-checkbox:checked ~ #wrapper-inner.opera .outer #content #mobile-nav-overlay,
-	.menu-left-checkbox:checked ~ #wrapper-inner.opera .outer .slide #nav,
+	.menu-left-checkbox:checked ~ #wrapper-inner.opera .outer .menu-left #nav,
 	.menu-search-checkbox:checked ~ #wrapper-inner.opera #header .inner #menu-search,
 	.menu-forum-checkbox:checked ~ #wrapper-inner.opera .outer #brdmenu,
 	.menu-forum-checkbox:checked ~ #wrapper-inner.opera .outer #dokuwiki__sitetools {
@@ -3518,15 +3603,6 @@ background-size: 35px 35px;
 	}
 /* END Opéra */
 
-}
-
-@keyframes stickAnim {
-	0% {
-		transform: translateY(-86px);
-	}
-	100% {
-		transform: translateY(0);
-	}
 }
 
 /* Konami */

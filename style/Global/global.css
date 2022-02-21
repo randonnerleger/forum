@@ -209,6 +209,56 @@ textarea {
  * ==============================================================================
  * 4.1 - template RL
 **/
+.skip-links {
+	position: absolute;
+	font-size: 2rem;
+	font-weight: bold;
+	z-index: 1000;
+}
+.skip-links a {
+	position: absolute;
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: 1rem;
+	clip: rect(1px, 1px, 1px, 1px);
+	background: black;
+	color: white !important;
+	text-decoration: none;
+}
+.skip-links a:focus {
+	position: static;
+	overflow: visible;
+	clip: auto;
+}
+.screen-reader-text {
+	display: block !important;
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+.screen-reader-text:focus {
+	background-color: #eee;
+	clip: auto !important;
+	clip-path: none;
+	color: #444;
+	display: block;
+	/* font-size: var(--tif-normal-font-size); */
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
 .hidden {
 	display: none;
 }
@@ -217,7 +267,6 @@ textarea {
 #dokuwiki__site .page {
 	font-size: 1.4rem;
 }
-
 /* Structure du template RL (header, menu gauche et footer)
 ----------------------------------------------------------------*/
 #top-page {

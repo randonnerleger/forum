@@ -16,11 +16,29 @@ var myrl_info = {"folder_rl":"<?php echo folder_rl; ?>"};
 <script type='text/javascript' src='<?php echo path_to_rl.'tpl/js/scripts.min.js?version=<?php echo current_theme ?>'?>'></script>
 
 <?php
-if ( defined( 'SWIPEBOX_ON' ) && SWIPEBOX_ON ) {
+if ( defined( 'SWIPEBOX_ON' ) && SWIPEBOX_ON && current_folder == 'forum' ) {
 ?>
 <script type='text/javascript' id='swipebox-js-extra'>
 /* <![CDATA[ */
-var SwipeboxInit = {"lightbox":{"useCSS":true,"useSVG":true,"initialIndexOnArray":0,"hideCloseButtonOnMobile":false,"removeBarsOnMobile":false,"hideBarsDelay":3000,"videoMaxWidth":1140,"vimeoColor":"#cccccc","loopAtEnd":false,"autoplayVideos":false},"autodetect":{"autodetectImage":true,"autodetectVideo":true,"autodetectExclude":".no-swipebox"}};
+var SwipeboxInit = {
+	"lightbox":{
+		"useCSS":true,
+		"useSVG":true,
+		"initialIndexOnArray":0,
+		"hideCloseButtonOnMobile":false,
+		"removeBarsOnMobile":false,
+		"hideBarsDelay":30000,
+		"videoMaxWidth":1140,
+		"vimeoColor":"#cccccc",
+		"loopAtEnd":false,
+		"autoplayVideos":false
+	},
+	"autodetect":{
+		"autodetectImage":true,
+		"autodetectVideo":false,
+		"autodetectExclude":".no-swipebox"
+	}
+};
 /* ]]> */
 </script>
 <script type='text/javascript' src='<?php echo path_to_rl ?>tpl/js/jquery.swipebox.min.js?version=<?php echo current_theme ?>' id='swipebox-js'></script>

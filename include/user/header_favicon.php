@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#ffffff">
 
 <?php
-if ( defined( 'SWIPEBOX_ON' ) && SWIPEBOX_ON ) {
+if ( defined( 'SWIPEBOX_ON' ) && SWIPEBOX_ON && current_folder == 'forum' ) {
 ?>
 <link rel='stylesheet' id='swipebox-css'  href='<?php echo path_to_rl ?>tpl/css/swipebox.min.css?version=<?php echo current_theme ?>' type='text/css' media='all' />
 <script type='text/javascript' src='<?php echo path_to_rl ?>tpl/js/jquery.min.js?ver=3.5.1' id='jquery-core-js'></script>

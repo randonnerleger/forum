@@ -79,7 +79,7 @@ if ( ! file_exists( 'i' ) )
 if ( ! file_exists( $img_attr['path'] ) ) {
 
 	// Only connected user are alloxed to rehost
-	// if ( $pun_user['group_id'] != 3 ) {
+	if ( $pun_user['group_id'] != 3 ) {
 
 		// If file we want to rehost is not an image (missing)
 		if ( isset( $img_attr['tmp'] ) && $img_attr['tmp'] ) {
@@ -131,7 +131,7 @@ if ( ! file_exists( $img_attr['path'] ) ) {
 			FILE_APPEND
 		);
 
-	// }
+	}
 
 }
 

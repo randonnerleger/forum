@@ -2,6 +2,7 @@
 // Je check si connecté
 $connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connected' ;
 ?>
+<span class="skip-links"><a class="" href="#content">Aller au contenu</a></span>
 <div id="top-page"><a onclick="window.top.window.scrollTo(0,0);return false" href="#wrapper-rl"></a></div>
 <div id="wrapper-rl" class="<?php echo $connected; ?>">
 	<input type="checkbox" id="menu-left-checkbox" class="menu-left-checkbox" role="button">
@@ -10,7 +11,7 @@ $connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connect
 
 	<div id="wrapper-inner" class="<?php echo $hackOperaMini ?>">
 		<div id="header">
-			<label for="menu-left-checkbox" class="slide-left-toggle" onClick="CloseOtherMenu('forum','search', '', 0);"></label>
+			<label for="menu-left-checkbox" class="menu-left-toggle" onClick="CloseOtherMenu('forum','search', '', 0);"></label>
 			<label for="menu-forum-checkbox" class="menu-forum-toggle" onClick="CloseOtherMenu('left','search', '', 0);"></label>
 			<label for="menu-search-checkbox" class="menu-search-toggle" onClick="CloseOtherMenu('left','forum', '', 1);"></label>
 			<div class="blur"></div>
@@ -83,14 +84,14 @@ if( isset($RLsearch) && null != $RLsearch ) {
 
 				<div id="menu-switch-css">
 				<label class="switch-css">
-					<input type="checkbox" name="cssID" id="cssID" <?php isRLSombre($pun_user['style']); ?> />
+					<input aria-labelledby="Changer de thème" type="checkbox" name="cssID" id="cssID" <?php isRLSombre($pun_user['style']); ?> />
 					<span class="switch-slider round"></span>
 				</label>
 				</div>
 				<div id="menu-switch-font-size">
-					<label id="switch-font-size-minus">-</label>
-					<label id="switch-font-size-plus">+</label>
-					<label id="switch-font-size-reset"></label>
+					<label aria-label="Diminuer les Polices" id="switch-font-size-minus">-</label>
+					<label aria-label="Augmenter les Polices" id="switch-font-size-plus">+</label>
+					<label aria-label="Réinitialiser les Polices" id="switch-font-size-reset"></label>
 				</div>
 
 			</div><!-- .inner -->

@@ -75,16 +75,24 @@ $img_attr = get_rehost_attr($_GET['img'], true );
 if ( ! file_exists( 'i' ) )
 	mkdir( 'i' );
 
-// If the file does not exist...
+// If rehosted file does not exist...
 if ( ! file_exists( $img_attr['path'] ) ) {
 
-	// Only connected user are alloxad to rehost
+	// Only connected user are alloxed to rehost
 	if ( $pun_user['group_id'] != 3 ) {
 
-		if ( isset( $img_attr['broken'] ) && $img_attr['broken'] ) {			// If file we want to rehost is not an image (missing)
-			$image = file_get_contents( '404-missing.png' );
+		// If file we want to rehost is not an image (missing)
+		if ( isset( $img_attr['tmp'] ) && $img_attr['tmp'] ) {
+			$image = $img_attr['tmp'];
+
+		// If file we want to rehost is an image
 		} else {
-			$image = file_get_contents( ( $img_attr['location'] != false ? $img_attr['location'] : $img_attr['source'] ) );					// Get file content
+			$img_attr = array_merge( $img_attr, array(
+				'broken'	=> true,
+				'width'		=> 200,
+				'height'	=> 200
+			));
+			$image = file_get_contents( '404-missing.png' );
 		}
 
 		// Make image storage folder
@@ -94,13 +102,15 @@ if ( ! file_exists( $img_attr['path'] ) ) {
 		// Write rehost data in a file
 		file_put_contents( $img_attr['path'], $image );
 
-		if ( extension_loaded( 'imagick' ) ) {									// Resize with Imagick
+		// Resize with Imagick
+		if ( extension_loaded( 'imagick' ) ) {
 
-			$resized_image	= new Imagick( $img_attr['path'] );
+			$resized_image = new Imagick( $img_attr['path'] );
 			$resized_image->resizeImage( (int)$img_attr['width'], (int)$img_attr['height'], imagick::FILTER_LANCZOS, 1, true );
 			$resized_image->writeImage( $img_attr['path'] );
 
-		} else {																// Or resize with GD
+		// Or resize with GD
+		} else {
 
 			resize_image( $img_attr['path'] , $img_attr['path'] , (int)$img_attr['width'] , (int)$img_attr['height']);
 
@@ -109,7 +119,15 @@ if ( ! file_exists( $img_attr['path'] ) ) {
 		// Add image attr in .txt files
 		file_put_contents(
 			'i/' . ( $img_attr['broken'] ? 'broken' : 'rehost' ) . '.txt',
-			time() . ' ' . $img_attr['source'] . ' ' . $img_attr['hash'] . ' ' . $img_attr['extension'] . ' ' . $img_attr['width'] . ' ' . $img_attr['height'] . ' ' . filesize( $img_attr['path'] ) . PHP_EOL,
+			  time() . ' '
+			. $img_attr['source'] . ' '
+			. $img_attr['hash'] . ' '
+			. $img_attr['extension'] . ' '
+			. $img_attr['width'] . ' '
+			. $img_attr['height'] . ' '
+			. filesize( $img_attr['path'] ) . ' '
+			. $img_attr['downloading'] . ' '
+			. $img_attr['redirect'] . PHP_EOL,
 			FILE_APPEND
 		);
 

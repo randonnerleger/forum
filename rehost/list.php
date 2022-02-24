@@ -46,6 +46,9 @@ $nbpage	= ceil($rehosted_count/$limit);
 // $min  = ($page-1)*$limit;
 // $max  = $page*$limit-1;
 
+$count = isset( $_GET['404'] ) ? $broken_count : $rehosted_count ;
+$file = isset( $_GET['404'] ) ? $broken_file : $rehosted_file ;
+
 $max  = ($rehosted_count-1)-(($page-1)*$limit);
 $min  = $max-($limit-1);
 $min  = $min > 0 ? $min : 0;
@@ -71,7 +74,8 @@ echo '<div id="punindex" class="pun">
 					<li class="hidden-from-ez-toolbar"><a href="../uploads?list">Parcourir toutes les images</a></li>
 					<li class="hidden-from-ez-toolbar"><a href="../uploads?albums">Parcourir tous les albums</a></li>
 					<li class="hidden-from-ez-toolbar"><a href="../uploads?stats">Stats</a></li>
-					<li class="hidden-from-ez-toolbar"><a href="../uploads?list&rehost">Rehost</a></li>
+					<li class="hidden-from-ez-toolbar"><a href="../rehost/list.php?rehost">Rehost</a></li>
+					<li class="hidden-from-ez-toolbar"><a href="../rehost/list.php?rehost&404">404</a></li>
 				</ul>
 			</div>
 
@@ -91,11 +95,11 @@ echo '<div id="punindex" class="pun">
 		<article class="browse">
 			<h2>Rehost</h2>';
 
-		if( $min < $rehosted_count ) {
+		if( $min < $count ) {
 
 			// for ( $i=$min; $i<=$max; $i++ ) {
 			for ( $i=$max; $i>=$min; $i-- ) {
-				$img = explode(' ', $rehosted_file[$i]);
+				$img = explode(' ', $file[$i]);
 
 				$search = str_replace( 'https://www.dailymotion.com/thumbnail/video/', 'https://www.dailymotion.com/video/', $img[1] );
 				$search = preg_replace( '/https:\/\/i.vimeocdn\.com\/video\/([0-9]+[0-9])+_([0-9]+[0-9])/', '[video][url]https://vimeo.com/', $search);
@@ -113,7 +117,7 @@ echo '<div id="punindex" class="pun">
 						<i class="size">' . getPictureSize($img[6]) . '<br />
 						<time datetime="'.date(DATE_W3C, $img[0]).'">'.strftime('%a %e %b %Y', $img[0]).'</time></i>
 					</p>
-					<p class="meta search"><a href="../search.php?action=search&keywords=&quot;' . $search . '&quot;&search_in=1&sort_by=0&sort_dir=DESC&show_as=posts&search=Valider" target="_blank">Rechercher</a></p>
+					<p class="meta search"><a href="../search.php?action=search&keywords=&quot;' . $search . '&quot;&search_in=1&sort_by=0&sort_dir=DESC&show_as=posts&search=Valider" target="_blank">Rechercher</a> - <a href="' . filter_var( $img[1], FILTER_SANITIZE_URL ) . '" target="_blank"><small>source</small</a></p>
 				</figure>';
 			}
 

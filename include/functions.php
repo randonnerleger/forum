@@ -1401,7 +1401,7 @@ function maintenance_message()
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo path_to_forum.'style/Global/global.min.css?version=' . current_theme . '' ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo path_to_forum.'style/'.RLStyle($pun_user['style']).'.css?version=' . current_theme . '' ?>" id="MyCss" />
-<link rel="stylesheet" type="text/css" href="<?php echo path_to_rl ?>tpl/fonts/fork-awesome/style.css?version='<?php echo current_theme ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo path_to_rl ?>tpl/fonts/fork-awesome/style.css?version=<?php echo current_theme ?>" />
 <?php
 
 	$tpl_temp = trim(ob_get_contents());

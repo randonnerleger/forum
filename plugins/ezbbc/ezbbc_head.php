@@ -208,80 +208,80 @@ function doToolbar() {
 	// Text style
 
 	// MODIF OPITUX
-	// Ajout des textes alternatifs pour accessibilité
+	// Ajout des class css "screen-reader-text"
 	// @link https://www.randonner-leger.org/forum/viewtopic.php?id=40317
 
 	<?php if ($ezbbc_config['b'] == 'b'): ?>
-	toolbar += '<a href="#" id="bold" title="<?php echo $lang_ezbbc['Bold title'] ?>" alt="<?php echo substr($lang_ezbbc['Bold title'], 0, strpos($lang_ezbbc['Bold title'], " » ")) ?>" onclick="insertTag(\'[b]\',\'[/b]\',\'\'); return false;"><span><?php echo $lang_ezbbc['Bold'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="bold" title="<?php echo $lang_ezbbc['Bold title'] ?>" onclick="insertTag(\'[b]\',\'[/b]\',\'\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Bold'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['u'] == 'u'): ?>
-	toolbar += '<a href="#" id="underline" title="<?php echo $lang_ezbbc['Underline title'] ?>" alt="<?php echo substr($lang_ezbbc['Underline title'], 0, strpos($lang_ezbbc['Underline title'], " » ")) ?>" onclick="insertTag(\'[u]\',\'[/u]\',\'\'); return false;"><span><?php echo $lang_ezbbc['Underline'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="underline" title="<?php echo $lang_ezbbc['Underline title'] ?>" onclick="insertTag(\'[u]\',\'[/u]\',\'\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Underline'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['i'] == 'i'): ?>
-	toolbar += '<a href="#" id="italic" title="<?php echo $lang_ezbbc['Italic title'] ?>" alt="<?php echo substr($lang_ezbbc['Italic title'], 0, strpos($lang_ezbbc['Italic title'], " » ")) ?>" onclick="insertTag(\'[i]\',\'[/i]\',\'\'); return false;"><span><?php echo $lang_ezbbc['Italic'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="italic" title="<?php echo $lang_ezbbc['Italic title'] ?>" onclick="insertTag(\'[i]\',\'[/i]\',\'\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Italic'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['s'] == 's'): ?>
-	toolbar += '<a href="#" id="strike" title="<?php echo $lang_ezbbc['Strike-through title'] ?>" alt="<?php echo substr($lang_ezbbc['Strike-through title'], 0, strpos($lang_ezbbc['Strike-through title'], " » ")) ?>" onclick="insertTag(\'[s]\',\'[/s]\',\'\'); return false;"><span><?php echo $lang_ezbbc['Strike-through'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="strike" title="<?php echo $lang_ezbbc['Strike-through title'] ?>" onclick="insertTag(\'[s]\',\'[/s]\',\'\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Strike-through'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['del'] == 'del'): ?>
-	toolbar += '<a href="#" id="delete" title="<?php echo $lang_ezbbc['Delete title'] ?>" alt="<?php echo substr($lang_ezbbc['Delete title'], 0, strpos($lang_ezbbc['Delete title'], " » ")) ?>" onclick="insertTag(\'[del]\',\'[/del]\',\'\'); return false;"><span><?php echo $lang_ezbbc['Delete'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="delete" title="<?php echo $lang_ezbbc['Delete title'] ?>" onclick="insertTag(\'[del]\',\'[/del]\',\'\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Delete'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['ins'] == 'ins'): ?>
-	toolbar += '<a href="#" id="insert" title="<?php echo $lang_ezbbc['Insert title'] ?>" alt="<?php echo substr($lang_ezbbc['Insert title'], 0, strpos($lang_ezbbc['Insert title'], " » ")) ?>" onclick="insertTag(\'[ins]\',\'[/ins]\',\'\'); return false;"><span><?php echo $lang_ezbbc['Insert'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="insert" title="<?php echo $lang_ezbbc['Insert title'] ?>" onclick="insertTag(\'[ins]\',\'[/ins]\',\'\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Insert'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['em'] == 'em'): ?>
-	toolbar += '<a href="#" id="emphasis"  title="<?php echo $lang_ezbbc['Emphasis title'] ?>" alt="<?php echo substr($lang_ezbbc['Emphasis title'], 0, strpos($lang_ezbbc['Emphasis title'], " » ")) ?>" onclick="insertTag(\'[em]\',\'[/em]\',\'\'); return false;"><span><?php echo $lang_ezbbc['Emphasis'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="emphasis"  title="<?php echo $lang_ezbbc['Emphasis title'] ?>" onclick="insertTag(\'[em]\',\'[/em]\',\'\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Emphasis'] ?><\/span><\/a>';
 	<?php endif; ?>
 
 	// Color and heading
 	<?php if ($ezbbc_config['color'] == 'color'): ?>
-	toolbar += '<a href="#" id="color"  title="<?php echo $lang_ezbbc['Colorize title'] ?>" alt="<?php echo substr($lang_ezbbc['Colorize title'], 0, strpos($lang_ezbbc['Colorize title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>colorpicker.php?textarea_name=<?php echo $textarea_name ?>\', \'Colorpicker\', \'height=400, width=400, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Colorize'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="color"  title="<?php echo $lang_ezbbc['Colorize title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>colorpicker.php?textarea_name=<?php echo $textarea_name ?>\', \'Colorpicker\', \'height=400, width=400, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Colorize'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['heading'] == 'heading'): ?>
-	toolbar += '<a href="#" id="heading" title="<?php echo $lang_ezbbc['Heading title'] ?>" alt="<?php echo substr($lang_ezbbc['Heading title'], 0, strpos($lang_ezbbc['Heading title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>heading.php?textarea_name=<?php echo $textarea_name ?>\', \'Header\', \'height=280, width=500, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Heading'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="heading" title="<?php echo $lang_ezbbc['Heading title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>heading.php?textarea_name=<?php echo $textarea_name ?>\', \'Header\', \'height=280, width=500, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Heading'] ?><\/span><\/a>';
 	<?php endif; ?>
 
 	// Links and images
 	<?php if ($ezbbc_config['url'] == 'url'): ?>
-	toolbar += '<a href="#" id="url" title="<?php echo $lang_ezbbc['URL title'] ?>" alt="<?php echo substr($lang_ezbbc['URL title'], 0, strpos($lang_ezbbc['URL title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>link.php?textarea_name=<?php echo $textarea_name ?>\', \'Link\', \'height=<?php echo ($ezbbc_config['doc_upload'] == 'no_doc_upload' || $pun_user['is_guest']) ? '335' : (($ezbbc_config['doc_list'] == 'doc_list') ? '600' : '440') ?>, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['URL'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="url" title="<?php echo $lang_ezbbc['URL title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>link.php?textarea_name=<?php echo $textarea_name ?>\', \'Link\', \'height=<?php echo ($ezbbc_config['doc_upload'] == 'no_doc_upload' || $pun_user['is_guest']) ? '335' : (($ezbbc_config['doc_list'] == 'doc_list') ? '600' : '440') ?>, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['URL'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['email'] == 'email'): ?>
-	toolbar += '<a href="#" id="email" title="<?php echo $lang_ezbbc['E-mail title'] ?>" alt="<?php echo substr($lang_ezbbc['E-mail title'], 0, strpos($lang_ezbbc['E-mail title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>email.php?textarea_name=<?php echo $textarea_name ?>\', \'Email\', \'height=300, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['E-mail'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="email" title="<?php echo $lang_ezbbc['E-mail title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>email.php?textarea_name=<?php echo $textarea_name ?>\', \'Email\', \'height=300, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['E-mail'] ?><\/span><\/a>';
 	<?php endif; ?>
 
 	<?php if ($pun_config['p_message_img_tag'] == '1' && $ezbbc_config['img'] == 'img'): ?>
 	// if image tag enabled
-	toolbar += '<a href="#" id="image" title="<?php echo $lang_ezbbc['Image title'] ?>" alt="<?php echo substr($lang_ezbbc['Image title'], 0, strpos($lang_ezbbc['Image title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>image.php?textarea_name=<?php echo $textarea_name ?>\', \'Image\', \'height=<?php echo ($ezbbc_config['img_upload'] == 'no_img_upload' || $pun_user['is_guest']) ? '300' : (($ezbbc_config['img_list'] == 'img_list') ? '560' : '410') ?>, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Image'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="image" title="<?php echo $lang_ezbbc['Image title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>image.php?textarea_name=<?php echo $textarea_name ?>\', \'Image\', \'height=<?php echo ($ezbbc_config['img_upload'] == 'no_img_upload' || $pun_user['is_guest']) ? '300' : (($ezbbc_config['img_list'] == 'img_list') ? '560' : '410') ?>, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Image'] ?><\/span><\/a>';
 	<?php endif; ?>
 
 	//********************* Modif : Tableaux + fotoo
-		toolbar += '<a href="#" id="rlgallery" title="<?php echo $lang_ezbbc['Image fotoo title'] ?>" alt="<?php echo substr($lang_ezbbc['Image fotoo title'], 0, strpos($lang_ezbbc['Image fotoo title'], " » ")) ?>" onclick="window.open(\'uploads/?insert=1\', \'InsertImage\', \'height=600, width=1000, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Image'] ?><\/span><\/a>';
+		toolbar += '<a href="#" id="rlgallery" title="<?php echo $lang_ezbbc['Image fotoo title'] ?>" onclick="window.open(\'uploads/?insert=1\', \'InsertImage\', \'height=600, width=1000, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Image'] ?><\/span><\/a>';
 
-	    toolbar += '<a href="#" id="rltable" title="<?php echo $lang_ezbbc['RLtable'] ?>" alt="<?php echo substr($lang_ezbbc['RLtable'], 0, strpos($lang_ezbbc['RLtable'], " » ")) ?>" onclick="window.open(\'plugins/rltable/\', \'Rltable\', \'height=600, width=1000, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['RLtable'] ?><\/span><\/a>';
+	    toolbar += '<a href="#" id="rltable" title="<?php echo $lang_ezbbc['RLtable'] ?>" onclick="window.open(\'plugins/rltable/\', \'Rltable\', \'height=600, width=1000, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['RLtable'] ?><\/span><\/a>';
 	//********************* Fin Modif
 
 	// Quote and code
 	<?php if ($ezbbc_config['quote'] == 'quote'): ?>
-	toolbar += '<a href="#" id="quote" title="<?php echo $lang_ezbbc['Quote title'] ?>" alt="<?php echo substr($lang_ezbbc['Quote title'], 0, strpos($lang_ezbbc['Quote title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>quote.php?textarea_name=<?php echo $textarea_name ?>\', \'Quote\', \'height=450, width=750, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Quote'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="quote" title="<?php echo $lang_ezbbc['Quote title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>quote.php?textarea_name=<?php echo $textarea_name ?>\', \'Quote\', \'height=450, width=750, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Quote'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['code'] == 'code'): ?>
-	toolbar += '<a href="#" id="code" title="<?php echo $lang_ezbbc['Code title'] ?>" alt="<?php echo substr($lang_ezbbc['Code title'], 0, strpos($lang_ezbbc['Code title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>code.php?textarea_name=<?php echo $textarea_name ?>\', \'Code\', \'height=450, width=750, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Code'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="code" title="<?php echo $lang_ezbbc['Code title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>code.php?textarea_name=<?php echo $textarea_name ?>\', \'Code\', \'height=450, width=750, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Code'] ?><\/span><\/a>';
 	<?php endif; ?>
 
 	// Lists
 	<?php if ($ezbbc_config['ulist'] == 'ulist'): ?>
-    toolbar += '<a href="#" id="ulist" title="<?php echo $lang_ezbbc['Unordered List title'] ?>" alt="<?php echo substr($lang_ezbbc['Unordered List title'], 0, strpos($lang_ezbbc['Unordered List title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>list.php?textarea_name=<?php         echo $textarea_name ?>&amp;list_type=*\', \'List\', \'height=350, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Unordered List'] ?><\/span><\/a>';
+    toolbar += '<a href="#" id="ulist" title="<?php echo $lang_ezbbc['Unordered List title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>list.php?textarea_name=<?php echo $textarea_name ?>&amp;list_type=*\', \'List\', \'height=350, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Unordered List'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['olist'] == 'olist'): ?>
-	toolbar += '<a href="#" id="olist" title="<?php echo $lang_ezbbc['Ordered List title'] ?>" alt="<?php echo substr($lang_ezbbc['Ordered List title'], 0, strpos($lang_ezbbc['Ordered List title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>list.php?textarea_name=<?php echo $textarea_name ?>&amp;list_type=1\', \'List\', \'height=350, width=620, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Ordered List'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="olist" title="<?php echo $lang_ezbbc['Ordered List title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>list.php?textarea_name=<?php echo $textarea_name ?>&amp;list_type=1\', \'List\', \'height=350, width=620, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Ordered List'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if ($ezbbc_config['alist'] == 'alist'): ?>
-	toolbar += '<a href="#" id="aolist" title="<?php echo $lang_ezbbc['Alphabetical Ordered List title'] ?>" alt="<?php echo substr($lang_ezbbc['Alphabetical Ordered List title'], 0, strpos($lang_ezbbc['Alphabetical Ordered List title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>list.php?textarea_name=<?php echo $textarea_name ?>&amp;list_type=a\', \'List\', \'height=350, width=620, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Alphabetical Ordered List'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="aolist" title="<?php echo $lang_ezbbc['Alphabetical Ordered List title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>list.php?textarea_name=<?php echo $textarea_name ?>&amp;list_type=a\', \'List\', \'height=350, width=620, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Alphabetical Ordered List'] ?><\/span><\/a>';
 	<?php endif; ?>
 
 	<?php if ($ezbbc_config['video'] == 'video'): ?>
 	// Video
-    toolbar += '<a href="#" id="video" title="<?php echo $lang_ezbbc['Video title'] ?>" alt="<?php echo substr($lang_ezbbc['Video title'], 0, strpos($lang_ezbbc['Video title'], " » ")) ?>" onclick="window.open(\'<?php echo $plugin_folder ?>video.php?textarea_name=<?php echo $textarea_name ?>\', \'Video\', \'height=350, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span><?php echo $lang_ezbbc['Video'] ?><\/span><\/a>';
+    toolbar += '<a href="#" id="video" title="<?php echo $lang_ezbbc['Video title'] ?>" onclick="window.open(\'<?php echo $plugin_folder ?>video.php?textarea_name=<?php echo $textarea_name ?>\', \'Video\', \'height=350, width=600, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Video'] ?><\/span><\/a>';
 	<?php endif; ?>
 
   <?php endif; ?>
@@ -289,11 +289,11 @@ function doToolbar() {
 
         <?php if ($pun_config['o_smilies'] == '1' && $ezbbc_config['smiliesb'] == 'smiliesb'): ?>
         // Smilies toggle button
-	toolbar += '<a href="#" id="smiliesb" title="<?php echo $lang_ezbbc['Smilies toggle title'] ?>" onclick="ezbbcVisibility(\'ezbbcsmiliesbar\'); return false;"><span><?php echo $lang_ezbbc['Smilies toggle'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="smiliesb" title="<?php echo $lang_ezbbc['Smilies toggle title'] ?>" onclick="ezbbcVisibility(\'ezbbcsmiliesbar\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Smilies toggle'] ?><\/span><\/a>';
 	<?php endif; ?>
 	<?php if (($pun_config['o_smilies'] == '1' || $pun_config['p_message_bbcode'] == '1') && ($ezbbc_config['help'] == 'help')): ?>
 	// Help link
-	toolbar += '<a href="#" id="help" title="<?php echo $lang_ezbbc['Toolbar help title'] ?>" alt="<?php echo $lang_ezbbc['Toolbar help title'] ?>" onclick="window.open(\'<?php echo $help_file_path ?>\', \'Toolbar_help\', \'height=400, width=750, top=50, left=50, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span><?php echo $lang_ezbbc['Toolbar help'] ?><\/span><\/a>';
+	toolbar += '<a href="#" id="help" title="<?php echo $lang_ezbbc['Toolbar help title'] ?>" onclick="window.open(\'<?php echo $help_file_path ?>\', \'Toolbar_help\', \'height=400, width=750, top=50, left=50, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=yes, status=no\'); return false;"><span class="screen-reader-text"><?php echo $lang_ezbbc['Toolbar help'] ?><\/span><\/a>';
 	<?php endif; ?>
 
 // End Toolbar for common teaxtareas

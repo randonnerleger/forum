@@ -2,6 +2,7 @@
 // Je check si connecté
 $connected = ($pun_user['group_id']==3 || $conf['group_id']==3 ) ? '' : 'connected' ;
 ?>
+<span class="skip-links"><a class="" href="#content">Aller au contenu</a></span>
 <div id="top-page"><a onclick="window.top.window.scrollTo(0,0);return false" href="#wrapper-rl"></a></div>
 <div id="wrapper-rl" class="<?php echo $connected; ?>">
 	<input type="checkbox" id="menu-left-checkbox" class="menu-left-checkbox" role="button">

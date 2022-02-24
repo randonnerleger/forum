@@ -709,8 +709,8 @@ function handle_img_tag($url, $is_signature = false, $alt = null, $width = null,
 
 	// MODIF OPITUX
 	// REHOST DES IMAGES EXTERIEURES
-	$is_rehost_off	= isset( $_GET['rehostoff'] ) || isset( $_GET['action'] ) && $_GET['action'] == 'feed' ? true : false ;
-	if( strpos( $url, 'randonner-leger.org') === false && ! $is_rehost_off ) {
+	$is_rehost_off	= isset( $_GET['rehostoff'] ) || isset( $_GET['action'] ) && $_GET['action'] == 'feed' || file_exists( ABSPATH . folder_forum . '/rehost/rehostoff' ) ? true : false ;
+	if( strpos( $url, DOMAIN ) === false && ! $is_rehost_off ) {
 		// $url = path_to_forum . 'rehost/?img=' . $url;
 		$img_attr	= get_rehost_attr($url);
 		$width		= $img_attr['width'];

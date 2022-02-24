@@ -156,7 +156,8 @@ function get_rehost_attr( $url, $rehost = false ) {
 					return $img_attr;
 				}
 
-				$img_to_rehost = str_replace( '%2F', '/', $location['path'] );
+				$location['path']	= str_replace( '%2F', '/', $location['path'] );
+				$img_to_rehost = filter_var( $location['scheme'] . '://' . $location['host'] . $location['path'], FILTER_SANITIZE_URL );
 
 			}
 

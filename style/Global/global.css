@@ -1277,10 +1277,18 @@ form#edit p.buttons::before {
 .pun #modcontrols dd span {
 	padding: 0px !important;
 	display: flex !important;
+	font-size: 0;
 }
 .pun #modcontrols dd span a {
 	padding: 8px 30px !important;
 	margin: 0 !important;
+	font-size: 13.3px;
+}
+.pun #modcontrols dd span a + a::before {
+	content: "(";
+}
+.pun #modcontrols dd span a + a::after {
+	content: ")";
 }
 /* END Admin */
 
